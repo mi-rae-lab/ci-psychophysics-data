@@ -11,14 +11,17 @@ bilateral cochlear-implant user between 2026-10-11 and 2026-11-04 (KST).
   for these tests.
 - Sound did not go through a loudspeaker. In every test it went from the computer's USB-C port over a USB-C streamer
   cable (wired) straight into the external sound processor. The apps store a route name for this connection, and the
-  name differs between apps: "유선스트리머" ("wired streamer") in TMTF and SMRT, and "유선→무선 스트리머"
-  ("wired→wireless streamer") in STM, SRD, GDT and SMD (route type `wired_streamer` in all of them). Only the names
+  name differs between apps: "유선스트리머" ("wired streamer") in TMTF and SMRT (stored as `path` =
+  `wiredStreamer`), and "유선→무선 스트리머" ("wired→wireless streamer") in STRIPES, STM, SRD, GDT and SMD (stored as
+  `rType` = `wired_streamer`). Only the names
   differ; the participant confirms that the same wired streamer connection was used in all seven tests.
 - Because the sounds were presented this way, and not in a sound field as in the cited papers, these are **not
   replications** of the original studies. The processor settings (coding strategy, stimulation rate, AGC and so on)
   are unknown to the participant.
 - These are repeated measurements of one person, so runs and trials are not independent participants. Do not use
   them for population inference.
+- **Non-commercial use only.** Data and documents are under CC BY-NC 4.0 and code under the PolyForm Noncommercial
+  License 1.0.0 (see [License](#license)).
 
 ## Folders
 
@@ -44,8 +47,8 @@ analysis/
   requirements.txt
 verification/lean4/            Lean 4 proofs of the test apps' logic, with build logs, axiom audits and reports
 SHA256SUMS.txt                 SHA-256 of every file in this package
-LICENSE                        code license: MIT
-LICENSE-DATA.md                data and documentation license: CC BY 4.0
+LICENSE                        code license: PolyForm Noncommercial 1.0.0
+LICENSE-DATA.md                data and documentation license: CC BY-NC 4.0
 ```
 
 ## Files and counts
@@ -293,11 +296,13 @@ README).
 
 ## License
 
-- Data and documentation (`data/`, `analysis/pdf_values/`, `analysis/output/`, `README.md`, `README.ko.md`):
-  **CC BY 4.0**, see `LICENSE-DATA.md`. Anyone may use, share and adapt them, as long as they credit the source (this
-  dataset and a link to the repository), give the license, and say whether they made changes.
+This repository is for **non-commercial use only**.
+
+- Data and documentation (`data/`, `analysis/pdf_values/`, `analysis/output/`, `README.md`, `README.ko.md`, and the
+  build logs, audit outputs and reports under `verification/lean4/`): **CC BY-NC 4.0**, see `LICENSE-DATA.md`. Anyone
+  may use, share and adapt them for non-commercial purposes, as long as they credit the source (this dataset and a
+  link to the repository), give the license, and say whether they made changes.
 - Code (`analysis/*.py`, `analysis/build/*.py`, and the Lean, JavaScript, Python and PowerShell sources under
-  `verification/lean4/`): **MIT**, see `LICENSE`. The build logs, audit outputs and reports under
-  `verification/lean4/` are under CC BY 4.0.
+  `verification/lean4/`): **PolyForm Noncommercial License 1.0.0**, see `LICENSE`.
 - The official sound files are not in this package and remain under their distributors' terms (see "Official sound
   files" above).

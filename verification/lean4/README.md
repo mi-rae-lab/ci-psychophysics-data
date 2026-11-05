@@ -14,12 +14,12 @@ log (`lake-build.txt`), its axiom audit (`print-axioms.txt`) and its verificatio
 | Test | Lean project | Lean | Build | Theorems in the axiom audit | Axioms used | Report (Korean) |
 |---|---|---|---|---:|---|---|
 | TMTF | `tmtf/TMTF-Lean` (Lean root: `tools/lean`) | 4.24.0 | passed | 123 (22 use none) | `propext`, `Classical.choice`, `Quot.sound` | `tmtf/report.ko.md` |
-| SMRT | `smrt/wowSMRT-Lean4` | 4.24.0 | passed | 168 (28 use none) | same three | `smrt/report.ko.html` |
+| SMRT | `smrt/wowSMRT-Lean4` | 4.24.0 | passed | 169 (28 use none) | same three | `smrt/report.ko.html` |
 | STRIPES | `stripes/stripes-lean4` | 4.24.0 | passed | 95 (23 use none) | same three | `stripes/report.ko.md` |
 | STM | `stm/stm-lean4` | 4.19.0 | passed | 168 (27 use none) | same three | `stm/report.ko.html` |
-| SRD | `srd/WowSRD-Lean` (Lean root: `tools/lean`) | 4.24.0 | passed | 124 (10 use none) | same three | `srd/report.ko.md` |
-| GDT | `gdt/WowGDT-Lean4` | 4.24.0 | passed | 231 (60 use none) | same three | `gdt/report.ko.html` |
-| SMD | `smd/SMD-Lean` (Lean root: `tools/lean`) | 4.24.0 | passed | 157 (19 use none) | same three | `smd/report.ko.md`, `smd/theorem-map.ko.md` |
+| SRD | `srd/WowSRD-Lean` (Lean root: `tools/lean`) | 4.24.0 | passed | 125 (10 use none) | same three | `srd/report.ko.md` |
+| GDT | `gdt/WowGDT-Lean4` | 4.24.0 | passed | 232 (60 use none) | same three | `gdt/report.ko.html` |
+| SMD | `smd/SMD-Lean` (Lean root: `tools/lean`) | 4.24.0 | passed | 158 (19 use none) | same three | `smd/report.ko.md`, `smd/theorem-map.ko.md` |
 
 - "Theorems in the axiom audit" counts the theorems listed in each `print-axioms.txt`; the number in brackets is how
   many of them depend on no axioms at all.
@@ -71,5 +71,6 @@ finished state unchanged if input arrives after a run has ended, whereas the app
 
 ## License
 
-The Lean, JavaScript, Python and PowerShell sources here are under the MIT License (`../../LICENSE`). The build logs,
-audit outputs and reports are under CC BY 4.0 (`../../LICENSE-DATA.md`).
+For non-commercial use only. The Lean, JavaScript, Python and PowerShell sources here are under the PolyForm
+Noncommercial License 1.0.0 (`../../LICENSE`). The build logs, audit outputs and reports are under CC BY-NC 4.0
+(`../../LICENSE-DATA.md`).

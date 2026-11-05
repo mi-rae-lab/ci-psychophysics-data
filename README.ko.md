@@ -4,11 +4,12 @@ English version: [README.md](README.md)
 
 - 참가자 1명 (기호 **P01**), 양쪽 인공와우 사용자. 이 검사들을 위해 만든 브라우저 검사 앱으로 스스로 측정함.
 - 소리는 스피커를 거치지 않고, 모든 검사에서 컴퓨터의 USB-C 포트 → USB-C 스트리머 케이블(유선) → 외부 음성처리기로 바로 보냄.
-  앱 기록의 경로 이름은 앱마다 다름: ‘유선스트리머’(TMTF · SMRT), ‘유선→무선 스트리머’(STM · SRD · GDT · SMD; 경로 종류는 모두
-  `wired_streamer`). 이름만 다를 뿐 일곱 검사 모두 같은 유선 스트리머 연결을 썼음(참가자 확인).
+  앱 기록의 경로 이름은 앱마다 다름: ‘유선스트리머’(TMTF · SMRT; `path` = `wiredStreamer`), ‘유선→무선 스트리머’(STRIPES · STM ·
+  SRD · GDT · SMD; `rType` = `wired_streamer`). 이름만 다를 뿐 일곱 검사 모두 같은 유선 스트리머 연결을 썼음(참가자 확인).
   인용한 논문들의 음장(스피커) 측정과 제시 조건이 다르므로 원 논문의 재현이 아님. 음성처리기 설정(코딩 전략 · 자극률 · AGC 등)은
   참가자도 모름.
 - 한 사람의 반복 측정이므로 측정 · 시행은 독립된 참가자가 아님. 모집단 추론에 쓰지 않음.
+- **비상업적 이용만 허용.** 데이터 · 문서는 CC BY-NC 4.0, 코드는 PolyForm Noncommercial License 1.0.0 (아래 ‘라이선스’).
 
 ## 폴더
 
@@ -31,8 +32,8 @@ analysis/
   requirements.txt
 verification/lean4/            검사 앱 로직의 Lean 4 증명 · 빌드 기록 · 공리 검사 · 검증 보고서
 SHA256SUMS.txt                 이 묶음 안 모든 파일의 SHA-256
-LICENSE                        코드 라이선스 — MIT
-LICENSE-DATA.md                데이터 · 문서 라이선스 — CC BY 4.0
+LICENSE                        코드 라이선스 — PolyForm Noncommercial 1.0.0
+LICENSE-DATA.md                데이터 · 문서 라이선스 — CC BY-NC 4.0
 ```
 
 ## 파일과 개수
@@ -56,9 +57,9 @@ SRD 쉬운 끝 막힘(`threshold_near_easy_end`), GDT 짧은 끝 막힘(`thresho
 ## 시행 CSV (`data/trials`)
 
 열 28개, 일곱 파일 모두 같은 순서. 값은 ASCII 문자만(± → `+/-`). 열의 뜻 · 단위 · 가능한 값은 `data/data_dictionary.csv`.
-요청한 열과의 대응:
+열 구성:
 
-| 요청한 것 | 열 |
+| 내용 | 열 |
 |---|---|
 | 검사 이름 · 프로토콜/조건 · 귀 | `test` · `protocol`, `condition` · `ear` (L/R) |
 | 날짜 · 시각 (KST) | `date_kst`, `time_kst` (밀리초까지), `time_source` |
@@ -232,8 +233,11 @@ TMTF · STM · SRD · GDT · SMD(적응) 의 소리는 앱이 시행마다 합�
 
 ## 라이선스
 
-- 데이터 · 문서 (`data/`, `analysis/pdf_values/`, `analysis/output/`, `README.md` · `README.ko.md`): **CC BY 4.0** — `LICENSE-DATA.md`.
-  출처(이 데이터와 저장소 링크)와 라이선스를 밝히고, 바꾼 것이 있으면 바꿨다고 적으면 누구나 쓰고 나누고 고칠 수 있음.
-- 코드 (`analysis/*.py`, `analysis/build/*.py`, `verification/lean4/` 안의 Lean · JavaScript · Python · PowerShell 소스): **MIT** — `LICENSE`.
-  `verification/lean4/` 의 빌드 기록 · 공리 검사 출력 · 보고서는 CC BY 4.0.
+이 저장소는 **비상업적 이용만** 허용함.
+
+- 데이터 · 문서 (`data/`, `analysis/pdf_values/`, `analysis/output/`, `README.md` · `README.ko.md`, `verification/lean4/` 의 빌드 기록 ·
+  공리 검사 출력 · 보고서): **CC BY-NC 4.0** — `LICENSE-DATA.md`. 출처(이 데이터와 저장소 링크)와 라이선스를 밝히고, 바꾼 것이
+  있으면 바꿨다고 적으면 비상업적 목적에 한해 누구나 쓰고 나누고 고칠 수 있음.
+- 코드 (`analysis/*.py`, `analysis/build/*.py`, `verification/lean4/` 안의 Lean · JavaScript · Python · PowerShell 소스):
+  **PolyForm Noncommercial License 1.0.0** — `LICENSE`.
 - 공식 소리 파일은 이 묶음에 없고 각 배포처의 조건을 따름 (위 ‘공식 소리 파일’).
