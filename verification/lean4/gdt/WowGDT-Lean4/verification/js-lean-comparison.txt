@@ -1,0 +1,140 @@
+와우GDT  ·  JavaScript ↔ Lean 유한 입력 대조
+입력 씨앗 20261101
+파일 SHA-256
+89bfc356155e733bbd86cd03e515055404b7d00de2e8a35c1724c37829953d85  tools/lean/cross_check.js
+a15baaf74c7959b0e743330b29ddc8a080e2de2885877589f437c6681aaed68c  js/analysis.js
+b95624bb5f5759dda4da767193dcbbf03eefb6fd9ef60b1352a177618393af22  js/staircase.js
+6aa5d9e6e1cf0d21689504053d4eb1654b4e7e6e8659826b96eb6e7d92e7c112  js/rng.js
+1d19c79a318673b68d82290d80996e4f62fc2386698d22d616970323cc10586b  js/protocol.js
+deno 2.7.14 (stable, release, x86_64-pc-windows-msvc)
+v8 14.7.173.20-rusty
+typescript 5.9.2
+
+JS 기대값 생성
+입력 18476줄 → js 기대 출력 236198줄 (2.2 s)
+exit code = 0
+
+Lean 모델 실행
+
+exit code = 0
+
+행별 비교
+js 236198줄 · lean 236198줄
+  RNG    같음 40 · 다름 0
+  INT    같음 40 · 다름 0
+  PLAN   같음 640 · 다름 0
+  LAD    같음 3 · 다름 0
+  PCFG   같음 3 · 다름 0
+  STAIR  같음 2778 · 다름 0
+  CLASS  같음 2778 · 다름 0
+  SUM    같음 4675 · 다름 0
+  B      같음 40600 · 다름 0
+  F      같음 143840 · 다름 0
+  T      같음 20300 · 다름 0
+  H      같음 20300 · 다름 0
+  TSUM   같음 201 · 다름 0
+변조 시험: 13종 중 13종 잡음
+닿은 판정 (js 출력):
+  계단 끝 상태 (절차 상태)
+    blank ceiling_stop                                                     92
+    blank floor_stop                                                       270
+    blank reversal_target_reached                                          560
+    blank running                                                          1
+    blank technical_failure                                                3
+    xie ceiling_stop                                                       96
+    xie floor_stop                                                         210
+    xie reversal_target_reached                                            553
+    xie running                                                            2
+    xie technical_failure                                                  59
+    xie trial_cap_before_reversal_target                                   6
+    zeng ceiling_stop                                                      394
+    zeng floor_stop                                                        212
+    zeng reversal_target_reached                                           287
+    zeng running                                                           2
+    zeng technical_failure                                                 25
+    zeng trial_cap_before_reversal_target                                  6
+  track 분류 (절차 상태 이유)
+    blank complete_in_range -                                              506
+    blank insufficient_data -                                              1
+    blank technical_failure -                                              3
+    blank threshold_near_ceiling ceiling_blocked                           1
+    blank threshold_near_ceiling ceiling_stop                              92
+    blank threshold_near_floor floor_blocked                               52
+    blank threshold_near_floor floor_stop                                  270
+    blank unreliable_responses both_ends_blocked                           1
+    xie complete_in_range -                                                190
+    xie insufficient_data -                                                2
+    xie technical_failure -                                                59
+    xie threshold_above_range ceiling_below_target                         2
+    xie threshold_above_window window_below_target                         122
+    xie threshold_below_range floor_above_target                           1
+    xie threshold_near_ceiling ceiling_blocked                             14
+    xie threshold_near_ceiling ceiling_stop                                96
+    xie threshold_near_floor floor_blocked                                 16
+    xie threshold_near_floor floor_stop                                    210
+    xie threshold_not_above_chance not_above_chance                        211
+    xie trial_cap_before_reversal_target -                                 1
+    xie unreliable_responses both_ends_blocked                             1
+    xie unreliable_responses ceiling_worse_than_lower                      1
+    zeng complete_in_range -                                               237
+    zeng insufficient_data -                                               2
+    zeng technical_failure -                                               25
+    zeng threshold_above_range ceiling_below_target                        2
+    zeng threshold_above_window window_below_target                        1
+    zeng threshold_below_range floor_above_target                          1
+    zeng threshold_near_ceiling ceiling_blocked                            37
+    zeng threshold_near_ceiling ceiling_stop                               394
+    zeng threshold_near_floor floor_blocked                                11
+    zeng threshold_near_floor floor_stop                                   212
+    zeng threshold_not_above_chance not_above_chance                       1
+    zeng trial_cap_before_reversal_target -                                1
+    zeng unreliable_responses both_ends_blocked                            1
+    zeng unreliable_responses ceiling_worse_than_lower                     1
+  회기 요약 (절차 상태)
+    blank above                                                            23
+    blank below                                                            13
+    blank ceil                                                             58
+    blank floor                                                            79
+    blank high                                                             195
+    blank mixed                                                            299
+    blank paper                                                            419
+    blank provisional                                                      422
+    xie above                                                              5
+    xie ceil                                                               15
+    xie final                                                              283
+    xie floor                                                              45
+    xie high                                                               139
+    xie mixed                                                              322
+    xie provisional                                                        698
+    zeng above                                                             17
+    zeng below                                                             17
+    zeng ceil                                                              55
+    zeng final                                                             432
+    zeng floor                                                             75
+    zeng high                                                              185
+    zeng mixed                                                             271
+    zeng provisional                                                       608
+판정: 통과
+exit code = 0
+
+결함 주입 시험
+M1   잡음 — 짧은 끝 멈춤: 막힌 이동 5번 → 6번: 다른 줄 STAIR 692 · CLASS 692
+  M2   잡음 — 잔 step 전환을 반전 한 번 늦게 (switchFrom): 다른 줄 STAIR 464 · CLASS 455
+  M3   잡음 — zeng 남길 반전 8 → 7: 다른 줄 PCFG 1 · STAIR 287 · CLASS 287
+  M4   잡음 — 우연 관문 기준 p < .05 → .1: 다른 줄 CLASS 30
+  M5   잡음 — 수렴 점검을 목표 = 우연(blank)에도: 다른 줄 CLASS 926
+  M6   잡음 — zeng 3번째 track: |k̄₁ − k̄₂| > 1 → ≥ 1: 다른 줄 SUM 34
+  M7   잡음 — 막힌 수의 끝 바뀜 (blockedFloor ↔ blockedCeil): 다른 줄 STAIR 1464 · CLASS 1274
+  M8   잡음 — Fisher 방향 거꾸로 (긴 끝이 더 잘함을 검정): 다른 줄 CLASS 12
+  M9   잡음 — geo 사다리 kmin −12 → −11 (k 한 칸 밀림): 다른 줄 LAD 1 · STAIR 287 · CLASS 287
+  M10  잡음 — 짧은 끝 검정 꼬리 ≥ → ≤: 다른 줄 CLASS 2
+  M11  잡음 — 분석 구간이 남기지 않은 마지막 반전 시행부터 (한 시행 앞): 다른 줄 CLASS 1400
+  M12  잡음 — 표지음 흔들기 250…350 → 250…349: 다른 줄 PLAN 320
+  M13  잡음 — 우연 이항 (q−1)^(n−j) → (q−2)^(n−j): 다른 줄 CLASS 2182 · B 40200
+  M14  잡음 — 시행 상한 track 의 분석 구간 마지막 20 → 19 시행: 다른 줄 CLASS 12
+  M15  잡음 — 기술적 실패 상한 10 → 11: 다른 줄 STAIR 87 · CLASS 87
+  M16  잡음 — 반전 값 = 이동 뒤 칸 (이동 전 칸이어야 함): 다른 줄 STAIR 1828 · CLASS 636
+  M17  잡음 — int(n) 기각 표집 빠짐 (나머지 치우침): 다른 줄 INT 32
+검산기 검증: 일부러 넣은 결함 17개 중 17개 잡음
+판정: 통과
+exit code = 0

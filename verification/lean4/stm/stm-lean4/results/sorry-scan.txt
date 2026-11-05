@@ -1,0 +1,5 @@
+Pattern: whole-word sorry, admit, sorryAx
+Scope: all distributed .lean files, including audit-controls/
+audit-controls/NegativeControlSorry.lean:6: theorem Stm.NegativeControl.hole : False := by sorry
+Core model / Witness / distribution audit driver: 0 matches
+Intentional negative controls: 1 match. See control-Sorry.txt for the rejection.

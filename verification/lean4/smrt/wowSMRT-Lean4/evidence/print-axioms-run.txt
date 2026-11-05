@@ -1,0 +1,9 @@
+Command: lake env lean PrintAxioms.lean
+Working directory: wowSMRT-Lean4
+Started (Asia/Seoul): 2026-11-04T22:23:41+09:00
+Elapsed seconds: 6.47
+Exit code: 0
+.lake existed before this command: True
+Lean (version 4.24.0, x86_64-w64-windows-gnu, commit 797c613eb9b6d4ec95db23e3e00af9ac6657f24b, Release)
+Lake version 5.0.0-src+797c613 (Lean version 4.24.0)
+Log: stdout + stderr, UTF-8

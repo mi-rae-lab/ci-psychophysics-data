@@ -1,0 +1,6 @@
+Lean (version 4.19.0, x86_64-w64-windows-gnu, commit 6caaee842e94, Release)
+Lake version 5.0.0-6caaee8 (Lean version 4.19.0)
+2026-11-04T22:22:32+09:00
+$ lake env lean -t 0 audit-controls/NegativeControlNative.lean
+audit-controls/NegativeControlNative.lean:12:0: error: Forbidden axiom Lean.ofReduceBool used by theorem Stm.NegativeControl.nativeWitness._proof_1
+[exit code 1]

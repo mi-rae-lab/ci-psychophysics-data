@@ -1,0 +1,10 @@
+Lean (version 4.19.0, x86_64-w64-windows-gnu, commit 6caaee842e94, Release)
+Lake version 5.0.0-6caaee8 (Lean version 4.19.0)
+2026-11-04T22:22:32+09:00
+$ lake env lean -t 0 -o .lake/build/lib/lean/Witness.olean Witness.lean
+'Reaudit.witness_reachable' depends on axioms: [propext]
+'Reaudit.witness_fourteen_reversals' depends on axioms: [propext]
+'Reaudit.witness_twenty_three_attempts' depends on axioms: [propext]
+'Reaudit.witness_target_status' depends on axioms: [propext]
+'Reaudit.reachable_threshold_nonempty' depends on axioms: [propext]
+[exit code 0]

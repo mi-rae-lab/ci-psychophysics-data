@@ -1,0 +1,11 @@
+Lean (version 4.19.0, x86_64-w64-windows-gnu, commit 6caaee842e94, Release)
+Lake version 5.0.0-6caaee8 (Lean version 4.19.0)
+2026-11-04T22:22:32+09:00
+$ lake build
+✔ [2/7] Built Stm.Staircase
+✔ [3/7] Built Stm.Analysis
+✔ [4/7] Built Stm.Arithmetic
+✔ [5/7] Built Stm.Threshold
+✔ [6/7] Built Stm
+Build completed successfully.
+[exit code 0]

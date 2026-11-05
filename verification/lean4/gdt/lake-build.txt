@@ -1,0 +1,31 @@
+Lean (version 4.24.0, x86_64-w64-windows-gnu, commit 797c613eb9b6d4ec95db23e3e00af9ac6657f24b, Release)
+Lake version 5.0.0-src+797c613 (Lean version 4.24.0)
+
+$ lake build
+✔ [2/25] Built GDT.Arith (2.7s)
+✔ [3/25] Built GDT.Rng (3.8s)
+✔ [4/25] Built GDT.Ladder (3.8s)
+✔ [5/25] Built GDT.Arith:c.o (3.8s)
+✔ [6/25] Built GDT.Exact (3.9s)
+✔ [7/25] Built GDT.Target (3.5s)
+✔ [8/25] Built GDT.Exact:c.o (3.5s)
+✔ [9/25] Built GDT.Target:c.o (447ms)
+✔ [10/25] Built GDT.Rng:c.o (5.8s)
+✔ [11/25] Built GDT.Ladder:c.o (5.8s)
+✔ [12/25] Built GDT.Stair (5.9s)
+✔ [13/25] Built GDT.Stair:c.o (2.4s)
+✔ [14/25] Built GDT.Proto (2.5s)
+✔ [15/25] Built GDT.Proto:c.o (15s)
+✔ [16/25] Built GDT.Classify (15s)
+✔ [17/25] Built GDT.Classify:c.o (3.8s)
+✔ [18/25] Built GDT.Summary (3.9s)
+✔ [19/25] Built GDT.Summary:c.o (2.3s)
+✔ [20/25] Built GDT (2.3s)
+✔ [22/25] Built GDT:c.o (3.7s)
+✔ [23/25] Built CrossCheck (3.7s)
+✔ [24/25] Built CrossCheck:c.o (2.4s)
+✔ [25/25] Built crosscheck:exe (344ms)
+Build completed successfully (25 jobs).
+
+exit code = 0
+elapsed = 43.47 s

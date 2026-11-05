@@ -1,0 +1,3 @@
+Original Lean sources checked: 13
+Excludes comments and strings; tokens: sorry, admit, sorryAx, axiom
+Executable occurrences: 0

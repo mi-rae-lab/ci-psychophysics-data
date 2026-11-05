@@ -1,0 +1,236 @@
+$ lake env lean PrintAxioms.lean
+'GDT.sumTo_zero' does not depend on any axioms
+'GDT.sumTo_succ' does not depend on any axioms
+'GDT.sumQ_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.sumQ_succ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.sumZ_zero' does not depend on any axioms
+'GDT.sumZ_succ' does not depend on any axioms
+'GDT.sumTo_congr' depends on axioms: [propext, Quot.sound]
+'GDT.sumQ_congr' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.sumTo_add' depends on axioms: [propext, Quot.sound]
+'GDT.sumTo_le' depends on axioms: [propext, Quot.sound]
+'GDT.sumTo_eq_zero' depends on axioms: [propext, Quot.sound]
+'GDT.le_sumTo' depends on axioms: [propext, Quot.sound]
+'GDT.sumTo_split' depends on axioms: [propext, Quot.sound]
+'GDT.sumTo_succ'' depends on axioms: [propext, Quot.sound]
+'GDT.sumTo_mul_left' depends on axioms: [propext]
+'GDT.sumQ_div' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.natCast_sumTo' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.div_le_div_iff_of_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.div_lt_div_iff_of_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.frac_lt_twentieth' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.natCast_ite' depends on axioms: [propext]
+'GDT.ite_div_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.choose_zero_right' does not depend on any axioms
+'GDT.choose_zero_succ' does not depend on any axioms
+'GDT.choose_succ_succ' does not depend on any axioms
+'GDT.choose_eq_zero_of_lt' depends on axioms: [propext, Quot.sound]
+'GDT.choose_self' depends on axioms: [propext, Quot.sound]
+'GDT.choose_pos' depends on axioms: [propext, Quot.sound]
+'GDT.vandermonde' depends on axioms: [propext, Quot.sound]
+'GDT.zipWith_add_getD' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.append_zero_getD' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.pascalRow_length' depends on axioms: [propext, Quot.sound]
+'GDT.pascalRow_getD' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.arr_getD' depends on axioms: [propext]
+'GDT.choose_eq_chooseFast' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.decision_complete_iff' depends on axioms: [propext]
+'GDT.core_above_iff' depends on axioms: [propext]
+'GDT.core_below_iff' depends on axioms: [propext]
+'GDT.core_unreliable_iff' depends on axioms: [propext]
+'GDT.core_window_iff' depends on axioms: [propext]
+'GDT.window_of_complete' depends on axioms: [propext, Quot.sound]
+'GDT.boundOpt_of_complete' depends on axioms: [propext, Quot.sound]
+'GDT.classify_numeric_iff' depends on axioms: [propext, Quot.sound]
+'GDT.classify_status' does not depend on any axioms
+'GDT.classify_reason' does not depend on any axioms
+'GDT.window_none_of_stop' depends on axioms: [propext]
+'GDT.classify_floor_stop' depends on axioms: [propext]
+'GDT.classify_ceiling_stop' depends on axioms: [propext]
+'GDT.classify_tech_fail' depends on axioms: [propext]
+'GDT.firstStatus_not_window' depends on axioms: [propext]
+'GDT.aboveWindow_needs_conv' depends on axioms: [propext]
+'GDT.notAboveChance_needs_gate' depends on axioms: [propext]
+'GDT.blank_never_window_or_gate' depends on axioms: [propext]
+'GDT.classify_thr' does not depend on any axioms
+'GDT.zeng_numeric_thr' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.xie_numeric_thr' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.blank_numeric_thr' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.natCast_pow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.rat_pow_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.rat_one_pow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.frac_pows' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.natCast_pred' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.geDen_pos' depends on axioms: [propext, Quot.sound]
+'GDT.ge_frac' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.geSig_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.geSig_iff_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.geSig_iff_three' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.sum_choose_pow' depends on axioms: [propext, Quot.sound]
+'GDT.geNum_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.geNum_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.geNum_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.geNum_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.fgSpecM_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.fg_window' depends on axioms: [propext, Quot.sound]
+'GDT.fgSpec_degenerate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.fg_frac' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.fgDen_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.fgSig_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.geo20_len' does not depend on any axioms
+'GDT.xieL_len' does not depend on any axioms
+'GDT.blankL_len' does not depend on any axioms
+'GDT.geo20_ends' does not depend on any axioms
+'GDT.xieL_ends' does not depend on any axioms
+'GDT.blankL_ends' does not depend on any axioms
+'GDT.geo20_round' does not depend on any axioms
+'GDT.geo20_strict' depends on axioms: [propext, Quot.sound]
+'GDT.xieL_strict' does not depend on any axioms
+'GDT.blankL_strict' does not depend on any axioms
+'GDT.geo20_gapN_strict' does not depend on any axioms
+'GDT.geo20_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.xieL_bounds' does not depend on any axioms
+'GDT.blankL_bounds' does not depend on any axioms
+'GDT.gapN_list' depends on axioms: [propext]
+'GDT.geo20_ok' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.xieL_ok' does not depend on any axioms
+'GDT.blankL_ok' does not depend on any axioms
+'GDT.zeng_ok' does not depend on any axioms
+'GDT.xie_ok' does not depend on any axioms
+'GDT.blank_ok' does not depend on any axioms
+'GDT.cfg_ok' does not depend on any axioms
+'GDT.ceilI_values' does not depend on any axioms
+'GDT.start_values' does not depend on any axioms
+'GDT.ends_209' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.zeng_thr' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.xie_thr' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.blank_thr' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.xie_blank_no_clamp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.zeng_clamp_example' does not depend on any axioms
+'GDT.zeng_conv' does not depend on any axioms
+'GDT.xie_conv' does not depend on any axioms
+'GDT.blank_conv' does not depend on any axioms
+'GDT.intF_lt' depends on axioms: [propext, Quot.sound]
+'GDT.int_lt' depends on axioms: [propext, Quot.sound]
+'GDT.plan_targetPos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.drawSeeds_length' depends on axioms: [propext, Quot.sound]
+'GDT.plan_seeds_length' depends on axioms: [propext, Quot.sound]
+'GDT.drawRoves_props' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.plan_roves' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.plan_no_roves' depends on axioms: [propext, Quot.sound]
+'GDT.cond_roves' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.cond_center' depends on axioms: [propext, Quot.sound]
+'GDT.sv_i' does not depend on any axioms
+'GDT.sv_streak' does not depend on any axioms
+'GDT.sv_lastDir' does not depend on any axioms
+'GDT.sv_revs' does not depend on any axioms
+'GDT.sv_attempts' does not depend on any axioms
+'GDT.sv_valid' does not depend on any axioms
+'GDT.sv_tech' does not depend on any axioms
+'GDT.sv_moves' does not depend on any axioms
+'GDT.sv_bf' does not depend on any axioms
+'GDT.sv_bc' does not depend on any axioms
+'GDT.sv_status' does not depend on any axioms
+'GDT.sv_tr_i' does not depend on any axioms
+'GDT.sv_tr_isValid' does not depend on any axioms
+'GDT.sv_tr_move' does not depend on any axioms
+'GDT.sv_tr_blockedAt' does not depend on any axioms
+'GDT.sv_tr_reversal' does not depend on any axioms
+'GDT.sv_tr_reqDir' does not depend on any axioms
+'GDT.sv_tr_reqStep' does not depend on any axioms
+'GDT.sv_tr_effStep' does not depend on any axioms
+'GDT.sv_tr_nextI' does not depend on any axioms
+'GDT.sv_tr_validNo' does not depend on any axioms
+'GDT.reqDir_cases' depends on axioms: [propext]
+'GDT.newI_le' depends on axioms: [propext]
+'GDT.step_i_le' depends on axioms: [propext]
+'GDT.stepFor_le' depends on axioms: [propext, Quot.sound]
+'GDT.stepFor_pos' does not depend on any axioms
+'GDT.reqStepOf_le' depends on axioms: [propext, Quot.sound]
+'GDT.reqStepOf_pos' does not depend on any axioms
+'GDT.moved_iff' depends on axioms: [propext]
+'GDT.newI_near' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.step_i_near' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.moved_changes_i' depends on axioms: [propext, Quot.sound]
+'GDT.step_wrong' depends on axioms: [propext]
+'GDT.step_harder' depends on axioms: [propext]
+'GDT.step_stay' depends on axioms: [propext]
+'GDT.step_invalid' depends on axioms: [propext]
+'GDT.isRev_moved' depends on axioms: [propext]
+'GDT.moveOf_of_moved' depends on axioms: [propext]
+'GDT.newRevs_len' depends on axioms: [propext]
+'GDT.stepValid_revs' depends on axioms: [propext]
+'GDT.step_revs' depends on axioms: [propext]
+'GDT.step_size_rule' depends on axioms: [propext]
+'GDT.step_blocked' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.wrong_at_ceiling' depends on axioms: [propext]
+'GDT.correct_at_floor' depends on axioms: [propext]
+'GDT.step_not_blocked' depends on axioms: [propext]
+'GDT.newBF_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.newBC_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.newBF_newBC' depends on axioms: [propext, Quot.sound]
+'GDT.sv_tr_clamped' does not depend on any axioms
+'GDT.unit_no_clamp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.endCheck_cases' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.init_rinv' depends on axioms: [propext, Quot.sound]
+'GDT.stepValid_rinv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.stepInvalid_rinv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.step_rinv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.step_floor_block' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.step_ceil_block' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.run_inv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.run_forall' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.unit_no_clamp_run' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.run_end_state' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.run_ends_aux' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.run_ends' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.threshold_spec' depends on axioms: [propext, Quot.sound]
+'GDT.sum_bounds_int' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.threshold_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.run_threshold_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.kindOf_blank_not_num' depends on axioms: [propext]
+'GDT.kindOf_paper_iff_blank' depends on axioms: [propext]
+'GDT.settle_ne_provisional' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.settle_final_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.settle_final_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.settleRes_final' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.withThird_cases' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.twoRule_cases' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.final_mean' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.use_ne_nil' depends on axioms: [propext, Quot.sound]
+'GDT.provisional_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.zeng_third_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.zeng_two_final' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.xie_provisional_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.xie_final_three' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.no_num_never_final' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.blank_never_final' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.blank_paper_mean' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.meanQ_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.final_value_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.powList_getD' depends on axioms: [propext, Quot.sound]
+'GDT.zsum_congr' depends on axioms: [propext, Quot.sound]
+'GDT.term_with' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.tailLeWith_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.tailGeWith_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.tailLe_eq_tailLeFast' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.tailGe_eq_tailGeFast' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.intCast_pos_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.intCast_neg_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.sq_div' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.negZ2_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.isNegQ_scale' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.lt_twentieth_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.belowSig_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.aboveSig_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.halfLe_frac' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.halfLeSig_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.convOk_sqrtHalf_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.convOk_half_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.convOk_values' does not depend on any axioms
+'GDT.leSigT_half_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.geSigT_half_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GDT.small_tails' does not depend on any axioms
+
+exit code = 0
+elapsed = 7.61 s

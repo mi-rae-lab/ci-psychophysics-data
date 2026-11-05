@@ -1,0 +1,16 @@
+Original .lean files | active sorry, admit, sorryAx or axiom tokens | line numbers are 1-based
+Comments and string literals excluded.
+
+CrossCheck.lean	0
+MyAudit.lean	0
+TMTF/Band.lean	0
+TMTF/Basic.lean	0
+TMTF/Chance.lean	0
+TMTF/Grid.lean	0
+TMTF/Level.lean	0
+TMTF/Ramp.lean	0
+TMTF/Rng.lean	0
+TMTF/Sam.lean	0
+TMTF/Spectrum.lean	0
+TMTF/Track.lean	0
+TMTF.lean	0

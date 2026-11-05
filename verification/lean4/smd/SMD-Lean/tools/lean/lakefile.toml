@@ -1,0 +1,10 @@
+name = "smd_lean"
+version = "0.1.0"
+defaultTargets = ["SMD", "crosscheck"]
+
+[[lean_lib]]
+name = "SMD"
+
+[[lean_exe]]
+name = "crosscheck"
+root = "CrossCheck"

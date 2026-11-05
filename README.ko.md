@@ -29,6 +29,7 @@ analysis/
   output/                      위 코드를 실제로 돌린 결과 (대조표 · 다시 그린 그림 · VERIFICATION.md)
   build/                       원래 기록 → CSV 를 만든 스크립트
   requirements.txt
+verification/lean4/            검사 앱 로직의 Lean 4 증명 · 빌드 기록 · 공리 검사 · 검증 보고서
 SHA256SUMS.txt                 이 묶음 안 모든 파일의 SHA-256
 LICENSE                        코드 라이선스 — MIT
 LICENSE-DATA.md                데이터 · 문서 라이선스 — CC BY 4.0
@@ -113,6 +114,14 @@ python analysis/reproduce.py smrt gdt     # 고른 검사만 (VERIFICATION.md ·
 `numbers.csv`(계산한 값 전부) · `pdf_comparison.csv`(PDF 값과 나란히) · `figures/`(여러 쪽 PDF + 쪽마다 PNG),
 그리고 전체 요약 `analysis/output/VERIFICATION.md` · `verification_summary.csv`. 다시 돌려도 결과 파일은 바이트까지 같음
 (`verification_summary.csv` 의 걸린 시간 칸만 다름).
+
+## 검사 앱 로직의 형식 검증 (Lean 4)
+
+`verification/lean4/` 에는 일곱 검사 앱마다 계단 규칙 · 측정 판정 · 자극 수식을 Lean 4 로 옮긴 프로젝트와 그 빌드 기록,
+공리 검사(`print-axioms.txt`), 검증 보고서가 있음. 일곱 프로젝트 모두 빌드되고, 목록의 어느 정리도 `sorry` 나 Lean 의
+표준 공리 세 개(`propext` · `Classical.choice` · `Quot.sound`) 밖의 공리에 기대지 않음. TMTF · SRD · GDT · SMD 는 생성한
+입력으로 앱의 JavaScript 와 줄 단위 대조도 함. 앱 자체의 로직만 다루며, 브라우저의 소리 출력 · 스트리머 · 음성처리기 ·
+인공와우는 다루지 않음. 자세한 내용은 [verification/lean4/README.md](verification/lean4/README.md).
 
 ## 검증 결과 — PDF 와 같은가
 
@@ -225,5 +234,6 @@ TMTF · STM · SRD · GDT · SMD(적응) 의 소리는 앱이 시행마다 합�
 
 - 데이터 · 문서 (`data/`, `analysis/pdf_values/`, `analysis/output/`, `README.md` · `README.ko.md`): **CC BY 4.0** — `LICENSE-DATA.md`.
   출처(이 데이터와 저장소 링크)와 라이선스를 밝히고, 바꾼 것이 있으면 바꿨다고 적으면 누구나 쓰고 나누고 고칠 수 있음.
-- 코드 (`analysis/*.py`, `analysis/build/*.py`): **MIT** — `LICENSE`.
+- 코드 (`analysis/*.py`, `analysis/build/*.py`, `verification/lean4/` 안의 Lean · JavaScript · Python · PowerShell 소스): **MIT** — `LICENSE`.
+  `verification/lean4/` 의 빌드 기록 · 공리 검사 출력 · 보고서는 CC BY 4.0.
 - 공식 소리 파일은 이 묶음에 없고 각 배포처의 조건을 따름 (위 ‘공식 소리 파일’).

@@ -14,8 +14,11 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by/4.
 - `analysis/pdf_values/` and `analysis/output/` — the values transcribed from the PDF figure sets, the recomputed
   numbers, the comparison tables and the redrawn figures
 - `README.md` and `README.ko.md`
+- `verification/lean4/` — the build logs, axiom audit outputs and verification reports (the Lean, JavaScript,
+  Python and PowerShell source files there are under the MIT License)
 
-The Python code (`analysis/*.py`, `analysis/build/*.py`) is licensed separately under the MIT License (see `LICENSE`).
+The Python code (`analysis/*.py`, `analysis/build/*.py`) and the source files under `verification/lean4/` are
+licensed separately under the MIT License (see `LICENSE`).
 
 ## Attribution
 

@@ -42,6 +42,7 @@ analysis/
                                VERIFICATION.md)
   build/                       scripts that built the CSVs from the original records
   requirements.txt
+verification/lean4/            Lean 4 proofs of the test apps' logic, with build logs, axiom audits and reports
 SHA256SUMS.txt                 SHA-256 of every file in this package
 LICENSE                        code license: MIT
 LICENSE-DATA.md                data and documentation license: CC BY 4.0
@@ -137,6 +138,15 @@ Whether a run has a number at all (not measurable, stuck at an end, and so on) f
 value), `pdf_comparison.csv` (side by side with the PDF values) and `figures/` (a multi-page PDF plus one PNG per
 page), with an overall summary in `analysis/output/VERIFICATION.md` and `verification_summary.csv`. Re-running gives
 byte-identical result files, except for the run-time column of `verification_summary.csv`.
+
+## Formal verification of the apps' logic (Lean 4)
+
+`verification/lean4/` holds, for each of the seven test apps, a Lean 4 project that models the app's staircase rules,
+run classification and stimulus formulas, together with its build log, its axiom audit (`print-axioms.txt`) and a
+verification report (in Korean). All seven projects build, and no listed theorem depends on `sorry` or on any axiom
+beyond Lean's three standard ones. TMTF, SRD, GDT and SMD were also cross-checked line by line against the apps'
+JavaScript on generated inputs. This covers only the apps' own logic, not the browser's audio output, the streamer,
+the sound processor or the implant. See [verification/lean4/README.md](verification/lean4/README.md).
 
 ## Verification: do the numbers match the PDFs?
 
@@ -286,6 +296,8 @@ README).
 - Data and documentation (`data/`, `analysis/pdf_values/`, `analysis/output/`, `README.md`, `README.ko.md`):
   **CC BY 4.0**, see `LICENSE-DATA.md`. Anyone may use, share and adapt them, as long as they credit the source (this
   dataset and a link to the repository), give the license, and say whether they made changes.
-- Code (`analysis/*.py`, `analysis/build/*.py`): **MIT**, see `LICENSE`.
+- Code (`analysis/*.py`, `analysis/build/*.py`, and the Lean, JavaScript, Python and PowerShell sources under
+  `verification/lean4/`): **MIT**, see `LICENSE`. The build logs, audit outputs and reports under
+  `verification/lean4/` are under CC BY 4.0.
 - The official sound files are not in this package and remain under their distributors' terms (see "Official sound
   files" above).

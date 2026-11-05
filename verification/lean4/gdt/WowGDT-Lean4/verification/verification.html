@@ -1,0 +1,1559 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>와우GDT | Lean 4 검증 보고서</title>
+<style>
+:root{color-scheme:light;--ink:#172f35;--muted:#495e63;--accent:#08685a;--line:#cfdad8;--paper:#fff}
+*{box-sizing:border-box}html{scroll-padding-top:1rem}body{margin:0;background:#f2f5f3;color:var(--ink);font:16px/1.65 system-ui,"Malgun Gothic",sans-serif;word-break:keep-all;overflow-wrap:anywhere}
+main{max-width:1100px;margin:24px auto 64px;background:var(--paper);padding:clamp(22px,5vw,66px);box-shadow:0 3px 30px #173e3610}
+header{border-top:7px solid var(--accent);padding:25px 0 20px}header p,h1,h2,h3{margin:0}h1{font-size:clamp(32px,5vw,51px);letter-spacing:-.06em;line-height:1.2;margin:10px 0 13px}h2{font-size:27px;letter-spacing:-.04em;border-top:1px solid var(--line);padding-top:23px;margin:37px 0 14px;line-height:1.35}h3{font-size:19px;margin:20px 0 6px}.meta{color:var(--accent);font-size:13px;font-weight:700;letter-spacing:.04em}.lead{max-width:53em;font-size:19px}nav,.files{display:flex;flex-wrap:wrap;gap:8px 18px;padding:10px 0}a{color:var(--accent);text-underline-offset:3px}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:18px 0}.card{background:#edf4f0;padding:14px 18px}.card b{display:block;font-size:22px}.card span,.source{color:var(--muted);font-size:13px}.panel{background:#f2f6f5;padding:14px 20px;border-left:4px solid var(--accent)}
+p{margin:10px 0}code,pre{font:0.88em/1.55 ui-monospace,Consolas,"Malgun Gothic",monospace}code{overflow-wrap:anywhere}.scroll{overflow-x:auto;margin:10px 0 18px}table{width:100%;border-collapse:collapse;font-size:14px;text-align:left}th{font-weight:700;background:#eaf1ee;color:#20463f}td,th{padding:10px 11px;vertical-align:top;border-bottom:1px solid var(--line)}tbody tr:nth-child(even){background:#f8faf9}td:first-child{font-weight:600}.ref{white-space:normal}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f2f5f4;padding:14px 18px}.index{min-width:680px}.index td:nth-child(1){width:27%}.index td:nth-child(2){width:15%}.index td:nth-child(4){width:18%}.source{display:block;font-weight:400}.notes{color:var(--muted)}tr:target,h3:target{background:#fff2cb}details{font-weight:400}summary{cursor:pointer;color:var(--accent)}.index details pre{font-size:12px}.modules{font-size:14px}
+@media(max-width:700px){main{margin:0;padding:20px 15px}.cards{gap:6px}.card{padding:9px}.card b{font-size:17px}td,th{padding:7px}nav{gap:4px 12px}.rule-table{min-width:600px}.lead{font-size:17px}}
+@media print{body{background:#fff}main{margin:0;box-shadow:none;padding:0}nav,details{display:none}.scroll{overflow:visible}.index{min-width:0}th{background:#eee}tr{break-inside:avoid}a{color:inherit}h2,h3{break-after:avoid}}
+</style></head><body><main>
+<header><p class="meta">검증 기록 &nbsp;·&nbsp; 2026년 11월 4일 &nbsp;·&nbsp; Lean 4.24.0</p>
+<h1>와우GDT Lean 검증 보고서</h1>
+<p class="lead">증명 대상은 검사 알고리즘을 별도로 구현한 Lean 모델이다. 실제 앱은 JavaScript로 계단을 갱신하고 소리를 합성한다. 아래 표는 모델에서 증명한 명제, 앱과 출력을 비교한 범위, 파형 합성처럼 증명 밖에 있는 부분을 구분한다.</p></header>
+<nav aria-label="목차"><a href="#evidence">빌드와 공리</a><a href="#protocols">세 검사 절차</a><a href="#rules">규칙별 증명</a><a href="#implementation">앱과의 대조</a><a href="#catalog">정리 232개</a></nav>
+<section id="evidence"><h2>빌드와 공리</h2>
+<div class="cards"><div class="card"><b>25개 작업 성공</b><span>캐시 없는 lake build · 43.47초</span></div><div class="card"><b>정리 232개</b><span>소스에 명시된 정리별 #print axioms</span></div><div class="card"><b>sorry 0곳</b><span>GDT 환경에도 sorryAx 의존 없음</span></div></div>
+<p>원본 <code>tools/lean</code>에서 <code>.lean</code> 12개, <code>lean-toolchain</code>, <code>lakefile.toml</code>, <code>lake-manifest.json</code>의 바이트를 보존했다. 공개본에는 조회용 <code>PrintAxioms.lean</code>을 더했다. 압축을 푼 폴더에서 <code>.lake</code>가 없는 상태로 기본 빌드를 실행해 GDT 라이브러리와 <code>crosscheck</code> 실행 파일을 생성했다.</p>
+<pre>$ lake build
+Build completed successfully (25 jobs).
+exit code = 0</pre>
+<p>원본 감사 프로그램 <code>MyAudit.lean</code>은 <code>GDT</code> 이름공간의 상수 1,554개를 검사했다. 이 중 정리 734개에는 컴파일러가 생성한 정리가 포함된다. 직접 선언한 공리는 0개였고, 모든 상수에서 수집한 공리의 합집합은 <code>Classical.choice</code>, <code>Quot.sound</code>, <code>propext</code>였다. 232개 명시 정리 중 60개는 공리에 의존하지 않는다.</p>
+<p>모든 배포 <code>.lean</code> 소스에서 주석과 문자열을 제외하고 <code>sorry</code>, <code>admit</code>, <code>sorryAx</code> 사용을 검사한 결과는 0곳이다. 원본 <code>MyAudit.lean</code> 9, 11, 41행에 나오는 관련 단어는 감사 절차를 설명하는 주석이다. 세 Lean 명령 모두 종료 코드가 0이었다.</p>
+<div class="files"><a href="lake-build.txt">lake build 전체 출력</a><a href="print-axioms.txt">#print axioms 전체 출력</a><a href="environment-audit.txt">MyAudit 전체 출력</a></div></section>
+<section id="protocols"><h2>세 검사 절차</h2>
+<div class="scroll"><table><thead><tr><th>절차</th><th>짧은 간격으로 이동</th><th>요청 이동 폭</th><th>목표 반전 / 보존</th><th>한 트랙의 결과</th></tr></thead><tbody>
+<tr><td>Zeng</td><td>2회 연속 정답</td><td>2칸 → 4번째 반전 이동부터 1칸</td><td>12회 / 마지막 8회</td><td>지수 <i>k</i>의 합 <i>S</i>를 보존. 앱 표시값은 20 × 2<sup>S/16</sup> ms</td></tr>
+<tr><td>Xie</td><td>2회 연속 정답</td><td>항상 1칸</td><td>10회 / 마지막 6회</td><td>마지막 6개 간격(ms)의 산술평균</td></tr>
+<tr><td>Blankenship</td><td>1회 정답</td><td>항상 1칸</td><td>5회 / 마지막 3회</td><td>마지막 3개 간격(ms)의 산술평균. 논문 비교용 값으로 분류</td></tr>
+</tbody></table></div>
+<p>모두 20 ms에서 시작하고 오답 한 번이면 긴 간격을 요청한다. 같은 끝에서 누적 5회 막힘, 유효 시행 200회, 기술적 실패 10회의 상한이 있다. 209개 이상의 응답을 주면 세 절차 모두 이미 종료한다. 종료 이유에는 반전 목표 달성 외에 경계나 상한 도달도 포함된다.</p>
+<p class="source">모델 설정 GDT/Proto.lean 42–57행. 앱 설정 js/protocol.js의 PROTOCOLS 및 js/staircase.js의 cfgFrom.</p></section>
+<section id="rules"><h2>규칙별 증명</h2>
+<p>아래 정리명을 누르면 해당 정리의 공리와 원본 증명을 확인할 수 있다. 집합으로 요약한 행에서는 관련 정리와 정의를 함께 읽어야 한다.</p>
+<div class="scroll"><table class="rule-table"><thead><tr><th>규칙</th><th>모델에서 성립하는 명제</th><th>대표 정리</th></tr></thead><tbody><tr><td>2-down 1-up / 1-down 1-up</td><td>정답 누적이 설정값에 미달하면 같은 칸에 머문다. 도달하면 짧은 방향을 요청하고 연속 정답 수를 0으로 되돌린다. 오답은 긴 방향을 요청하고 연속 수를 0으로 돌린다. Zeng·Xie의 설정값은 2, Blankenship은 1이다.</td><td><a class="ref" href="#th-step_stay"><code>step_stay</code></a><br><a class="ref" href="#th-step_harder"><code>step_harder</code></a><br><a class="ref" href="#th-step_wrong"><code>step_wrong</code></a></td></tr><tr><td>단계 크기 변경</td><td>실제 이동의 요청 폭은 이번 반전을 포함한 횟수로 정한다. Zeng은 4번째 반전 이동부터 2칸 대신 1칸을 요청한다. 끝을 넘는 요청은 실제 거리가 줄 수 있다. Xie·Blankenship은 1칸씩 이동해 잘림이 없다.</td><td><a class="ref" href="#th-step_size_rule"><code>step_size_rule</code></a><br><a class="ref" href="#th-step_i_near"><code>step_i_near</code></a><br><a class="ref" href="#th-xie_blank_no_clamp"><code>xie_blank_no_clamp</code></a><br><a class="ref" href="#th-zeng_clamp_example"><code>zeng_clamp_example</code></a></td></tr><tr><td>반전 횟수와 기록</td><td>직전 실제 이동과 방향이 달라진 실제 이동을 반전으로 기록한다. 그 시행에서 제시한 이동 전 칸을 하나 추가한다. 막힌 요청은 반전 수를 늘리지 않는다. 반전 목표로 종료했을 때 목표와 실제 횟수가 정확히 같다.</td><td><a class="ref" href="#th-newRevs_len"><code>newRevs_len</code></a><br><a class="ref" href="#th-step_revs"><code>step_revs</code></a><br><a class="ref" href="#th-step_blocked"><code>step_blocked</code></a><br><a class="ref" href="#th-run_end_state"><code>run_end_state</code></a></td></tr><tr><td>트랙 종료와 측정 불가</td><td>같은 끝에서 막힘이 상한 5회에 이르면 해당 끝에서 종료한다. 무효 응답은 칸·유효 시행·반전을 유지하고 기술 실패와 시도만 센다. 기술 실패 10회나 유효 시행 200회도 종료 사유가 될 수 있다.</td><td><a class="ref" href="#th-step_floor_block"><code>step_floor_block</code></a><br><a class="ref" href="#th-step_ceil_block"><code>step_ceil_block</code></a><br><a class="ref" href="#th-step_invalid"><code>step_invalid</code></a><br><a class="ref" href="#th-endCheck_cases"><code>endCheck_cases</code></a><br><a class="ref" href="#th-ends_209"><code>ends_209</code></a></td></tr><tr><td>트랙 역치 계산</td><td>정해진 반전 수 전에는 threshold 정의가 none을 반환한다. 값이 나오면 마지막으로 보존한 반전 값의 정확한 합과 개수다. Zeng은 개수 8과 −96 ≤ Σk ≤ 56, Xie는 개수 6과 6 ≤ Σms ≤ 600, Blankenship은 개수 3과 6 ≤ Σms ≤ 360을 증명한다. JS 표시값으로의 변환은 별도 계산이다.</td><td><a class="ref" href="#th-threshold_spec"><code>threshold_spec</code></a><br><a class="ref" href="#th-zeng_thr"><code>zeng_thr</code></a><br><a class="ref" href="#th-xie_thr"><code>xie_thr</code></a><br><a class="ref" href="#th-blank_thr"><code>blank_thr</code></a><br><a class="ref" href="#th-classify_thr"><code>classify_thr</code></a></td></tr><tr><td>숫자를 보고할 수 있는 조건</td><td>세 설정은 분석 구간의 허용 막힘이 0이다. 최초 상태가 완료이고 분석 구간에 양끝 막힘이 없으며, 적용되는 목표 미달 검정에 걸리지 않고 적용되는 우연 검정을 통과해야 최종 상태가 범위 안 완료가 된다. 짧은 끝 정지·긴 끝 정지·기술 실패의 상태와 사유도 각각 증명했다.</td><td><a class="ref" href="#th-classify_numeric_iff"><code>classify_numeric_iff</code></a><br><a class="ref" href="#th-classify_floor_stop"><code>classify_floor_stop</code></a><br><a class="ref" href="#th-classify_ceiling_stop"><code>classify_ceiling_stop</code></a><br><a class="ref" href="#th-classify_tech_fail"><code>classify_tech_fail</code></a></td></tr><tr><td>측정 불가 사유의 구분</td><td>판정이 활성일 때 끝 막힘과 통계 조건에 따라 긴 쪽 또는 짧은 쪽 범위 밖, 양끝 막힘 또는 Fisher 열세에 따른 신뢰성 부족, 목표 미달에 따른 aboveWindow 등을 구별한다. Blankenship에서는 aboveWindow와 우연 검정 실패 상태가 나오지 않는다.</td><td><a class="ref" href="#th-core_above_iff"><code>core_above_iff</code></a><br><a class="ref" href="#th-core_below_iff"><code>core_below_iff</code></a><br><a class="ref" href="#th-core_unreliable_iff"><code>core_unreliable_iff</code></a><br><a class="ref" href="#th-core_window_iff"><code>core_window_iff</code></a><br><a class="ref" href="#th-blank_never_window_or_gate"><code>blank_never_window_or_gate</code></a></td></tr><tr><td>유의성 판정의 수식</td><td>우연 이항 및 한쪽 Fisher 판정은 정확한 꼬리 확률 &lt; 1/20과 동치다. 목표 1/√2의 꼬리는 정수 쌍으로, 1/2의 꼬리는 유리수로 판정한다. 목표와 우연 확률의 비교는 Zeng·Xie에서 참, Blankenship에서 거짓이다.</td><td><a class="ref" href="#th-geSig_iff"><code>geSig_iff</code></a><br><a class="ref" href="#th-fgSig_iff"><code>fgSig_iff</code></a><br><a class="ref" href="#th-belowSig_iff"><code>belowSig_iff</code></a><br><a class="ref" href="#th-aboveSig_iff"><code>aboveSig_iff</code></a><br><a class="ref" href="#th-halfLeSig_iff"><code>halfLeSig_iff</code></a><br><a class="ref" href="#th-convOk_values"><code>convOk_values</code></a></td></tr><tr><td>반복 측정의 최종값</td><td>확정값은 사용한 숫자 트랙들의 정확한 평균이다. Zeng에서 첫 두 숫자 트랙의 평균 k 차이가 1보다 클 때 세 번째가 필요하다. Xie는 결정된 앞 세 트랙을 쓴다. Blankenship은 표준 역치로 확정되지 않고 두 논문 방식 값의 평균을 별도로 낸다.</td><td><a class="ref" href="#th-final_mean"><code>final_mean</code></a><br><a class="ref" href="#th-zeng_third_iff"><code>zeng_third_iff</code></a><br><a class="ref" href="#th-xie_final_three"><code>xie_final_three</code></a><br><a class="ref" href="#th-blank_never_final"><code>blank_never_final</code></a><br><a class="ref" href="#th-blank_paper_mean"><code>blank_paper_mean</code></a></td></tr><tr><td>자극 간격의 표본 수</td><td>48 kHz에서 Zeng의 20개 칸(i=0…19, k=i−12)은 round(960 × 2^(k/2))에 해당하는 정수 반올림 조건을 만족하며 표본 수는 증가한다. 목록형 Xie·Blankenship의 정수 ms 값은 48을 곱해 표본 수로 바꾼다.</td><td><a class="ref" href="#th-geo20_round"><code>geo20_round</code></a><br><a class="ref" href="#th-geo20_gapN_strict"><code>geo20_gapN_strict</code></a><br><a class="ref" href="#th-gapN_list"><code>gapN_list</code></a></td></tr><tr><td>자극의 시행 계획</td><td>q&gt;0일 때 표적은 1…q 구간 중 하나이며 씨앗 수는 q개다. 순음 두 조건 t2k·t2k1k의 표지음 길이 쌍은 각 250…350 ms 범위이고, n500·n800에는 이 길이 변동이 없다.</td><td><a class="ref" href="#th-plan_targetPos"><code>plan_targetPos</code></a><br><a class="ref" href="#th-plan_seeds_length"><code>plan_seeds_length</code></a><br><a class="ref" href="#th-plan_roves"><code>plan_roves</code></a><br><a class="ref" href="#th-cond_roves"><code>cond_roves</code></a><br><a class="ref" href="#th-cond_center"><code>cond_center</code></a></td></tr><tr><td>소리 파형과 재생</td><td>잡음·순음 생성, RMS 정규화, 경사와 무음 구간 적용, PCM 출력 및 장치 재생은 앱 구현의 범위다.</td><td>해당 Lean 정리 없음</td></tr></tbody></table></div></section>
+<section id="implementation"><h2>실제 앱과의 대조</h2>
+<p>브라우저는 <code>index.html</code> 309–318행에서 JS 모듈을 불러온다. <code>js/app.js</code> 1321행에서 <code>Stair.step</code>을, 1485행에서 <code>Analysis.finalize</code>를 호출한다. Lean 쪽의 <code>GDT.step</code>, <code>GDT.threshold</code>, <code>GDT.classify</code>는 별도로 작성된 정의다. <code>CrossCheck.lean</code>은 이 모델을 실행해 비교용 출력을 만든다.</p>
+<div class="panel"><b>같은 입력에서 두 구현의 출력 236,198줄이 일치했다.</b> 앱 1.0.5의 <code>rng.js</code>, <code>protocol.js</code>, <code>staircase.js</code>, <code>analysis.js</code>와 이번에 빌드한 Lean 실행 파일로 다시 대조했다. 계단 경로 2,778개, 트랙 분류 2,778개, 회기 요약 4,675개 등이 포함된다. 입력 씨앗은 20261101이며, 출력 변조 13종과 코드 결함 주입 17종을 검산기가 모두 검출했다. <a href="js-lean-comparison.txt">실행 로그와 비교한 파일의 SHA-256</a></div>
+<p>이 대조는 선택한 입력과 출력 항목에 대한 시험이다. 예를 들어 <code>GDT/Rng.lean</code> 41–47행은 기각 표집을 최대 100회 시도하고 소진되면 0을 반환한다. <code>js/rng.js</code> 22–27행은 표본이 채택될 때까지 반복한다. 모델의 <code>int_lt</code>는 반환값의 범위를 증명한다. 난수 분포나 모든 입력에서 두 구현이 같다는 명제까지 증명한 것은 아니다. 비교 도구는 대조 대상 밖인 위치 순열 검정의 반복 수를 메모리에서 2,000회에서 20회로 줄인다.</p>
+<p>소리 합성은 <code>js/stim.js</code> 30–59, 91–150행에 있다. 역 FFT와 가우시안 잡음, 순음 위상, sin² 경사, RMS 이득, 간격의 무음 처리 및 PCM 파형에 대응하는 Lean 정리는 없다. 브라우저·장치의 실제 재생 시간, 전체 앱 제어 흐름, 표시값의 부동소수점 반올림도 이 증명의 범위 밖이다. 목표 확률에 대한 유의성 정리는 설정된 확률에서의 꼬리 판정을 다룬다. 실제 청취자의 역치나 계단법의 통계적 수렴을 보장하지 않는다.</p>
+</section>
+<section id="catalog"><h2>정리별 증명 범위와 공리</h2>
+<p>명시 정리 232개를 한 행씩 실었다. 정리 이름의 공통 접두사는 <code>GDT.</code>이며, ‘없음’은 <code>#print axioms</code>가 해당 정리에 대해 공리 의존성을 찾지 않았다는 뜻이다. 이름이나 규칙으로 찾을 때는 브라우저의 페이지 찾기를 사용할 수 있다.</p>
+<nav class="modules"><a href="#mod-Stair">Stair (68)</a>
+<a href="#mod-Proto">Proto (15)</a>
+<a href="#mod-Classify">Classify (22)</a>
+<a href="#mod-Summary">Summary (20)</a>
+<a href="#mod-Ladder">Ladder (18)</a>
+<a href="#mod-Rng">Rng (10)</a>
+<a href="#mod-Exact">Exact (21)</a>
+<a href="#mod-Target">Target (23)</a>
+<a href="#mod-Arith">Arith (35)</a></nav><h3 id="mod-Stair"><code>GDT/Stair.lean</code> · 68개</h3><div class="scroll"><table class="index"><thead><tr><th>정리와 원본 위치</th><th>규칙</th><th>증명한 내용</th><th>공리</th></tr></thead><tbody>
+<tr id="th-sv_i"><td><code>sv_i</code><span class="source">GDT/Stair.lean · 224행</span></td><td>단계 크기·이동</td><td>유효 시행 뒤 칸은 요청 방향으로 계산한 newI 값이다.<details><summary>Lean 원문</summary><pre>@[simp] theorem sv_i : (stepValid c s b).1.i = newI c s (reqDir c s b) := rfl</pre></details></td><td>없음</td></tr>
+<tr id="th-sv_streak"><td><code>sv_streak</code><span class="source">GDT/Stair.lean · 225행</span></td><td>계단 이동 규칙</td><td>유효 시행 뒤 연속 정답 수는 새 응답을 반영한 newStreak 값이다.<details><summary>Lean 원문</summary><pre>@[simp] theorem sv_streak : (stepValid c s b).1.streak = newStreak c s b := rfl</pre></details></td><td>없음</td></tr>
+<tr id="th-sv_lastDir"><td><code>sv_lastDir</code><span class="source">GDT/Stair.lean · 226행</span></td><td>반전 횟수</td><td>유효 시행에서 실제로 이동하면 마지막 방향을 이번 방향으로 갱신하고 이외에는 보존한다.<details><summary>Lean 원문</summary><pre>@[simp] theorem sv_lastDir : (stepValid c s b).1.lastDir = if moved c s (reqDir c s b) then reqDir c s b else s.lastDir := rfl</pre></details></td><td>없음</td></tr>
+<tr id="th-sv_revs"><td><code>sv_revs</code><span class="source">GDT/Stair.lean · 227행</span></td><td>반전 횟수</td><td>유효 시행 뒤 반전 목록은 요청 방향 및 새 시행 번호로 계산한 newRevs 목록이다.<details><summary>Lean 원문</summary><pre>@[simp] theorem sv_revs : (stepValid c s b).1.revs = newRevs c s (reqDir c s b) (s.valid + 1) (s.attempts + 1) := rfl</pre></details></td><td>없음</td></tr>
+<tr id="th-sv_attempts"><td><code>sv_attempts</code><span class="source">GDT/Stair.lean · 228행</span></td><td>계단 상태·시행 수</td><td>유효 시행에서 누적 시도 수가 1 늘어난다.<details><summary>Lean 원문</summary><pre>@[simp] theorem sv_attempts : (stepValid c s b).1.attempts = s.attempts + 1 := rfl</pre></details></td><td>없음</td></tr>
+<tr id="th-sv_valid"><td><code>sv_valid</code><span class="source">GDT/Stair.lean · 229행</span></td><td>계단 상태·시행 수</td><td>유효 시행에서 누적 유효 시행 수가 1 늘어난다.<details><summary>Lean 원문</summary><pre>@[simp] theorem sv_valid : (stepValid c s b).1.valid = s.valid + 1 := rfl</pre></details></td><td>없음</td></tr>
+<tr id="th-sv_tech"><td><code>sv_tech</code><span class="source">GDT/Stair.lean · 230행</span></td><td>계단 상태·시행 수</td><td>유효 시행에서는 기술적 실패 수가 유지된다.<details><summary>Lean 원문</summary><pre>@[simp] theorem sv_tech : (stepValid c s b).1.tech = s.tech := rfl</pre></details></td><td>없음</td></tr>
+<tr id="th-sv_moves"><td><code>sv_moves</code><span class="source">GDT/Stair.lean · 231행</span></td><td>단계 크기·이동</td><td>유효 시행의 누적 이동 수는 실제로 이동했을 때만 1 늘어난다.<details><summary>Lean 원문</summary><pre>@[simp] theorem sv_moves : (stepValid c s b).1.moves = if moved c s (reqDir c s b) then s.moves + 1 else s.moves := rfl</pre></details></td><td>없음</td></tr>
+<tr id="th-sv_bf"><td><code>sv_bf</code><span class="source">GDT/Stair.lean · 232행</span></td><td>측정 불가·중단</td><td>유효 시행 뒤 짧은 끝 누적 막힘 수는 newBF 판정값이다.<details><summary>Lean 원문</summary><pre>@[simp] theorem sv_bf : (stepValid c s b).1.blockedFloor = newBF c s (reqDir c s b) := rfl</pre></details></td><td>없음</td></tr>
+<tr id="th-sv_bc"><td><code>sv_bc</code><span class="source">GDT/Stair.lean · 233행</span></td><td>측정 불가·중단</td><td>유효 시행 뒤 긴 끝 누적 막힘 수는 newBC 판정값이다.<details><summary>Lean 원문</summary><pre>@[simp] theorem sv_bc : (stepValid c s b).1.blockedCeil = newBC c s (reqDir c s b) := rfl</pre></details></td><td>없음</td></tr>
+<tr id="th-sv_status"><td><code>sv_status</code><span class="source">GDT/Stair.lean · 234행</span></td><td>측정 불가·중단</td><td>유효 시행 뒤 상태는 갱신된 반전 목록, 양쪽 막힘 수, 유효 시행 수에 endCheck를 적용한 값이다.<details><summary>Lean 원문</summary><pre>@[simp] theorem sv_status : (stepValid c s b).1.status =
+    endCheck c (newRevs c s (reqDir c s b) (s.valid + 1) (s.attempts + 1)) (newBF c s (reqDir c s b)) (newBC c s (reqDir c s b)) (s.valid + 1) := rfl</pre></details></td><td>없음</td></tr>
+<tr id="th-sv_tr_i"><td><code>sv_tr_i</code><span class="source">GDT/Stair.lean · 236행</span></td><td>반전 횟수</td><td>유효 시행 기록의 제시 칸은 이동 전의 칸이다.<details><summary>Lean 원문</summary><pre>@[simp] theorem sv_tr_i : (stepValid c s b).2.i = s.i := rfl</pre></details></td><td>없음</td></tr>
+<tr id="th-sv_tr_isValid"><td><code>sv_tr_isValid</code><span class="source">GDT/Stair.lean · 237행</span></td><td>계단 상태·시행 수</td><td>유효 시행 기록에서 isValid는 참이다.<details><summary>Lean 원문</summary><pre>@[simp] theorem sv_tr_isValid : (stepValid c s b).2.isValid = true := rfl</pre></details></td><td>없음</td></tr>
+<tr id="th-sv_tr_move"><td><code>sv_tr_move</code><span class="source">GDT/Stair.lean · 238행</span></td><td>단계 크기·이동</td><td>유효 시행 기록의 이동 유형은 moveOf 판정이다.<details><summary>Lean 원문</summary><pre>@[simp] theorem sv_tr_move : (stepValid c s b).2.move = moveOf c s (reqDir c s b) := rfl</pre></details></td><td>없음</td></tr>
+<tr id="th-sv_tr_blockedAt"><td><code>sv_tr_blockedAt</code><span class="source">GDT/Stair.lean · 239행</span></td><td>측정 불가·중단</td><td>유효 시행 기록의 막힌 쪽은 blockedAtOf 판정과 같다.<details><summary>Lean 원문</summary><pre>@[simp] theorem sv_tr_blockedAt : (stepValid c s b).2.blockedAt = blockedAtOf c s (reqDir c s b) := rfl</pre></details></td><td>없음</td></tr>
+<tr id="th-sv_tr_reversal"><td><code>sv_tr_reversal</code><span class="source">GDT/Stair.lean · 240행</span></td><td>반전 횟수</td><td>유효 시행 기록의 반전 표시는 이동 방향에 대한 isRev 판정과 같다.<details><summary>Lean 원문</summary><pre>@[simp] theorem sv_tr_reversal : (stepValid c s b).2.reversal = isRev c s (reqDir c s b) := rfl</pre></details></td><td>없음</td></tr>
+<tr id="th-sv_tr_reqDir"><td><code>sv_tr_reqDir</code><span class="source">GDT/Stair.lean · 241행</span></td><td>계단 이동 규칙</td><td>유효 시행 기록의 요청 방향은 reqDir 값이다.<details><summary>Lean 원문</summary><pre>@[simp] theorem sv_tr_reqDir : (stepValid c s b).2.reqDir = reqDir c s b := rfl</pre></details></td><td>없음</td></tr>
+<tr id="th-sv_tr_reqStep"><td><code>sv_tr_reqStep</code><span class="source">GDT/Stair.lean · 242행</span></td><td>단계 크기·이동</td><td>유효 시행 기록의 요청 칸 수는 reqStepOf 값이다.<details><summary>Lean 원문</summary><pre>@[simp] theorem sv_tr_reqStep : (stepValid c s b).2.reqStep = reqStepOf c s (reqDir c s b) := rfl</pre></details></td><td>없음</td></tr>
+<tr id="th-sv_tr_effStep"><td><code>sv_tr_effStep</code><span class="source">GDT/Stair.lean · 243행</span></td><td>단계 크기·이동</td><td>유효 시행 기록의 실제 이동 칸 수는 effStepOf 값이다.<details><summary>Lean 원문</summary><pre>@[simp] theorem sv_tr_effStep : (stepValid c s b).2.effStep = effStepOf c s (reqDir c s b) := rfl</pre></details></td><td>없음</td></tr>
+<tr id="th-sv_tr_nextI"><td><code>sv_tr_nextI</code><span class="source">GDT/Stair.lean · 244행</span></td><td>단계 크기·이동</td><td>유효 시행 기록의 다음 칸은 newI 값이다.<details><summary>Lean 원문</summary><pre>@[simp] theorem sv_tr_nextI : (stepValid c s b).2.nextI = newI c s (reqDir c s b) := rfl</pre></details></td><td>없음</td></tr>
+<tr id="th-sv_tr_validNo"><td><code>sv_tr_validNo</code><span class="source">GDT/Stair.lean · 245행</span></td><td>계단 상태·시행 수</td><td>유효 시행 기록의 번호는 이전 유효 시행 수+1이다.<details><summary>Lean 원문</summary><pre>@[simp] theorem sv_tr_validNo : (stepValid c s b).2.validNo = s.valid + 1 := rfl</pre></details></td><td>없음</td></tr>
+<tr id="th-reqDir_cases"><td><code>reqDir_cases</code><span class="source">GDT/Stair.lean · 253행</span></td><td>계단 이동 규칙</td><td>요청 방향은 쉽게(+1), 머묾(0), 어렵게(−1) 중 하나다.<details><summary>Lean 원문</summary><pre>theorem reqDir_cases (s : St) (b : Bool) : reqDir c s b = 1 ∨ reqDir c s b = 0 ∨ reqDir c s b = -1 := by
+  unfold reqDir; split &lt;;&gt; (try split) &lt;;&gt; simp</pre></details></td><td><code>propext</code></td></tr>
+<tr id="th-newI_le"><td><code>newI_le</code><span class="source">GDT/Stair.lean · 256행</span></td><td>단계 크기·이동</td><td>원래 칸이 사다리 범위에 있으면 newI로 계산한 다음 칸도 범위 안이다.<details><summary>Lean 원문</summary><pre>theorem newI_le (s : St) (dir : Int) (h : s.i ≤ c.ceilI) : newI c s dir ≤ c.ceilI := by
+  unfold newI clampI
+  split
+  · exact Nat.min_le_left _ _
+  · exact h</pre></details></td><td><code>propext</code></td></tr>
+<tr id="th-step_i_le"><td><code>step_i_le</code><span class="source">GDT/Stair.lean · 263행</span></td><td>단계 크기·이동</td><td>원래 칸이 범위 안이면 정답·오답·기술적 실패 어느 경우에도 다음 칸이 범위 안이다.<details><summary>Lean 원문</summary><pre>theorem step_i_le (s : St) (o : Outcome) (h : s.i ≤ c.ceilI) : (step c s o).1.i ≤ c.ceilI := by
+  cases o
+  · exact newI_le c s _ h
+  · exact newI_le c s _ h
+  · simpa [step, stepInvalid] using h</pre></details></td><td><code>propext</code></td></tr>
+<tr id="th-stepFor_le"><td><code>stepFor_le</code><span class="source">GDT/Stair.lean · 269행</span></td><td>단계 크기·이동</td><td>잔 단계가 굵은 단계 이하이면 반전 수로 선택한 단계도 굵은 단계 이하이다.<details><summary>Lean 원문</summary><pre>theorem stepFor_le (n : Nat) (hc : c.fineI ≤ c.coarseI) : stepFor c n ≤ c.coarseI := by
+  unfold stepFor; split &lt;;&gt; omega</pre></details></td><td><code>propext</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-stepFor_pos"><td><code>stepFor_pos</code><span class="source">GDT/Stair.lean · 272행</span></td><td>단계 크기·이동</td><td>굵은 단계와 잔 단계가 모두 양수이면 선택한 단계도 양수이다.<details><summary>Lean 원문</summary><pre>theorem stepFor_pos (n : Nat) (h1 : 0 &lt; c.coarseI) (h2 : 0 &lt; c.fineI) : 0 &lt; stepFor c n := by
+  unfold stepFor; split &lt;;&gt; omega</pre></details></td><td>없음</td></tr>
+<tr id="th-reqStepOf_le"><td><code>reqStepOf_le</code><span class="source">GDT/Stair.lean · 275행</span></td><td>단계 크기·이동</td><td>잔 단계가 굵은 단계 이하이면 요청 칸 수는 굵은 단계 이하이다.<details><summary>Lean 원문</summary><pre>theorem reqStepOf_le (s : St) (dir : Int) (hc : c.fineI ≤ c.coarseI) : reqStepOf c s dir ≤ c.coarseI := by
+  unfold reqStepOf; split
+  · exact Nat.zero_le _
+  · exact stepFor_le c _ hc</pre></details></td><td><code>propext</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-reqStepOf_pos"><td><code>reqStepOf_pos</code><span class="source">GDT/Stair.lean · 280행</span></td><td>단계 크기·이동</td><td>이동 방향이 0이 아니고 굵은 단계와 잔 단계가 모두 양수이면 요청 칸 수도 양수이다.<details><summary>Lean 원문</summary><pre>theorem reqStepOf_pos (s : St) (dir : Int) (hd : dir ≠ 0) (h1 : 0 &lt; c.coarseI) (h2 : 0 &lt; c.fineI) : 0 &lt; reqStepOf c s dir := by
+  unfold reqStepOf; rw [if_neg hd]; exact stepFor_pos c _ h1 h2</pre></details></td><td>없음</td></tr>
+<tr id="th-moved_iff"><td><code>moved_iff</code><span class="source">GDT/Stair.lean · 283행</span></td><td>단계 크기·이동</td><td>실제 이동의 필요충분조건은 요청 방향이 0이 아니고 경계에서 막히지 않는 것이다.<details><summary>Lean 원문</summary><pre>theorem moved_iff (s : St) (dir : Int) : moved c s dir = true ↔ dir ≠ 0 ∧ isBlocked c s dir = false := by
+  simp [moved]</pre></details></td><td><code>propext</code></td></tr>
+<tr id="th-newI_near"><td><code>newI_near</code><span class="source">GDT/Stair.lean · 287행</span></td><td>단계 크기·이동</td><td>현재 칸이 범위 안이고 잔 단계≤굵은 단계이면, 방향 −1·0·+1에서 다음 칸과의 거리는 굵은 단계 이하이다.<details><summary>Lean 원문</summary><pre>theorem newI_near (s : St) (dir : Int) (hd : dir = 1 ∨ dir = 0 ∨ dir = -1) (hc : c.fineI ≤ c.coarseI) (hs : s.i ≤ c.ceilI) :
+    newI c s dir ≤ s.i + c.coarseI ∧ s.i ≤ newI c s dir + c.coarseI := by
+  have hq := reqStepOf_le c s dir hc
+  unfold newI clampI want
+  split
+  · rcases hd with hd | hd | hd &lt;;&gt; subst hd
+    · simp only [Int.one_mul]
+      constructor &lt;;&gt; omega
+    · simp
+      constructor &lt;;&gt; omega
+    · constructor &lt;;&gt; omega
+  · omega</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-step_i_near"><td><code>step_i_near</code><span class="source">GDT/Stair.lean · 300행</span></td><td>단계 크기·이동</td><td>현재 칸이 범위 안이고 잔 단계≤굵은 단계이면 어느 응답이든 한 시행의 실제 이동 거리는 굵은 단계 이하이다.<details><summary>Lean 원문</summary><pre>theorem step_i_near (s : St) (o : Outcome) (hc : c.fineI ≤ c.coarseI) (hs : s.i ≤ c.ceilI) :
+    (step c s o).1.i ≤ s.i + c.coarseI ∧ s.i ≤ (step c s o).1.i + c.coarseI := by
+  cases o
+  · exact newI_near c s _ (reqDir_cases c s true) hc hs
+  · exact newI_near c s _ (reqDir_cases c s false) hc hs
+  · simp [step, stepInvalid]</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-moved_changes_i"><td><code>moved_changes_i</code><span class="source">GDT/Stair.lean · 308행</span></td><td>단계 크기·이동</td><td>방향이 −1·0·+1이고 두 단계가 모두 양수이면, 실제로 이동한 칸은 원래 칸과 다르다.<details><summary>Lean 원문</summary><pre>theorem moved_changes_i (s : St) (dir : Int) (hd : dir = 1 ∨ dir = 0 ∨ dir = -1) (h1 : 0 &lt; c.coarseI) (h2 : 0 &lt; c.fineI)
+    (hm : moved c s dir = true) : newI c s dir ≠ s.i := by
+  have hm&#x27; := (moved_iff c s dir).mp hm
+  have hp := reqStepOf_pos c s dir hm&#x27;.1 h1 h2
+  have hb := hm&#x27;.2
+  unfold newI clampI want
+  rw [if_pos hm]
+  rcases hd with hd | hd | hd
+  · subst hd
+    have : s.i &lt; c.ceilI := by
+      unfold isBlocked at hb; simp at hb; omega
+    simp only [Int.one_mul]
+    omega
+  · exact absurd hd hm&#x27;.1
+  · subst hd
+    have : 0 &lt; s.i := by
+      unfold isBlocked at hb; simp at hb; omega
+    omega</pre></details></td><td><code>propext</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-step_wrong"><td><code>step_wrong</code><span class="source">GDT/Stair.lean · 328행</span></td><td>계단 이동 규칙</td><td>오답 한 번이면 연속 정답 수를 0으로 하고 +1을 요청한다. 긴 끝에서는 막히고 이외에는 실제로 이동한다.<details><summary>Lean 원문</summary><pre>theorem step_wrong (s : St) :
+    (step c s .wrong).1.streak = 0 ∧ (step c s .wrong).2.reqDir = 1 ∧
+    (step c s .wrong).2.move = (if s.i ≥ c.ceilI then .blocked else .move) := by
+  simp only [step, sv_streak, sv_tr_reqDir, sv_tr_move, reqDir, newStreak, moveOf, isBlocked]
+  by_cases hk : s.i ≥ c.ceilI &lt;;&gt; simp [hk]</pre></details></td><td><code>propext</code></td></tr>
+<tr id="th-step_harder"><td><code>step_harder</code><span class="source">GDT/Stair.lean · 335행</span></td><td>계단 이동 규칙</td><td>정답을 더해 연속 정답 수가 설정한 n에 도달하면 −1을 요청하고 연속 수를 0으로 한다. 짧은 끝에서는 막힌다.<details><summary>Lean 원문</summary><pre>theorem step_harder (s : St) (hs : s.streak + 1 ≥ c.nHarder) :
+    (step c s .correct).1.streak = 0 ∧ (step c s .correct).2.reqDir = -1 ∧
+    (step c s .correct).2.move = (if s.i ≤ 0 then .blocked else .move) := by
+  simp only [step, sv_streak, sv_tr_reqDir, sv_tr_move, reqDir, newStreak, moveOf, isBlocked, hs]
+  by_cases hk : s.i ≤ 0 &lt;;&gt; simp [hk]</pre></details></td><td><code>propext</code></td></tr>
+<tr id="th-step_stay"><td><code>step_stay</code><span class="source">GDT/Stair.lean · 342행</span></td><td>계단 이동 규칙</td><td>정답을 더해도 n에 미달하면 그 칸에 머물고 연속 정답 수만 1 늘어난다.<details><summary>Lean 원문</summary><pre>theorem step_stay (s : St) (hs : ¬ s.streak + 1 ≥ c.nHarder) :
+    (step c s .correct).1.i = s.i ∧ (step c s .correct).1.streak = s.streak + 1 ∧ (step c s .correct).2.move = .stay := by
+  simp [step, newI, moved, isBlocked, reqDir, newStreak, moveOf, hs]</pre></details></td><td><code>propext</code></td></tr>
+<tr id="th-step_invalid"><td><code>step_invalid</code><span class="source">GDT/Stair.lean · 347행</span></td><td>측정 불가·중단</td><td>기술적 실패는 시도 수와 실패 수를 1 늘린다. 칸·연속 수·마지막 방향·반전·유효 시행 수·이동 수·막힘 수는 유지되고 실패 상한에 닿으면 techFail이다.<details><summary>Lean 원문</summary><pre>theorem step_invalid (s : St) :
+    (step c s .invalid).1.i = s.i ∧ (step c s .invalid).1.streak = s.streak ∧ (step c s .invalid).1.lastDir = s.lastDir ∧
+    (step c s .invalid).1.revs = s.revs ∧ (step c s .invalid).1.valid = s.valid ∧ (step c s .invalid).1.moves = s.moves ∧
+    (step c s .invalid).1.blockedFloor = s.blockedFloor ∧ (step c s .invalid).1.blockedCeil = s.blockedCeil ∧
+    (step c s .invalid).1.attempts = s.attempts + 1 ∧ (step c s .invalid).1.tech = s.tech + 1 ∧
+    (step c s .invalid).1.status = (if s.tech + 1 ≥ c.maxTech then .techFail else s.status) := by
+  simp [step, stepInvalid, techStatus]</pre></details></td><td><code>propext</code></td></tr>
+<tr id="th-isRev_moved"><td><code>isRev_moved</code><span class="source">GDT/Stair.lean · 355행</span></td><td>반전 횟수</td><td>반전으로 판정했다면 실제 이동이다.<details><summary>Lean 원문</summary><pre>theorem isRev_moved (s : St) (dir : Int) (h : isRev c s dir = true) : moved c s dir = true := by
+  simp only [isRev, Bool.and_eq_true] at h
+  exact h.1.1</pre></details></td><td><code>propext</code></td></tr>
+<tr id="th-moveOf_of_moved"><td><code>moveOf_of_moved</code><span class="source">GDT/Stair.lean · 359행</span></td><td>단계 크기·이동</td><td>실제 이동으로 판정되면 유효 시행의 이동 유형은 move이다.<details><summary>Lean 원문</summary><pre>theorem moveOf_of_moved (s : St) (dir : Int) (h : moved c s dir = true) : moveOf c s dir = .move := by
+  simp only [moved, Bool.and_eq_true, decide_eq_true_eq, Bool.not_eq_true&#x27;] at h
+  simp [moveOf, h.1, h.2]</pre></details></td><td><code>propext</code></td></tr>
+<tr id="th-newRevs_len"><td><code>newRevs_len</code><span class="source">GDT/Stair.lean · 363행</span></td><td>반전 횟수</td><td>반전 판정이 참일 때만 목록 길이가 1 증가한다.<details><summary>Lean 원문</summary><pre>theorem newRevs_len (s : St) (dir : Int) (v a : Nat) :
+    (newRevs c s dir v a).length = s.revs.length + (if isRev c s dir then 1 else 0) := by
+  unfold newRevs; split &lt;;&gt; simp_all</pre></details></td><td><code>propext</code></td></tr>
+<tr id="th-stepValid_revs"><td><code>stepValid_revs</code><span class="source">GDT/Stair.lean · 367행</span></td><td>반전 횟수</td><td>유효 시행 후에는 반전 목록이 유지되거나, 실제 이동·반전으로 표시된 경우 이동 전 칸의 기록 하나가 추가된다.<details><summary>Lean 원문</summary><pre>theorem stepValid_revs (s : St) (b : Bool) :
+    (stepValid c s b).1.revs = s.revs ∨
+    (∃ r : Rev, (stepValid c s b).1.revs = s.revs ++ [r] ∧ r.i = s.i ∧ (stepValid c s b).2.move = .move ∧ (stepValid c s b).2.reversal = true) := by
+  by_cases hr : isRev c s (reqDir c s b) = true
+  · right
+    refine ⟨{ i := s.i, validNo := s.valid + 1, attemptNo := s.attempts + 1, atBound := atB c s.i, dirAfter := reqDir c s b },
+      by simp [newRevs, hr], rfl, ?_, by simpa using hr⟩
+    simpa using moveOf_of_moved c s _ (isRev_moved c s _ hr)
+  · left
+    simp [newRevs, hr]</pre></details></td><td><code>propext</code></td></tr>
+<tr id="th-step_revs"><td><code>step_revs</code><span class="source">GDT/Stair.lean · 379행</span></td><td>반전 횟수</td><td>모든 응답에서 반전 목록이 유지되거나, 실제 이동·반전으로 표시된 경우 이동 전 칸의 기록 하나가 추가된다.<details><summary>Lean 원문</summary><pre>theorem step_revs (s : St) (o : Outcome) :
+    (step c s o).1.revs = s.revs ∨
+    (∃ r : Rev, (step c s o).1.revs = s.revs ++ [r] ∧ r.i = s.i ∧ (step c s o).2.move = .move ∧ (step c s o).2.reversal = true) := by
+  cases o
+  · exact stepValid_revs c s true
+  · exact stepValid_revs c s false
+  · left; simp [step, stepInvalid]</pre></details></td><td><code>propext</code></td></tr>
+<tr id="th-step_size_rule"><td><code>step_size_rule</code><span class="source">GDT/Stair.lean · 388행</span></td><td>단계 크기·이동</td><td>실제 이동의 요청 칸 수는 이번 반전을 포함한 반전 수가 switchFrom보다 작으면 coarseI, 그 외에는 fineI이다.<details><summary>Lean 원문</summary><pre>theorem step_size_rule (s : St) (b : Bool) (hm : (stepValid c s b).2.move = .move) :
+    (stepValid c s b).2.reqStep = (if (stepValid c s b).1.revs.length &lt; c.switchFrom then c.coarseI else c.fineI) := by
+  have hd : reqDir c s b ≠ 0 := by
+    intro h0; simp [moveOf, h0] at hm
+  simp only [sv_tr_reqStep, sv_revs, reqStepOf, hd, ↓reduceIte, stepFor, newRevs_len]</pre></details></td><td><code>propext</code></td></tr>
+<tr id="th-step_blocked"><td><code>step_blocked</code><span class="source">GDT/Stair.lean · 395행</span></td><td>측정 불가·중단</td><td>경계에서 막히면 칸·반전·방향·이동 수는 유지되고 실제 이동 거리는 0이다. 막힌 쪽의 누적 횟수만 1 늘어난다.<details><summary>Lean 원문</summary><pre>theorem step_blocked (s : St) (o : Outcome) (h : (step c s o).2.move = .blocked) :
+    (step c s o).1.i = s.i ∧ (step c s o).1.revs = s.revs ∧ (step c s o).1.lastDir = s.lastDir ∧
+    (step c s o).1.moves = s.moves ∧ (step c s o).2.reversal = false ∧ (step c s o).2.effStep = 0 ∧
+    (((step c s o).2.blockedAt = 1 ∧ (step c s o).2.reqDir = 1 ∧ c.ceilI ≤ s.i ∧
+        (step c s o).1.blockedCeil = s.blockedCeil + 1 ∧ (step c s o).1.blockedFloor = s.blockedFloor) ∨
+     ((step c s o).2.blockedAt = 2 ∧ (step c s o).2.reqDir = -1 ∧ s.i = 0 ∧
+        (step c s o).1.blockedFloor = s.blockedFloor + 1 ∧ (step c s o).1.blockedCeil = s.blockedCeil)) := by
+  cases o with
+  | invalid =&gt; simp [step, stepInvalid] at h
+  | correct =&gt;
+    simp only [step] at h ⊢
+    rcases reqDir_cases c s true with hd | hd | hd &lt;;&gt;
+      simp_all [newI, moved, isBlocked, moveOf, newRevs, isRev, effStepOf, blockedAtOf, newBF, newBC] &lt;;&gt; omega
+  | wrong =&gt;
+    simp only [step] at h ⊢
+    rcases reqDir_cases c s false with hd | hd | hd &lt;;&gt;
+      simp_all [newI, moved, isBlocked, moveOf, newRevs, isRev, effStepOf, blockedAtOf, newBF, newBC] &lt;;&gt; omega</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-wrong_at_ceiling"><td><code>wrong_at_ceiling</code><span class="source">GDT/Stair.lean · 414행</span></td><td>측정 불가·중단</td><td>긴 끝에서 오답이면 긴 끝 막힘으로 기록하고 칸은 그대로다.<details><summary>Lean 원문</summary><pre>theorem wrong_at_ceiling (s : St) (h : s.i = c.ceilI) :
+    (step c s .wrong).2.move = .blocked ∧ (step c s .wrong).2.blockedAt = 1 ∧ (step c s .wrong).1.i = s.i := by
+  simp [step, moveOf, blockedAtOf, isBlocked, reqDir, newI, moved, h]</pre></details></td><td><code>propext</code></td></tr>
+<tr id="th-correct_at_floor"><td><code>correct_at_floor</code><span class="source">GDT/Stair.lean · 419행</span></td><td>측정 불가·중단</td><td>짧은 끝에서 정답이면 실제 이동하지 않고 칸 0을 유지한다.<details><summary>Lean 원문</summary><pre>theorem correct_at_floor (s : St) (h : s.i = 0) :
+    (step c s .correct).2.move ≠ .move ∧ (step c s .correct).1.i = 0 := by
+  simp only [step, sv_tr_move, sv_i]
+  unfold moveOf newI moved isBlocked reqDir
+  by_cases hs : s.streak + 1 ≥ c.nHarder &lt;;&gt; simp [hs, h]</pre></details></td><td><code>propext</code></td></tr>
+<tr id="th-step_not_blocked"><td><code>step_not_blocked</code><span class="source">GDT/Stair.lean · 426행</span></td><td>측정 불가·중단</td><td>막힌 이동이 아닌 시행에서는 양쪽 누적 막힘 수가 유지된다.<details><summary>Lean 원문</summary><pre>theorem step_not_blocked (s : St) (o : Outcome) (h : (step c s o).2.move ≠ .blocked) :
+    (step c s o).1.blockedFloor = s.blockedFloor ∧ (step c s o).1.blockedCeil = s.blockedCeil := by
+  cases o with
+  | invalid =&gt; simp [step, stepInvalid]
+  | correct =&gt;
+    simp only [step, sv_tr_move, sv_bf, sv_bc] at h ⊢
+    unfold newBF newBC
+    unfold moveOf at h
+    by_cases hb : isBlocked c s (reqDir c s true) = true
+    · rcases reqDir_cases c s true with hd | hd | hd &lt;;&gt; simp_all
+    · simp_all
+  | wrong =&gt;
+    simp only [step, sv_tr_move, sv_bf, sv_bc] at h ⊢
+    unfold newBF newBC
+    unfold moveOf at h
+    by_cases hb : isBlocked c s (reqDir c s false) = true
+    · rcases reqDir_cases c s false with hd | hd | hd &lt;;&gt; simp_all
+    · simp_all</pre></details></td><td><code>propext</code></td></tr>
+<tr id="th-newBF_le"><td><code>newBF_le</code><span class="source">GDT/Stair.lean · 445행</span></td><td>측정 불가·중단</td><td>짧은 끝의 막힘 수는 한 시행에서 그대로이거나 1 증가한다.<details><summary>Lean 원문</summary><pre>theorem newBF_le (s : St) (dir : Int) : newBF c s dir ≤ s.blockedFloor + 1 ∧ s.blockedFloor ≤ newBF c s dir := by
+  unfold newBF; split &lt;;&gt; omega</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-newBC_le"><td><code>newBC_le</code><span class="source">GDT/Stair.lean · 448행</span></td><td>측정 불가·중단</td><td>긴 끝의 막힘 수는 한 시행에서 그대로이거나 1 증가한다.<details><summary>Lean 원문</summary><pre>theorem newBC_le (s : St) (dir : Int) : newBC c s dir ≤ s.blockedCeil + 1 ∧ s.blockedCeil ≤ newBC c s dir := by
+  unfold newBC; split &lt;;&gt; omega</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-newBF_newBC"><td><code>newBF_newBC</code><span class="source">GDT/Stair.lean · 452행</span></td><td>측정 불가·중단</td><td>두 끝의 막힘 수를 합해도 한 시행의 증가는 최대 1이다.<details><summary>Lean 원문</summary><pre>theorem newBF_newBC (s : St) (dir : Int) : newBF c s dir + newBC c s dir ≤ s.blockedFloor + s.blockedCeil + 1 := by
+  unfold newBF newBC
+  by_cases h1 : (isBlocked c s dir &amp;&amp; decide (dir &lt; 0)) = true &lt;;&gt;
+  by_cases h2 : (isBlocked c s dir &amp;&amp; decide (dir &gt; 0)) = true &lt;;&gt;
+  simp only [h1, h2, ↓reduceIte, Bool.false_eq_true] &lt;;&gt; (try simp only [Bool.and_eq_true, decide_eq_true_eq] at h1 h2) &lt;;&gt; omega</pre></details></td><td><code>propext</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-sv_tr_clamped"><td><code>sv_tr_clamped</code><span class="source">GDT/Stair.lean · 460행</span></td><td>단계 크기·이동</td><td>유효 시행 기록의 clamped는 실제 이동을 했고 도착 칸이 요청한 칸과 다를 때만 참이다.<details><summary>Lean 원문</summary><pre>@[simp] theorem sv_tr_clamped (c : Cfg) (s : St) (b : Bool) : (stepValid c s b).2.clamped =
+    (moved c s (reqDir c s b) &amp;&amp; decide ((newI c s (reqDir c s b) : Int) ≠ want c s (reqDir c s b))) := rfl</pre></details></td><td>없음</td></tr>
+<tr id="th-unit_no_clamp"><td><code>unit_no_clamp</code><span class="source">GDT/Stair.lean · 464행</span></td><td>단계 크기·이동</td><td>굵은 단계와 잔 단계가 모두 1이고 원래 칸이 범위 안이면 한 시행에서 요청 칸을 경계로 잘라 이동하지 않는다.<details><summary>Lean 원문</summary><pre>theorem unit_no_clamp (c : Cfg) (h1 : c.coarseI = 1) (h2 : c.fineI = 1) (s : St) (o : Outcome) (hs : s.i ≤ c.ceilI) :
+    (step c s o).2.clamped = false := by
+  have hsf : ∀ n, stepFor c n = 1 := by intro n; unfold stepFor; split &lt;;&gt; omega
+  have key : ∀ b : Bool, (stepValid c s b).2.clamped = false := by
+    intro b
+    rw [sv_tr_clamped]
+    cases hm : moved c s (reqDir c s b)
+    · rfl
+    · have hm&#x27; := (moved_iff c s _).mp hm
+      have hstep : reqStepOf c s (reqDir c s b) = 1 := by
+        unfold reqStepOf; rw [if_neg hm&#x27;.1]; exact hsf _
+      simp only [Bool.true_and, decide_eq_false_iff_not, Classical.not_not]
+      unfold newI clampI want
+      rw [if_pos hm, hstep]
+      have hb := hm&#x27;.2
+      rcases reqDir_cases c s b with hd | hd | hd
+      · rw [hd] at hb ⊢
+        have : s.i &lt; c.ceilI := by unfold isBlocked at hb; simp at hb; omega
+        omega
+      · exact absurd hd hm&#x27;.1
+      · rw [hd] at hb ⊢
+        have : 0 &lt; s.i := by unfold isBlocked at hb; simp at hb; omega
+        omega
+  cases o
+  · exact key true
+  · exact key false
+  · rfl</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-endCheck_cases"><td><code>endCheck_cases</code><span class="source">GDT/Stair.lean · 494행</span></td><td>측정 불가·중단</td><td>유효 시행 뒤 반전 목표, 짧은 끝 막힘, 긴 끝 막힘, 유효 시행 상한, 계속 진행을 이 순서로 판정한다.<details><summary>Lean 원문</summary><pre>theorem endCheck_cases (c : Cfg) (revs : List Rev) (bf bc v : Nat) :
+    (endCheck c revs bf bc v = .reversalTarget ∧ c.totalRev ≤ revs.length) ∨
+    (endCheck c revs bf bc v = .floorStop ∧ revs.length &lt; c.totalRev ∧ c.boundaryStop ≤ bf) ∨
+    (endCheck c revs bf bc v = .ceilingStop ∧ revs.length &lt; c.totalRev ∧ bf &lt; c.boundaryStop ∧ c.boundaryStop ≤ bc) ∨
+    (endCheck c revs bf bc v = .trialCap ∧ revs.length &lt; c.totalRev ∧ bf &lt; c.boundaryStop ∧ bc &lt; c.boundaryStop ∧ c.maxValid ≤ v) ∨
+    (endCheck c revs bf bc v = .running ∧ revs.length &lt; c.totalRev ∧ bf &lt; c.boundaryStop ∧ bc &lt; c.boundaryStop ∧ v &lt; c.maxValid) := by
+  unfold endCheck
+  by_cases h1 : revs.length ≥ c.totalRev
+  · left; simp [h1]
+  · by_cases h2 : bf ≥ c.boundaryStop
+    · right; left; simp [h1, h2]; omega
+    · by_cases h3 : bc ≥ c.boundaryStop
+      · right; right; left; simp [h1, h2, h3]; omega
+      · by_cases h4 : v ≥ c.maxValid
+        · right; right; right; left; simp [h1, h2, h3, h4]; omega
+        · right; right; right; right; simp [h1, h2, h3, h4]; omega</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-init_rinv"><td><code>init_rinv</code><span class="source">GDT/Stair.lean · 525행</span></td><td>계단 상태·시행 수</td><td>설정이 유효하면 초기 상태가 계단 불변식 RInv를 만족한다.<details><summary>Lean 원문</summary><pre>theorem init_rinv (c : Cfg) (h : c.ok) : RInv c (init c) := by
+  obtain ⟨_, h1, _, _, _, h2, h3, h4, h5, h6, _⟩ := h
+  refine ⟨h1, rfl, fun _ =&gt; ⟨h5, h6, by simp [init]; omega, h4, h4⟩, ?_, ?_, ?_, ?_, ?_, ?_⟩ &lt;;&gt; simp [init]</pre></details></td><td><code>propext</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-stepValid_rinv"><td><code>stepValid_rinv</code><span class="source">GDT/Stair.lean · 529행</span></td><td>계단 상태·시행 수</td><td>불변식을 만족하는 진행 중 상태는 유효 시행 후에도 불변식을 만족한다.<details><summary>Lean 원문</summary><pre>theorem stepValid_rinv (c : Cfg) (s : St) (b : Bool) (hi : RInv c s) (hr : s.status = .running) :
+    RInv c (stepValid c s b).1 := by
+  obtain ⟨hI, hA, hR, _, _, _, _, _, hRev⟩ := hi
+  obtain ⟨hv, ht, hrv, hbf, hbc⟩ := hR hr
+  have hlen := newRevs_len c s (reqDir c s b) (s.valid + 1) (s.attempts + 1)
+  have hF := newBF_le c s (reqDir c s b)
+  have hC := newBC_le c s (reqDir c s b)
+  have hFC := newBF_newBC c s (reqDir c s b)
+  have hrl : (newRevs c s (reqDir c s b) (s.valid + 1) (s.attempts + 1)).length ≤ s.revs.length + 1 := by
+    rw [hlen]; split &lt;;&gt; omega
+  have hrevs : ∀ r ∈ newRevs c s (reqDir c s b) (s.valid + 1) (s.attempts + 1), r.i ≤ c.ceilI := by
+    intro r hm
+    unfold newRevs at hm
+    split at hm
+    · rcases List.mem_append.mp hm with hm | hm
+      · exact hRev r hm
+      · simp at hm; subst hm; exact hI
+    · exact hRev r hm
+  refine ⟨newI_le c s _ hI, by simp; omega, ?_, ?_, ?_, ?_, ?_, ?_, by simpa using hrevs⟩
+  all_goals
+    simp only [sv_status, sv_valid, sv_tech, sv_revs, sv_bf, sv_bc]
+    rcases endCheck_cases c (newRevs c s (reqDir c s b) (s.valid + 1) (s.attempts + 1)) (newBF c s (reqDir c s b))
+      (newBC c s (reqDir c s b)) (s.valid + 1) with ⟨he, h1⟩ | ⟨he, h1, h2⟩ | ⟨he, h1, h2, h3⟩ | ⟨he, h1, h2, h3, h4⟩ | ⟨he, h1, h2, h3, h4⟩ &lt;;&gt;
+      rw [he] &lt;;&gt; simp &lt;;&gt; omega</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-stepInvalid_rinv"><td><code>stepInvalid_rinv</code><span class="source">GDT/Stair.lean · 554행</span></td><td>계단 상태·시행 수</td><td>불변식을 만족하는 진행 중 상태는 기술적 실패 후에도 불변식을 만족한다.<details><summary>Lean 원문</summary><pre>theorem stepInvalid_rinv (c : Cfg) (s : St) (hi : RInv c s) (hr : s.status = .running) :
+    RInv c (stepInvalid c s).1 := by
+  obtain ⟨hI, hA, hR, _, _, _, _, _, hRev⟩ := hi
+  obtain ⟨hv, ht, hrv, hbf, hbc⟩ := hR hr
+  unfold stepInvalid techStatus
+  by_cases hc : s.tech + 1 ≥ c.maxTech
+  · simp only [hc, ↓reduceIte]
+    refine ⟨hI, by simp; omega, ?_, ?_, ?_, ?_, ?_, ?_, hRev⟩ &lt;;&gt; simp &lt;;&gt; omega
+  · simp only [hc, ↓reduceIte, hr]
+    refine ⟨hI, by simp; omega, ?_, ?_, ?_, ?_, ?_, ?_, hRev⟩ &lt;;&gt; simp &lt;;&gt; omega</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-step_rinv"><td><code>step_rinv</code><span class="source">GDT/Stair.lean · 565행</span></td><td>계단 상태·시행 수</td><td>불변식을 만족하는 진행 중 상태는 모든 종류의 응답을 한 번 처리한 뒤에도 불변식을 만족한다.<details><summary>Lean 원문</summary><pre>theorem step_rinv (c : Cfg) (s : St) (o : Outcome) (hi : RInv c s) (hr : s.status = .running) : RInv c (step c s o).1 := by
+  cases o
+  · exact stepValid_rinv c s true hi hr
+  · exact stepValid_rinv c s false hi hr
+  · exact stepInvalid_rinv c s hi hr</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-step_floor_block"><td><code>step_floor_block</code><span class="source">GDT/Stair.lean · 572행</span></td><td>측정 불가·중단</td><td>불변식을 만족하는 진행 중 계단에서 짧은 끝의 막힘이 이번에 설정 상한에 닿으면 즉시 floorStop이다.<details><summary>Lean 원문</summary><pre>theorem step_floor_block (c : Cfg) (s : St) (o : Outcome) (hi : RInv c s) (hr : s.status = .running)
+    (hm : (step c s o).2.move = .blocked) (hb : (step c s o).2.blockedAt = 2) :
+    (step c s o).1.blockedFloor = s.blockedFloor + 1 ∧
+    ((step c s o).1.status = .floorStop ↔ s.blockedFloor + 1 = c.boundaryStop) := by
+  obtain ⟨hI, _, hR, _⟩ := hi
+  obtain ⟨hv, ht, hrv, hbf, hbc⟩ := hR hr
+  obtain ⟨_, hrevs, _, _, _, _, hside⟩ := step_blocked c s o hm
+  have hbf&#x27; : (step c s o).1.blockedFloor = s.blockedFloor + 1 ∧ (step c s o).1.blockedCeil = s.blockedCeil := by
+    rcases hside with ⟨h1, _⟩ | ⟨_, _, _, h4, h5⟩
+    · rw [hb] at h1; cases h1
+    · exact ⟨h4, h5⟩
+  refine ⟨hbf&#x27;.1, ?_⟩
+  cases o with
+  | invalid =&gt; simp [step, stepInvalid] at hm
+  | correct | wrong =&gt;
+    simp only [step] at hrevs hbf&#x27; ⊢
+    rw [sv_status, ← sv_revs, ← sv_bf, ← sv_bc, hrevs, hbf&#x27;.1, hbf&#x27;.2]
+    unfold endCheck
+    simp only [Nat.not_le.mpr hrv, ↓reduceIte]
+    by_cases h : s.blockedFloor + 1 ≥ c.boundaryStop
+    · simp [h]; omega
+    · simp only [h, ↓reduceIte, Nat.not_le.mpr hbc]
+      constructor
+      · intro h2; split at h2 &lt;;&gt; cases h2
+      · intro h2; omega</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-step_ceil_block"><td><code>step_ceil_block</code><span class="source">GDT/Stair.lean · 599행</span></td><td>측정 불가·중단</td><td>불변식을 만족하는 진행 중 계단에서 긴 끝의 막힘이 이번에 설정 상한에 닿으면 즉시 ceilingStop이다.<details><summary>Lean 원문</summary><pre>theorem step_ceil_block (c : Cfg) (s : St) (o : Outcome) (hi : RInv c s) (hr : s.status = .running)
+    (hm : (step c s o).2.move = .blocked) (hb : (step c s o).2.blockedAt = 1) :
+    (step c s o).1.blockedCeil = s.blockedCeil + 1 ∧
+    ((step c s o).1.status = .ceilingStop ↔ s.blockedCeil + 1 = c.boundaryStop) := by
+  obtain ⟨hI, _, hR, _⟩ := hi
+  obtain ⟨hv, ht, hrv, hbf, hbc⟩ := hR hr
+  obtain ⟨_, hrevs, _, _, _, _, hside⟩ := step_blocked c s o hm
+  have hbc&#x27; : (step c s o).1.blockedCeil = s.blockedCeil + 1 ∧ (step c s o).1.blockedFloor = s.blockedFloor := by
+    rcases hside with ⟨_, _, _, h4, h5⟩ | ⟨h1, _⟩
+    · exact ⟨h4, h5⟩
+    · rw [hb] at h1; cases h1
+  refine ⟨hbc&#x27;.1, ?_⟩
+  cases o with
+  | invalid =&gt; simp [step, stepInvalid] at hm
+  | correct | wrong =&gt;
+    simp only [step] at hrevs hbc&#x27; ⊢
+    rw [sv_status, ← sv_revs, ← sv_bf, ← sv_bc, hrevs, hbc&#x27;.1, hbc&#x27;.2]
+    unfold endCheck
+    simp only [Nat.not_le.mpr hrv, ↓reduceIte, Nat.not_le.mpr hbf]
+    by_cases h : s.blockedCeil + 1 ≥ c.boundaryStop
+    · simp [h]; omega
+    · simp only [h, ↓reduceIte]
+      constructor
+      · intro h2; split at h2 &lt;;&gt; cases h2
+      · intro h2; omega</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-run_inv"><td><code>run_inv</code><span class="source">GDT/Stair.lean · 628행</span></td><td>계단 상태·시행 수</td><td>불변식을 만족하는 상태에서 시작하면 실행 후에도 불변식이 성립하며 모든 기록의 제시 칸과 다음 칸이 범위 안이다.<details><summary>Lean 원문</summary><pre>theorem run_inv (c : Cfg) : ∀ (os : List Outcome) (s : St), RInv c s →
+    RInv c (run c s os).1 ∧ ∀ t ∈ (run c s os).2, t.i ≤ c.ceilI ∧ t.nextI ≤ c.ceilI
+  | [], s, hi =&gt; by simp [run, hi]
+  | o :: os, s, hi =&gt; by
+    simp only [run]
+    split
+    · rename_i hr
+      have hi&#x27; := step_rinv c s o hi hr
+      obtain ⟨ih1, ih2⟩ := run_inv c os (step c s o).1 hi&#x27;
+      refine ⟨ih1, ?_⟩
+      intro t ht
+      simp only [List.mem_cons] at ht
+      rcases ht with ht | ht
+      · subst ht
+        refine ⟨?_, ?_⟩
+        · cases o &lt;;&gt; simp [step, stepInvalid] &lt;;&gt; exact hi.1
+        · have := hi&#x27;.1
+          cases o &lt;;&gt; simp_all [step, stepInvalid]
+      · exact ih2 t ht
+    · simp [hi]</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-run_forall"><td><code>run_forall</code><span class="source">GDT/Stair.lean · 650행</span></td><td>계단 상태·시행 수</td><td>진행 중 불변식 상태의 모든 한 시행에서 참인 기록 성질은 그 상태에서 시작한 실행의 모든 기록에 성립한다.<details><summary>Lean 원문</summary><pre>theorem run_forall (c : Cfg) (Q : Tr → Prop) (hQ : ∀ s o, RInv c s → s.status = .running → Q (step c s o).2) :
+    ∀ (os : List Outcome) (s : St), RInv c s → ∀ t ∈ (run c s os).2, Q t
+  | [], s, _ =&gt; by simp [run]
+  | o :: os, s, hi =&gt; by
+    simp only [run]
+    split
+    · rename_i hr
+      intro t ht
+      simp only [List.mem_cons] at ht
+      rcases ht with ht | ht
+      · subst ht; exact hQ s o hi hr
+      · exact run_forall c Q hQ os _ (step_rinv c s o hi hr) t ht
+    · simp</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-unit_no_clamp_run"><td><code>unit_no_clamp_run</code><span class="source">GDT/Stair.lean · 665행</span></td><td>단계 크기·이동</td><td>설정이 유효하고 두 단계가 모두 1이면 초기 상태에서 실행한 모든 기록에 경계로 잘린 이동이 없다.<details><summary>Lean 원문</summary><pre>theorem unit_no_clamp_run (c : Cfg) (hc : c.ok) (h1 : c.coarseI = 1) (h2 : c.fineI = 1) (os : List Outcome) :
+    ∀ t ∈ (run c (init c) os).2, t.clamped = false :=
+  run_forall c (fun t =&gt; t.clamped = false) (fun s o hi _ =&gt; unit_no_clamp c h1 h2 s o hi.1) os (init c) (init_rinv c hc)</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-run_end_state"><td><code>run_end_state</code><span class="source">GDT/Stair.lean · 670행</span></td><td>계단 상태·시행 수</td><td>유효한 설정이면 임의의 응답열을 초기 상태에서 실행한 뒤 불변식이 성립한다. 각 중단 사유에서는 해당 목표·상한에 정확히 닿는다.<details><summary>Lean 원문</summary><pre>theorem run_end_state (c : Cfg) (hc : c.ok) (os : List Outcome) : RInv c (run c (init c) os).1 :=
+  (run_inv c os (init c) (init_rinv c hc)).1</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-run_ends_aux"><td><code>run_ends_aux</code><span class="source">GDT/Stair.lean · 674행</span></td><td>측정 불가·중단</td><td>불변식을 만족하는 상태에서 남은 응답 수+시도 수+1이 maxValid+maxTech 이상이면 실행 후 진행 중일 수 없다.<details><summary>Lean 원문</summary><pre>theorem run_ends_aux (c : Cfg) : ∀ (os : List Outcome) (s : St), RInv c s →
+    c.maxValid + c.maxTech ≤ os.length + s.attempts + 1 → (run c s os).1.status ≠ .running
+  | [], s, hi, hl =&gt; by
+    simp only [run]
+    intro hr
+    obtain ⟨_, hA, hR, _⟩ := hi
+    have := hR hr
+    simp at hl
+    omega
+  | o :: os, s, hi, hl =&gt; by
+    simp only [run]
+    split
+    · rename_i hr
+      apply run_ends_aux c os (step c s o).1 (step_rinv c s o hi hr)
+      have : (step c s o).1.attempts = s.attempts + 1 := by cases o &lt;;&gt; simp [step, stepInvalid]
+      rw [this]
+      simp at hl
+      omega
+    · assumption</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-run_ends"><td><code>run_ends</code><span class="source">GDT/Stair.lean · 695행</span></td><td>측정 불가·중단</td><td>유효한 설정에서 처음부터 maxValid+maxTech−1개 이상의 응답을 주면 반드시 멈춘다. 종료 사유는 여러 가지다.<details><summary>Lean 원문</summary><pre>theorem run_ends (c : Cfg) (hc : c.ok) (os : List Outcome) (h : c.maxValid + c.maxTech ≤ os.length + 1) :
+    (run c (init c) os).1.status ≠ .running :=
+  run_ends_aux c os (init c) (init_rinv c hc) (by simp [init]; omega)</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-threshold_spec"><td><code>threshold_spec</code><span class="source">GDT/Stair.lean · 702행</span></td><td>역치 계산</td><td>남길 수≤목표 반전 수이고 원시 역치가 반환되면 목표 이상 반전했고, 반환 쌍은 마지막 retained개 반전의 값 합과 그 개수다.<details><summary>Lean 원문</summary><pre>theorem threshold_spec (c : Cfg) (s : St) (hc : c.retained ≤ c.totalRev) {sum : Int} {cnt : Nat}
+    (h : threshold c s = some (sum, cnt)) :
+    cnt = c.retained ∧ c.totalRev ≤ s.revs.length ∧
+    sum = ((s.revs.drop (s.revs.length - c.retained)).map (fun r =&gt; valueOf c.ladder r.i)).sum := by
+  unfold threshold at h
+  split at h
+  · cases h
+  · rename_i hlen
+    simp only [Option.some.injEq, Prod.mk.injEq] at h
+    obtain ⟨h1, h2⟩ := h
+    refine ⟨?_, by omega, h1.symm⟩
+    rw [← h2, List.length_drop]
+    omega</pre></details></td><td><code>propext</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-sum_bounds_int"><td><code>sum_bounds_int</code><span class="source">GDT/Stair.lean · 716행</span></td><td>역치 계산</td><td>각 반전 값이 lo와 hi 사이이면 그 정수 합은 lo×개수와 hi×개수 사이이다.<details><summary>Lean 원문</summary><pre>theorem sum_bounds_int (f : Rev → Int) (lo hi : Int) : ∀ (l : List Rev), (∀ r ∈ l, lo ≤ f r ∧ f r ≤ hi) →
+    lo * (l.length : Int) ≤ (l.map f).sum ∧ (l.map f).sum ≤ hi * (l.length : Int)
+  | [], _ =&gt; by simp
+  | r :: l, h =&gt; by
+    have h1 := h r (by simp)
+    have h2 := sum_bounds_int f lo hi l (fun x hx =&gt; h x (by simp [hx]))
+    simp only [List.map_cons, List.sum_cons, List.length_cons]
+    have e1 : lo * ((l.length + 1 : Nat) : Int) = lo * (l.length : Int) + lo := by
+      rw [Int.natCast_add, Int.mul_add]; simp
+    have e2 : hi * ((l.length + 1 : Nat) : Int) = hi * (l.length : Int) + hi := by
+      rw [Int.natCast_add, Int.mul_add]; simp
+    rw [e1, e2]
+    omega</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-threshold_bounds"><td><code>threshold_bounds</code><span class="source">GDT/Stair.lean · 731행</span></td><td>역치 계산</td><td>사다리가 LadderOK이고 모든 반전 칸이 범위 안이면, 반환한 합은 사다리 양 끝 값에 개수를 곱한 범위 안이다.<details><summary>Lean 원문</summary><pre>theorem threshold_bounds (c : Cfg) (s : St) (hL : LadderOK c.ladder) (hk : ∀ r ∈ s.revs, r.i ≤ c.ceilI)
+    {sum : Int} {cnt : Nat} (h : threshold c s = some (sum, cnt)) :
+    vlo c.ladder * (cnt : Int) ≤ sum ∧ sum ≤ vhi c.ladder * (cnt : Int) := by
+  unfold threshold at h
+  split at h
+  · cases h
+  · simp only [Option.some.injEq, Prod.mk.injEq] at h
+    obtain ⟨h1, h2⟩ := h
+    subst h1; subst h2
+    apply sum_bounds_int
+    intro r hr
+    have hri := hk r (List.mem_of_mem_drop hr)
+    have hlen := hL.1
+    apply hL.2
+    unfold Cfg.ceilI at hri
+    unfold Ladder.len at hlen ⊢
+    omega</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-run_threshold_bounds"><td><code>run_threshold_bounds</code><span class="source">GDT/Stair.lean · 750행</span></td><td>역치 계산</td><td>유효한 설정과 사다리에서 초기 상태의 실행이 역치를 반환하면 개수는 retained이고 합은 양 끝 값×개수 사이이다.<details><summary>Lean 원문</summary><pre>theorem run_threshold_bounds (c : Cfg) (hc : c.ok) (hL : LadderOK c.ladder) (os : List Outcome) {sum : Int} {cnt : Nat}
+    (h : threshold c (run c (init c) os).1 = some (sum, cnt)) :
+    cnt = c.retained ∧ vlo c.ladder * (cnt : Int) ≤ sum ∧ sum ≤ vhi c.ladder * (cnt : Int) := by
+  have hi := run_end_state c hc os
+  have hb := threshold_bounds c _ hL hi.2.2.2.2.2.2.2.2 h
+  exact ⟨(threshold_spec c _ hc.2.2.2.2.2.2.1 h).1, hb⟩</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+</tbody></table></div>
+<h3 id="mod-Proto"><code>GDT/Proto.lean</code> · 15개</h3><div class="scroll"><table class="index"><thead><tr><th>정리와 원본 위치</th><th>규칙</th><th>증명한 내용</th><th>공리</th></tr></thead><tbody>
+<tr id="th-zeng_ok"><td><code>zeng_ok</code><span class="source">GDT/Proto.lean · 65행</span></td><td>절차 설정</td><td>zeng의 사다리·시작 칸·단계 크기·반전 수·상한과 연속 정답 수 설정이 Cfg.ok를 만족한다.<details><summary>Lean 원문</summary><pre>theorem zeng_ok : zengCfg.ok := by unfold Cfg.ok; decide</pre></details></td><td>없음</td></tr>
+<tr id="th-xie_ok"><td><code>xie_ok</code><span class="source">GDT/Proto.lean · 66행</span></td><td>절차 설정</td><td>xie의 사다리·시작 칸·단계 크기·반전 수·상한과 연속 정답 수 설정이 Cfg.ok를 만족한다.<details><summary>Lean 원문</summary><pre>theorem xie_ok : xieCfg.ok := by unfold Cfg.ok; decide</pre></details></td><td>없음</td></tr>
+<tr id="th-blank_ok"><td><code>blank_ok</code><span class="source">GDT/Proto.lean · 67행</span></td><td>절차 설정</td><td>blank의 사다리·시작 칸·단계 크기·반전 수·상한과 연속 정답 수 설정이 Cfg.ok를 만족한다.<details><summary>Lean 원문</summary><pre>theorem blank_ok : blankCfg.ok := by unfold Cfg.ok; decide</pre></details></td><td>없음</td></tr>
+<tr id="th-cfg_ok"><td><code>cfg_ok</code><span class="source">GDT/Proto.lean · 69행</span></td><td>절차 설정</td><td>zeng·xie·blank 설정 모두 Cfg.ok의 유효성 조건을 만족한다.<details><summary>Lean 원문</summary><pre>theorem cfg_ok : zengCfg.ok ∧ xieCfg.ok ∧ blankCfg.ok := ⟨zeng_ok, xie_ok, blank_ok⟩</pre></details></td><td>없음</td></tr>
+<tr id="th-ceilI_values"><td><code>ceilI_values</code><span class="source">GDT/Proto.lean · 71행</span></td><td>절차 설정</td><td>긴 끝 칸의 인덱스는 zeng 19, xie 36, blank 29이다.<details><summary>Lean 원문</summary><pre>theorem ceilI_values : zengCfg.ceilI = 19 ∧ xieCfg.ceilI = 36 ∧ blankCfg.ceilI = 29 := by decide</pre></details></td><td>없음</td></tr>
+<tr id="th-start_values"><td><code>start_values</code><span class="source">GDT/Proto.lean · 74행</span></td><td>절차 설정</td><td>시작 칸의 값은 zeng에서 지수 k=0, xie·blank에서 20 ms이다. 세 값 모두 20 ms를 나타낸다.<details><summary>Lean 원문</summary><pre>theorem start_values : valueOf zengCfg.ladder zengCfg.startI = 0 ∧ valueOf xieCfg.ladder xieCfg.startI = 20 ∧
+    valueOf blankCfg.ladder blankCfg.startI = 20 := by decide</pre></details></td><td>없음</td></tr>
+<tr id="th-ends_209"><td><code>ends_209</code><span class="source">GDT/Proto.lean · 78행</span></td><td>반전·경계·종료</td><td>초기 상태에서 응답이 209개 이상 주어지면 세 절차 모두 진행 중 상태를 벗어난다.<details><summary>Lean 원문</summary><pre>theorem ends_209 (os : List Outcome) (h : 209 ≤ os.length) :
+    (run zengCfg (init zengCfg) os).1.status ≠ .running ∧ (run xieCfg (init xieCfg) os).1.status ≠ .running ∧
+    (run blankCfg (init blankCfg) os).1.status ≠ .running :=
+  ⟨run_ends zengCfg zeng_ok os (by simp [zengCfg]; omega), run_ends xieCfg xie_ok os (by simp [xieCfg]; omega),
+   run_ends blankCfg blank_ok os (by simp [blankCfg]; omega)⟩</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-zeng_thr"><td><code>zeng_thr</code><span class="source">GDT/Proto.lean · 85행</span></td><td>역치 계산</td><td>처음부터 돌린 zeng에서 역치가 나오면 남긴 반전은 8개이고 지수 k의 합은 −96…56이다.<details><summary>Lean 원문</summary><pre>theorem zeng_thr (os : List Outcome) {sum : Int} {cnt : Nat}
+    (h : threshold zengCfg (run zengCfg (init zengCfg) os).1 = some (sum, cnt)) : cnt = 8 ∧ -96 ≤ sum ∧ sum ≤ 56 := by
+  obtain ⟨h1, h2, h3⟩ := run_threshold_bounds zengCfg zeng_ok geo20_ok os h
+  have e : vlo zengCfg.ladder = -12 ∧ vhi zengCfg.ladder = 7 := geo20_ends
+  rw [e.1] at h2; rw [e.2] at h3
+  simp only [zengCfg] at h1
+  subst h1
+  exact ⟨rfl, by omega, by omega⟩</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-xie_thr"><td><code>xie_thr</code><span class="source">GDT/Proto.lean · 95행</span></td><td>역치 계산</td><td>처음부터 돌린 xie에서 역치가 나오면 남긴 반전은 6개이고 간격 합은 6…600 ms이다.<details><summary>Lean 원문</summary><pre>theorem xie_thr (os : List Outcome) {sum : Int} {cnt : Nat}
+    (h : threshold xieCfg (run xieCfg (init xieCfg) os).1 = some (sum, cnt)) : cnt = 6 ∧ 6 ≤ sum ∧ sum ≤ 600 := by
+  obtain ⟨h1, h2, h3⟩ := run_threshold_bounds xieCfg xie_ok xieL_ok os h
+  have e : vlo xieCfg.ladder = 1 ∧ vhi xieCfg.ladder = 100 := xieL_ends
+  rw [e.1] at h2; rw [e.2] at h3
+  simp only [xieCfg] at h1
+  subst h1
+  exact ⟨rfl, by omega, by omega⟩</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-blank_thr"><td><code>blank_thr</code><span class="source">GDT/Proto.lean · 105행</span></td><td>역치 계산</td><td>처음부터 돌린 blank에서 수치가 나오면 남긴 반전은 3개이고 간격 합은 6…360 ms이다.<details><summary>Lean 원문</summary><pre>theorem blank_thr (os : List Outcome) {sum : Int} {cnt : Nat}
+    (h : threshold blankCfg (run blankCfg (init blankCfg) os).1 = some (sum, cnt)) : cnt = 3 ∧ 6 ≤ sum ∧ sum ≤ 360 := by
+  obtain ⟨h1, h2, h3⟩ := run_threshold_bounds blankCfg blank_ok blankL_ok os h
+  have e : vlo blankCfg.ladder = 2 ∧ vhi blankCfg.ladder = 120 := blankL_ends
+  rw [e.1] at h2; rw [e.2] at h3
+  simp only [blankCfg] at h1
+  subst h1
+  exact ⟨rfl, by omega, by omega⟩</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-xie_blank_no_clamp"><td><code>xie_blank_no_clamp</code><span class="source">GDT/Proto.lean · 115행</span></td><td>단계 크기·경계</td><td>xie와 blank의 초기 상태에서 시작한 모든 기록에서 요청 칸이 끝으로 잘린 시행은 없다.<details><summary>Lean 원문</summary><pre>theorem xie_blank_no_clamp (os : List Outcome) :
+    (∀ t ∈ (run xieCfg (init xieCfg) os).2, t.clamped = false) ∧ (∀ t ∈ (run blankCfg (init blankCfg) os).2, t.clamped = false) :=
+  ⟨unit_no_clamp_run xieCfg xie_ok rfl rfl os, unit_no_clamp_run blankCfg blank_ok rfl rfl os⟩</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-zeng_clamp_example"><td><code>zeng_clamp_example</code><span class="source">GDT/Proto.lean · 120행</span></td><td>단계 크기·경계</td><td>zeng에서 처음부터 오답 네 번이면 12→14→16→18→19가 되고 마지막 이동만 끝으로 잘린다.<details><summary>Lean 원문</summary><pre>theorem zeng_clamp_example :
+    ((run zengCfg (init zengCfg) [.wrong, .wrong, .wrong, .wrong]).2.map (fun t =&gt; (t.i, t.nextI, t.clamped))) =
+      [(12, 14, false), (14, 16, false), (16, 18, false), (18, 19, true)] := by decide</pre></details></td><td>없음</td></tr>
+<tr id="th-zeng_conv"><td><code>zeng_conv</code><span class="source">GDT/Proto.lean · 125행</span></td><td>목표확률 판정</td><td>zeng의 목표 1/√2는 우연수준 1/3보다 높아 convOk가 참이다.<details><summary>Lean 원문</summary><pre>theorem zeng_conv : convOk zeng.target zeng.q = true := by decide +kernel</pre></details></td><td>없음</td></tr>
+<tr id="th-xie_conv"><td><code>xie_conv</code><span class="source">GDT/Proto.lean · 126행</span></td><td>목표확률 판정</td><td>xie의 목표 1/√2는 우연수준 1/2보다 높아 convOk가 참이다.<details><summary>Lean 원문</summary><pre>theorem xie_conv : convOk xie.target xie.q = true := by decide +kernel</pre></details></td><td>없음</td></tr>
+<tr id="th-blank_conv"><td><code>blank_conv</code><span class="source">GDT/Proto.lean · 127행</span></td><td>목표확률 판정</td><td>blank의 목표와 우연수준은 모두 1/2이므로 convOk가 거짓이다.<details><summary>Lean 원문</summary><pre>theorem blank_conv : convOk blank.target blank.q = false := by decide +kernel</pre></details></td><td>없음</td></tr>
+</tbody></table></div>
+<h3 id="mod-Classify"><code>GDT/Classify.lean</code> · 22개</h3><div class="scroll"><table class="index"><thead><tr><th>정리와 원본 위치</th><th>규칙</th><th>증명한 내용</th><th>공리</th></tr></thead><tbody>
+<tr id="th-decision_complete_iff"><td><code>decision_complete_iff</code><span class="source">GDT/Classify.lean · 219행</span></td><td>측정 불가 판정</td><td>판정 함수가 범위 안 완료를 반환할 필요충분조건은 최초 상태가 완료이고, 판정 비활성 또는 양끝 막힘과 수렴 실패가 없으며, 우연 검정이 꺼져 있거나 통과하는 것이다.<details><summary>Lean 원문</summary><pre>theorem decision_complete_iff (st0 : AStatus) (rs0 : AReason) (a lc lf sc cb fa wb cv g ab : Bool) :
+    (gateCore (refineCore st0 rs0 a lc lf sc cb fa wb cv).1 (refineCore st0 rs0 a lc lf sc cb fa wb cv).2 g ab).1 = .completeInRange ↔
+      st0 = .completeInRange ∧ (a = false ∨ (lc = false ∧ lf = false ∧ (cv &amp;&amp; wb) = false)) ∧ (g = false ∨ ab = true) := by
+  by_cases h : st0 = .completeInRange
+  · subst h
+    cases a &lt;;&gt; cases lc &lt;;&gt; cases lf &lt;;&gt; cases sc &lt;;&gt; cases cb &lt;;&gt; cases fa &lt;;&gt; cases wb &lt;;&gt; cases cv &lt;;&gt; cases g &lt;;&gt; cases ab &lt;;&gt;
+      simp [refineCore, gateCore]
+  · constructor
+    · intro hc
+      exfalso
+      unfold gateCore refineCore at hc
+      cases a &lt;;&gt; cases lc &lt;;&gt; cases lf &lt;;&gt; cases sc &lt;;&gt; cases cb &lt;;&gt; cases fa &lt;;&gt; cases g &lt;;&gt; cases ab &lt;;&gt;
+        simp_all
+    · intro hc; exact absurd hc.1 h</pre></details></td><td><code>propext</code></td></tr>
+<tr id="th-core_above_iff"><td><code>core_above_iff</code><span class="source">GDT/Classify.lean · 235행</span></td><td>측정 불가 판정</td><td>최초 상태가 ‘범위 밖(더 김)’이 아닐 때 이 상태로 바뀌는 조건은 판정 활성, 긴 끝만 막힘, Fisher 신뢰성 경고 없음, 긴 끝 정답률의 목표 미달 확인이다.<details><summary>Lean 원문</summary><pre>theorem core_above_iff (st0 : AStatus) (rs0 : AReason) (a lc lf sc cb fa wb cv : Bool) (h0 : st0 ≠ .aboveRange) :
+    (refineCore st0 rs0 a lc lf sc cb fa wb cv).1 = .aboveRange ↔ (a = true ∧ lc = true ∧ lf = false ∧ sc = false ∧ cb = true) := by
+  unfold refineCore
+  cases a &lt;;&gt; cases lc &lt;;&gt; cases lf &lt;;&gt; cases sc &lt;;&gt; cases cb &lt;;&gt; cases fa &lt;;&gt; cases wb &lt;;&gt; cases cv &lt;;&gt;
+    by_cases hc : st0 = .completeInRange &lt;;&gt; simp_all</pre></details></td><td><code>propext</code></td></tr>
+<tr id="th-core_below_iff"><td><code>core_below_iff</code><span class="source">GDT/Classify.lean · 242행</span></td><td>측정 불가 판정</td><td>최초 상태가 ‘범위 밖(더 짧음)’이 아닐 때 이 상태로 바뀌는 조건은 판정 활성, 짧은 끝만 막힘, 짧은 끝 정답률의 목표 초과 확인이다.<details><summary>Lean 원문</summary><pre>theorem core_below_iff (st0 : AStatus) (rs0 : AReason) (a lc lf sc cb fa wb cv : Bool) (h0 : st0 ≠ .belowRange) :
+    (refineCore st0 rs0 a lc lf sc cb fa wb cv).1 = .belowRange ↔ (a = true ∧ lc = false ∧ lf = true ∧ fa = true) := by
+  unfold refineCore
+  cases a &lt;;&gt; cases lc &lt;;&gt; cases lf &lt;;&gt; cases sc &lt;;&gt; cases cb &lt;;&gt; cases fa &lt;;&gt; cases wb &lt;;&gt; cases cv &lt;;&gt;
+    by_cases hc : st0 = .completeInRange &lt;;&gt; simp_all</pre></details></td><td><code>propext</code></td></tr>
+<tr id="th-core_unreliable_iff"><td><code>core_unreliable_iff</code><span class="source">GDT/Classify.lean · 249행</span></td><td>측정 불가 판정</td><td>최초 상태가 ‘신뢰성 부족’이 아닐 때 이 상태로 바뀌려면 판정이 활성이고 긴 끝이 막혀야 하며, 짧은 끝도 막히거나 Fisher 검정에서 긴 끝 성적이 더 나빠야 한다. 이 조건이면 해당 판정이 나온다.<details><summary>Lean 원문</summary><pre>theorem core_unreliable_iff (st0 : AStatus) (rs0 : AReason) (a lc lf sc cb fa wb cv : Bool) (h0 : st0 ≠ .unreliable) :
+    (refineCore st0 rs0 a lc lf sc cb fa wb cv).1 = .unreliable ↔ (a = true ∧ lc = true ∧ (lf = true ∨ sc = true)) := by
+  unfold refineCore
+  cases a &lt;;&gt; cases lc &lt;;&gt; cases lf &lt;;&gt; cases sc &lt;;&gt; cases cb &lt;;&gt; cases fa &lt;;&gt; cases wb &lt;;&gt; cases cv &lt;;&gt;
+    by_cases hc : st0 = .completeInRange &lt;;&gt; simp_all</pre></details></td><td><code>propext</code></td></tr>
+<tr id="th-core_window_iff"><td><code>core_window_iff</code><span class="source">GDT/Classify.lean · 256행</span></td><td>측정 불가 판정</td><td>최초 상태가 ‘아직 올라가는 중’이 아닐 때 해당 상태로 바뀌는 조건은 활성·최초 완료·양끝 막힘 없음·목표가 우연보다 높음·분석 구간 성적의 목표 미달 확인이다.<details><summary>Lean 원문</summary><pre>theorem core_window_iff (st0 : AStatus) (rs0 : AReason) (a lc lf sc cb fa wb cv : Bool) (h0 : st0 ≠ .aboveWindow) :
+    (refineCore st0 rs0 a lc lf sc cb fa wb cv).1 = .aboveWindow ↔
+      (a = true ∧ lc = false ∧ lf = false ∧ st0 = .completeInRange ∧ cv = true ∧ wb = true) := by
+  unfold refineCore
+  cases a &lt;;&gt; cases lc &lt;;&gt; cases lf &lt;;&gt; cases sc &lt;;&gt; cases cb &lt;;&gt; cases fa &lt;;&gt; cases wb &lt;;&gt; cases cv &lt;;&gt;
+    by_cases hc : st0 = .completeInRange &lt;;&gt; simp_all</pre></details></td><td><code>propext</code></td></tr>
+<tr id="th-window_of_complete"><td><code>window_of_complete</code><span class="source">GDT/Classify.lean · 265행</span></td><td>측정 불가 판정 보조</td><td>최초 상태가 범위 안 완료이면 분석 구간 목록이 존재한다. 목록이 비어 있지 않다는 주장까지 포함하지는 않는다.<details><summary>Lean 원문</summary><pre>theorem window_of_complete {c : Cfg} {s : St} {v : List Tr} (h : firstStatus c s = .completeInRange) :
+    ∃ W, window c s v (firstStatus c s) = some W := by
+  unfold window; rw [h]; simp only [↓reduceIte]; split &lt;;&gt; exact ⟨_, rfl⟩</pre></details></td><td><code>propext</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-boundOpt_of_complete"><td><code>boundOpt_of_complete</code><span class="source">GDT/Classify.lean · 269행</span></td><td>측정 불가 판정 보조</td><td>최초 상태가 범위 안 완료이면 분류가 참조할 분석 구간 통계가 존재한다.<details><summary>Lean 원문</summary><pre>theorem boundOpt_of_complete {P : Proto} {s : St} {trs : List Tr} (h : firstStatus P.cfg s = .completeInRange) :
+    ∃ b, boundOpt P s trs = some b := by
+  obtain ⟨W, hW⟩ := window_of_complete (v := validOf trs) h
+  exact ⟨_, by unfold boundOpt; rw [hW]; rfl⟩</pre></details></td><td><code>propext</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-classify_numeric_iff"><td><code>classify_numeric_iff</code><span class="source">GDT/Classify.lean · 276행</span></td><td>측정 불가 판정</td><td>막힘 허용 수가 0일 때 최종 범위 안 완료의 필요충분조건은 최초 완료, 구간 통계 존재, 양끝 막힘 0회, 적용되는 수렴 점검에서 목표 미달이 확인되지 않음, 우연 검정이 꺼져 있거나 통과함이다.<details><summary>Lean 원문</summary><pre>theorem classify_numeric_iff (P : Proto) (s : St) (trs : List Tr) (hbm : P.blocksMax = 0) :
+    (statusOf P s trs).1 = .completeInRange ↔
+      firstStatus P.cfg s = .completeInRange ∧
+      ∃ b, boundOpt P s trs = some b ∧ b.ceilBlocksWin = 0 ∧ b.floorBlocksWin = 0 ∧
+        (convOk P.target P.q &amp;&amp; winBelowOf P.target b) = false ∧ (P.gate = false ∨ aboveOf P trs = true) := by
+  unfold statusOf
+  cases hb : boundOpt P s trs with
+  | none =&gt;
+    simp only [refineOf]
+    constructor
+    · intro hc
+      have h0 : firstStatus P.cfg s = .completeInRange := by
+        unfold gateCore at hc; split at hc &lt;;&gt; simp_all
+      obtain ⟨b, hb&#x27;⟩ := boundOpt_of_complete (trs := trs) h0
+      rw [hb] at hb&#x27;; cases hb&#x27;
+    · rintro ⟨_, b, hb&#x27;, _⟩; cases hb&#x27;
+  | some b =&gt;
+    simp only [refineOf]
+    rw [decision_complete_iff]
+    constructor
+    · rintro ⟨h0, h1, h2⟩
+      refine ⟨h0, b, rfl, ?_⟩
+      rcases h1 with h1 | ⟨h1, h1&#x27;, h1&#x27;&#x27;⟩
+      · simp [isActive, h0] at h1
+      · simp only [limCOf, limFOf, hbm, decide_eq_false_iff_not, Nat.not_lt, Nat.le_zero] at h1 h1&#x27;
+        exact ⟨h1, h1&#x27;, h1&#x27;&#x27;, h2⟩
+    · rintro ⟨h0, b&#x27;, hb&#x27;, h1, h2, h3, h4⟩
+      cases hb&#x27;
+      refine ⟨h0, Or.inr ⟨?_, ?_, h3⟩, h4⟩ &lt;;&gt; simp [limCOf, limFOf, hbm, h1, h2]</pre></details></td><td><code>propext</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-classify_status"><td><code>classify_status</code><span class="source">GDT/Classify.lean · 306행</span></td><td>측정 불가 판정 보조</td><td>분류 결과의 상태는 최종 판정 함수가 반환한 첫째 성분과 같다.<details><summary>Lean 원문</summary><pre>theorem classify_status (P : Proto) (s : St) (trs : List Tr) : (classify P s trs).status = (statusOf P s trs).1 := rfl</pre></details></td><td>없음</td></tr>
+<tr id="th-classify_reason"><td><code>classify_reason</code><span class="source">GDT/Classify.lean · 307행</span></td><td>측정 불가 판정 보조</td><td>분류 결과의 사유는 최종 판정 함수가 반환한 둘째 성분과 같다.<details><summary>Lean 원문</summary><pre>theorem classify_reason (P : Proto) (s : St) (trs : List Tr) : (classify P s trs).reason = (statusOf P s trs).2 := rfl</pre></details></td><td>없음</td></tr>
+<tr id="th-window_none_of_stop"><td><code>window_none_of_stop</code><span class="source">GDT/Classify.lean · 309행</span></td><td>측정 불가 판정 보조</td><td>최초 상태가 범위 안 완료와 유효 시행 상한 중 어느 쪽에도 해당하지 않으면 분석 구간이 생성되지 않는다.<details><summary>Lean 원문</summary><pre>theorem window_none_of_stop {c : Cfg} {s : St} {v : List Tr}
+    (h : firstStatus c s ≠ .completeInRange ∧ firstStatus c s ≠ .trialCap) : window c s v (firstStatus c s) = none := by
+  unfold window; simp [h.1, h.2]</pre></details></td><td><code>propext</code></td></tr>
+<tr id="th-classify_floor_stop"><td><code>classify_floor_stop</code><span class="source">GDT/Classify.lean · 314행</span></td><td>측정 불가 판정</td><td>계단이 짧은 끝 막힘으로 종료되면 최종 상태는 nearFloor이고 사유는 floorStop이다.<details><summary>Lean 원문</summary><pre>theorem classify_floor_stop (P : Proto) (s : St) (trs : List Tr) (h : s.status = .floorStop) :
+    statusOf P s trs = (.nearFloor, .floorStop) := by
+  have h0 : firstStatus P.cfg s = .nearFloor := by simp [firstStatus, h]
+  have hb : boundOpt P s trs = none := by
+    unfold boundOpt; rw [window_none_of_stop (by rw [h0]; decide)]; rfl
+  unfold statusOf; rw [hb]; simp [refineOf, gateCore, h0, firstReason, h]</pre></details></td><td><code>propext</code></td></tr>
+<tr id="th-classify_ceiling_stop"><td><code>classify_ceiling_stop</code><span class="source">GDT/Classify.lean · 322행</span></td><td>측정 불가 판정</td><td>계단이 긴 끝 막힘으로 종료되면 최종 상태는 nearCeiling이고 사유는 ceilingStop이다.<details><summary>Lean 원문</summary><pre>theorem classify_ceiling_stop (P : Proto) (s : St) (trs : List Tr) (h : s.status = .ceilingStop) :
+    statusOf P s trs = (.nearCeiling, .ceilingStop) := by
+  have h0 : firstStatus P.cfg s = .nearCeiling := by simp [firstStatus, h]
+  have hb : boundOpt P s trs = none := by
+    unfold boundOpt; rw [window_none_of_stop (by rw [h0]; decide)]; rfl
+  unfold statusOf; rw [hb]; simp [refineOf, gateCore, h0, firstReason, h]</pre></details></td><td><code>propext</code></td></tr>
+<tr id="th-classify_tech_fail"><td><code>classify_tech_fail</code><span class="source">GDT/Classify.lean · 330행</span></td><td>측정 불가 판정</td><td>계단이 기술적 실패로 종료되면 최종 상태가 techFail이고 별도 사유 값은 없다.<details><summary>Lean 원문</summary><pre>theorem classify_tech_fail (P : Proto) (s : St) (trs : List Tr) (h : s.status = .techFail) :
+    statusOf P s trs = (.techFail, .none) := by
+  have h0 : firstStatus P.cfg s = .techFail := by simp [firstStatus, h]
+  have hb : boundOpt P s trs = none := by
+    unfold boundOpt; rw [window_none_of_stop (by rw [h0]; decide)]; rfl
+  unfold statusOf; rw [hb]; simp [refineOf, gateCore, h0, firstReason, h]</pre></details></td><td><code>propext</code></td></tr>
+<tr id="th-firstStatus_not_window"><td><code>firstStatus_not_window</code><span class="source">GDT/Classify.lean · 337행</span></td><td>측정 불가 판정 보조</td><td>최초 분류에는 ‘아직 올라가는 중’이나 ‘우연보다 높다는 증거 없음’이 나오지 않는다.<details><summary>Lean 원문</summary><pre>theorem firstStatus_not_window (c : Cfg) (s : St) : firstStatus c s ≠ .aboveWindow ∧ firstStatus c s ≠ .notAboveChance := by
+  unfold firstStatus
+  cases s.status &lt;;&gt; simp
+  split &lt;;&gt; simp</pre></details></td><td><code>propext</code></td></tr>
+<tr id="th-aboveWindow_needs_conv"><td><code>aboveWindow_needs_conv</code><span class="source">GDT/Classify.lean · 343행</span></td><td>측정 불가 판정</td><td>‘아직 올라가는 중’으로 분류되었다면 목표 정답률이 우연보다 높은 절차이다.<details><summary>Lean 원문</summary><pre>theorem aboveWindow_needs_conv (P : Proto) (s : St) (trs : List Tr) (h : (statusOf P s trs).1 = .aboveWindow) :
+    convOk P.target P.q = true := by
+  have hf := firstStatus_not_window P.cfg s
+  unfold statusOf gateCore at h
+  have h&#x27; : (refineOf P s (boundOpt P s trs)).1 = .aboveWindow := by split at h &lt;;&gt; simp_all
+  cases hb : boundOpt P s trs with
+  | none =&gt; rw [hb] at h&#x27;; simp [refineOf] at h&#x27;; exact absurd h&#x27; hf.1
+  | some b =&gt;
+    rw [hb] at h&#x27;
+    simp only [refineOf] at h&#x27;
+    exact ((core_window_iff _ _ _ _ _ _ _ _ _ _ hf.1).mp h&#x27;).2.2.2.2.1</pre></details></td><td><code>propext</code></td></tr>
+<tr id="th-notAboveChance_needs_gate"><td><code>notAboveChance_needs_gate</code><span class="source">GDT/Classify.lean · 356행</span></td><td>측정 불가 판정</td><td>‘우연보다 높다는 증거 없음’으로 분류되었다면 우연 검정이 켜져 있고 해당 검정을 통과하지 못했다.<details><summary>Lean 원문</summary><pre>theorem notAboveChance_needs_gate (P : Proto) (s : St) (trs : List Tr) (h : (statusOf P s trs).1 = .notAboveChance) :
+    P.gate = true ∧ aboveOf P trs = false := by
+  have hf := firstStatus_not_window P.cfg s
+  have hr : (refineOf P s (boundOpt P s trs)).1 ≠ .notAboveChance := by
+    cases hb : boundOpt P s trs with
+    | none =&gt; simp [refineOf]; exact hf.2
+    | some b =&gt;
+      simp only [refineOf, refineCore]
+      repeat&#x27; split
+      all_goals simp_all
+  unfold statusOf gateCore at h
+  split at h
+  · rename_i hc; simp only [Bool.and_eq_true, beq_iff_eq, Bool.not_eq_true&#x27;] at hc; exact ⟨hc.1.2, hc.2⟩
+  · exact absurd h hr</pre></details></td><td><code>propext</code></td></tr>
+<tr id="th-blank_never_window_or_gate"><td><code>blank_never_window_or_gate</code><span class="source">GDT/Classify.lean · 372행</span></td><td>측정 불가 판정</td><td>Blank에서는 ‘아직 올라가는 중’과 ‘우연보다 높다는 증거 없음’ 상태가 모두 배제된다.<details><summary>Lean 원문</summary><pre>theorem blank_never_window_or_gate (s : St) (trs : List Tr) :
+    (statusOf blank s trs).1 ≠ .aboveWindow ∧ (statusOf blank s trs).1 ≠ .notAboveChance := by
+  constructor
+  · intro h; have := aboveWindow_needs_conv blank s trs h; rw [blank_conv] at this; cases this
+  · intro h; have := (notAboveChance_needs_gate blank s trs h).1; simp [blank] at this</pre></details></td><td><code>propext</code></td></tr>
+<tr id="th-classify_thr"><td><code>classify_thr</code><span class="source">GDT/Classify.lean · 380행</span></td><td>역치 계산·측정 불가 판정</td><td>분류 결과에 숫자 값이 있으면 최종 상태는 범위 안 완료이고 그 값은 계단이 계산한 (합, 개수)와 같다.<details><summary>Lean 원문</summary><pre>theorem classify_thr {P : Proto} {s : St} {trs : List Tr} {x : Int × Nat} (h : (classify P s trs).thr = some x) :
+    threshold P.cfg s = some x ∧ (classify P s trs).status = .completeInRange := by
+  unfold classify at h
+  simp only [] at h
+  split at h
+  · rename_i hc; exact ⟨h, hc⟩
+  · cases h</pre></details></td><td>없음</td></tr>
+<tr id="th-zeng_numeric_thr"><td><code>zeng_numeric_thr</code><span class="source">GDT/Classify.lean · 389행</span></td><td>역치 계산</td><td>초기 상태에서 시작한 Zeng 트랙이 숫자 값을 반환하면 반전 8개의 지수 합은 −96 이상 56 이하이다.<details><summary>Lean 원문</summary><pre>theorem zeng_numeric_thr (os : List Outcome) {sum : Int} {cnt : Nat}
+    (h : (classify zeng (run zengCfg (init zengCfg) os).1 (run zengCfg (init zengCfg) os).2).thr = some (sum, cnt)) :
+    cnt = 8 ∧ -96 ≤ sum ∧ sum ≤ 56 :=
+  zeng_thr os (classify_thr h).1</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-xie_numeric_thr"><td><code>xie_numeric_thr</code><span class="source">GDT/Classify.lean · 394행</span></td><td>역치 계산</td><td>초기 상태에서 시작한 Xie 트랙이 숫자 값을 반환하면 반전 6개의 간격 합은 6~600 ms이다.<details><summary>Lean 원문</summary><pre>theorem xie_numeric_thr (os : List Outcome) {sum : Int} {cnt : Nat}
+    (h : (classify xie (run xieCfg (init xieCfg) os).1 (run xieCfg (init xieCfg) os).2).thr = some (sum, cnt)) :
+    cnt = 6 ∧ 6 ≤ sum ∧ sum ≤ 600 :=
+  xie_thr os (classify_thr h).1</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-blank_numeric_thr"><td><code>blank_numeric_thr</code><span class="source">GDT/Classify.lean · 399행</span></td><td>논문 방식 값 계산</td><td>초기 상태에서 시작한 Blank 트랙이 숫자 값을 반환하면 반전 3개의 간격 합은 6~360 ms이다.<details><summary>Lean 원문</summary><pre>theorem blank_numeric_thr (os : List Outcome) {sum : Int} {cnt : Nat}
+    (h : (classify blank (run blankCfg (init blankCfg) os).1 (run blankCfg (init blankCfg) os).2).thr = some (sum, cnt)) :
+    cnt = 3 ∧ 6 ≤ sum ∧ sum ≤ 360 :=
+  blank_thr os (classify_thr h).1</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+</tbody></table></div>
+<h3 id="mod-Summary"><code>GDT/Summary.lean</code> · 20개</h3><div class="scroll"><table class="index"><thead><tr><th>정리와 원본 위치</th><th>규칙</th><th>증명한 내용</th><th>공리</th></tr></thead><tbody>
+<tr id="th-kindOf_blank_not_num"><td><code>kindOf_blank_not_num</code><span class="source">GDT/Summary.lean · 139행</span></td><td>회기 요약·값 구분</td><td>Blank의 트랙 결과를 변환하면 일반 숫자 역치 종류(num)가 나오지 않는다.<details><summary>Lean 원문</summary><pre>theorem kindOf_blank_not_num (st : AStatus) (thr : Option (Int × Nat)) (v ch : Bool) : (kindOf blank st thr v ch).isNum = false := by
+  rcases thr with _ | ⟨s, c⟩ &lt;;&gt; cases st &lt;;&gt; cases v &lt;;&gt; cases ch &lt;;&gt; simp [kindOf, blank, TKind.isNum]</pre></details></td><td><code>propext</code></td></tr>
+<tr id="th-kindOf_paper_iff_blank"><td><code>kindOf_paper_iff_blank</code><span class="source">GDT/Summary.lean · 143행</span></td><td>회기 요약·값 구분</td><td>논문 방식 값 설정이 꺼진 절차의 트랙을 변환하면 paper 종류가 나오지 않는다.<details><summary>Lean 원문</summary><pre>theorem kindOf_paper_iff_blank (P : Proto) (hP : P.paper = false) (st : AStatus) (thr : Option (Int × Nat)) (v ch : Bool) :
+    (kindOf P st thr v ch).isPaper = false := by
+  rcases thr with _ | ⟨s, c⟩ &lt;;&gt; cases st &lt;;&gt; cases v &lt;;&gt; cases ch &lt;;&gt; simp [kindOf, hP, TKind.isPaper]</pre></details></td><td><code>propext</code></td></tr>
+<tr id="th-settle_ne_provisional"><td><code>settle_ne_provisional</code><span class="source">GDT/Summary.lean · 149행</span></td><td>회기 요약 보조</td><td>채택 목록을 판정하는 settle 단계에서 잠정 상태가 나올 수 없다.<details><summary>Lean 원문</summary><pre>theorem settle_ne_provisional (use : List TKind) : (settle use).1 ≠ .provisional := by
+  unfold settle
+  repeat&#x27; split
+  all_goals simp</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-settle_final_iff"><td><code>settle_final_iff</code><span class="source">GDT/Summary.lean · 154행</span></td><td>회기 요약·측정 불가 판정</td><td>settle 단계가 확정(final)일 필요충분조건은 채택 목록의 모든 원소가 일반 숫자 역치(num)인 것이다.<details><summary>Lean 원문</summary><pre>theorem settle_final_iff (use : List TKind) : (settle use).1 = .final ↔ use.all TKind.isNum = true := by
+  unfold settle
+  constructor
+  · intro h
+    split at h
+    · assumption
+    · exfalso; repeat&#x27; (split at h &lt;;&gt; try simp at h)
+  · intro h; simp [h]</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-settle_final_value"><td><code>settle_final_value</code><span class="source">GDT/Summary.lean · 163행</span></td><td>회기 요약·역치 계산</td><td>채택한 트랙이 모두 num이면 settle 값은 이들의 정확한 유리수 평균이다.<details><summary>Lean 원문</summary><pre>theorem settle_final_value (use : List TKind) (h : use.all TKind.isNum = true) : (settle use).2 = some (meanQ use) := by
+  unfold settle; simp [h]</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-settleRes_final"><td><code>settleRes_final</code><span class="source">GDT/Summary.lean · 166행</span></td><td>회기 요약·역치 계산</td><td>settleRes 결과가 확정이라면 채택 목록이 모두 num이고 반환 값은 이들의 정확한 평균이다.<details><summary>Lean 원문</summary><pre>theorem settleRes_final {use : List TKind} {d i : Nat} {r : Option (Bool × Bool × Option Rat)}
+    (h : (settleRes use d i r).state = .final) : use.all TKind.isNum = true ∧ (settleRes use d i r).value = some (meanQ use) := by
+  have hf := (settle_final_iff use).mp h
+  exact ⟨hf, settle_final_value use hf⟩</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-withThird_cases"><td><code>withThird_cases</code><span class="source">GDT/Summary.lean · 171행</span></td><td>회기 요약·반복 규칙</td><td>세 번째 트랙을 요구하는 경우 남은 트랙이 있으면 앞 세 개로 판정하고, 없으면 하나 더 필요한 잠정 상태가 된다.<details><summary>Lean 원문</summary><pre>theorem withThird_cases (a b : TKind) (rest : List TKind) (d i : Nat) (r : Option (Bool × Bool × Option Rat)) :
+    (∃ c t, rest = c :: t ∧ withThird a b rest d i r = settleRes [a, b, c] d i r) ∨ (rest = [] ∧ withThird a b rest d i r = provRes 1 d i r) := by
+  cases rest with
+  | nil =&gt; right; exact ⟨rfl, rfl⟩
+  | cons c t =&gt; left; exact ⟨c, t, rfl, rfl⟩</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-twoRule_cases"><td><code>twoRule_cases</code><span class="source">GDT/Summary.lean · 178행</span></td><td>회기 요약·반복 규칙</td><td>트랙이 둘 이상이면 두 트랙 규칙의 결과는 앞 둘로 판정, 앞 셋으로 판정, 또는 셋째가 없어 하나 더 필요한 잠정 상태 중 하나이다.<details><summary>Lean 원문</summary><pre>theorem twoRule_cases (t : Nat) (a b : TKind) (rest : List TKind) (i : Nat) :
+    (∃ r, twoRule t (a :: b :: rest) i = settleRes [a, b] (rest.length + 2) i r) ∨
+    (∃ c tl r, rest = c :: tl ∧ twoRule t (a :: b :: rest) i = settleRes [a, b, c] (rest.length + 2) i r) ∨
+    (∃ r, rest = [] ∧ twoRule t (a :: b :: rest) i = provRes 1 2 i r) := by
+  simp only [twoRule, List.length_cons]
+  split
+  · unfold numRule
+    split
+    · rcases withThird_cases a b rest (rest.length + 1 + 1) i _ with ⟨c, tl, hr, he⟩ | ⟨hr, he⟩
+      · right; left; exact ⟨c, tl, _, hr, he⟩
+      · right; right; subst hr; exact ⟨_, rfl, he⟩
+    · left; exact ⟨_, rfl⟩
+  · unfold censRule
+    split
+    · left; exact ⟨_, rfl⟩
+    · rcases withThird_cases a b rest (rest.length + 1 + 1) i _ with ⟨c, tl, hr, he⟩ | ⟨hr, he⟩
+      · right; left; exact ⟨c, tl, _, hr, he⟩
+      · right; right; subst hr; exact ⟨_, rfl, he⟩</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-final_mean"><td><code>final_mean</code><span class="source">GDT/Summary.lean · 198행</span></td><td>회기 요약·역치 계산</td><td>조건 요약이 확정이면 필요한 수만큼 결정된 트랙이 있고, 그 목록의 앞 need개·2개·3개 중 하나를 사용한다. 사용한 트랙은 모두 num이며 값은 그 평균이다.<details><summary>Lean 원문</summary><pre>theorem final_mean (need : Nat) (third : Option Nat) (kinds : List TKind) (h : (condSummary need third kinds).state = .final) :
+    ∃ use, (use = (detOf kinds).take need ∨ use = (detOf kinds).take 2 ∨ use = (detOf kinds).take 3) ∧
+      need ≤ (detOf kinds).length ∧ use.all TKind.isNum = true ∧ (condSummary need third kinds).value = some (meanQ use) := by
+  unfold condSummary at h ⊢
+  split at h
+  · simp [provRes] at h
+  · rename_i hlen
+    have hl : need ≤ (detOf kinds).length := by omega
+    rw [if_neg hlen]
+    cases third with
+    | none =&gt;
+      obtain ⟨h1, h2⟩ := settleRes_final h
+      exact ⟨_, Or.inl rfl, hl, h1, h2⟩
+    | some t =&gt;
+      simp only at h ⊢
+      split at h
+      · rename_i h2
+        rw [if_pos h2]
+        subst h2
+        match hd : detOf kinds, h with
+        | [], h =&gt; simp [twoRule, provRes] at h
+        | [_], h =&gt; simp [twoRule, provRes] at h
+        | a :: b :: rest, h =&gt;
+          rcases twoRule_cases t a b rest (invOf kinds) with ⟨r, he⟩ | ⟨c, tl, r, hr, he⟩ | ⟨r, hr, he⟩
+          · rw [he] at h ⊢
+            obtain ⟨h1, h2⟩ := settleRes_final h
+            exact ⟨[a, b], Or.inr (Or.inl (by simp)), by simp, h1, h2⟩
+          · rw [he] at h ⊢
+            obtain ⟨h1, h2⟩ := settleRes_final h
+            subst hr
+            exact ⟨[a, b, c], Or.inr (Or.inr (by simp)), by simp, h1, h2⟩
+          · rw [he] at h; simp [provRes] at h
+      · rename_i h2
+        rw [if_neg h2]
+        obtain ⟨h1, h3⟩ := settleRes_final h
+        exact ⟨_, Or.inl rfl, hl, h1, h3⟩</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-use_ne_nil"><td><code>use_ne_nil</code><span class="source">GDT/Summary.lean · 235행</span></td><td>회기 요약 보조</td><td>필요한 트랙 수가 1 이상이고 결정된 수가 필요 수 이상이면, 앞 need개·2개·3개 중 어느 것을 취해도 빈 목록이 아니다.<details><summary>Lean 원문</summary><pre>theorem use_ne_nil {need : Nat} {det use : List TKind} (hn : 1 ≤ need) (hl : need ≤ det.length)
+    (hu : use = det.take need ∨ use = det.take 2 ∨ use = det.take 3) : use ≠ [] := by
+  intro h0
+  rcases hu with hu | hu | hu &lt;;&gt; rw [h0] at hu &lt;;&gt;
+  · have := congrArg List.length hu
+    simp at this
+    omega</pre></details></td><td><code>propext</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-provisional_iff"><td><code>provisional_iff</code><span class="source">GDT/Summary.lean · 244행</span></td><td>회기 요약·반복 규칙</td><td>필요한 트랙 수가 1 이상이면 잠정 상태일 필요충분조건은 추가로 필요한 트랙 수가 양수인 것이다.<details><summary>Lean 원문</summary><pre>theorem provisional_iff (need : Nat) (third : Option Nat) (kinds : List TKind) (hn : 1 ≤ need) :
+    (condSummary need third kinds).state = .provisional ↔ 0 &lt; (condSummary need third kinds).needMore := by
+  unfold condSummary
+  split
+  · simp [provRes]; omega
+  · rename_i hlen
+    cases third with
+    | none =&gt; simp [settleRes, settle_ne_provisional]
+    | some t =&gt;
+      simp only
+      split
+      · rename_i h2
+        subst h2
+        match hd : detOf kinds with
+        | [] =&gt; simp [hd] at hlen
+        | [_] =&gt; simp [hd] at hlen
+        | a :: b :: rest =&gt;
+          rcases twoRule_cases t a b rest (invOf kinds) with ⟨r, he⟩ | ⟨c, tl, r, _, he⟩ | ⟨r, _, he⟩ &lt;;&gt; rw [he]
+          · simp [settleRes, settle_ne_provisional]
+          · simp [settleRes, settle_ne_provisional]
+          · simp [provRes]
+      · simp [settleRes, settle_ne_provisional]</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-zeng_third_iff"><td><code>zeng_third_iff</code><span class="source">GDT/Summary.lean · 270행</span></td><td>회기 요약·반복 규칙</td><td>Zeng에 num 트랙 둘만 주어졌을 때 셋째가 필요한 잠정 상태가 되는 조건은 두 트랙의 평균 지수 차의 절댓값이 1을 초과하는 것이다.<details><summary>Lean 원문</summary><pre>theorem zeng_third_iff (s1 s2 : Int) (c1 c2 : Nat) :
+    (protoSummary zeng [.num s1 c1, .num s2 c2]).state = .provisional ↔
+      1 &lt; absQ ((TKind.num s1 c1).q - (TKind.num s2 c2).q) := by
+  simp only [protoSummary, zeng, condSummary, detOf, invOf]
+  simp only [List.filter, TKind.isNone, Bool.not_false, List.length_cons, List.length_nil]
+  simp only [Nat.lt_irrefl, ↓reduceIte, twoRule, TKind.isN, TKind.isNum, numRule]
+  by_cases hd : (1 : Rat) &lt; absQ ((TKind.num s1 c1).q - (TKind.num s2 c2).q)
+  · simp [hd, withThird, provRes]
+  · simp [hd, settleRes, settle_ne_provisional]</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-zeng_two_final"><td><code>zeng_two_final</code><span class="source">GDT/Summary.lean · 281행</span></td><td>회기 요약·역치 계산</td><td>Zeng의 num 트랙 둘로 확정되면 두 평균 지수 차의 절댓값은 1 이하이며 요약 값은 두 지수의 평균이다.<details><summary>Lean 원문</summary><pre>theorem zeng_two_final (s1 s2 : Int) (c1 c2 : Nat) (h : (protoSummary zeng [.num s1 c1, .num s2 c2]).state = .final) :
+    absQ ((TKind.num s1 c1).q - (TKind.num s2 c2).q) ≤ 1 ∧
+      (protoSummary zeng [.num s1 c1, .num s2 c2]).value = some (((TKind.num s1 c1).q + (TKind.num s2 c2).q) / 2) := by
+  have hnp : ¬ (1 &lt; absQ ((TKind.num s1 c1).q - (TKind.num s2 c2).q)) := by
+    intro hlt
+    have := (zeng_third_iff s1 s2 c1 c2).mpr hlt
+    rw [h] at this; cases this
+  refine ⟨Rat.not_lt.mp hnp, ?_⟩
+  have hd&#x27; : ¬ ((1 : Nat) : Rat) &lt; absQ ((TKind.num s1 c1).q - (TKind.num s2 c2).q) := hnp
+  simp only [protoSummary, zeng, condSummary, detOf, invOf]
+  simp only [List.filter, TKind.isNone, Bool.not_false, List.length_cons, List.length_nil]
+  simp only [Nat.lt_irrefl, ↓reduceIte, twoRule, TKind.isN, TKind.isNum, numRule, hd&#x27;]
+  simp [settleRes, settle, TKind.isNum, meanQ]
+  grind</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-xie_provisional_iff"><td><code>xie_provisional_iff</code><span class="source">GDT/Summary.lean · 299행</span></td><td>회기 요약·반복 규칙</td><td>Xie가 잠정 상태일 필요충분조건은 결정된 트랙이 3개 미만인 것이다.<details><summary>Lean 원문</summary><pre>theorem xie_provisional_iff (kinds : List TKind) :
+    (protoSummary xie kinds).state = .provisional ↔ (detOf kinds).length &lt; 3 := by
+  simp only [protoSummary, xie, condSummary]
+  split
+  · rename_i h; simp [provRes, h]
+  · rename_i h; simp [settleRes, settle_ne_provisional, h]</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-xie_final_three"><td><code>xie_final_three</code><span class="source">GDT/Summary.lean · 307행</span></td><td>회기 요약·역치 계산</td><td>Xie에서 확정이면 결정된 트랙이 최소 3개이다. 그중 앞 3개는 모두 num이고 정확히 이 3개를 사용해 평균을 반환한다.<details><summary>Lean 원문</summary><pre>theorem xie_final_three (kinds : List TKind) (h : (protoSummary xie kinds).state = .final) :
+    3 ≤ (detOf kinds).length ∧ ((detOf kinds).take 3).all TKind.isNum = true ∧
+      (protoSummary xie kinds).value = some (meanQ ((detOf kinds).take 3)) ∧ (protoSummary xie kinds).used = 3 := by
+  simp only [protoSummary, xie, condSummary] at h ⊢
+  split at h
+  · simp [provRes] at h
+  · rename_i hlen
+    rw [if_neg hlen]
+    obtain ⟨h1, h2⟩ := settleRes_final h
+    refine ⟨by omega, h1, h2, ?_⟩
+    simp only [settleRes, List.length_take]
+    omega</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-no_num_never_final"><td><code>no_num_never_final</code><span class="source">GDT/Summary.lean · 321행</span></td><td>회기 요약·측정 불가 판정</td><td>필요한 트랙 수가 1 이상이고 입력에 num 트랙이 없으면 확정(final)이 나올 수 없다.<details><summary>Lean 원문</summary><pre>theorem no_num_never_final (need : Nat) (third : Option Nat) (kinds : List TKind) (hn : 1 ≤ need)
+    (h : ∀ k ∈ kinds, k.isNum = false) : (condSummary need third kinds).state ≠ .final := by
+  intro hf
+  obtain ⟨use, huse, hl, hall, _⟩ := final_mean need third kinds hf
+  have hsub : ∀ k ∈ use, k ∈ kinds := by
+    intro k hk
+    rcases huse with hu | hu | hu &lt;;&gt; subst hu &lt;;&gt; exact (List.mem_filter.mp (List.mem_of_mem_take hk)).1
+  have hne : use ≠ [] := use_ne_nil hn hl huse
+  obtain ⟨k, hk⟩ := List.exists_mem_of_ne_nil use hne
+  have := List.all_eq_true.mp hall k hk
+  rw [h k (hsub k hk)] at this
+  cases this</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-blank_never_final"><td><code>blank_never_final</code><span class="source">GDT/Summary.lean · 335행</span></td><td>회기 요약·값 구분</td><td>Blank의 트랙별 분류를 kindOf로 변환해 요약하면 일반 역치의 확정(final) 상태가 나오지 않는다.<details><summary>Lean 원문</summary><pre>theorem blank_never_final (sts : List (AStatus × Option (Int × Nat) × Bool × Bool)) :
+    (protoSummary blank (sts.map (fun x =&gt; kindOf blank x.1 x.2.1 x.2.2.1 x.2.2.2))).state ≠ .final := by
+  apply no_num_never_final _ _ _ (by decide)
+  intro k hk
+  obtain ⟨x, _, hx⟩ := List.mem_map.mp hk
+  subst hx
+  exact kindOf_blank_not_num _ _ _ _</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-blank_paper_mean"><td><code>blank_paper_mean</code><span class="source">GDT/Summary.lean · 344행</span></td><td>회기 요약·논문 방식 값</td><td>Blank에 paper 트랙 두 개를 주면 둘을 써서 paper 상태와 두 값의 정확한 평균을 반환하며 추가 트랙이 필요하지 않다.<details><summary>Lean 원문</summary><pre>theorem blank_paper_mean (s1 s2 : Int) (c1 c2 : Nat) :
+    protoSummary blank [.paper s1 c1, .paper s2 c2] =
+      { state := .paper, value := some (meanQ [.paper s1 c1, .paper s2 c2]), needMore := 0, used := 2, det := 2, nInvalid := 0, rule := none } := by
+  simp [protoSummary, blank, condSummary, detOf, invOf, settleRes, settle, TKind.isNone, TKind.isNum, TKind.isPaper, TKind.isBad]</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-meanQ_bounds"><td><code>meanQ_bounds</code><span class="source">GDT/Summary.lean · 350행</span></td><td>회기 요약·평균 범위</td><td>비어 있지 않은 목록의 모든 값이 [lo, hi]에 속하면 그 평균도 같은 구간에 속한다.<details><summary>Lean 원문</summary><pre>theorem meanQ_bounds (l : List TKind) (hl : l ≠ []) (lo hi : Rat) (h : ∀ k ∈ l, lo ≤ k.q ∧ k.q ≤ hi) :
+    lo ≤ meanQ l ∧ meanQ l ≤ hi := by
+  have hsum : ∀ (m : List TKind), (∀ k ∈ m, lo ≤ k.q ∧ k.q ≤ hi) →
+      lo * (m.length : Rat) ≤ (m.map TKind.q).sum ∧ (m.map TKind.q).sum ≤ hi * (m.length : Rat) := by
+    intro m
+    induction m with
+    | nil =&gt; intro _; refine ⟨?_, ?_⟩ &lt;;&gt; simp [Rat.le_refl]
+    | cons k m ih =&gt;
+      intro hm
+      have hk := hm k (by simp)
+      have ih&#x27; := ih (fun x hx =&gt; hm x (by simp [hx]))
+      simp only [List.map_cons, List.sum_cons, List.length_cons, Rat.natCast_add]
+      have e1 : lo * ((m.length : Rat) + ((1 : Nat) : Rat)) = lo * (m.length : Rat) + lo := by
+        have : ((1 : Nat) : Rat) = 1 := rfl
+        rw [this, Rat.mul_add, Rat.mul_one]
+      have e2 : hi * ((m.length : Rat) + ((1 : Nat) : Rat)) = hi * (m.length : Rat) + hi := by
+        have : ((1 : Nat) : Rat) = 1 := rfl
+        rw [this, Rat.mul_add, Rat.mul_one]
+      rw [e1, e2]
+      have a1 := ih&#x27;.1
+      have a2 := ih&#x27;.2
+      have b1 := hk.1
+      have b2 := hk.2
+      constructor &lt;;&gt; grind
+  have hs := hsum l h
+  have hpos : (0 : Rat) &lt; (l.length : Rat) := Rat.natCast_pos.mpr (List.length_pos_iff.mpr hl)
+  unfold meanQ
+  constructor
+  · apply Rat.not_lt.mp
+    intro hlt
+    rw [Rat.div_lt_iff hpos] at hlt
+    exact absurd hs.1 (Rat.not_le.mpr hlt)
+  · apply Rat.not_lt.mp
+    intro hlt
+    rw [Rat.lt_div_iff hpos] at hlt
+    exact absurd hs.2 (Rat.not_le.mpr hlt)</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-final_value_bounds"><td><code>final_value_bounds</code><span class="source">GDT/Summary.lean · 388행</span></td><td>회기 요약·평균 범위</td><td>필요 수가 1 이상이고 입력 목록의 모든 q 값이 [lo, hi]에 있으면 확정 상태에서 반환한 숫자 값도 [lo, hi]에 있다.<details><summary>Lean 원문</summary><pre>theorem final_value_bounds (need : Nat) (third : Option Nat) (kinds : List TKind) (hn : 1 ≤ need) (lo hi : Rat)
+    (hb : ∀ k ∈ kinds, lo ≤ k.q ∧ k.q ≤ hi) {v : Rat}
+    (h : (condSummary need third kinds).state = .final) (hv : (condSummary need third kinds).value = some v) :
+    lo ≤ v ∧ v ≤ hi := by
+  obtain ⟨use, huse, hl, _, hval⟩ := final_mean need third kinds h
+  rw [hval] at hv
+  obtain rfl : meanQ use = v := Option.some.inj hv
+  have hsub : ∀ k ∈ use, k ∈ kinds := by
+    intro k hk
+    rcases huse with hu | hu | hu &lt;;&gt; subst hu &lt;;&gt; exact (List.mem_filter.mp (List.mem_of_mem_take hk)).1
+  exact meanQ_bounds use (use_ne_nil hn hl huse) lo hi (fun k hk =&gt; hb k (hsub k hk))</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+</tbody></table></div>
+<h3 id="mod-Ladder"><code>GDT/Ladder.lean</code> · 18개</h3><div class="scroll"><table class="index"><thead><tr><th>정리와 원본 위치</th><th>규칙</th><th>증명한 내용</th><th>공리</th></tr></thead><tbody>
+<tr id="th-geo20_len"><td><code>geo20_len</code><span class="source">GDT/Ladder.lean · 57행</span></td><td>자극 수식·간격 사다리</td><td>Zeng 기하 사다리는 20칸이다.<details><summary>Lean 원문</summary><pre>theorem geo20_len : geo20.len = 20 := rfl</pre></details></td><td>없음</td></tr>
+<tr id="th-xieL_len"><td><code>xieL_len</code><span class="source">GDT/Ladder.lean · 58행</span></td><td>자극 수식·간격 사다리</td><td>Xie 간격 사다리는 37칸이다.<details><summary>Lean 원문</summary><pre>theorem xieL_len : xieL.len = 37 := rfl</pre></details></td><td>없음</td></tr>
+<tr id="th-blankL_len"><td><code>blankL_len</code><span class="source">GDT/Ladder.lean · 59행</span></td><td>자극 수식·간격 사다리</td><td>Blank 간격 사다리는 30칸이다.<details><summary>Lean 원문</summary><pre>theorem blankL_len : blankL.len = 30 := rfl</pre></details></td><td>없음</td></tr>
+<tr id="th-geo20_ends"><td><code>geo20_ends</code><span class="source">GDT/Ladder.lean · 61행</span></td><td>자극 수식·간격 사다리</td><td>Zeng 첫 칸과 마지막 칸의 반옥타브 지수 k는 −12와 7이다.<details><summary>Lean 원문</summary><pre>theorem geo20_ends : vlo geo20 = -12 ∧ vhi geo20 = 7 := by decide</pre></details></td><td>없음</td></tr>
+<tr id="th-xieL_ends"><td><code>xieL_ends</code><span class="source">GDT/Ladder.lean · 62행</span></td><td>자극 수식·간격 사다리</td><td>Xie 첫 칸과 마지막 칸은 1 ms와 100 ms이다.<details><summary>Lean 원문</summary><pre>theorem xieL_ends : vlo xieL = 1 ∧ vhi xieL = 100 := by decide</pre></details></td><td>없음</td></tr>
+<tr id="th-blankL_ends"><td><code>blankL_ends</code><span class="source">GDT/Ladder.lean · 63행</span></td><td>자극 수식·간격 사다리</td><td>Blank 첫 칸과 마지막 칸은 2 ms와 120 ms이다.<details><summary>Lean 원문</summary><pre>theorem blankL_ends : vlo blankL = 2 ∧ vhi blankL = 120 := by decide</pre></details></td><td>없음</td></tr>
+<tr id="th-geo20_round"><td><code>geo20_round</code><span class="source">GDT/Ladder.lean · 75행</span></td><td>자극 수식·간격 사다리</td><td>Zeng 각 칸 i에서 저장한 표본 수는 k=i−12일 때 960·2^(k/2)의 반올림에 해당하는 정수 제곱 부등식을 만족한다.<details><summary>Lean 원문</summary><pre>theorem geo20_round : ∀ i, i &lt; 20 → roundSpec (geo20.vals.getD i 0) ((i : Int) - 12) = true := by decide</pre></details></td><td>없음</td></tr>
+<tr id="th-geo20_strict"><td><code>geo20_strict</code><span class="source">GDT/Ladder.lean · 79행</span></td><td>자극 수식·간격 사다리</td><td>Zeng에서 한 칸 올라가면 해당 반옥타브 지수가 엄격히 증가한다.<details><summary>Lean 원문</summary><pre>theorem geo20_strict : ∀ i, i &lt; 19 → valueOf geo20 i &lt; valueOf geo20 (i + 1) := by
+  intro i _; simp only [valueOf, geo20]; omega</pre></details></td><td><code>propext</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-xieL_strict"><td><code>xieL_strict</code><span class="source">GDT/Ladder.lean · 82행</span></td><td>자극 수식·간격 사다리</td><td>Xie에서 한 칸 올라가면 간격(ms)이 엄격히 증가한다.<details><summary>Lean 원문</summary><pre>theorem xieL_strict : ∀ i, i &lt; 36 → valueOf xieL i &lt; valueOf xieL (i + 1) := by decide</pre></details></td><td>없음</td></tr>
+<tr id="th-blankL_strict"><td><code>blankL_strict</code><span class="source">GDT/Ladder.lean · 83행</span></td><td>자극 수식·간격 사다리</td><td>Blank에서 한 칸 올라가면 간격(ms)이 엄격히 증가한다.<details><summary>Lean 원문</summary><pre>theorem blankL_strict : ∀ i, i &lt; 29 → valueOf blankL i &lt; valueOf blankL (i + 1) := by decide</pre></details></td><td>없음</td></tr>
+<tr id="th-geo20_gapN_strict"><td><code>geo20_gapN_strict</code><span class="source">GDT/Ladder.lean · 86행</span></td><td>자극 수식·간격 사다리</td><td>Zeng에서 한 칸 올라가면 간격 표본 수도 엄격히 증가한다.<details><summary>Lean 원문</summary><pre>theorem geo20_gapN_strict : ∀ i, i &lt; 19 → gapN geo20 i &lt; gapN geo20 (i + 1) := by decide</pre></details></td><td>없음</td></tr>
+<tr id="th-geo20_bounds"><td><code>geo20_bounds</code><span class="source">GDT/Ladder.lean · 88행</span></td><td>자극 수식·간격 사다리</td><td>Zeng의 모든 유효 칸에서 반옥타브 지수는 첫 칸 값 이상이고 마지막 칸 값 이하이다.<details><summary>Lean 원문</summary><pre>theorem geo20_bounds : ∀ i, i &lt; 20 → vlo geo20 ≤ valueOf geo20 i ∧ valueOf geo20 i ≤ vhi geo20 := by
+  intro i hi; simp only [vlo, vhi, valueOf, geo20, Ladder.len, List.length_cons, List.length_nil]; omega</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-xieL_bounds"><td><code>xieL_bounds</code><span class="source">GDT/Ladder.lean · 91행</span></td><td>자극 수식·간격 사다리</td><td>Xie의 모든 유효 칸의 간격은 첫 칸 값 이상이고 마지막 칸 값 이하이다.<details><summary>Lean 원문</summary><pre>theorem xieL_bounds : ∀ i, i &lt; 37 → vlo xieL ≤ valueOf xieL i ∧ valueOf xieL i ≤ vhi xieL := by decide</pre></details></td><td>없음</td></tr>
+<tr id="th-blankL_bounds"><td><code>blankL_bounds</code><span class="source">GDT/Ladder.lean · 92행</span></td><td>자극 수식·간격 사다리</td><td>Blank의 모든 유효 칸의 간격은 첫 칸 값 이상이고 마지막 칸 값 이하이다.<details><summary>Lean 원문</summary><pre>theorem blankL_bounds : ∀ i, i &lt; 30 → vlo blankL ≤ valueOf blankL i ∧ valueOf blankL i ≤ vhi blankL := by decide</pre></details></td><td>없음</td></tr>
+<tr id="th-gapN_list"><td><code>gapN_list</code><span class="source">GDT/Ladder.lean · 95행</span></td><td>자극 수식·간격 사다리</td><td>목록 사다리에서 간격 표본 수는 정수 ms 값×48이다(48 kHz).<details><summary>Lean 원문</summary><pre>theorem gapN_list (L : Ladder) (h : L.kind = .list) (i : Nat) : (gapN L i : Int) = valueOf L i * 48 := by
+  simp [gapN, valueOf, h]</pre></details></td><td><code>propext</code></td></tr>
+<tr id="th-geo20_ok"><td><code>geo20_ok</code><span class="source">GDT/Ladder.lean · 102행</span></td><td>자극 수식·간격 사다리</td><td>Zeng 사다리는 비어 있지 않고 모든 유효 칸의 값은 양 끝 값 사이이다.<details><summary>Lean 원문</summary><pre>theorem geo20_ok : LadderOK geo20 := ⟨by decide, geo20_bounds⟩</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-xieL_ok"><td><code>xieL_ok</code><span class="source">GDT/Ladder.lean · 103행</span></td><td>자극 수식·간격 사다리</td><td>Xie 사다리는 비어 있지 않고 모든 유효 칸의 값은 양 끝 값 사이이다.<details><summary>Lean 원문</summary><pre>theorem xieL_ok : LadderOK xieL := ⟨by decide, xieL_bounds⟩</pre></details></td><td>없음</td></tr>
+<tr id="th-blankL_ok"><td><code>blankL_ok</code><span class="source">GDT/Ladder.lean · 104행</span></td><td>자극 수식·간격 사다리</td><td>Blank 사다리는 비어 있지 않고 모든 유효 칸의 값은 양 끝 값 사이이다.<details><summary>Lean 원문</summary><pre>theorem blankL_ok : LadderOK blankL := ⟨by decide, blankL_bounds⟩</pre></details></td><td>없음</td></tr>
+</tbody></table></div>
+<h3 id="mod-Rng"><code>GDT/Rng.lean</code> · 10개</h3><div class="scroll"><table class="index"><thead><tr><th>정리와 원본 위치</th><th>규칙</th><th>증명한 내용</th><th>공리</th></tr></thead><tbody>
+<tr id="th-intF_lt"><td><code>intF_lt</code><span class="source">GDT/Rng.lean · 49행</span></td><td>시행·자극 계획</td><td>n&gt;0이면 유한 반복 난수 함수 intF의 결과는 임의의 반복 한도와 상태에서 0…n−1 안에 있다.<details><summary>Lean 원문</summary><pre>theorem intF_lt (n : Nat) (hn : 0 &lt; n) : ∀ (fuel : Nat) (x : Xo), (Xo.intF n fuel x).1 &lt; n
+  | 0, _ =&gt; hn
+  | fuel + 1, x =&gt; by
+    simp only [Xo.intF]
+    split
+    · exact Nat.mod_lt _ hn
+    · exact intF_lt n hn fuel _</pre></details></td><td><code>propext</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-int_lt"><td><code>int_lt</code><span class="source">GDT/Rng.lean · 58행</span></td><td>시행·자극 계획</td><td>n&gt;0이면 모형의 난수 함수 int(n)은 0…n−1 안에 있다.<details><summary>Lean 원문</summary><pre>theorem int_lt (x : Xo) {n : Nat} (hn : 0 &lt; n) : (x.int n).1 &lt; n := intF_lt n hn 100 x</pre></details></td><td><code>propext</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-plan_targetPos"><td><code>plan_targetPos</code><span class="source">GDT/Rng.lean · 133행</span></td><td>시행·자극 계획</td><td>구간 수 q&gt;0이면 시행 계획에서 뽑는 목표 위치는 1…q 안에 있다.<details><summary>Lean 원문</summary><pre>theorem plan_targetPos (x : Xo) (q : Nat) (hq : 0 &lt; q) (rv : Option (Nat × Nat)) :
+    1 ≤ (drawPlan x q rv).1.targetPos ∧ (drawPlan x q rv).1.targetPos ≤ q := by
+  have h := int_lt x hq
+  cases rv with
+  | none =&gt; simp only [drawPlan]; omega
+  | some p =&gt; obtain ⟨lo, hi⟩ := p; simp only [drawPlan]; omega</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-drawSeeds_length"><td><code>drawSeeds_length</code><span class="source">GDT/Rng.lean · 140행</span></td><td>시행·자극 계획</td><td>씨앗을 m개 요청해 만든 목록의 길이는 m이다.<details><summary>Lean 원문</summary><pre>theorem drawSeeds_length : ∀ (m : Nat) (x : Xo), (drawSeeds m x).1.length = m
+  | 0, _ =&gt; rfl
+  | m + 1, x =&gt; by simp only [drawSeeds, List.length_cons]; rw [drawSeeds_length m]</pre></details></td><td><code>propext</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-plan_seeds_length"><td><code>plan_seeds_length</code><span class="source">GDT/Rng.lean · 145행</span></td><td>시행·자극 계획</td><td>q개 구간의 시행 계획에서 씨앗 목록의 길이는 q이다.<details><summary>Lean 원문</summary><pre>theorem plan_seeds_length (x : Xo) (q : Nat) (rv : Option (Nat × Nat)) : (drawPlan x q rv).1.seeds.length = q := by
+  cases rv with
+  | none =&gt; simp only [drawPlan]; exact drawSeeds_length q _
+  | some p =&gt; obtain ⟨lo, hi⟩ := p; simp only [drawPlan]; exact drawSeeds_length q _</pre></details></td><td><code>propext</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-drawRoves_props"><td><code>drawRoves_props</code><span class="source">GDT/Rng.lean · 150행</span></td><td>시행·자극 계획</td><td>span&gt;0이면 흔들기 쌍 m개를 생성하고 각 성분은 lo 이상 lo+span 미만이다.<details><summary>Lean 원문</summary><pre>theorem drawRoves_props (lo span : Nat) (hs : 0 &lt; span) : ∀ (m : Nat) (x : Xo),
+    (drawRoves lo span m x).1.length = m ∧
+    ∀ r ∈ (drawRoves lo span m x).1, lo ≤ r.1 ∧ r.1 &lt; lo + span ∧ lo ≤ r.2 ∧ r.2 &lt; lo + span
+  | 0, _ =&gt; by simp [drawRoves]
+  | m + 1, x =&gt; by
+    have ha := int_lt x hs
+    have hb := int_lt (x.int span).2 hs
+    obtain ⟨ih1, ih2⟩ := drawRoves_props lo span hs m ((x.int span).2.int span).2
+    simp only [drawRoves, List.length_cons, List.mem_cons]
+    refine ⟨by rw [ih1], ?_⟩
+    intro r hr
+    rcases hr with hr | hr
+    · subst hr; simp only; omega
+    · exact ih2 r hr</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-plan_roves"><td><code>plan_roves</code><span class="source">GDT/Rng.lean · 166행</span></td><td>시행·자극 계획</td><td>lo≤hi에서 흔들기 목록이 반환되면 q쌍이며 각 성분은 lo…hi 안에 있다.<details><summary>Lean 원문</summary><pre>theorem plan_roves (x : Xo) (q lo hi : Nat) (hlh : lo ≤ hi) (rs : List (Nat × Nat))
+    (h : (drawPlan x q (some (lo, hi))).1.roves = some rs) :
+    rs.length = q ∧ ∀ r ∈ rs, lo ≤ r.1 ∧ r.1 ≤ hi ∧ lo ≤ r.2 ∧ r.2 ≤ hi := by
+  simp only [drawPlan, Option.some.injEq] at h
+  subst h
+  obtain ⟨h1, h2⟩ := drawRoves_props lo (hi - lo + 1) (by omega) q (drawSeeds q (x.int q).2).2
+  refine ⟨h1, ?_⟩
+  intro r hr
+  have := h2 r hr
+  omega</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-plan_no_roves"><td><code>plan_no_roves</code><span class="source">GDT/Rng.lean · 178행</span></td><td>시행·자극 계획</td><td>흔들기를 요청하지 않은 시행 계획에는 흔들기 목록이 없다.<details><summary>Lean 원문</summary><pre>theorem plan_no_roves (x : Xo) (q : Nat) : (drawPlan x q none).1.roves = none := by
+  simp [drawPlan]</pre></details></td><td><code>propext</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-cond_roves"><td><code>cond_roves</code><span class="source">GDT/Rng.lean · 190행</span></td><td>시행·자극 계획</td><td>t2k·t2k1k 시행에서 흔들기 목록이 반환되면 q쌍이며 두 표지음 길이는 각각 250…350 ms 안에 있다.<details><summary>Lean 원문</summary><pre>theorem cond_roves (x : Xo) (q : Nat) (c : String) (hc : c = &quot;t2k&quot; ∨ c = &quot;t2k1k&quot;) (rs : List (Nat × Nat))
+    (h : (drawPlan x q (condRove c)).1.roves = some rs) :
+    rs.length = q ∧ ∀ r ∈ rs, 250 ≤ r.1 ∧ r.1 ≤ 350 ∧ 250 ≤ r.2 ∧ r.2 ≤ 350 := by
+  rcases hc with hc | hc &lt;;&gt; subst hc &lt;;&gt; exact plan_roves x q 250 350 (by decide) rs h</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-cond_center"><td><code>cond_center</code><span class="source">GDT/Rng.lean · 195행</span></td><td>시행·자극 계획</td><td>n500·n800 시행 계획에는 흔들기 목록이 없다.<details><summary>Lean 원문</summary><pre>theorem cond_center (x : Xo) (q : Nat) : (drawPlan x q (condRove &quot;n500&quot;)).1.roves = none ∧ (drawPlan x q (condRove &quot;n800&quot;)).1.roves = none :=
+  ⟨plan_no_roves x q, plan_no_roves x q⟩</pre></details></td><td><code>propext</code><br><code>Quot.sound</code></td></tr>
+</tbody></table></div>
+<h3 id="mod-Exact"><code>GDT/Exact.lean</code> · 21개</h3><div class="scroll"><table class="index"><thead><tr><th>정리와 원본 위치</th><th>규칙</th><th>증명한 내용</th><th>공리</th></tr></thead><tbody>
+<tr id="th-natCast_pow"><td><code>natCast_pow</code><span class="source">GDT/Exact.lean · 24행</span></td><td>산술 기반</td><td>자연수 거듭제곱을 유리수로 변환하면 밑을 변환한 뒤 거듭제곱한 값과 같다.<details><summary>Lean 원문</summary><pre>theorem natCast_pow (a : Nat) : ∀ m : Nat, ((a ^ m : Nat) : Rat) = (a : Rat) ^ m
+  | 0 =&gt; by simp
+  | m + 1 =&gt; by rw [Nat.pow_succ, Rat.natCast_mul, natCast_pow a m, Rat.pow_succ]</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-rat_pow_ne_zero"><td><code>rat_pow_ne_zero</code><span class="source">GDT/Exact.lean · 28행</span></td><td>산술 기반</td><td>0이 아닌 유리수의 자연수 거듭제곱은 0이 아니다.<details><summary>Lean 원문</summary><pre>theorem rat_pow_ne_zero {b : Rat} (hb : b ≠ 0) : ∀ m : Nat, b ^ m ≠ 0
+  | 0 =&gt; by simp
+  | m + 1 =&gt; by
+    rw [Rat.pow_succ]
+    intro h
+    rcases Rat.mul_eq_zero.mp h with h1 | h1
+    · exact rat_pow_ne_zero hb m h1
+    · exact hb h1</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-rat_one_pow"><td><code>rat_one_pow</code><span class="source">GDT/Exact.lean · 37행</span></td><td>산술 기반</td><td>1의 자연수 거듭제곱은 1이다.<details><summary>Lean 원문</summary><pre>theorem rat_one_pow : ∀ m : Nat, (1 : Rat) ^ m = 1
+  | 0 =&gt; by simp
+  | m + 1 =&gt; by rw [Rat.pow_succ, rat_one_pow m]; grind</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-frac_pows"><td><code>frac_pows</code><span class="source">GDT/Exact.lean · 42행</span></td><td>산술 기반</td><td>b≠0이면 (1/b)ʲ(a/b)ᵐ=aᵐ/bʲ⁺ᵐ이다.<details><summary>Lean 원문</summary><pre>theorem frac_pows (a b : Rat) (hb : b ≠ 0) : ∀ (j m : Nat), ((1 : Rat) / b) ^ j * (a / b) ^ m = a ^ m / b ^ (j + m)
+  | 0, 0 =&gt; by simp only [Rat.pow_zero, Rat.mul_one]; grind
+  | 0, m + 1 =&gt; by
+    have ih := frac_pows a b hb 0 m
+    have hbm := rat_pow_ne_zero hb m
+    simp only [Rat.pow_zero, Rat.one_mul, Nat.zero_add] at ih ⊢
+    rw [Rat.pow_succ, ih, Rat.pow_succ, Rat.pow_succ]
+    grind
+  | j + 1, m =&gt; by
+    have ih := frac_pows a b hb j m
+    have hbm := rat_pow_ne_zero hb (j + m)
+    rw [Rat.pow_succ, show j + 1 + m = (j + m) + 1 by omega, Rat.pow_succ]
+    have e : ((1 : Rat) / b) ^ j * ((1 : Rat) / b) * (a / b) ^ m
+        = (((1 : Rat) / b) ^ j * (a / b) ^ m) * ((1 : Rat) / b) := by grind
+    rw [e, ih]
+    grind</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-natCast_pred"><td><code>natCast_pred</code><span class="source">GDT/Exact.lean · 59행</span></td><td>산술 기반</td><td>q≥1이면 자연수 q−1을 유리수로 변환한 값과 유리수 q에서 1을 뺀 값이 같다.<details><summary>Lean 원문</summary><pre>theorem natCast_pred {q : Nat} (hq : 1 ≤ q) : ((q - 1 : Nat) : Rat) = (q : Rat) - 1 := by
+  have h : ((q - 1 + 1 : Nat) : Rat) = (q : Rat) := by rw [Nat.sub_add_cancel hq]
+  rw [Rat.natCast_add] at h
+  have h1 : ((1 : Nat) : Rat) = 1 := rfl
+  rw [h1] at h
+  grind</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-geDen_pos"><td><code>geDen_pos</code><span class="source">GDT/Exact.lean · 85행</span></td><td>우연·Fisher 판정</td><td>q≥1이면 우연 이항 꼬리의 분모 qⁿ은 양수이다.<details><summary>Lean 원문</summary><pre>theorem geDen_pos {q : Nat} (hq : 1 ≤ q) (n : Nat) : 0 &lt; geDen q n := Nat.pow_pos (by omega)</pre></details></td><td><code>propext</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-ge_frac"><td><code>ge_frac</code><span class="source">GDT/Exact.lean · 88행</span></td><td>우연·Fisher 판정</td><td>q≥1이면 정수 분자와 분모의 비가 성공확률 1/q인 이항분포의 위 꼬리합 P(X≥k)과 같다.<details><summary>Lean 원문</summary><pre>theorem ge_frac {q : Nat} (hq : 1 ≤ q) (n k : Nat) : (geNum q n k : Rat) / (geDen q n : Rat) = geSpec q n k := by
+  simp only [geNum, geNumW, geDen, geSpec]
+  rw [natCast_sumTo, ← sumQ_div]
+  apply sumQ_congr
+  intro j hj
+  rw [arr_getD, pascalRow_getD]
+  split
+  · have hq0 : (q : Rat) ≠ 0 := Rat.ne_of_gt (Rat.natCast_pos.mpr (by omega))
+    have e := frac_pows ((q - 1 : Nat) : Rat) (q : Rat) hq0 j (n - j)
+    rw [show j + (n - j) = n by omega] at e
+    have e1 : (1 : Rat) - 1 / (q : Rat) = ((q - 1 : Nat) : Rat) / (q : Rat) := by
+      rw [natCast_pred hq]; grind
+    rw [e1, Rat.mul_assoc, e, Rat.natCast_mul, natCast_pow, natCast_pow]
+    have := rat_pow_ne_zero hq0 n
+    grind
+  · simp [Rat.div_def]</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-geSig_iff"><td><code>geSig_iff</code><span class="source">GDT/Exact.lean · 106행</span></td><td>우연·Fisher 판정</td><td>q≥1이면 우연 관문의 정수 비교가 참일 필요충분조건은 위 꼬리확률 P(X≥k)&lt;1/20이다.<details><summary>Lean 원문</summary><pre>theorem geSig_iff {q : Nat} (hq : 1 ≤ q) (n k : Nat) : geSig q n k = true ↔ geSpec q n k &lt; 1 / 20 := by
+  rw [← ge_frac hq, frac_lt_twentieth (geDen_pos hq n)]
+  simp [geSig]</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-geSig_iff_two"><td><code>geSig_iff_two</code><span class="source">GDT/Exact.lean · 111행</span></td><td>우연·Fisher 판정</td><td>두 구간에서 성공확률 1/2의 이항 위 꼬리합이 1/20 미만인 조건과 정수 판정이 일치한다.<details><summary>Lean 원문</summary><pre>theorem geSig_iff_two (n k : Nat) : geSig 2 n k = true ↔
+    sumQ (fun j =&gt; if k ≤ j then (choose n j : Rat) * ((1 : Rat) / 2) ^ j * (1 - (1 : Rat) / 2) ^ (n - j) else 0) (n + 1) &lt; 1 / 20 :=
+  geSig_iff (by decide) n k</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-geSig_iff_three"><td><code>geSig_iff_three</code><span class="source">GDT/Exact.lean · 115행</span></td><td>우연·Fisher 판정</td><td>세 구간에서 성공확률 1/3의 이항 위 꼬리합이 1/20 미만인 조건과 정수 판정이 일치한다.<details><summary>Lean 원문</summary><pre>theorem geSig_iff_three (n k : Nat) : geSig 3 n k = true ↔
+    sumQ (fun j =&gt; if k ≤ j then (choose n j : Rat) * ((1 : Rat) / 3) ^ j * (1 - (1 : Rat) / 3) ^ (n - j) else 0) (n + 1) &lt; 1 / 20 :=
+  geSig_iff (by decide) n k</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-sum_choose_pow"><td><code>sum_choose_pow</code><span class="source">GDT/Exact.lean · 120행</span></td><td>우연·Fisher 판정</td><td>j=0…n의 C(n,j)bⁿ⁻ʲ 합은 (b+1)ⁿ이다.<details><summary>Lean 원문</summary><pre>theorem sum_choose_pow (b : Nat) : ∀ n : Nat, sumTo (fun j =&gt; choose n j * b ^ (n - j)) (n + 1) = (b + 1) ^ n
+  | 0 =&gt; by simp
+  | n + 1 =&gt; by
+    have ih := sum_choose_pow b n
+    rw [sumTo_succ&#x27;]
+    have e : (fun j =&gt; choose (n + 1) (j + 1) * b ^ (n + 1 - (j + 1)))
+        = (fun j =&gt; choose n j * b ^ (n - j) + choose n (j + 1) * b ^ (n - j)) := by
+      funext j; rw [choose_succ_succ, Nat.add_sub_add_right, Nat.add_mul]
+    rw [e, sumTo_add, ih]
+    have h2 : sumTo (fun j =&gt; choose n (j + 1) * b ^ (n - j)) (n + 1) + b ^ (n + 1)
+        = b * sumTo (fun j =&gt; choose n j * b ^ (n - j)) (n + 1) := by
+      have hs := sumTo_succ&#x27; (fun j =&gt; choose n j * b ^ (n + 1 - j)) (n + 1)
+      have hz : choose n (n + 1) = 0 := choose_eq_zero_of_lt (by omega)
+      have hl : sumTo (fun j =&gt; choose n j * b ^ (n + 1 - j)) (n + 1 + 1)
+          = b * sumTo (fun j =&gt; choose n j * b ^ (n - j)) (n + 1) := by
+        rw [sumTo_succ, hz, Nat.zero_mul, Nat.add_zero]
+        have : (fun j =&gt; choose n j * b ^ (n + 1 - j)) = (fun j =&gt; b * (choose n j * b ^ (n - j))) := by
+          funext j
+          by_cases hj : j ≤ n
+          · rw [show n + 1 - j = (n - j) + 1 by omega, Nat.pow_succ]
+            rw [Nat.mul_comm b, Nat.mul_assoc]
+          · rw [choose_eq_zero_of_lt (by omega)]; simp
+        rw [this, sumTo_mul_left]
+      have hr : sumTo (fun x =&gt; choose n (x + 1) * b ^ (n + 1 - (x + 1))) (n + 1)
+          = sumTo (fun j =&gt; choose n (j + 1) * b ^ (n - j)) (n + 1) := by
+        apply sumTo_congr; intro x _; rw [Nat.add_sub_add_right]
+      rw [hl, hr] at hs
+      simp only [choose_zero_right, Nat.one_mul, Nat.sub_zero] at hs
+      omega
+    rw [ih] at h2
+    simp only [choose_zero_right, Nat.one_mul, Nat.sub_zero]
+    have h4 : (b + 1) ^ (n + 1) = b * (b + 1) ^ n + (b + 1) ^ n := by
+      rw [Nat.pow_succ, Nat.mul_add, Nat.mul_one, Nat.mul_comm]
+    rw [h4]
+    omega</pre></details></td><td><code>propext</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-geNum_eq"><td><code>geNum_eq</code><span class="source">GDT/Exact.lean · 156행</span></td><td>우연·Fisher 판정</td><td>위 꼬리의 정수 분자는 j=k…n의 C(n,j)(q−1)ⁿ⁻ʲ 합이다.<details><summary>Lean 원문</summary><pre>theorem geNum_eq (q n k : Nat) :
+    geNum q n k = sumTo (fun j =&gt; if k ≤ j then choose n j * (q - 1) ^ (n - j) else 0) (n + 1) := by
+  simp only [geNum, geNumW]
+  apply sumTo_congr; intro j _; rw [arr_getD, pascalRow_getD]</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-geNum_le"><td><code>geNum_le</code><span class="source">GDT/Exact.lean · 162행</span></td><td>우연·Fisher 판정</td><td>q≥1이면 우연 이항 꼬리의 분자는 분모 이하이다.<details><summary>Lean 원문</summary><pre>theorem geNum_le {q : Nat} (hq : 1 ≤ q) (n k : Nat) : geNum q n k ≤ geDen q n := by
+  rw [geNum_eq, geDen]
+  have h := sum_choose_pow (q - 1) n
+  rw [Nat.sub_add_cancel hq] at h
+  rw [← h]
+  apply sumTo_le; intro j _; split &lt;;&gt; omega</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-geNum_pos"><td><code>geNum_pos</code><span class="source">GDT/Exact.lean · 170행</span></td><td>우연·Fisher 판정</td><td>k≤n이면 우연 이항 꼬리의 분자는 양수이다.<details><summary>Lean 원문</summary><pre>theorem geNum_pos {q n k : Nat} (h : k ≤ n) : 0 &lt; geNum q n k := by
+  rw [geNum_eq]
+  have hle := le_sumTo (f := fun j =&gt; if k ≤ j then choose n j * (q - 1) ^ (n - j) else 0) (x := n) (n := n + 1) (by omega)
+  simp only [h, ↓reduceIte, choose_self, Nat.one_mul, Nat.sub_self, Nat.pow_zero] at hle
+  omega</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-geNum_zero"><td><code>geNum_zero</code><span class="source">GDT/Exact.lean · 177행</span></td><td>우연·Fisher 판정</td><td>q≥1이고 k=0이면 우연 이항 꼬리의 분자가 분모와 같아 확률은 1이다.<details><summary>Lean 원문</summary><pre>theorem geNum_zero {q : Nat} (hq : 1 ≤ q) (n : Nat) : geNum q n 0 = geDen q n := by
+  rw [geNum_eq, geDen]
+  have h := sum_choose_pow (q - 1) n
+  rw [Nat.sub_add_cancel hq] at h
+  rw [← h]
+  apply sumTo_congr; intro j _; simp</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-fgSpecM_eq"><td><code>fgSpecM_eq</code><span class="source">GDT/Exact.lean · 220행</span></td><td>우연·Fisher 판정</td><td>한쪽 Fisher 꼬리확률을 정수 가중치 합과 공통 분모 C(r₁+r₂,c₁)의 비로 나타낸다.<details><summary>Lean 원문</summary><pre>theorem fgSpecM_eq (r1 r2 c1 a : Nat) :
+    fgSpecM r1 r2 c1 a = (sumTo (fun x =&gt; if a ≤ x then hyp r1 r2 c1 x else 0) (c1 + 1) : Rat) / (choose (r1 + r2) c1 : Rat) := by
+  unfold fgSpecM
+  rw [natCast_sumTo, ← sumQ_div]
+  apply sumQ_congr; intro x _
+  unfold hypP
+  rw [← ite_div_eq]</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-fg_window"><td><code>fg_window</code><span class="source">GDT/Exact.lean · 229행</span></td><td>우연·Fisher 판정</td><td>a≤min(r₁,c₁)이면 Fisher 위 꼬리 분자의 합을 a…min(r₁,c₁) 범위로 제한해도 같다.<details><summary>Lean 원문</summary><pre>theorem fg_window (r1 r2 c1 a : Nat) (ha : a ≤ min r1 c1) :
+    sumTo (fun x =&gt; if a ≤ x then hyp r1 r2 c1 x else 0) (c1 + 1)
+      = sumTo (fun j =&gt; hyp r1 r2 c1 (a + j)) (min r1 c1 + 1 - a) := by
+  have hsplit := sumTo_split (fun x =&gt; if a ≤ x then hyp r1 r2 c1 x else 0) a (c1 + 1 - a)
+  rw [show a + (c1 + 1 - a) = c1 + 1 by omega] at hsplit
+  rw [hsplit, sumTo_eq_zero (fun x hx =&gt; by simp; omega), Nat.zero_add]
+  have hsplit2 := sumTo_split (fun j =&gt; if a ≤ a + j then hyp r1 r2 c1 (a + j) else 0) (min r1 c1 + 1 - a) (c1 + 1 - a - (min r1 c1 + 1 - a))
+  rw [show min r1 c1 + 1 - a + (c1 + 1 - a - (min r1 c1 + 1 - a)) = c1 + 1 - a by omega] at hsplit2
+  rw [hsplit2]
+  have hz : sumTo (fun x =&gt; (fun j =&gt; if a ≤ a + j then hyp r1 r2 c1 (a + j) else 0) (min r1 c1 + 1 - a + x))
+      (c1 + 1 - a - (min r1 c1 + 1 - a)) = 0 := by
+    apply sumTo_eq_zero; intro x hx
+    simp only [Nat.le_add_right, ↓reduceIte]
+    unfold hyp
+    rw [choose_eq_zero_of_lt (n := r1) (by omega), Nat.zero_mul]
+  rw [hz, Nat.add_zero]
+  apply sumTo_congr; intro j _; simp</pre></details></td><td><code>propext</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-fgSpec_degenerate"><td><code>fgSpec_degenerate</code><span class="source">GDT/Exact.lean · 248행</span></td><td>우연·Fisher 판정</td><td>한 행이나 한 열의 합이 0인 퇴화표에서는 한쪽 Fisher 확률이 1이다.<details><summary>Lean 원문</summary><pre>theorem fgSpec_degenerate {a b c d : Nat} (h : fgDegenerate a b c d = true) : fgSpec a b c d = 1 := by
+  unfold fgSpec
+  rw [fgSpecM_eq]
+  have hall : sumTo (fun x =&gt; if a ≤ x then hyp (a + b) (c + d) (a + c) x else 0) (a + c + 1)
+      = sumTo (fun x =&gt; hyp (a + b) (c + d) (a + c) x) (a + c + 1) := by
+    apply sumTo_congr; intro x hx
+    by_cases hax : a ≤ x
+    · simp [hax]
+    · simp only [hax, ↓reduceIte]
+      unfold hyp
+      unfold fgDegenerate at h
+      simp only [Bool.or_eq_true, beq_iff_eq] at h
+      rcases h with ((h | h) | h) | h
+      · omega
+      · rw [show c + d = 0 by omega]
+        rw [choose_eq_zero_of_lt (n := 0) (k := a + c - x) (by omega), Nat.mul_zero]
+      · omega
+      · rw [choose_eq_zero_of_lt (n := c + d) (k := a + c - x) (by omega), Nat.mul_zero]
+  rw [hall]
+  have hv := vandermonde (c + d) (a + b) (a + c)
+  unfold hyp
+  rw [hv]
+  have hpos : 0 &lt; choose (a + b + (c + d)) (a + c) := choose_pos (by
+    unfold fgDegenerate at h; simp only [Bool.or_eq_true, beq_iff_eq] at h; omega)
+  have hp : (0 : Rat) &lt; (choose (a + b + (c + d)) (a + c) : Rat) := Rat.natCast_pos.mpr hpos
+  rw [Rat.div_def, Rat.mul_inv_cancel _ (Rat.ne_of_gt hp)]</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-fg_frac"><td><code>fg_frac</code><span class="source">GDT/Exact.lean · 276행</span></td><td>우연·Fisher 판정</td><td>모든 자연수 2×2 표에서 정수 분자/분모가 한쪽 Fisher 명세 P(X≥a)와 같다.<details><summary>Lean 원문</summary><pre>theorem fg_frac (a b c d : Nat) : (fgNum a b c d : Rat) / (fgDen a b c d : Rat) = fgSpec a b c d := by
+  by_cases h : fgDegenerate a b c d = true
+  · rw [fgSpec_degenerate h]
+    simp only [fgNum, fgNumW, fgDen, fgDenW, h, ↓reduceIte]
+    grind
+  · have hf : fgDegenerate a b c d = false := by simpa using h
+    have hnd : ¬ (a + b = 0 ∨ c + d = 0 ∨ a + c = 0 ∨ a + c = a + b + (c + d)) := by
+      unfold fgDegenerate at hf; simp only [Bool.or_eq_false_iff, beq_eq_false_iff_ne, ne_eq] at hf; omega
+    simp only [fgNum, fgNumW, fgDen, fgDenW, hf, Bool.false_eq_true, ↓reduceIte]
+    unfold fgSpec
+    rw [fgSpecM_eq, fg_window _ _ _ _ (by omega), arr_getD, pascalRow_getD]
+    congr 2
+    apply sumTo_congr; intro j _
+    rw [arr_getD, arr_getD, pascalRow_getD, pascalRow_getD]
+    rfl</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-fgDen_pos"><td><code>fgDen_pos</code><span class="source">GDT/Exact.lean · 292행</span></td><td>우연·Fisher 판정</td><td>모든 자연수 2×2 표에서 Fisher 계산의 분모가 양수이다.<details><summary>Lean 원문</summary><pre>theorem fgDen_pos (a b c d : Nat) : 0 &lt; fgDen a b c d := by
+  unfold fgDen fgDenW
+  split
+  · decide
+  · rw [arr_getD, pascalRow_getD]; exact choose_pos (by omega)</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-fgSig_iff"><td><code>fgSig_iff</code><span class="source">GDT/Exact.lean · 299행</span></td><td>우연·Fisher 판정</td><td>정수 비교로 한쪽 Fisher 검정이 유의하다고 판정하는 조건은 P(X≥a)&lt;1/20과 동치이다.<details><summary>Lean 원문</summary><pre>theorem fgSig_iff (a b c d : Nat) : fgSig a b c d = true ↔ fgSpec a b c d &lt; 1 / 20 := by
+  rw [← fg_frac, frac_lt_twentieth (fgDen_pos a b c d)]
+  simp [fgSig]</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+</tbody></table></div>
+<h3 id="mod-Target"><code>GDT/Target.lean</code> · 23개</h3><div class="scroll"><table class="index"><thead><tr><th>정리와 원본 위치</th><th>규칙</th><th>증명한 내용</th><th>공리</th></tr></thead><tbody>
+<tr id="th-powList_getD"><td><code>powList_getD</code><span class="source">GDT/Target.lean · 64행</span></td><td>목표확률 판정</td><td>0≤j≤N이면 ℤ[√2] 거듭제곱 목록의 j번째 값은 xʲ이다.<details><summary>Lean 원문</summary><pre>theorem powList_getD (x : Z2) (N j : Nat) (h : j ≤ N) : (powList x N).getD j Z2.zero = Z2.pow x j := by
+  unfold powList
+  simp [List.getD_eq_getElem?_getD, List.getElem?_map, List.getElem?_range (by omega : j &lt; N + 1)]</pre></details></td><td><code>propext</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-zsum_congr"><td><code>zsum_congr</code><span class="source">GDT/Target.lean · 68행</span></td><td>목표확률 판정</td><td>앞 n개의 ℤ[√2] 항이 각각 같으면 합도 같다.<details><summary>Lean 원문</summary><pre>theorem zsum_congr {f g : Nat → Z2} {n : Nat} (h : ∀ j, j &lt; n → f j = g j) : zsum f n = zsum g n := by
+  induction n with
+  | zero =&gt; rfl
+  | succ n ih =&gt; simp only [zsum]; rw [ih (fun j hj =&gt; h j (by omega)), h n (by omega)]</pre></details></td><td><code>propext</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-term_with"><td><code>term_with</code><span class="source">GDT/Target.lean · 84행</span></td><td>목표확률 판정</td><td>j≤n이면 이항계수와 거듭제곱 배열에서 계산한 j번째 항이 termZ2와 같다.<details><summary>Lean 원문</summary><pre>theorem term_with (n j : Nat) (hj : j &lt; n + 1) :
+    Z2.smul ((rowArr n).getD j 0) (Z2.mul ((spArr n).getD j Z2.zero) ((tpArr n).getD (n - j) Z2.zero)) = termZ2 n j := by
+  unfold rowArr spArr tpArr termZ2
+  rw [arr_getD, arr_getD, arr_getD, pascalRow_getD, powList_getD _ _ _ (by omega), powList_getD _ _ _ (by omega)]</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-tailLeWith_eq"><td><code>tailLeWith_eq</code><span class="source">GDT/Target.lean · 89행</span></td><td>목표확률 판정</td><td>사전 계산한 행과 배열로 구한 아래 꼬리합은 재귀 명세 tailLe와 같다.<details><summary>Lean 원문</summary><pre>theorem tailLeWith_eq (n k : Nat) : tailLeWith (rowArr n) (spArr n) (tpArr n) n k = tailLe n k := by
+  unfold tailLeWith tailLe
+  apply zsum_congr; intro j hj
+  split
+  · exact term_with n j hj
+  · rfl</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-tailGeWith_eq"><td><code>tailGeWith_eq</code><span class="source">GDT/Target.lean · 96행</span></td><td>목표확률 판정</td><td>사전 계산한 행과 배열로 구한 위 꼬리합은 재귀 명세 tailGe와 같다.<details><summary>Lean 원문</summary><pre>theorem tailGeWith_eq (n k : Nat) : tailGeWith (rowArr n) (spArr n) (tpArr n) n k = tailGe n k := by
+  unfold tailGeWith tailGe
+  apply zsum_congr; intro j hj
+  split
+  · exact term_with n j hj
+  · rfl</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-tailLe_eq_tailLeFast"><td><code>tailLe_eq_tailLeFast</code><span class="source">GDT/Target.lean · 106행</span></td><td>목표확률 판정</td><td>최적화한 아래 꼬리 함수 tailLeFast는 모든 입력에서 tailLe와 같다.<details><summary>Lean 원문</summary><pre>@[csimp] theorem tailLe_eq_tailLeFast : @tailLe = @tailLeFast := by
+  funext n k; exact (tailLeWith_eq n k).symm</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-tailGe_eq_tailGeFast"><td><code>tailGe_eq_tailGeFast</code><span class="source">GDT/Target.lean · 109행</span></td><td>목표확률 판정</td><td>최적화한 위 꼬리 함수 tailGeFast는 모든 입력에서 tailGe와 같다.<details><summary>Lean 원문</summary><pre>@[csimp] theorem tailGe_eq_tailGeFast : @tailGe = @tailGeFast := by
+  funext n k; exact (tailGeWith_eq n k).symm</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-intCast_pos_iff"><td><code>intCast_pos_iff</code><span class="source">GDT/Target.lean · 139행</span></td><td>목표확률 판정</td><td>정수를 유리수로 변환해도 양수 여부가 같다.<details><summary>Lean 원문</summary><pre>theorem intCast_pos_iff {A : Int} : (0 : Rat) &lt; (A : Rat) ↔ 0 &lt; A := by
+  have h := Rat.intCast_lt_intCast (a := 0) (b := A)
+  simpa using h</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-intCast_neg_iff"><td><code>intCast_neg_iff</code><span class="source">GDT/Target.lean · 143행</span></td><td>목표확률 판정</td><td>정수를 유리수로 변환해도 음수 여부가 같다.<details><summary>Lean 원문</summary><pre>theorem intCast_neg_iff {A : Int} : (A : Rat) &lt; 0 ↔ A &lt; 0 := by
+  have h := Rat.intCast_lt_intCast (a := A) (b := 0)
+  simpa using h</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-sq_div"><td><code>sq_div</code><span class="source">GDT/Target.lean · 147행</span></td><td>목표확률 판정</td><td>y≠0이면 유리수 (x/y)²=x²/y²이다.<details><summary>Lean 원문</summary><pre>theorem sq_div (x y : Rat) (hy : y ≠ 0) : (x / y) * (x / y) = (x * x) / (y * y) := by grind</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-negZ2_iff"><td><code>negZ2_iff</code><span class="source">GDT/Target.lean · 149행</span></td><td>목표확률 판정</td><td>정수쌍 (A,B)의 음수 판정은 A+B√2&lt;0을 표현하는 유리수 조건 isNegQ와 동치이다.<details><summary>Lean 원문</summary><pre>theorem negZ2_iff (A B : Int) : negZ2 A B = true ↔ isNegQ (A : Rat) (B : Rat) := by
+  unfold negZ2 isNegQ
+  by_cases h0 : B = 0
+  · subst h0
+    simp only [↓reduceIte, decide_eq_true_eq, Rat.intCast_zero]
+    exact intCast_neg_iff.symm
+  · have hq0 : (B : Rat) ≠ 0 := by
+      intro h; apply h0; exact Rat.intCast_inj.mp (by simpa using h)
+    have hBB : (0 : Rat) &lt; (B : Rat) * (B : Rat) := by
+      rcases Int.lt_or_gt_of_ne h0 with hn | hp
+      · have : (B : Rat) &lt; 0 := intCast_neg_iff.mpr hn
+        have h2 : (0 : Rat) &lt; -(B : Rat) := by grind
+        have := Rat.mul_pos h2 h2
+        grind
+      · have : (0 : Rat) &lt; (B : Rat) := intCast_pos_iff.mpr hp
+        exact Rat.mul_pos this this
+    simp only [h0, ↓reduceIte, hq0]
+    have hsq : (-(A : Rat) / (B : Rat)) * (-(A : Rat) / (B : Rat)) = ((A : Rat) * (A : Rat)) / ((B : Rat) * (B : Rat)) := by
+      rw [sq_div _ _ hq0]; grind
+    rw [hsq]
+    have k1 : 2 &lt; ((A : Rat) * (A : Rat)) / ((B : Rat) * (B : Rat)) ↔ 2 * B * B &lt; A * A := by
+      rw [Rat.lt_div_iff hBB]
+      have e1 : (2 : Rat) * ((B : Rat) * (B : Rat)) = ((2 * B * B : Int) : Rat) := by
+        rw [Rat.intCast_mul, Rat.intCast_mul]; grind
+      have e2 : (A : Rat) * (A : Rat) = ((A * A : Int) : Rat) := by rw [Rat.intCast_mul]
+      rw [e1, e2, Rat.intCast_lt_intCast]
+    have k2 : ((A : Rat) * (A : Rat)) / ((B : Rat) * (B : Rat)) &lt; 2 ↔ A * A &lt; 2 * B * B := by
+      rw [Rat.div_lt_iff hBB]
+      have e1 : (2 : Rat) * ((B : Rat) * (B : Rat)) = ((2 * B * B : Int) : Rat) := by
+        rw [Rat.intCast_mul, Rat.intCast_mul]; grind
+      have e2 : (A : Rat) * (A : Rat) = ((A * A : Int) : Rat) := by rw [Rat.intCast_mul]
+      rw [e1, e2, Rat.intCast_lt_intCast]
+    by_cases hp : 0 &lt; B
+    · have hpq : (0 : Rat) &lt; (B : Rat) := intCast_pos_iff.mpr hp
+      simp only [hp, ↓reduceIte, hpq, decide_eq_true_eq]
+      have k3 : (0 : Rat) &lt; -(A : Rat) / (B : Rat) ↔ A &lt; 0 := by
+        rw [Rat.lt_div_iff hpq, Rat.zero_mul]
+        constructor
+        · intro h
+          have : (A : Rat) &lt; 0 := by grind
+          exact intCast_neg_iff.mp this
+        · intro h
+          have : (A : Rat) &lt; 0 := intCast_neg_iff.mpr h
+          grind
+      rw [k3, k1]
+    · have hn : B &lt; 0 := by omega
+      have hpq : ¬ (0 : Rat) &lt; (B : Rat) := fun h =&gt; hp (intCast_pos_iff.mp h)
+      have hnq : (B : Rat) &lt; 0 := intCast_neg_iff.mpr hn
+      simp only [hp, ↓reduceIte, hpq, decide_eq_true_eq]
+      have hmb : (0 : Rat) &lt; -(B : Rat) := by grind
+      have e3 : -(A : Rat) / (B : Rat) = (A : Rat) / (-(B : Rat)) := by grind
+      have k4 : -(A : Rat) / (B : Rat) ≤ 0 ↔ A ≤ 0 := by
+        rw [e3, ← Rat.not_lt, ← Int.not_lt, Rat.lt_div_iff hmb, Rat.zero_mul]
+        constructor
+        · intro h hA; apply h; exact intCast_pos_iff.mpr hA
+        · intro h hA; apply h; exact intCast_pos_iff.mp hA
+      rw [k4, k2]</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-isNegQ_scale"><td><code>isNegQ_scale</code><span class="source">GDT/Target.lean · 208행</span></td><td>목표확률 판정</td><td>a,b에 같은 양의 유리수를 곱해도 isNegQ의 참·거짓은 같다.<details><summary>Lean 원문</summary><pre>theorem isNegQ_scale {a b c : Rat} (hc : 0 &lt; c) : isNegQ (c * a) (c * b) ↔ isNegQ a b := by
+  have hc0 : c ≠ 0 := Rat.ne_of_gt hc
+  unfold isNegQ
+  by_cases hb : b = 0
+  · subst hb
+    simp only [Rat.mul_zero, ↓reduceIte]
+    constructor
+    · intro h
+      by_cases h1 : a &lt; 0
+      · exact h1
+      · have h1&#x27; : 0 ≤ a := Rat.not_lt.mp h1
+        exact absurd h (Rat.not_lt.mpr (by
+          have := Rat.mul_le_mul_of_nonneg_left h1&#x27; (Rat.le_of_lt hc); simpa using this))
+    · intro h
+      have := Rat.mul_lt_mul_of_pos_left h hc; simpa using this
+  · have hcb : c * b ≠ 0 := by
+      intro h
+      rcases Rat.mul_eq_zero.mp h with h1 | h1
+      · exact hc0 h1
+      · exact hb h1
+    have eq : -(c * a) / (c * b) = -a / b := by grind
+    simp only [hb, hcb, ↓reduceIte, eq]
+    have hpos : 0 &lt; c * b ↔ 0 &lt; b := by
+      constructor
+      · intro h
+        by_cases h1 : 0 &lt; b
+        · exact h1
+        · have h1&#x27; : b ≤ 0 := Rat.not_lt.mp h1
+          exact absurd h (Rat.not_lt.mpr (by
+            have := Rat.mul_le_mul_of_nonneg_left h1&#x27; (Rat.le_of_lt hc); simpa using this))
+      · intro h; exact Rat.mul_pos hc h
+    by_cases hp : 0 &lt; b
+    · simp [hp, hpos.mpr hp]
+    · have : ¬ 0 &lt; c * b := fun h =&gt; hp (hpos.mp h)
+      simp [hp, this]</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-lt_twentieth_iff"><td><code>lt_twentieth_iff</code><span class="source">GDT/Target.lean · 245행</span></td><td>목표확률 판정</td><td>D&gt;0이면 (A+B√2)/D&lt;1/20의 유리수 조건은 20A−D와 20B에 대한 정수쌍 음수 판정과 동치이다.<details><summary>Lean 원문</summary><pre>theorem lt_twentieth_iff (A B : Int) (D : Nat) (hD : 0 &lt; D) :
+    isNegQ ((A : Rat) / (D : Rat) - 1 / 20) ((B : Rat) / (D : Rat)) ↔ negZ2 (20 * A - D) (20 * B) = true := by
+  rw [negZ2_iff]
+  have hDq : (0 : Rat) &lt; (D : Rat) := Rat.natCast_pos.mpr hD
+  have hc : (0 : Rat) &lt; 20 * (D : Rat) := Rat.mul_pos (by decide) hDq
+  rw [← isNegQ_scale hc]
+  have e1 : 20 * (D : Rat) * ((A : Rat) / (D : Rat) - 1 / 20) = ((20 * A - D : Int) : Rat) := by
+    have : (D : Rat) ≠ 0 := Rat.ne_of_gt hDq
+    rw [Rat.intCast_sub, Rat.intCast_mul]
+    have hD&#x27; : ((D : Int) : Rat) = (D : Rat) := Rat.intCast_natCast D
+    rw [hD&#x27;]
+    grind
+  have e2 : 20 * (D : Rat) * ((B : Rat) / (D : Rat)) = ((20 * B : Int) : Rat) := by
+    have : (D : Rat) ≠ 0 := Rat.ne_of_gt hDq
+    rw [Rat.intCast_mul]
+    grind
+  rw [e1, e2]</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-belowSig_iff"><td><code>belowSig_iff</code><span class="source">GDT/Target.lean · 264행</span></td><td>목표확률 판정</td><td>목표 1/√2의 아래 꼬리합 tailLe/2ⁿ이 1/20 미만이라는 isNegQ 명세와 belowSig가 동치이다.<details><summary>Lean 원문</summary><pre>theorem belowSig_iff (n k : Nat) :
+    belowSig n k = true ↔
+      isNegQ (((tailLe n k).a : Rat) / ((2 ^ n : Nat) : Rat) - 1 / 20) (((tailLe n k).b : Rat) / ((2 ^ n : Nat) : Rat)) := by
+  rw [lt_twentieth_iff _ _ _ (Nat.pow_pos (by decide))]
+  simp [belowSig]</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-aboveSig_iff"><td><code>aboveSig_iff</code><span class="source">GDT/Target.lean · 270행</span></td><td>목표확률 판정</td><td>목표 1/√2의 위 꼬리합 tailGe/2ⁿ이 1/20 미만이라는 isNegQ 명세와 aboveSig가 동치이다.<details><summary>Lean 원문</summary><pre>theorem aboveSig_iff (n k : Nat) :
+    aboveSig n k = true ↔
+      isNegQ (((tailGe n k).a : Rat) / ((2 ^ n : Nat) : Rat) - 1 / 20) (((tailGe n k).b : Rat) / ((2 ^ n : Nat) : Rat)) := by
+  rw [lt_twentieth_iff _ _ _ (Nat.pow_pos (by decide))]
+  simp [aboveSig]</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-halfLe_frac"><td><code>halfLe_frac</code><span class="source">GDT/Target.lean · 290행</span></td><td>목표확률 판정</td><td>목표 1/2에서 아래 꼬리의 정수 분자/2ⁿ이 j≤k인 이항계수의 확률합과 같다.<details><summary>Lean 원문</summary><pre>theorem halfLe_frac (n k : Nat) : (halfLeNum n k : Rat) / ((2 ^ n : Nat) : Rat) = halfLeSpec n k := by
+  simp only [halfLeNum, halfLeNumW, halfLeSpec]
+  rw [natCast_sumTo, ← sumQ_div]
+  apply sumQ_congr
+  intro j hj
+  rw [arr_getD, pascalRow_getD]
+  split
+  · have h2 : (2 : Rat) ≠ 0 := by decide
+    have e := frac_pows 1 2 h2 j (n - j)
+    rw [show j + (n - j) = n by omega, rat_one_pow] at e
+    have e1 : (1 : Rat) - 1 / 2 = 1 / 2 := by grind
+    rw [e1, Rat.mul_assoc, e, natCast_pow]
+    have h22 : ((2 : Nat) : Rat) = 2 := rfl
+    rw [h22]
+    have := rat_pow_ne_zero h2 n
+    grind
+  · simp [Rat.div_def]</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-halfLeSig_iff"><td><code>halfLeSig_iff</code><span class="source">GDT/Target.lean · 309행</span></td><td>목표확률 판정</td><td>목표 1/2의 아래 꼬리에 대한 정수 판정은 해당 확률합이 1/20 미만인 조건과 동치이다.<details><summary>Lean 원문</summary><pre>theorem halfLeSig_iff (n k : Nat) : halfLeSig n k = true ↔ halfLeSpec n k &lt; 1 / 20 := by
+  rw [← halfLe_frac, frac_lt_twentieth (Nat.pow_pos (by decide))]
+  simp [halfLeSig]</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-convOk_sqrtHalf_iff"><td><code>convOk_sqrtHalf_iff</code><span class="source">GDT/Target.lean · 335행</span></td><td>목표확률 판정</td><td>목표 1/√2의 convOk가 참인 조건은 −q+√2&lt;0을 표현하는 isNegQ 조건과 동치이다.<details><summary>Lean 원문</summary><pre>theorem convOk_sqrtHalf_iff (q : Nat) : convOk .sqrtHalf q = true ↔ isNegQ (((-(q : Int)) : Int) : Rat) ((1 : Int) : Rat) := by
+  simp only [convOk]
+  exact negZ2_iff _ _</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-convOk_half_iff"><td><code>convOk_half_iff</code><span class="source">GDT/Target.lean · 340행</span></td><td>목표확률 판정</td><td>구간 수 q&gt;0에서 목표 1/2의 convOk가 참인 조건은 1/q&lt;1/2와 동치이다.<details><summary>Lean 원문</summary><pre>theorem convOk_half_iff (q : Nat) (hq : 0 &lt; q) : convOk .half q = true ↔ (1 : Rat) / (q : Rat) &lt; 1 / 2 := by
+  have hq&#x27; : (0 : Rat) &lt; (q : Rat) := Rat.natCast_pos.mpr hq
+  simp only [convOk, decide_eq_true_eq]
+  rw [Rat.div_lt_iff hq&#x27;]
+  have e : (1 : Rat) / 2 * (q : Rat) = (q : Rat) / 2 := by grind
+  rw [e, Rat.lt_div_iff (by decide)]
+  have e2 : (1 : Rat) * 2 = ((2 : Nat) : Rat) := by grind
+  rw [e2, Rat.natCast_lt_natCast]</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-convOk_values"><td><code>convOk_values</code><span class="source">GDT/Target.lean · 350행</span></td><td>목표확률 판정</td><td>목표 1/√2에서 q=3 및 2의 convOk는 참이며 목표 1/2에서 q=2의 convOk는 거짓이다.<details><summary>Lean 원문</summary><pre>theorem convOk_values : convOk .sqrtHalf 3 = true ∧ convOk .sqrtHalf 2 = true ∧ convOk .half 2 = false := by decide +kernel</pre></details></td><td>없음</td></tr>
+<tr id="th-leSigT_half_iff"><td><code>leSigT_half_iff</code><span class="source">GDT/Target.lean · 353행</span></td><td>목표확률 판정</td><td>목표 1/2의 통합 아래 꼬리 판정은 이항 아래 꼬리확률이 1/20 미만인 조건과 동치이다.<details><summary>Lean 원문</summary><pre>theorem leSigT_half_iff (n k : Nat) : leSigT .half n k = true ↔ halfLeSpec n k &lt; 1 / 20 := halfLeSig_iff n k</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-geSigT_half_iff"><td><code>geSigT_half_iff</code><span class="source">GDT/Target.lean · 354행</span></td><td>목표확률 판정</td><td>목표 1/2의 통합 위 꼬리 판정은 이항 위 꼬리확률이 1/20 미만인 조건과 동치이다.<details><summary>Lean 원문</summary><pre>theorem geSigT_half_iff (n k : Nat) : geSigT .half n k = true ↔ geSpec 2 n k &lt; 1 / 20 := geSig_iff (by decide) n k</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-small_tails"><td><code>small_tails</code><span class="source">GDT/Target.lean · 361행</span></td><td>목표확률 판정</td><td>작은 표본의 위·아래 꼬리 판정 12개를 확인한다. 예를 들어 1/√2에서 위 꼬리는 9/9이면 유의하고 9/10이면 유의하지 않다.<details><summary>Lean 원문</summary><pre>theorem small_tails :
+    belowSig 3 0 = true ∧ belowSig 2 0 = false ∧ belowSig 5 1 = true ∧ belowSig 4 1 = false ∧ belowSig 6 2 = false ∧
+    aboveSig 9 9 = true ∧ aboveSig 8 8 = false ∧ aboveSig 10 9 = false ∧
+    halfLeSig 4 0 = false ∧ halfLeSig 5 0 = true ∧ geSig 2 5 5 = true ∧ geSig 2 4 4 = false := by decide +kernel</pre></details></td><td>없음</td></tr>
+</tbody></table></div>
+<h3 id="mod-Arith"><code>GDT/Arith.lean</code> · 35개</h3><div class="scroll"><table class="index"><thead><tr><th>정리와 원본 위치</th><th>규칙</th><th>증명한 내용</th><th>공리</th></tr></thead><tbody>
+<tr id="th-sumTo_zero"><td><code>sumTo_zero</code><span class="source">GDT/Arith.lean · 32행</span></td><td>산술 기반</td><td>자연수 항을 0개 더한 합은 0이다.<details><summary>Lean 원문</summary><pre>@[simp] theorem sumTo_zero (f : Nat → Nat) : sumTo f 0 = 0 := rfl</pre></details></td><td>없음</td></tr>
+<tr id="th-sumTo_succ"><td><code>sumTo_succ</code><span class="source">GDT/Arith.lean · 33행</span></td><td>산술 기반</td><td>자연수 항을 n+1개 더한 합은 앞 n개 합에 f(n)을 더한 값이다.<details><summary>Lean 원문</summary><pre>@[simp] theorem sumTo_succ (f : Nat → Nat) (n : Nat) : sumTo f (n + 1) = sumTo f n + f n := rfl</pre></details></td><td>없음</td></tr>
+<tr id="th-sumQ_zero"><td><code>sumQ_zero</code><span class="source">GDT/Arith.lean · 34행</span></td><td>산술 기반</td><td>유리수 항을 0개 더한 합은 0이다.<details><summary>Lean 원문</summary><pre>@[simp] theorem sumQ_zero (f : Nat → Rat) : sumQ f 0 = 0 := rfl</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-sumQ_succ"><td><code>sumQ_succ</code><span class="source">GDT/Arith.lean · 35행</span></td><td>산술 기반</td><td>유리수 항을 n+1개 더한 합은 앞 n개 합에 f(n)을 더한 값이다.<details><summary>Lean 원문</summary><pre>@[simp] theorem sumQ_succ (f : Nat → Rat) (n : Nat) : sumQ f (n + 1) = sumQ f n + f n := rfl</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-sumZ_zero"><td><code>sumZ_zero</code><span class="source">GDT/Arith.lean · 36행</span></td><td>산술 기반</td><td>정수 항을 0개 더한 합은 0이다.<details><summary>Lean 원문</summary><pre>@[simp] theorem sumZ_zero (f : Nat → Int) : sumZ f 0 = 0 := rfl</pre></details></td><td>없음</td></tr>
+<tr id="th-sumZ_succ"><td><code>sumZ_succ</code><span class="source">GDT/Arith.lean · 37행</span></td><td>산술 기반</td><td>정수 항을 n+1개 더한 합은 앞 n개 합에 f(n)을 더한 값이다.<details><summary>Lean 원문</summary><pre>@[simp] theorem sumZ_succ (f : Nat → Int) (n : Nat) : sumZ f (n + 1) = sumZ f n + f n := rfl</pre></details></td><td>없음</td></tr>
+<tr id="th-sumTo_congr"><td><code>sumTo_congr</code><span class="source">GDT/Arith.lean · 39행</span></td><td>산술 기반</td><td>앞 n개 항이 각각 같으면 자연수 합도 같다.<details><summary>Lean 원문</summary><pre>theorem sumTo_congr {f g : Nat → Nat} {n : Nat} (h : ∀ x, x &lt; n → f x = g x) :
+    sumTo f n = sumTo g n := by
+  induction n with
+  | zero =&gt; rfl
+  | succ n ih =&gt; rw [sumTo_succ, sumTo_succ, ih (fun x hx =&gt; h x (by omega)), h n (by omega)]</pre></details></td><td><code>propext</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-sumQ_congr"><td><code>sumQ_congr</code><span class="source">GDT/Arith.lean · 45행</span></td><td>산술 기반</td><td>앞 n개 항이 각각 같으면 유리수 합도 같다.<details><summary>Lean 원문</summary><pre>theorem sumQ_congr {f g : Nat → Rat} {n : Nat} (h : ∀ x, x &lt; n → f x = g x) :
+    sumQ f n = sumQ g n := by
+  induction n with
+  | zero =&gt; rfl
+  | succ n ih =&gt; rw [sumQ_succ, sumQ_succ, ih (fun x hx =&gt; h x (by omega)), h n (by omega)]</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-sumTo_add"><td><code>sumTo_add</code><span class="source">GDT/Arith.lean · 51행</span></td><td>산술 기반</td><td>자연수 두 항열을 더한 뒤 합산하면 각 합을 더한 값이 된다.<details><summary>Lean 원문</summary><pre>theorem sumTo_add (f g : Nat → Nat) (n : Nat) :
+    sumTo (fun x =&gt; f x + g x) n = sumTo f n + sumTo g n := by
+  induction n with
+  | zero =&gt; rfl
+  | succ n ih =&gt; simp only [sumTo_succ, ih]; omega</pre></details></td><td><code>propext</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-sumTo_le"><td><code>sumTo_le</code><span class="source">GDT/Arith.lean · 57행</span></td><td>산술 기반</td><td>앞 n개의 자연수 항이 각각 상대 항 이하이면 합도 상대 합 이하이다.<details><summary>Lean 원문</summary><pre>theorem sumTo_le {f g : Nat → Nat} {n : Nat} (h : ∀ x, x &lt; n → f x ≤ g x) :
+    sumTo f n ≤ sumTo g n := by
+  induction n with
+  | zero =&gt; exact Nat.le_refl 0
+  | succ n ih =&gt;
+    have h1 := ih (fun x hx =&gt; h x (by omega))
+    have h2 := h n (by omega)
+    simp only [sumTo_succ]; omega</pre></details></td><td><code>propext</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-sumTo_eq_zero"><td><code>sumTo_eq_zero</code><span class="source">GDT/Arith.lean · 66행</span></td><td>산술 기반</td><td>앞 n개의 자연수 항이 모두 0이면 합도 0이다.<details><summary>Lean 원문</summary><pre>theorem sumTo_eq_zero {f : Nat → Nat} {n : Nat} (h : ∀ x, x &lt; n → f x = 0) : sumTo f n = 0 := by
+  induction n with
+  | zero =&gt; rfl
+  | succ n ih =&gt; rw [sumTo_succ, ih (fun x hx =&gt; h x (by omega)), h n (by omega)]</pre></details></td><td><code>propext</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-le_sumTo"><td><code>le_sumTo</code><span class="source">GDT/Arith.lean · 71행</span></td><td>산술 기반</td><td>앞 n개에 속하는 자연수 항 하나는 전체 합 이하이다.<details><summary>Lean 원문</summary><pre>theorem le_sumTo {f : Nat → Nat} {n x : Nat} (hx : x &lt; n) : f x ≤ sumTo f n := by
+  induction n with
+  | zero =&gt; omega
+  | succ n ih =&gt;
+    rw [sumTo_succ]
+    by_cases h : x &lt; n
+    · have := ih h; omega
+    · have : x = n := by omega
+      subst this; omega</pre></details></td><td><code>propext</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-sumTo_split"><td><code>sumTo_split</code><span class="source">GDT/Arith.lean · 82행</span></td><td>산술 기반</td><td>자연수 항 m+n개의 합은 앞 m개와 이어지는 n개의 합을 더한 값이다.<details><summary>Lean 원문</summary><pre>theorem sumTo_split (f : Nat → Nat) (m n : Nat) :
+    sumTo f (m + n) = sumTo f m + sumTo (fun x =&gt; f (m + x)) n := by
+  induction n with
+  | zero =&gt; simp
+  | succ n ih =&gt; rw [← Nat.add_assoc, sumTo_succ, ih, sumTo_succ]; omega</pre></details></td><td><code>propext</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-sumTo_succ'"><td><code>sumTo_succ&#x27;</code><span class="source">GDT/Arith.lean · 89행</span></td><td>산술 기반</td><td>자연수 항 n+1개의 합은 첫 항과 그 뒤 n개 항의 합을 더한 값이다.<details><summary>Lean 원문</summary><pre>theorem sumTo_succ&#x27; (f : Nat → Nat) (n : Nat) :
+    sumTo f (n + 1) = f 0 + sumTo (fun x =&gt; f (x + 1)) n := by
+  have h := sumTo_split f 1 n
+  rw [Nat.add_comm 1 n] at h
+  rw [h]
+  simp only [sumTo_succ, sumTo_zero, Nat.zero_add]
+  congr 1
+  apply sumTo_congr; intro x _; rw [Nat.add_comm]</pre></details></td><td><code>propext</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-sumTo_mul_left"><td><code>sumTo_mul_left</code><span class="source">GDT/Arith.lean · 99행</span></td><td>산술 기반</td><td>자연수 합에서 공통 인수 b를 합 밖으로 꺼낼 수 있다.<details><summary>Lean 원문</summary><pre>theorem sumTo_mul_left (b : Nat) (f : Nat → Nat) (n : Nat) :
+    sumTo (fun x =&gt; b * f x) n = b * sumTo f n := by
+  induction n with
+  | zero =&gt; simp
+  | succ n ih =&gt; simp only [sumTo_succ, ih, Nat.mul_add]</pre></details></td><td><code>propext</code></td></tr>
+<tr id="th-sumQ_div"><td><code>sumQ_div</code><span class="source">GDT/Arith.lean · 105행</span></td><td>산술 기반</td><td>공통 분모 d로 각 항을 나눈 유리수 합은 합을 d로 나눈 값이다.<details><summary>Lean 원문</summary><pre>theorem sumQ_div (f : Nat → Rat) (d : Rat) (n : Nat) :
+    sumQ (fun x =&gt; f x / d) n = sumQ f n / d := by
+  induction n with
+  | zero =&gt; simp [Rat.div_def]
+  | succ n ih =&gt; rw [sumQ_succ, sumQ_succ, ih]; simp only [Rat.div_def, Rat.add_mul]</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-natCast_sumTo"><td><code>natCast_sumTo</code><span class="source">GDT/Arith.lean · 111행</span></td><td>산술 기반</td><td>자연수 합을 유리수로 변환하면 각 항을 유리수로 변환한 합과 같다.<details><summary>Lean 원문</summary><pre>theorem natCast_sumTo (f : Nat → Nat) (n : Nat) :
+    ((sumTo f n : Nat) : Rat) = sumQ (fun x =&gt; (f x : Rat)) n := by
+  induction n with
+  | zero =&gt; rfl
+  | succ n ih =&gt; rw [sumTo_succ, Rat.natCast_add, ih, sumQ_succ]</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-div_le_div_iff_of_pos"><td><code>div_le_div_iff_of_pos</code><span class="source">GDT/Arith.lean · 119행</span></td><td>산술 기반</td><td>양수 d를 분모로 하는 두 유리수의 ≤ 비교는 분자의 ≤ 비교와 동치이다.<details><summary>Lean 원문</summary><pre>theorem div_le_div_iff_of_pos {a b d : Rat} (hd : 0 &lt; d) : a / d ≤ b / d ↔ a ≤ b := by
+  have hd0 : d ≠ 0 := Rat.ne_of_gt hd
+  have hinv : 0 ≤ d⁻¹ := Rat.le_of_lt (Rat.inv_pos.mpr hd)
+  constructor
+  · intro h
+    have h2 := Rat.mul_le_mul_of_nonneg_right h (Rat.le_of_lt hd)
+    rwa [Rat.div_mul_cancel hd0, Rat.div_mul_cancel hd0] at h2
+  · intro h
+    rw [Rat.div_def, Rat.div_def]
+    exact Rat.mul_le_mul_of_nonneg_right h hinv</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-div_lt_div_iff_of_pos"><td><code>div_lt_div_iff_of_pos</code><span class="source">GDT/Arith.lean · 130행</span></td><td>산술 기반</td><td>양수 d를 분모로 하는 두 유리수의 &lt; 비교는 분자의 &lt; 비교와 동치이다.<details><summary>Lean 원문</summary><pre>theorem div_lt_div_iff_of_pos {a b d : Rat} (hd : 0 &lt; d) : a / d &lt; b / d ↔ a &lt; b := by
+  rw [← Rat.not_le, ← Rat.not_le, div_le_div_iff_of_pos hd]</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-frac_lt_twentieth"><td><code>frac_lt_twentieth</code><span class="source">GDT/Arith.lean · 134행</span></td><td>산술 기반</td><td>자연수 분모 d&gt;0일 때 n/d &lt; 1/20은 20n &lt; d와 동치이다.<details><summary>Lean 원문</summary><pre>theorem frac_lt_twentieth {n d : Nat} (hd : 0 &lt; d) :
+    (n : Rat) / (d : Rat) &lt; 1 / 20 ↔ 20 * n &lt; d := by
+  have hd&#x27; : (0 : Rat) &lt; (d : Rat) := Rat.natCast_pos.mpr hd
+  rw [Rat.div_lt_iff hd&#x27;]
+  have e : (1 : Rat) / 20 * (d : Rat) = (d : Rat) / 20 := by grind
+  rw [e, Rat.lt_div_iff (by decide)]
+  have e2 : (n : Rat) * 20 = ((20 * n : Nat) : Rat) := by rw [Rat.natCast_mul]; grind
+  rw [e2, Rat.natCast_lt_natCast]</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-natCast_ite"><td><code>natCast_ite</code><span class="source">GDT/Arith.lean · 143행</span></td><td>산술 기반</td><td>자연수 조건분기를 유리수로 변환하면 각 분기값을 변환한 조건분기와 같다.<details><summary>Lean 원문</summary><pre>theorem natCast_ite (p : Prop) [Decidable p] (a b : Nat) :
+    ((if p then a else b : Nat) : Rat) = if p then (a : Rat) else (b : Rat) := by
+  split &lt;;&gt; rfl</pre></details></td><td><code>propext</code></td></tr>
+<tr id="th-ite_div_eq"><td><code>ite_div_eq</code><span class="source">GDT/Arith.lean · 148행</span></td><td>산술 기반</td><td>조건이 참인 항만 남길 때 a/d를 먼저 계산하거나 분자에 조건을 먼저 적용해도 같다.<details><summary>Lean 원문</summary><pre>theorem ite_div_eq (p : Prop) [Decidable p] (a d : Nat) :
+    (if p then (a : Rat) / (d : Rat) else 0) = ((if p then a else 0 : Nat) : Rat) / (d : Rat) := by
+  split
+  · rfl
+  · simp [Rat.div_def]</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-choose_zero_right"><td><code>choose_zero_right</code><span class="source">GDT/Arith.lean · 162행</span></td><td>산술 기반</td><td>이항계수 C(n,0)은 1이다.<details><summary>Lean 원문</summary><pre>@[simp] theorem choose_zero_right (n : Nat) : choose n 0 = 1 := by cases n &lt;;&gt; rfl</pre></details></td><td>없음</td></tr>
+<tr id="th-choose_zero_succ"><td><code>choose_zero_succ</code><span class="source">GDT/Arith.lean · 163행</span></td><td>산술 기반</td><td>k&gt;0이면 C(0,k)는 0이다.<details><summary>Lean 원문</summary><pre>@[simp] theorem choose_zero_succ (k : Nat) : choose 0 (k + 1) = 0 := rfl</pre></details></td><td>없음</td></tr>
+<tr id="th-choose_succ_succ"><td><code>choose_succ_succ</code><span class="source">GDT/Arith.lean · 164행</span></td><td>산술 기반</td><td>파스칼 점화식 C(n+1,k+1)=C(n,k)+C(n,k+1)이 성립한다.<details><summary>Lean 원문</summary><pre>theorem choose_succ_succ (n k : Nat) : choose (n + 1) (k + 1) = choose n k + choose n (k + 1) := rfl</pre></details></td><td>없음</td></tr>
+<tr id="th-choose_eq_zero_of_lt"><td><code>choose_eq_zero_of_lt</code><span class="source">GDT/Arith.lean · 166행</span></td><td>산술 기반</td><td>k&gt;n이면 C(n,k)는 0이다.<details><summary>Lean 원문</summary><pre>theorem choose_eq_zero_of_lt : ∀ {n k : Nat}, n &lt; k → choose n k = 0
+  | 0, 0, h =&gt; absurd h (Nat.lt_irrefl 0)
+  | 0, _ + 1, _ =&gt; rfl
+  | _ + 1, 0, h =&gt; absurd h (Nat.not_lt_zero _)
+  | n + 1, k + 1, h =&gt; by
+    rw [choose_succ_succ, choose_eq_zero_of_lt (n := n) (k := k) (by omega),
+      choose_eq_zero_of_lt (n := n) (k := k + 1) (by omega)]</pre></details></td><td><code>propext</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-choose_self"><td><code>choose_self</code><span class="source">GDT/Arith.lean · 174행</span></td><td>산술 기반</td><td>C(n,n)은 1이다.<details><summary>Lean 원문</summary><pre>@[simp] theorem choose_self : ∀ n : Nat, choose n n = 1
+  | 0 =&gt; rfl
+  | n + 1 =&gt; by rw [choose_succ_succ, choose_self n, choose_eq_zero_of_lt (Nat.lt_succ_self n)]</pre></details></td><td><code>propext</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-choose_pos"><td><code>choose_pos</code><span class="source">GDT/Arith.lean · 178행</span></td><td>산술 기반</td><td>k≤n이면 C(n,k)는 양수이다.<details><summary>Lean 원문</summary><pre>theorem choose_pos : ∀ {n k : Nat}, k ≤ n → 0 &lt; choose n k
+  | _, 0, _ =&gt; by simp
+  | 0, _ + 1, h =&gt; absurd h (by omega)
+  | n + 1, k + 1, h =&gt; by
+    rw [choose_succ_succ]
+    have := choose_pos (n := n) (k := k) (by omega)
+    omega</pre></details></td><td><code>propext</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-vandermonde"><td><code>vandermonde</code><span class="source">GDT/Arith.lean · 187행</span></td><td>산술 기반</td><td>x=0…c의 C(r₁,x)C(r₂,c−x) 합은 C(r₁+r₂,c)이다.<details><summary>Lean 원문</summary><pre>theorem vandermonde (r2 : Nat) : ∀ (r1 c : Nat),
+    sumTo (fun x =&gt; choose r1 x * choose r2 (c - x)) (c + 1) = choose (r1 + r2) c
+  | 0, c =&gt; by
+    rw [sumTo_succ&#x27;, sumTo_eq_zero (fun x _ =&gt; by simp)]
+    simp
+  | r1 + 1, 0 =&gt; by simp
+  | r1 + 1, c + 1 =&gt; by
+    rw [sumTo_succ&#x27;]
+    have e : (fun x =&gt; choose (r1 + 1) (x + 1) * choose r2 (c + 1 - (x + 1)))
+        = (fun x =&gt; choose r1 x * choose r2 (c - x) + choose r1 (x + 1) * choose r2 (c - x)) := by
+      funext x
+      rw [choose_succ_succ, Nat.add_sub_add_right, Nat.add_mul]
+    rw [e, sumTo_add, vandermonde r2 r1 c]
+    have h2 := vandermonde r2 r1 (c + 1)
+    rw [sumTo_succ&#x27;] at h2
+    have e2 : (fun x =&gt; choose r1 (x + 1) * choose r2 (c + 1 - (x + 1)))
+        = (fun x =&gt; choose r1 (x + 1) * choose r2 (c - x)) := by
+      funext x; rw [Nat.add_sub_add_right]
+    rw [e2] at h2
+    simp only [choose_zero_right, Nat.one_mul, Nat.sub_zero] at h2 ⊢
+    rw [show r1 + 1 + r2 = (r1 + r2) + 1 by omega, choose_succ_succ]
+    omega</pre></details></td><td><code>propext</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-zipWith_add_getD"><td><code>zipWith_add_getD</code><span class="source">GDT/Arith.lean · 222행</span></td><td>산술 기반</td><td>길이가 같은 자연수 목록의 원소별 합을 조회하면 두 조회값의 합이다. 범위 밖의 기본값은 0이다.<details><summary>Lean 원문</summary><pre>theorem zipWith_add_getD : ∀ (xs ys : List Nat) (i : Nat), xs.length = ys.length →
+    (List.zipWith (· + ·) xs ys).getD i 0 = xs.getD i 0 + ys.getD i 0
+  | [], [], _, _ =&gt; by simp
+  | [], _ :: _, _, h =&gt; by simp at h
+  | _ :: _, [], _, h =&gt; by simp at h
+  | x :: xs, y :: ys, 0, _ =&gt; by simp
+  | x :: xs, y :: ys, i + 1, h =&gt; by
+    simp only [List.zipWith_cons_cons, List.getD_cons_succ]
+    exact zipWith_add_getD xs ys i (by simpa using h)</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-append_zero_getD"><td><code>append_zero_getD</code><span class="source">GDT/Arith.lean · 232행</span></td><td>산술 기반</td><td>목록 뒤에 0을 붙여도 기본값 0을 쓰는 인덱스 조회 결과는 같다.<details><summary>Lean 원문</summary><pre>theorem append_zero_getD : ∀ (l : List Nat) (i : Nat), (l ++ [0]).getD i 0 = l.getD i 0
+  | [], 0 =&gt; by simp
+  | [], i + 1 =&gt; by simp
+  | x :: l, 0 =&gt; by simp
+  | x :: l, i + 1 =&gt; by simp only [List.cons_append, List.getD_cons_succ]; exact append_zero_getD l i</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-pascalRow_length"><td><code>pascalRow_length</code><span class="source">GDT/Arith.lean · 238행</span></td><td>산술 기반</td><td>n번째 파스칼 행의 길이는 n+1이다.<details><summary>Lean 원문</summary><pre>theorem pascalRow_length : ∀ n, (pascalRow n).length = n + 1
+  | 0 =&gt; rfl
+  | n + 1 =&gt; by
+    simp only [pascalRow, pascalNext, List.length_zipWith, List.length_cons, List.length_append,
+      pascalRow_length n]
+    omega</pre></details></td><td><code>propext</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-pascalRow_getD"><td><code>pascalRow_getD</code><span class="source">GDT/Arith.lean · 246행</span></td><td>산술 기반</td><td>n번째 파스칼 행의 x번 원소는 C(n,x)이다. 범위 밖은 0이다.<details><summary>Lean 원문</summary><pre>theorem pascalRow_getD : ∀ (n x : Nat), (pascalRow n).getD x 0 = choose n x
+  | 0, 0 =&gt; rfl
+  | 0, x + 1 =&gt; by simp [pascalRow]
+  | n + 1, x =&gt; by
+    simp only [pascalRow, pascalNext]
+    rw [zipWith_add_getD _ _ _ (by simp [pascalRow_length])]
+    rw [append_zero_getD]
+    cases x with
+    | zero =&gt;
+      rw [List.getD_cons_zero, pascalRow_getD n 0]
+      simp
+    | succ x =&gt;
+      simp only [List.getD_cons_succ]
+      rw [pascalRow_getD n x, pascalRow_getD n (x + 1), choose_succ_succ]</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+<tr id="th-arr_getD"><td><code>arr_getD</code><span class="source">GDT/Arith.lean · 263행</span></td><td>산술 기반</td><td>목록을 배열로 바꾸어도 같은 인덱스와 기본값을 쓰는 조회 결과는 같다.<details><summary>Lean 원문</summary><pre>theorem arr_getD {α : Type} (l : List α) (i : Nat) (d : α) : l.toArray.getD i d = l.getD i d := by
+  simp [Array.getD, List.getD_eq_getElem?_getD]
+  split &lt;;&gt; simp_all</pre></details></td><td><code>propext</code></td></tr>
+<tr id="th-choose_eq_chooseFast"><td><code>choose_eq_chooseFast</code><span class="source">GDT/Arith.lean · 269행</span></td><td>산술 기반</td><td>파스칼 행을 이용한 chooseFast는 모든 입력에서 재귀 이항계수 choose와 같다.<details><summary>Lean 원문</summary><pre>@[csimp] theorem choose_eq_chooseFast : @choose = @chooseFast := by
+  funext n k
+  exact (pascalRow_getD n k).symm</pre></details></td><td><code>propext</code><br><code>Classical.choice</code><br><code>Quot.sound</code></td></tr>
+</tbody></table></div></section>
+<section><h2>재현 방법</h2>
+<p>ZIP을 풀고 <code>WowGDT-Lean4</code> 폴더에서 실행한다. 고정 도구 체인은 <code>leanprover/lean4:v4.24.0</code>이며 manifest의 외부 패키지 목록은 비어 있다.</p>
+<pre>lake build
+lake env lean PrintAxioms.lean
+lake env lean MyAudit.lean</pre>
+<p>JS 대조까지 재현하려면 원본 앱 1.0.5와 Deno가 필요하다. 앱 루트에서 <code>tools/lean/cross_check.js</code>의 <code>input</code>으로 입력과 JS 출력을 만들고, 위 빌드에서 생성된 <code>crosscheck</code>에 입력·출력 경로를 전달한다. 같은 JS 스크립트의 <code>check</code>로 두 출력을 비교하고 <code>mutants</code>로 결함 주입 시험을 수행한다. 파일 식별자는 대조 로그에 있다.</p>
+</section></main></body></html>

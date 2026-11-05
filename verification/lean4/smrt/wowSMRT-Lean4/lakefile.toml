@@ -1,0 +1,10 @@
+name = "smrt_lean"
+version = "0.1.0"
+defaultTargets = ["SMRT", "crosscheck"]
+
+[[lean_lib]]
+name = "SMRT"
+
+[[lean_exe]]
+name = "crosscheck"
+root = "CrossCheck"

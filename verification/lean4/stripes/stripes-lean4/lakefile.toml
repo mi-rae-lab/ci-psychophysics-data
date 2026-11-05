@@ -1,0 +1,6 @@
+name = "stripes_formal"
+version = "0.1.0"
+defaultTargets = ["Stripes"]
+
+[[lean_lib]]
+name = "Stripes"

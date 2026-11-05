@@ -1,0 +1,62 @@
+{
+  "type": "historical_fixed_input_comparison",
+  "original_check_date": "2026-10-19",
+  "app_version": "1.1.0 (2026-10-19)",
+  "analysis_version": "analysis_v4",
+  "source_sha256_rechecked_2026_11_04": {
+    "protocol.js": "d854437051efc0d55866b97a485207a2115b774ccc762b44af4c9576a6b95c9a",
+    "rng.js": "6aa5d9e6e1cf0d21689504053d4eb1654b4e7e6e8659826b96eb6e7d92e7c112",
+    "staircase.js": "9896a47f1c52de5e7ec8c71641024df66efd1f18b4aa47d1ea924a692b3a55b4",
+    "analysis.js": "5a091bc5bdbf0fe04c3e856fa533a32b38a40cc23696784a1d0667feefbf45e4"
+  },
+  "js_disagreements_with_expected": 0,
+  "js_fixture_counters": {
+    "stairFixtures": 466328,
+    "traceFixtures": 6000,
+    "traceStates": 330920,
+    "classifyFixtures": 6000,
+    "summaryFixtures": 107063,
+    "summaryExactMeans": 8790,
+    "oldFpCasesNowMatching": 24,
+    "groupCases": 6096,
+    "groupExactMeans": 2001
+  },
+  "lean_checks": [
+    {
+      "filename": "staircase-fixtures.jsonl",
+      "sent": 466328,
+      "received": 466328,
+      "inputSha256": "c3ffd2b69d983dd8e8dd67cb15b7fd0110c1c9f27d4253b3b4e8e51d95380c73",
+      "leanOutputSha256": "1f298eb3c341e0ca84cbdcf2f75ebfd5abbe4085fd2a402d011ebaccdd75986c",
+      "unexpectedDisagreements": 0
+    },
+    {
+      "filename": "trace-fixtures.jsonl",
+      "sent": 6000,
+      "received": 6000,
+      "inputSha256": "7bfb5b606da89898b64549042b320b88f0656d328f088899c90043be054fb6de",
+      "leanOutputSha256": "c9ed84bb29a3d0626e9eaee17a66607d95ff6f76db8f588af2224c544ae641b6",
+      "unexpectedDisagreements": 0
+    },
+    {
+      "filename": "classify-fixtures.jsonl",
+      "sent": 6000,
+      "received": 6000,
+      "inputSha256": "01ebe700bba71eaee1f1bdf2279d00ed23d54536b75b7365c4998109bfe47744",
+      "leanOutputSha256": "d6dc2d2469a7115eb50d260f8a77fc51d78b2f41ad69753aaa5f24d3ae05b08a",
+      "unexpectedDisagreements": 0
+    },
+    {
+      "filename": "analysis-fixtures.jsonl",
+      "sent": 107063,
+      "received": 107063,
+      "inputSha256": "b7601f4921ec8dea4be8980349bf0367e93a914e69b0074ce53c8eb5737a11a5",
+      "leanOutputSha256": "7c236890696b855082d1ab39986780f0fcc5fed50753adf85545ce6a1bbb65fa",
+      "unexpectedDisagreements": 0
+    }
+  ],
+  "original_evidence_sha256": {
+    "current-js-vs-exact.json": "6a17afb92b6d533b63ab37f58bad30e170341dacef038fda5329a5a1ea2ab805",
+    "fresh-lean-vs-exact.json": "f08d32a66d914735c3599c0c945d4a0a70a7cb8f635dcfd88f3634c02f7a2d9f"
+  }
+}

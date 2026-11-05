@@ -1,0 +1,10 @@
+name = "gdt_lean"
+version = "0.1.0"
+defaultTargets = ["GDT", "crosscheck"]
+
+[[lean_lib]]
+name = "GDT"
+
+[[lean_exe]]
+name = "crosscheck"
+root = "CrossCheck"

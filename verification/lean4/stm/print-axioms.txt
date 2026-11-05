@@ -1,0 +1,177 @@
+Lean (version 4.19.0, x86_64-w64-windows-gnu, commit 6caaee842e94, Release)
+Lake version 5.0.0-6caaee8 (Lean version 4.19.0)
+2026-11-04T22:22:32+09:00
+$ lake env lean -t 0 PrintAxioms.lean
+'Stm.Staircase.init_bounded' depends on axioms: [propext]
+'Stm.Staircase.init_count_consistent' depends on axioms: [propext]
+'Stm.Staircase.clamp_bounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stm.Staircase.requestedStep_positive' depends on axioms: [propext, Quot.sound]
+'Stm.Staircase.fourth_reversal_uses_fine' does not depend on any axioms
+'Stm.Staircase.before_fourth_uses_coarse' depends on axioms: [propext]
+'Stm.Staircase.fourth_and_later_use_fine' depends on axioms: [propext]
+'Stm.Staircase.target_has_priority' depends on axioms: [propext]
+'Stm.Staircase.cap_only_before_target' depends on axioms: [propext]
+'Stm.Staircase.duplicate_has_priority' depends on axioms: [propext]
+'Stm.Staircase.ended_before_depth_check' depends on axioms: [propext]
+'Stm.Staircase.wrong_depth_rejected' depends on axioms: [propext]
+'Stm.Staircase.invalid_preserves_adaptive_state' depends on axioms: [propext]
+'Stm.Staircase.invalid_tenth_terminates' depends on axioms: [propext]
+'Stm.Staircase.blocked_is_not_reversal' depends on axioms: [propext]
+'Stm.Staircase.blocked_preserves_movement_state' depends on axioms: [propext]
+'Stm.Staircase.first_correct_stays' does not depend on any axioms
+'Stm.Staircase.second_correct_harder' does not depend on any axioms
+'Stm.Staircase.incorrect_resets_and_eases' depends on axioms: [propext]
+'Stm.Staircase.shift_bounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stm.Staircase.shift_counts' depends on axioms: [propext, Quot.sound]
+'Stm.Staircase.shift_streak' depends on axioms: [Quot.sound]
+'Stm.Staircase.request_streak_lt_two' depends on axioms: [propext]
+'Stm.Staircase.shift_attemptCount' depends on axioms: [propext, Quot.sound]
+'Stm.Staircase.shift_validCount' depends on axioms: [propext, Quot.sound]
+'Stm.Staircase.shift_technicalCount' depends on axioms: [propext, Quot.sound]
+'Stm.Staircase.shift_processed' depends on axioms: [propext, Quot.sound]
+'Stm.Staircase.motion_attemptCount' depends on axioms: [propext, Quot.sound]
+'Stm.Staircase.motion_validCount' depends on axioms: [propext, Quot.sound]
+'Stm.Staircase.motion_technicalCount' depends on axioms: [propext, Quot.sound]
+'Stm.Staircase.motion_processed' depends on axioms: [propext, Quot.sound]
+'Stm.Staircase.motion_streak' depends on axioms: [propext, Quot.sound]
+'Stm.Staircase.motion_bounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stm.Staircase.advance_counts' depends on axioms: [propext, Quot.sound]
+'Stm.Staircase.advance_count_consistent' depends on axioms: [propext, Quot.sound]
+'Stm.Staircase.advance_valid_streak_lt_two' depends on axioms: [propext, Quot.sound]
+'Stm.Staircase.advance_bounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stm.Staircase.accepted_preserves_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stm.Staircase.accepted_preserves_counts' depends on axioms: [propext, Quot.sound]
+'Stm.Staircase.nonblocked_shift_changes_depth' depends on axioms: [propext, Quot.sound]
+'Stm.Staircase.init_even_depth' depends on axioms: [propext]
+'Stm.Staircase.clamp_even' depends on axioms: [propext, Quot.sound]
+'Stm.Staircase.requestedStep_even' does not depend on any axioms
+'Stm.Staircase.shift_even_depth' depends on axioms: [propext, Quot.sound]
+'Stm.Staircase.motion_even_depth' depends on axioms: [propext, Quot.sound]
+'Stm.Staircase.advance_even_depth' depends on axioms: [propext, Quot.sound]
+'Stm.Staircase.accepted_is_advance' depends on axioms: [propext]
+'Stm.Staircase.accepted_requires_running' depends on axioms: [propext]
+'Stm.Staircase.shift_reversal_count' depends on axioms: [propext, Quot.sound]
+'Stm.Staircase.actual_reversal_records_presented_depth' depends on axioms: [propext]
+'Stm.Staircase.init_running_caps' depends on axioms: [propext]
+'Stm.Staircase.validStatus_running_iff' depends on axioms: [propext, Quot.sound]
+'Stm.Staircase.advance_running_caps' depends on axioms: [propext, Quot.sound]
+'Stm.Staircase.reachable_invariants' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stm.Staircase.reachable_running_attempt_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stm.Staircase.accepted_attempt_at_most_209' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stm.Staircase.attempt_209_is_terminal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stm.Staircase.fourth_actual_reversal_uses_fine' depends on axioms: [propext]
+'Stm.Staircase.init_reversals_safe' depends on axioms: [propext, Quot.sound]
+'Stm.Staircase.shift_reversals_safe' depends on axioms: [propext, Quot.sound]
+'Stm.Staircase.motion_reversals_safe' depends on axioms: [propext, Quot.sound]
+'Stm.Staircase.advance_reversals_safe' depends on axioms: [propext, Quot.sound]
+'Stm.Staircase.reachable_reversals_safe' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stm.Staircase.accepted_id_fresh' depends on axioms: [propext]
+'Stm.Staircase.reachable_processed_nodup' depends on axioms: [propext, Quot.sound]
+'Stm.Staircase.reachable_streak_lt_two' depends on axioms: [propext, Quot.sound]
+'Stm.Staircase.reachable_attempt_at_most_209' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stm.Staircase.motion_reversal_count' depends on axioms: [propext, Quot.sound]
+'Stm.Staircase.advance_reversal_count' depends on axioms: [propext, Quot.sound]
+'Stm.Staircase.reachable_counter_limits' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stm.Threshold.threshold_absent_before_target' depends on axioms: [propext]
+'Stm.Threshold.threshold_present_at_target' depends on axioms: [propext]
+'Stm.Threshold.retained_count' depends on axioms: [propext, Quot.sound]
+'Stm.Threshold.reachable_target_exactly_fourteen' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stm.Threshold.reachable_retains_reversals_five_through_fourteen' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Stm.Threshold.reachable_retained_bounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stm.Threshold.reachable_retained_even' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stm.Threshold.reachable_threshold_numerator_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stm.Threshold.reachable_threshold_numerator_even' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stm.Threshold.reachable_threshold_numerator_is_twice_integer' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Stm.Threshold.reachable_threshold_on_one_fifth_db_grid' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stm.Threshold.present_threshold_requires_target' depends on axioms: [propext, Quot.sound]
+'Stm.Threshold.reachable_present_threshold_certificate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stm.Threshold.reachable_present_threshold_within_db_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stm.Analysis.censor_ne_complete' does not depend on any axioms
+'Stm.Analysis.refine_complete_iff' depends on axioms: [propext]
+'Stm.Analysis.completed_floor_priority' does not depend on any axioms
+'Stm.Analysis.cap_floor_is_not_below' does not depend on any axioms
+'Stm.Analysis.reliability_priority' does not depend on any axioms
+'Stm.Analysis.above_requires_zero_observations' does not depend on any axioms
+'Stm.Analysis.limited_complete_unreliable' does not depend on any axioms
+'Stm.Analysis.cap_can_be_censored' does not depend on any axioms
+'Stm.Analysis.terminal_failure_immune' does not depend on any axioms
+'Stm.Analysis.complete_guard' depends on axioms: [propext]
+'Stm.Analysis.base_complete_iff' depends on axioms: [propext]
+'Stm.Analysis.complete_full_guard' depends on axioms: [propext]
+'Stm.Analysis.aborted_priority' depends on axioms: [propext]
+'Stm.Analysis.numeric_only_complete' depends on axioms: [propext]
+'Stm.Analysis.numeric_has_guards' depends on axioms: [propext]
+'Stm.Analysis.complete_has_numeric' depends on axioms: [propext]
+'Stm.Analysis.classification_numeric_iff' depends on axioms: [propext]
+'Stm.Analysis.strict_ceiling_limit' depends on axioms: [propext]
+'Stm.Analysis.failed_audit_erases_numeric' does not depend on any axioms
+'Stm.Analysis.changed_during_excluded' depends on axioms: [propext]
+'Stm.Analysis.changed_flag_excluded' depends on axioms: [propext]
+'Stm.Analysis.practice_excluded' depends on axioms: [propext]
+'Stm.Analysis.changed_not_in_main' depends on axioms: [propext]
+'Stm.Analysis.changed_not_included' depends on axioms: [propext]
+'Stm.Analysis.meanOf_positive_denominator' depends on axioms: [propext]
+'Stm.Analysis.selected_six' does not depend on any axioms
+'Stm.Analysis.selected_won_two_or_three' depends on axioms: [propext]
+'Stm.Analysis.exactly_three_db_no_third' depends on axioms: [propext]
+'Stm.Analysis.over_three_db_needs_third' depends on axioms: [propext]
+'Stm.Analysis.exactly_three_db_uses_two' depends on axioms: [propext]
+'Stm.Analysis.over_three_db_uses_three' depends on axioms: [propext]
+'Stm.Analysis.numeric_censored_pair_needs_third' depends on axioms: [propext]
+'Stm.Analysis.above_ceil_pair_needs_no_third' depends on axioms: [propext]
+'Stm.Analysis.settle_numeric_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stm.Analysis.settle_final_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stm.Analysis.settle_used' depends on axioms: [propext, Quot.sound]
+'Stm.Analysis.settle_nonfinal_has_no_mean' depends on axioms: [propext, Quot.sound]
+'Stm.Analysis.settle_no_numeric_if_nonnum' depends on axioms: [propext, Quot.sound]
+'Stm.Analysis.settle_with_nonnum_has_no_mean' depends on axioms: [propext, Quot.sound]
+'Stm.Analysis.mixed_has_no_mean' depends on axioms: [propext, Quot.sound]
+'Stm.Analysis.condition_nonfinal_has_no_mean' depends on axioms: [propext, Quot.sound]
+'Stm.Analysis.condition_mixed_has_no_mean' depends on axioms: [propext, Quot.sound]
+'Stm.Analysis.settle_numeric_positive_denominator' depends on axioms: [propext, Quot.sound]
+'Stm.Analysis.condition_numeric_positive_denominator' depends on axioms: [propext, Quot.sound]
+'Stm.Analysis.six_pending_below_six' depends on axioms: [propext]
+'Stm.Analysis.six_settles_exactly_first_six' depends on axioms: [propext]
+'Stm.Analysis.six_final_uses_six' depends on axioms: [propext, Quot.sound]
+'Stm.Analysis.group_numeric_iff_six' depends on axioms: [propext]
+'Stm.Analysis.group_non_six_has_no_mean' depends on axioms: [propext]
+'Stm.Analysis.nonfinal_slot_contributes_no_value' depends on axioms: [propext]
+'Stm.Analysis.six_mean_requires_every_slot' depends on axioms: [propext, Quot.sound]
+'Stm.Analysis.six_mean_requires_final_states' depends on axioms: [propext, Quot.sound]
+'Stm.Analysis.missing_slot_forbids_group_mean' depends on axioms: [propext, Quot.sound]
+'Stm.Arithmetic.sum_upper' depends on axioms: [propext, Quot.sound]
+'Stm.Arithmetic.sum_lower' depends on axioms: [propext, Quot.sound]
+'Stm.Arithmetic.ten_reversal_numerator_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stm.Arithmetic.sum_even' depends on axioms: [propext, Quot.sound]
+'Stm.Arithmetic.threshold_denominator' does not depend on any axioms
+'Stm.Arithmetic.exact_three_no_third' depends on axioms: [propext]
+'Stm.Arithmetic.above_three_needs_third' depends on axioms: [propext]
+'Stm.Arithmetic.below_three_no_third' depends on axioms: [propext, Quot.sound]
+'Stm.Arithmetic.exact_counterexample_pair' does not depend on any axioms
+'Stm.Arithmetic.encoded_pair_delta' does not depend on any axioms
+'Stm.Arithmetic.encoded_pair_strictly_above_three' does not depend on any axioms
+'Stm.Arithmetic.encoding_denominator_positive' does not depend on any axioms
+'Stm.Arithmetic.ramp_exact_twenty_ms' does not depend on any axioms
+'Stm.Arithmetic.isi_exact_half_second' does not depend on any axioms
+'Stm.Arithmetic.first_interval_exact' does not depend on any axioms
+'Stm.Arithmetic.second_interval_exact' does not depend on any axioms
+'Stm.Arithmetic.total_exact_three_seconds' does not depend on any axioms
+'Stm.Arithmetic.intervals_disjoint' does not depend on any axioms
+'Stm.Arithmetic.sample_indices' does not depend on any axioms
+'Stm.Arithmetic.envelope_rate_not_1000' does not depend on any axioms
+'Stm.Arithmetic.envelope_clock_exact' depends on axioms: [propext, Quot.sound]
+'Stm.Arithmetic.scalar_sum' depends on axioms: [propext]
+'Stm.Arithmetic.pair_sum' depends on axioms: [propext, Quot.sound]
+'Stm.Arithmetic.modulation_recombination' depends on axioms: [propext, Quot.sound]
+'Reaudit.tick_reachable' depends on axioms: [propext]
+'Reaudit.run_reachable' depends on axioms: [propext]
+'Reaudit.witness_reachable' depends on axioms: [propext]
+'Reaudit.witness_fourteen_reversals' depends on axioms: [propext]
+'Reaudit.witness_twenty_three_attempts' depends on axioms: [propext]
+'Reaudit.witness_target_status' depends on axioms: [propext]
+'Reaudit.reachable_threshold_nonempty' depends on axioms: [propext]
+[exit code 0]

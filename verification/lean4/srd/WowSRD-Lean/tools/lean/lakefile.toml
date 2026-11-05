@@ -1,0 +1,10 @@
+name = "srd_lean"
+version = "0.1.0"
+defaultTargets = ["SRD", "crosscheck"]
+
+[[lean_lib]]
+name = "SRD"
+
+[[lean_exe]]
+name = "crosscheck"
+root = "CrossCheck"

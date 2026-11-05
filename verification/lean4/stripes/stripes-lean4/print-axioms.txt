@@ -1,0 +1,106 @@
+Project: stripes-lean4
+Started (KST): 2026-11-04T22:23:05+09:00
+Lean (version 4.24.0, x86_64-w64-windows-gnu, commit 797c613eb9b6d4ec95db23e3e00af9ac6657f24b, Release)
+Lake version 5.0.0-src+797c613 (Lean version 4.24.0)
+
+$ lake env lean Audit.lean
+'Stripes.Design.choice_outcomes_four' does not depend on any axioms
+'Stripes.Design.choice_correct_two' does not depend on any axioms
+'Stripes.Design.chance_is_one_half' does not depend on any axioms
+'Stripes.Design.gate_words_have_length_five' does not depend on any axioms
+'Stripes.Design.gate_words_have_no_duplicates' does not depend on any axioms
+'Stripes.Design.gate_outcomes_32' does not depend on any axioms
+'Stripes.Design.gate_passes_6' does not depend on any axioms
+'Stripes.Design.gate_fails_26' does not depend on any axioms
+'Stripes.Design.exactly_four_successes_5' does not depend on any axioms
+'Stripes.Design.exactly_five_successes_1' does not depend on any axioms
+'Stripes.Design.gate_success_partition' does not depend on any axioms
+'Stripes.Design.gate_chance_three_sixteenths' does not depend on any axioms
+'Stripes.Design.wordsFrom_length' depends on axioms: [propext, Quot.sound]
+'Stripes.Design.four_blocks_product_space_count' depends on axioms: [propext, Quot.sound]
+'Stripes.Design.four_blocks_all_fail_space_count' depends on axioms: [propext, Quot.sound]
+'Stripes.Design.four_blocks_outcomes' does not depend on any axioms
+'Stripes.Design.four_blocks_all_fail' does not depend on any axioms
+'Stripes.Design.four_blocks_any_pass' does not depend on any axioms
+'Stripes.Design.four_blocks_reduced_ratio' does not depend on any axioms
+'Stripes.Design.fair_guesser_can_pass_gate' does not depend on any axioms
+'Stripes.Design.fair_guesser_can_pass_by_block_four' does not depend on any axioms
+'Stripes.Design.main_run_count_is_two_or_three' depends on axioms: [propext]
+'Stripes.Design.main_run_count_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.Design.selected_run_count' depends on axioms: [propext]
+'Stripes.Design.gap_exactly_one_D_requests_no_third' depends on axioms: [propext]
+'Stripes.Design.gap_above_one_D_requests_third' depends on axioms: [propext]
+'Stripes.Design.concrete_boundary' does not depend on any axioms
+'Stripes.Design.concrete_above_boundary' does not depend on any axioms
+'Stripes.Design.practice_is_excluded' does not depend on any axioms
+'Stripes.Design.planned_mean_denominator_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.Design.two_main_measurements_exact_mean' depends on axioms: [propext]
+'Stripes.Design.three_main_measurements_exact_mean' depends on axioms: [propext]
+'Stripes.Design.retained_sum_scale_forty' does not depend on any axioms
+'Stripes.Design.fractional_run_count_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.Design.fractional_gap_exactly_one_D_requests_no_third' depends on axioms: [propext]
+'Stripes.Design.fractional_gap_above_one_D_requests_third' depends on axioms: [propext]
+'Stripes.Design.fractional_two_run_mean' depends on axioms: [propext]
+'Stripes.Design.fractional_three_run_mean' depends on axioms: [propext]
+'Stripes.Design.fractional_practice_is_excluded' does not depend on any axioms
+'Stripes.Design.equal_measurements_request_two' depends on axioms: [propext]
+'Stripes.Design.equal_measurements_mean' depends on axioms: [propext]
+'Stripes.Design.arbitrarily_biased_consistent_measurements' depends on axioms: [propext, Quot.sound]
+'Stripes.FiniteRisk.square_nonnegative' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.FiniteRisk.square_le_square_of_nonnegative' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.FiniteRisk.squared_error_event_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.FiniteRisk.secondMoment_nonnegative' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.FiniteRisk.atom_tail_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.FiniteRisk.cutoff_mul_tail_le_secondMoment' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.FiniteRisk.tailMass_nonnegative' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.FiniteRisk.tailMass_le_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.FiniteRisk.tail_probability_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.FiniteRisk.inside_plus_tail_eq_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.FiniteRisk.coverage_from_tail_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.FiniteRisk.finite_second_moment_risk_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.FiniteRisk.finite_tolerance_risk_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.FiniteRisk.fixed_sample_count_risk_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.FiniteRisk.sample_count_condition_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.FiniteRisk.fixed_n_risk_and_coverage_from_second_moment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Stripes.Staircase.step_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.Staircase.duplicate_ignored' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.Staircase.terminal_absorbing' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.Staircase.invalid_preserves_adaptive_core' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.Staircase.fresh_invalid_increments_technical_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.Staircase.blocked_request_is_no_move' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.Staircase.first_move_not_reversal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.Staircase.incomplete_has_no_threshold' depends on axioms: [propext]
+'Stripes.Staircase.fixture_reversals' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.Staircase.fixture_retained' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.Staircase.fixture_exact_threshold' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.Staircase.fixture_threshold_is_seventeen_tenths' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.Staircase.fixture_stops_at_sixteen' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.Staircase.fixture_later_input_ignored' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.Staircase.fixture_lower_boundary_WWCC' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.Staircase.fixture_invalid_keeps_correct_streak' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.Staircase.fixture_ten_invalids' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.Staircase.fixture_all_incorrect_trial_cap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.Statistics.movement_block_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.Statistics.movement_drift' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.Statistics.equal_step_balance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.Statistics.unequal_step_balance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.Statistics.guessing_lapse_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.Statistics.equicorrelated_moment_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.Statistics.three_error_square' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.Statistics.four_error_square' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.Statistics.shifted_square_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.Statistics.zero_mean_noise_keeps_bias_square' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.Statistics.conditional_mean_adjustment' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.Statistics.asymmetric_single_mean' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.Statistics.asymmetric_selected_mean' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.Statistics.asymmetric_selected_bias' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.Statistics.symmetric_selected_unbiased' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.Statistics.symmetric_selected_mse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.Statistics.symmetric_fixed_two_mse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.Statistics.symmetric_fixed_three_mse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Stripes.Statistics.conditional_repeat_can_increase_mse' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+Exit code: 0
+Finished (KST): 2026-11-04T22:23:28+09:00

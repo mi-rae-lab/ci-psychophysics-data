@@ -1,0 +1,10 @@
+name = "tmtf_lean"
+version = "0.1.0"
+defaultTargets = ["TMTF", "crosscheck"]
+
+[[lean_lib]]
+name = "TMTF"
+
+[[lean_exe]]
+name = "crosscheck"
+root = "CrossCheck"
