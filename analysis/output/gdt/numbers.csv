@@ -1,0 +1,155 @@
+key,value
+aborted.n_responses,2
+aborted.n_runs,2
+all.n_floor_limited,7
+all.n_numeric,18
+all.n_reversals,238
+all.n_reversals_used,130
+all.n_runs,25
+all.n_trials,866
+check.figure_pages,8
+check.threshold_recomputed_vs_app_mismatch,0
+deleted.n_runs,3
+deleted.n_trials,101
+examples.n,15
+floor.B,0.3125
+floor.D,1.0
+floor.E,2.0
+panel.A.n_runs,9
+panel.A.n_trials,328
+panel.B.n_runs,4
+panel.B.n_trials,154
+panel.C.n_runs,5
+panel.C.n_trials,177
+panel.D.n_runs,3
+panel.D.n_trials,154
+panel.E.n_runs,2
+panel.E.n_trials,30
+panel.F.n_runs,2
+panel.F.n_trials,23
+practice.n_runs,0
+run.A1.correct,28/40
+run.A1.n_reversals,12
+run.A1.n_trials,40
+run.A1.start_kst,2026-11-01 22:16
+run.A1.value,6.771277802243801
+run.A2.correct,23/32
+run.A2.n_reversals,12
+run.A2.n_trials,32
+run.A2.start_kst,2026-11-01 22:20
+run.A2.value,10.905077471724125
+run.A3.correct,28/37
+run.A3.n_reversals,12
+run.A3.n_trials,37
+run.A3.start_kst,2026-11-01 22:22
+run.A3.value,8.052451740088316
+run.A4.correct,30/43
+run.A4.n_reversals,12
+run.A4.n_trials,43
+run.A4.start_kst,2026-11-01 22:48
+run.A4.value,7.711054229620779
+run.A5.correct,25/34
+run.A5.n_reversals,12
+run.A5.n_trials,34
+run.A5.start_kst,2026-11-01 22:56
+run.A5.value,10.000000199546792
+run.A6.correct,25/33
+run.A6.n_reversals,12
+run.A6.n_trials,33
+run.A6.start_kst,2026-11-01 23:49
+run.A6.value,8.40896432033533
+run.A7.correct,27/36
+run.A7.n_reversals,12
+run.A7.n_trials,36
+run.A7.start_kst,2026-11-01 23:55
+run.A7.value,11.387886536934937
+run.A8.correct,30/40
+run.A8.n_reversals,12
+run.A8.n_trials,40
+run.A8.start_kst,2026-11-03 19:39
+run.A8.value,4.390630473944602
+run.A9.correct,25/33
+run.A9.n_reversals,12
+run.A9.n_trials,33
+run.A9.start_kst,2026-11-03 19:43
+run.A9.value,5.452538735862062
+run.B1.correct,25/26
+run.B1.n_reversals,2
+run.B1.n_trials,26
+run.B1.start_kst,2026-11-01 22:51
+run.B1.value,floor
+run.B2.correct,32/36
+run.B2.n_reversals,8
+run.B2.n_trials,36
+run.B2.start_kst,2026-11-01 23:03
+run.B2.value,floor
+run.B3.correct,43/50
+run.B3.n_reversals,10
+run.B3.n_trials,50
+run.B3.start_kst,2026-11-01 23:41
+run.B3.value,floor
+run.B4.correct,37/42
+run.B4.n_reversals,8
+run.B4.n_trials,42
+run.B4.start_kst,2026-11-01 23:45
+run.B4.value,floor
+run.C1.correct,20/33
+run.C1.n_reversals,12
+run.C1.n_trials,33
+run.C1.start_kst,2026-11-01 22:53
+run.C1.value,45.55154524081705
+run.C2.correct,25/40
+run.C2.n_reversals,12
+run.C2.n_trials,40
+run.C2.start_kst,2026-11-01 22:59
+run.C2.value,27.08511096957439
+run.C3.correct,26/40
+run.C3.n_reversals,12
+run.C3.n_trials,40
+run.C3.start_kst,2026-11-01 23:59
+run.C3.value,32.209806605204435
+run.C4.correct,15/24
+run.C4.n_reversals,12
+run.C4.n_trials,24
+run.C4.start_kst,2026-11-02 00:02
+run.C4.value,29.53652275727875
+run.C5.correct,26/40
+run.C5.n_reversals,12
+run.C5.n_trials,40
+run.C5.start_kst,2026-11-03 20:11
+run.C5.value,29.536522952417474
+run.D1.correct,42/49
+run.D1.n_reversals,10
+run.D1.n_trials,49
+run.D1.start_kst,2026-11-03 19:46
+run.D1.value,2.3333333333333335
+run.D2.correct,42/49
+run.D2.n_reversals,10
+run.D2.n_trials,49
+run.D2.start_kst,2026-11-03 19:50
+run.D2.value,2.5
+run.D3.correct,48/56
+run.D3.n_reversals,10
+run.D3.n_trials,56
+run.D3.start_kst,2026-11-03 19:55
+run.D3.value,floor
+run.E1.correct,14/14
+run.E1.n_reversals,0
+run.E1.n_trials,14
+run.E1.start_kst,2026-11-01 22:37
+run.E1.value,floor
+run.E2.correct,15/16
+run.E2.n_reversals,2
+run.E2.n_trials,16
+run.E2.start_kst,2026-11-01 22:38
+run.E2.value,floor
+run.F1.correct,6/11
+run.F1.n_reversals,5
+run.F1.n_trials,11
+run.F1.start_kst,2026-11-01 22:36
+run.F1.value,17.333333333333332
+run.F2.correct,8/12
+run.F2.n_reversals,5
+run.F2.n_trials,12
+run.F2.start_kst,2026-11-01 22:40
+run.F2.value,11.333333333333334

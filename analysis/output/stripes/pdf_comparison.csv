@@ -1,0 +1,46 @@
+test,key,pdf,computed,match,where
+stripes,all.n_runs,3,3,1,STRIPES_scientific_figures_EN.pdf p1
+stripes,all.n_trials,92,92,1,STRIPES_scientific_figures_EN.pdf p1
+stripes,all.date,2026-10-16,2026-10-16,1,STRIPES_scientific_figures_EN.pdf p1
+stripes,R.n_runs,2,2,1,STRIPES_scientific_figures_EN.pdf p1 A
+stripes,R.n_trials,54,54,1,STRIPES_scientific_figures_EN.pdf p1 A
+stripes,R.mean_D,3.775,3.775,1,STRIPES_scientific_figures_EN.pdf p1 A
+stripes,R.sd_D,0.106,0.106,1,STRIPES_scientific_figures_EN.pdf p1 A
+stripes,R.mean_RPO,0.755,0.755,1,STRIPES_scientific_figures_EN.pdf p1 A
+stripes,R.sd_RPO,0.021,0.021,1,STRIPES_scientific_figures_EN.pdf p1 A
+stripes,L.n_runs,1,1,1,STRIPES_scientific_figures_EN.pdf p1 A
+stripes,L.n_trials,38,38,1,STRIPES_scientific_figures_EN.pdf p1 A
+stripes,L.threshold_D,1.200,1.200,1,STRIPES_scientific_figures_EN.pdf p1 A
+stripes,L.threshold_RPO,0.240,0.240,1,STRIPES_scientific_figures_EN.pdf p1 A
+stripes,all.lower_bound_D,1.1,1.1,1,STRIPES_scientific_figures_EN.pdf p2 D
+stripes,all.lower_bound_RPO,0.22,0.22,1,STRIPES_scientific_figures_EN.pdf p2 D
+stripes,run.R1.n_trials,29,29,1,STRIPES_scientific_figures_EN.pdf p1-3
+stripes,run.R1.threshold_D,3.850,3.850,1,STRIPES_scientific_figures_EN.pdf p1-2
+stripes,run.R1.threshold_RPO,0.770,0.770,1,STRIPES_scientific_figures_EN.pdf p1-2
+stripes,run.R1.n_reversals,8,8,1,STRIPES_scientific_figures_EN.pdf p2
+stripes,run.R1.n_reversals_retained,4,4,1,STRIPES_scientific_figures_EN.pdf p2
+stripes,run.R1.lower_bound_trials,2,2,1,STRIPES_scientific_figures_EN.pdf p2 D
+stripes,run.R1.lower_bound_pct,6.9,6.9,1,STRIPES_scientific_figures_EN.pdf p2 D
+stripes,run.R1.n_correct,24,24,1,STRIPES_scientific_figures_EN.pdf p3
+stripes,run.R1.correct_by_density,2/2 2/2 2/2 4/4 2/3 6/6 6/7 0/2 0/1,2/2 2/2 2/2 4/4 2/3 6/6 6/7 0/2 0/1,1,STRIPES_scientific_figures_EN.pdf p3 A-C
+stripes,run.R1.trials_by_density,2 2 2 4 3 6 7 2 1,2 2 2 4 3 6 7 2 1,1,STRIPES_scientific_figures_EN.pdf p3 D-F
+stripes,run.R2.n_trials,25,25,1,STRIPES_scientific_figures_EN.pdf p1-3
+stripes,run.R2.threshold_D,3.700,3.700,1,STRIPES_scientific_figures_EN.pdf p1-2
+stripes,run.R2.threshold_RPO,0.740,0.740,1,STRIPES_scientific_figures_EN.pdf p1-2
+stripes,run.R2.n_reversals,8,8,1,STRIPES_scientific_figures_EN.pdf p2
+stripes,run.R2.n_reversals_retained,4,4,1,STRIPES_scientific_figures_EN.pdf p2
+stripes,run.R2.lower_bound_trials,2,2,1,STRIPES_scientific_figures_EN.pdf p2 D
+stripes,run.R2.lower_bound_pct,8.0,8.0,1,STRIPES_scientific_figures_EN.pdf p2 D
+stripes,run.R2.n_correct,21,21,1,STRIPES_scientific_figures_EN.pdf p3
+stripes,run.R2.correct_by_density,2/2 2/2 2/2 2/2 2/2 10/10 1/3 0/2,2/2 2/2 2/2 2/2 2/2 10/10 1/3 0/2,1,STRIPES_scientific_figures_EN.pdf p3 A-C
+stripes,run.R2.trials_by_density,2 2 2 2 2 10 3 2,2 2 2 2 2 10 3 2,1,STRIPES_scientific_figures_EN.pdf p3 D-F
+stripes,run.L1.n_trials,38,38,1,STRIPES_scientific_figures_EN.pdf p1-3
+stripes,run.L1.threshold_D,1.200,1.200,1,STRIPES_scientific_figures_EN.pdf p1-2
+stripes,run.L1.threshold_RPO,0.240,0.240,1,STRIPES_scientific_figures_EN.pdf p1-2
+stripes,run.L1.n_reversals,8,8,1,STRIPES_scientific_figures_EN.pdf p2
+stripes,run.L1.n_reversals_retained,4,4,1,STRIPES_scientific_figures_EN.pdf p2
+stripes,run.L1.lower_bound_trials,33,33,1,STRIPES_scientific_figures_EN.pdf p2 D
+stripes,run.L1.lower_bound_pct,86.8,86.8,1,STRIPES_scientific_figures_EN.pdf p2 D
+stripes,run.L1.n_correct,20,20,1,STRIPES_scientific_figures_EN.pdf p3
+stripes,run.L1.correct_by_density,19/33 1/3 0/2,19/33 1/3 0/2,1,STRIPES_scientific_figures_EN.pdf p3 A-C
+stripes,run.L1.trials_by_density,33 3 2,33 3 2,1,STRIPES_scientific_figures_EN.pdf p3 D-F

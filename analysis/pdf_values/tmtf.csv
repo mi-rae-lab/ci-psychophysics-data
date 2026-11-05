@@ -1,0 +1,520 @@
+key,expected,where
+two_interval.L.10Hz.mean_neg_mdt,26.70,TMTF_English.pdf p1 table
+two_interval.L.10Hz.sd,1.55,TMTF_English.pdf p1 table
+two_interval.L.10Hz.flagged,no,TMTF_English.pdf p1 table (dagger)
+two_interval.L.50Hz.mean_neg_mdt,17.07,TMTF_English.pdf p1 table
+two_interval.L.50Hz.sd,1.89,TMTF_English.pdf p1 table
+two_interval.L.50Hz.flagged,no,TMTF_English.pdf p1 table (dagger)
+two_interval.L.75Hz.mean_neg_mdt,5.53,TMTF_English.pdf p1 table
+two_interval.L.75Hz.sd,0.50,TMTF_English.pdf p1 table
+two_interval.L.75Hz.flagged,yes,TMTF_English.pdf p1 table (dagger)
+two_interval.L.100Hz.mean_neg_mdt,4.80,TMTF_English.pdf p1 table
+two_interval.L.100Hz.sd,2.76,TMTF_English.pdf p1 table
+two_interval.L.100Hz.flagged,yes,TMTF_English.pdf p1 table (dagger)
+two_interval.L.10Hz.n,4,TMTF_English.pdf p1 table
+two_interval.L.10Hz.R,4,TMTF_English.pdf p1 table
+two_interval.L.50Hz.n,3,TMTF_English.pdf p1 table
+two_interval.L.50Hz.R,3,TMTF_English.pdf p1 table
+two_interval.L.75Hz.n,3,TMTF_English.pdf p1 table
+two_interval.L.75Hz.R,3,TMTF_English.pdf p1 table
+two_interval.L.100Hz.n,4,TMTF_English.pdf p1 table
+two_interval.L.100Hz.R,4,TMTF_English.pdf p1 table
+two_interval.L.10Hz.N,230,TMTF_English.pdf p1 table
+two_interval.L.50Hz.N,140,TMTF_English.pdf p1 table
+two_interval.L.75Hz.N,133,TMTF_English.pdf p1 table
+two_interval.L.100Hz.N,208,TMTF_English.pdf p1 table
+two_interval.R.10Hz.mean_neg_mdt,26.30,TMTF_English.pdf p1 table
+two_interval.R.10Hz.sd,1.27,TMTF_English.pdf p1 table
+two_interval.R.10Hz.flagged,no,TMTF_English.pdf p1 table (dagger)
+two_interval.R.50Hz.mean_neg_mdt,17.20,TMTF_English.pdf p1 table
+two_interval.R.50Hz.sd,1.41,TMTF_English.pdf p1 table
+two_interval.R.50Hz.flagged,no,TMTF_English.pdf p1 table (dagger)
+two_interval.R.75Hz.mean_neg_mdt,2.30,TMTF_English.pdf p1 table
+two_interval.R.75Hz.sd,0.99,TMTF_English.pdf p1 table
+two_interval.R.75Hz.flagged,yes,TMTF_English.pdf p1 table (dagger)
+two_interval.R.100Hz.mean_neg_mdt,1.30,TMTF_English.pdf p1 table
+two_interval.R.100Hz.sd,0.42,TMTF_English.pdf p1 table
+two_interval.R.100Hz.flagged,yes,TMTF_English.pdf p1 table (dagger)
+two_interval.R.10Hz.n,2,TMTF_English.pdf p1 table
+two_interval.R.10Hz.R,2,TMTF_English.pdf p1 table
+two_interval.R.50Hz.n,2,TMTF_English.pdf p1 table
+two_interval.R.50Hz.R,2,TMTF_English.pdf p1 table
+two_interval.R.75Hz.n,2,TMTF_English.pdf p1 table
+two_interval.R.75Hz.R,2,TMTF_English.pdf p1 table
+two_interval.R.100Hz.n,2,TMTF_English.pdf p1 table
+two_interval.R.100Hz.R,2,TMTF_English.pdf p1 table
+two_interval.R.10Hz.N,106,TMTF_English.pdf p1 table
+two_interval.R.50Hz.N,106,TMTF_English.pdf p1 table
+two_interval.R.75Hz.N,129,TMTF_English.pdf p1 table
+two_interval.R.100Hz.N,91,TMTF_English.pdf p1 table
+two_interval.total.n,22,TMTF_English.pdf p1 header
+two_interval.total.R,22,TMTF_English.pdf p1 header
+two_interval.total.N,1143,TMTF_English.pdf p1 header
+bandpass.L.5Hz.mean_neg_mdt,21.50,TMTF_English.pdf p2 table
+bandpass.L.5Hz.sd,3.07,TMTF_English.pdf p2 table
+bandpass.L.5Hz.flagged,no,TMTF_English.pdf p2 table (dagger)
+bandpass.L.10Hz.mean_neg_mdt,24.00,TMTF_English.pdf p2 table
+bandpass.L.10Hz.sd,1.88,TMTF_English.pdf p2 table
+bandpass.L.10Hz.flagged,no,TMTF_English.pdf p2 table (dagger)
+bandpass.L.50Hz.mean_neg_mdt,16.00,TMTF_English.pdf p2 table
+bandpass.L.50Hz.sd,0.00,TMTF_English.pdf p2 table
+bandpass.L.50Hz.flagged,no,TMTF_English.pdf p2 table (dagger)
+bandpass.L.75Hz.mean_neg_mdt,3.33,TMTF_English.pdf p2 table
+bandpass.L.75Hz.sd,—,TMTF_English.pdf p2 table
+bandpass.L.75Hz.flagged,no,TMTF_English.pdf p2 table (dagger)
+bandpass.L.100Hz.mean_neg_mdt,2.00,TMTF_English.pdf p2 table
+bandpass.L.100Hz.sd,—,TMTF_English.pdf p2 table
+bandpass.L.100Hz.flagged,no,TMTF_English.pdf p2 table (dagger)
+bandpass.L.150Hz.mean_neg_mdt,1.00,TMTF_English.pdf p2 table
+bandpass.L.150Hz.sd,—,TMTF_English.pdf p2 table
+bandpass.L.150Hz.flagged,no,TMTF_English.pdf p2 table (dagger)
+bandpass.L.200Hz.mean_neg_mdt,2.33,TMTF_English.pdf p2 table
+bandpass.L.200Hz.sd,0.47,TMTF_English.pdf p2 table
+bandpass.L.200Hz.flagged,no,TMTF_English.pdf p2 table (dagger)
+bandpass.L.5Hz.n,2,TMTF_English.pdf p2 table
+bandpass.L.5Hz.R,2,TMTF_English.pdf p2 table
+bandpass.L.10Hz.n,2,TMTF_English.pdf p2 table
+bandpass.L.10Hz.R,2,TMTF_English.pdf p2 table
+bandpass.L.50Hz.n,2,TMTF_English.pdf p2 table
+bandpass.L.50Hz.R,2,TMTF_English.pdf p2 table
+bandpass.L.75Hz.n,1,TMTF_English.pdf p2 table
+bandpass.L.75Hz.R,2,TMTF_English.pdf p2 table
+bandpass.L.100Hz.n,1,TMTF_English.pdf p2 table
+bandpass.L.100Hz.R,2,TMTF_English.pdf p2 table
+bandpass.L.150Hz.n,1,TMTF_English.pdf p2 table
+bandpass.L.150Hz.R,1,TMTF_English.pdf p2 table
+bandpass.L.200Hz.n,2,TMTF_English.pdf p2 table
+bandpass.L.200Hz.R,2,TMTF_English.pdf p2 table
+bandpass.L.5Hz.N,63,TMTF_English.pdf p2 table
+bandpass.L.10Hz.N,69,TMTF_English.pdf p2 table
+bandpass.L.50Hz.N,52,TMTF_English.pdf p2 table
+bandpass.L.75Hz.N,53,TMTF_English.pdf p2 table
+bandpass.L.100Hz.N,31,TMTF_English.pdf p2 table
+bandpass.L.150Hz.N,23,TMTF_English.pdf p2 table
+bandpass.L.200Hz.N,48,TMTF_English.pdf p2 table
+bandpass.R.5Hz.mean_neg_mdt,20.33,TMTF_English.pdf p2 table
+bandpass.R.5Hz.sd,1.41,TMTF_English.pdf p2 table
+bandpass.R.5Hz.flagged,no,TMTF_English.pdf p2 table (dagger)
+bandpass.R.10Hz.mean_neg_mdt,19.50,TMTF_English.pdf p2 table
+bandpass.R.10Hz.sd,0.24,TMTF_English.pdf p2 table
+bandpass.R.10Hz.flagged,no,TMTF_English.pdf p2 table (dagger)
+bandpass.R.50Hz.mean_neg_mdt,15.33,TMTF_English.pdf p2 table
+bandpass.R.50Hz.sd,1.41,TMTF_English.pdf p2 table
+bandpass.R.50Hz.flagged,no,TMTF_English.pdf p2 table (dagger)
+bandpass.R.75Hz.mean_neg_mdt,—,TMTF_English.pdf p2 table
+bandpass.R.75Hz.sd,—,TMTF_English.pdf p2 table
+bandpass.R.75Hz.flagged,no,TMTF_English.pdf p2 table (dagger)
+bandpass.R.100Hz.mean_neg_mdt,—,TMTF_English.pdf p2 table
+bandpass.R.100Hz.sd,—,TMTF_English.pdf p2 table
+bandpass.R.100Hz.flagged,no,TMTF_English.pdf p2 table (dagger)
+bandpass.R.150Hz.mean_neg_mdt,—,TMTF_English.pdf p2 table
+bandpass.R.150Hz.sd,—,TMTF_English.pdf p2 table
+bandpass.R.150Hz.flagged,no,TMTF_English.pdf p2 table (dagger)
+bandpass.R.200Hz.mean_neg_mdt,—,TMTF_English.pdf p2 table
+bandpass.R.200Hz.sd,—,TMTF_English.pdf p2 table
+bandpass.R.200Hz.flagged,no,TMTF_English.pdf p2 table (dagger)
+bandpass.R.5Hz.n,2,TMTF_English.pdf p2 table
+bandpass.R.5Hz.R,2,TMTF_English.pdf p2 table
+bandpass.R.10Hz.n,2,TMTF_English.pdf p2 table
+bandpass.R.10Hz.R,2,TMTF_English.pdf p2 table
+bandpass.R.50Hz.n,2,TMTF_English.pdf p2 table
+bandpass.R.50Hz.R,2,TMTF_English.pdf p2 table
+bandpass.R.75Hz.n,0,TMTF_English.pdf p2 table
+bandpass.R.75Hz.R,2,TMTF_English.pdf p2 table
+bandpass.R.100Hz.n,0,TMTF_English.pdf p2 table
+bandpass.R.100Hz.R,2,TMTF_English.pdf p2 table
+bandpass.R.150Hz.n,—,TMTF_English.pdf p2 table
+bandpass.R.150Hz.R,—,TMTF_English.pdf p2 table
+bandpass.R.200Hz.n,—,TMTF_English.pdf p2 table
+bandpass.R.200Hz.R,—,TMTF_English.pdf p2 table
+bandpass.R.5Hz.N,66,TMTF_English.pdf p2 table
+bandpass.R.10Hz.N,63,TMTF_English.pdf p2 table
+bandpass.R.50Hz.N,59,TMTF_English.pdf p2 table
+bandpass.R.75Hz.N,23,TMTF_English.pdf p2 table
+bandpass.R.100Hz.N,27,TMTF_English.pdf p2 table
+bandpass.R.150Hz.N,—,TMTF_English.pdf p2 table
+bandpass.R.200Hz.N,—,TMTF_English.pdf p2 table
+bandpass.total.n,17,TMTF_English.pdf p2 header
+bandpass.total.R,23,TMTF_English.pdf p2 header
+bandpass.total.N,577,TMTF_English.pdf p2 header
+custom.R.4Hz.mean_neg_mdt,18.00,TMTF_English.pdf p3 table
+custom.R.4Hz.sd,0.28,TMTF_English.pdf p3 table
+custom.R.4Hz.flagged,no,TMTF_English.pdf p3 table (dagger)
+custom.R.5Hz.mean_neg_mdt,19.10,TMTF_English.pdf p3 table
+custom.R.5Hz.sd,0.14,TMTF_English.pdf p3 table
+custom.R.5Hz.flagged,no,TMTF_English.pdf p3 table (dagger)
+custom.R.8Hz.mean_neg_mdt,20.00,TMTF_English.pdf p3 table
+custom.R.8Hz.sd,0.85,TMTF_English.pdf p3 table
+custom.R.8Hz.flagged,no,TMTF_English.pdf p3 table (dagger)
+custom.R.10Hz.mean_neg_mdt,19.20,TMTF_English.pdf p3 table
+custom.R.10Hz.sd,0.85,TMTF_English.pdf p3 table
+custom.R.10Hz.flagged,no,TMTF_English.pdf p3 table (dagger)
+custom.R.15Hz.mean_neg_mdt,17.60,TMTF_English.pdf p3 table
+custom.R.15Hz.sd,0.28,TMTF_English.pdf p3 table
+custom.R.15Hz.flagged,no,TMTF_English.pdf p3 table (dagger)
+custom.R.16Hz.mean_neg_mdt,21.70,TMTF_English.pdf p3 table
+custom.R.16Hz.sd,1.78,TMTF_English.pdf p3 table
+custom.R.16Hz.flagged,no,TMTF_English.pdf p3 table (dagger)
+custom.R.20Hz.mean_neg_mdt,18.95,TMTF_English.pdf p3 table
+custom.R.20Hz.sd,1.18,TMTF_English.pdf p3 table
+custom.R.20Hz.flagged,no,TMTF_English.pdf p3 table (dagger)
+custom.R.25Hz.mean_neg_mdt,20.35,TMTF_English.pdf p3 table
+custom.R.25Hz.sd,1.34,TMTF_English.pdf p3 table
+custom.R.25Hz.flagged,no,TMTF_English.pdf p3 table (dagger)
+custom.R.30Hz.mean_neg_mdt,18.50,TMTF_English.pdf p3 table
+custom.R.30Hz.sd,1.09,TMTF_English.pdf p3 table
+custom.R.30Hz.flagged,no,TMTF_English.pdf p3 table (dagger)
+custom.R.32Hz.mean_neg_mdt,18.40,TMTF_English.pdf p3 table
+custom.R.32Hz.sd,3.11,TMTF_English.pdf p3 table
+custom.R.32Hz.flagged,no,TMTF_English.pdf p3 table (dagger)
+custom.R.4Hz.n,2,TMTF_English.pdf p3 table
+custom.R.4Hz.R,2,TMTF_English.pdf p3 table
+custom.R.5Hz.n,2,TMTF_English.pdf p3 table
+custom.R.5Hz.R,2,TMTF_English.pdf p3 table
+custom.R.8Hz.n,2,TMTF_English.pdf p3 table
+custom.R.8Hz.R,2,TMTF_English.pdf p3 table
+custom.R.10Hz.n,2,TMTF_English.pdf p3 table
+custom.R.10Hz.R,2,TMTF_English.pdf p3 table
+custom.R.15Hz.n,2,TMTF_English.pdf p3 table
+custom.R.15Hz.R,2,TMTF_English.pdf p3 table
+custom.R.16Hz.n,4,TMTF_English.pdf p3 table
+custom.R.16Hz.R,4,TMTF_English.pdf p3 table
+custom.R.20Hz.n,4,TMTF_English.pdf p3 table
+custom.R.20Hz.R,4,TMTF_English.pdf p3 table
+custom.R.25Hz.n,4,TMTF_English.pdf p3 table
+custom.R.25Hz.R,4,TMTF_English.pdf p3 table
+custom.R.30Hz.n,4,TMTF_English.pdf p3 table
+custom.R.30Hz.R,4,TMTF_English.pdf p3 table
+custom.R.32Hz.n,4,TMTF_English.pdf p3 table
+custom.R.32Hz.R,4,TMTF_English.pdf p3 table
+custom.R.4Hz.N,81,TMTF_English.pdf p3 table
+custom.R.5Hz.N,88,TMTF_English.pdf p3 table
+custom.R.8Hz.N,110,TMTF_English.pdf p3 table
+custom.R.10Hz.N,104,TMTF_English.pdf p3 table
+custom.R.15Hz.N,92,TMTF_English.pdf p3 table
+custom.R.16Hz.N,167,TMTF_English.pdf p3 table
+custom.R.20Hz.N,203,TMTF_English.pdf p3 table
+custom.R.25Hz.N,189,TMTF_English.pdf p3 table
+custom.R.30Hz.N,188,TMTF_English.pdf p3 table
+custom.R.32Hz.N,183,TMTF_English.pdf p3 table
+custom.R.35Hz.mean_neg_mdt,18.12,TMTF_English.pdf p3 table
+custom.R.35Hz.sd,1.69,TMTF_English.pdf p3 table
+custom.R.35Hz.flagged,no,TMTF_English.pdf p3 table (dagger)
+custom.R.40Hz.mean_neg_mdt,18.85,TMTF_English.pdf p3 table
+custom.R.40Hz.sd,1.78,TMTF_English.pdf p3 table
+custom.R.40Hz.flagged,no,TMTF_English.pdf p3 table (dagger)
+custom.R.45Hz.mean_neg_mdt,17.50,TMTF_English.pdf p3 table
+custom.R.45Hz.sd,0.62,TMTF_English.pdf p3 table
+custom.R.45Hz.flagged,no,TMTF_English.pdf p3 table (dagger)
+custom.R.50Hz.mean_neg_mdt,15.36,TMTF_English.pdf p3 table
+custom.R.50Hz.sd,1.77,TMTF_English.pdf p3 table
+custom.R.50Hz.flagged,no,TMTF_English.pdf p3 table (dagger)
+custom.R.55Hz.mean_neg_mdt,13.50,TMTF_English.pdf p3 table
+custom.R.55Hz.sd,1.28,TMTF_English.pdf p3 table
+custom.R.55Hz.flagged,no,TMTF_English.pdf p3 table (dagger)
+custom.R.60Hz.mean_neg_mdt,10.60,TMTF_English.pdf p3 table
+custom.R.60Hz.sd,0.99,TMTF_English.pdf p3 table
+custom.R.60Hz.flagged,no,TMTF_English.pdf p3 table (dagger)
+custom.R.61Hz.mean_neg_mdt,9.30,TMTF_English.pdf p3 table
+custom.R.61Hz.sd,0.42,TMTF_English.pdf p3 table
+custom.R.61Hz.flagged,no,TMTF_English.pdf p3 table (dagger)
+custom.R.62Hz.mean_neg_mdt,10.50,TMTF_English.pdf p3 table
+custom.R.62Hz.sd,0.99,TMTF_English.pdf p3 table
+custom.R.62Hz.flagged,no,TMTF_English.pdf p3 table (dagger)
+custom.R.63Hz.mean_neg_mdt,7.90,TMTF_English.pdf p3 table
+custom.R.63Hz.sd,0.42,TMTF_English.pdf p3 table
+custom.R.63Hz.flagged,no,TMTF_English.pdf p3 table (dagger)
+custom.R.64Hz.mean_neg_mdt,6.60,TMTF_English.pdf p3 table
+custom.R.64Hz.sd,0.71,TMTF_English.pdf p3 table
+custom.R.64Hz.flagged,no,TMTF_English.pdf p3 table (dagger)
+custom.R.35Hz.n,5,TMTF_English.pdf p3 table
+custom.R.35Hz.R,5,TMTF_English.pdf p3 table
+custom.R.40Hz.n,4,TMTF_English.pdf p3 table
+custom.R.40Hz.R,4,TMTF_English.pdf p3 table
+custom.R.45Hz.n,4,TMTF_English.pdf p3 table
+custom.R.45Hz.R,4,TMTF_English.pdf p3 table
+custom.R.50Hz.n,5,TMTF_English.pdf p3 table
+custom.R.50Hz.R,5,TMTF_English.pdf p3 table
+custom.R.55Hz.n,4,TMTF_English.pdf p3 table
+custom.R.55Hz.R,4,TMTF_English.pdf p3 table
+custom.R.60Hz.n,4,TMTF_English.pdf p3 table
+custom.R.60Hz.R,4,TMTF_English.pdf p3 table
+custom.R.61Hz.n,2,TMTF_English.pdf p3 table
+custom.R.61Hz.R,2,TMTF_English.pdf p3 table
+custom.R.62Hz.n,2,TMTF_English.pdf p3 table
+custom.R.62Hz.R,2,TMTF_English.pdf p3 table
+custom.R.63Hz.n,2,TMTF_English.pdf p3 table
+custom.R.63Hz.R,2,TMTF_English.pdf p3 table
+custom.R.64Hz.n,4,TMTF_English.pdf p3 table
+custom.R.64Hz.R,4,TMTF_English.pdf p3 table
+custom.R.35Hz.N,242,TMTF_English.pdf p3 table
+custom.R.40Hz.N,227,TMTF_English.pdf p3 table
+custom.R.45Hz.N,193,TMTF_English.pdf p3 table
+custom.R.50Hz.N,220,TMTF_English.pdf p3 table
+custom.R.55Hz.N,195,TMTF_English.pdf p3 table
+custom.R.60Hz.N,184,TMTF_English.pdf p3 table
+custom.R.61Hz.N,88,TMTF_English.pdf p3 table
+custom.R.62Hz.N,85,TMTF_English.pdf p3 table
+custom.R.63Hz.N,82,TMTF_English.pdf p3 table
+custom.R.64Hz.N,151,TMTF_English.pdf p3 table
+custom.R.65Hz.mean_neg_mdt,6.25,TMTF_English.pdf p3 table
+custom.R.65Hz.sd,1.58,TMTF_English.pdf p3 table
+custom.R.65Hz.flagged,yes,TMTF_English.pdf p3 table (dagger)
+custom.R.66Hz.mean_neg_mdt,4.80,TMTF_English.pdf p3 table
+custom.R.66Hz.sd,1.41,TMTF_English.pdf p3 table
+custom.R.66Hz.flagged,no,TMTF_English.pdf p3 table (dagger)
+custom.R.67Hz.mean_neg_mdt,3.90,TMTF_English.pdf p3 table
+custom.R.67Hz.sd,0.42,TMTF_English.pdf p3 table
+custom.R.67Hz.flagged,no,TMTF_English.pdf p3 table (dagger)
+custom.R.68Hz.mean_neg_mdt,2.40,TMTF_English.pdf p3 table
+custom.R.68Hz.sd,—,TMTF_English.pdf p3 table
+custom.R.68Hz.flagged,no,TMTF_English.pdf p3 table (dagger)
+custom.R.69Hz.mean_neg_mdt,1.80,TMTF_English.pdf p3 table
+custom.R.69Hz.sd,—,TMTF_English.pdf p3 table
+custom.R.69Hz.flagged,no,TMTF_English.pdf p3 table (dagger)
+custom.R.70Hz.mean_neg_mdt,—,TMTF_English.pdf p3 table
+custom.R.70Hz.sd,—,TMTF_English.pdf p3 table
+custom.R.70Hz.flagged,no,TMTF_English.pdf p3 table (dagger)
+custom.R.75Hz.mean_neg_mdt,—,TMTF_English.pdf p3 table
+custom.R.75Hz.sd,—,TMTF_English.pdf p3 table
+custom.R.75Hz.flagged,no,TMTF_English.pdf p3 table (dagger)
+custom.R.80Hz.mean_neg_mdt,—,TMTF_English.pdf p3 table
+custom.R.80Hz.sd,—,TMTF_English.pdf p3 table
+custom.R.80Hz.flagged,no,TMTF_English.pdf p3 table (dagger)
+custom.R.85Hz.mean_neg_mdt,—,TMTF_English.pdf p3 table
+custom.R.85Hz.sd,—,TMTF_English.pdf p3 table
+custom.R.85Hz.flagged,no,TMTF_English.pdf p3 table (dagger)
+custom.R.90Hz.mean_neg_mdt,—,TMTF_English.pdf p3 table
+custom.R.90Hz.sd,—,TMTF_English.pdf p3 table
+custom.R.90Hz.flagged,no,TMTF_English.pdf p3 table (dagger)
+custom.R.65Hz.n,4,TMTF_English.pdf p3 table
+custom.R.65Hz.R,4,TMTF_English.pdf p3 table
+custom.R.66Hz.n,2,TMTF_English.pdf p3 table
+custom.R.66Hz.R,2,TMTF_English.pdf p3 table
+custom.R.67Hz.n,2,TMTF_English.pdf p3 table
+custom.R.67Hz.R,2,TMTF_English.pdf p3 table
+custom.R.68Hz.n,1,TMTF_English.pdf p3 table
+custom.R.68Hz.R,2,TMTF_English.pdf p3 table
+custom.R.69Hz.n,1,TMTF_English.pdf p3 table
+custom.R.69Hz.R,2,TMTF_English.pdf p3 table
+custom.R.70Hz.n,0,TMTF_English.pdf p3 table
+custom.R.70Hz.R,2,TMTF_English.pdf p3 table
+custom.R.75Hz.n,0,TMTF_English.pdf p3 table
+custom.R.75Hz.R,2,TMTF_English.pdf p3 table
+custom.R.80Hz.n,0,TMTF_English.pdf p3 table
+custom.R.80Hz.R,2,TMTF_English.pdf p3 table
+custom.R.85Hz.n,0,TMTF_English.pdf p3 table
+custom.R.85Hz.R,2,TMTF_English.pdf p3 table
+custom.R.90Hz.n,0,TMTF_English.pdf p3 table
+custom.R.90Hz.R,1,TMTF_English.pdf p3 table
+custom.R.65Hz.N,164,TMTF_English.pdf p3 table
+custom.R.66Hz.N,85,TMTF_English.pdf p3 table
+custom.R.67Hz.N,77,TMTF_English.pdf p3 table
+custom.R.68Hz.N,57,TMTF_English.pdf p3 table
+custom.R.69Hz.N,51,TMTF_English.pdf p3 table
+custom.R.70Hz.N,15,TMTF_English.pdf p3 table
+custom.R.75Hz.N,10,TMTF_English.pdf p3 table
+custom.R.80Hz.N,11,TMTF_English.pdf p3 table
+custom.R.85Hz.N,50,TMTF_English.pdf p3 table
+custom.R.90Hz.N,13,TMTF_English.pdf p3 table
+custom.R.95Hz.mean_neg_mdt,—,TMTF_English.pdf p3 table
+custom.R.95Hz.sd,—,TMTF_English.pdf p3 table
+custom.R.95Hz.flagged,no,TMTF_English.pdf p3 table (dagger)
+custom.R.100Hz.mean_neg_mdt,—,TMTF_English.pdf p3 table
+custom.R.100Hz.sd,—,TMTF_English.pdf p3 table
+custom.R.100Hz.flagged,no,TMTF_English.pdf p3 table (dagger)
+custom.R.180Hz.mean_neg_mdt,—,TMTF_English.pdf p3 table
+custom.R.180Hz.sd,—,TMTF_English.pdf p3 table
+custom.R.180Hz.flagged,no,TMTF_English.pdf p3 table (dagger)
+custom.R.185Hz.mean_neg_mdt,—,TMTF_English.pdf p3 table
+custom.R.185Hz.sd,—,TMTF_English.pdf p3 table
+custom.R.185Hz.flagged,no,TMTF_English.pdf p3 table (dagger)
+custom.R.190Hz.mean_neg_mdt,—,TMTF_English.pdf p3 table
+custom.R.190Hz.sd,—,TMTF_English.pdf p3 table
+custom.R.190Hz.flagged,no,TMTF_English.pdf p3 table (dagger)
+custom.R.195Hz.mean_neg_mdt,—,TMTF_English.pdf p3 table
+custom.R.195Hz.sd,—,TMTF_English.pdf p3 table
+custom.R.195Hz.flagged,no,TMTF_English.pdf p3 table (dagger)
+custom.R.200Hz.mean_neg_mdt,—,TMTF_English.pdf p3 table
+custom.R.200Hz.sd,—,TMTF_English.pdf p3 table
+custom.R.200Hz.flagged,no,TMTF_English.pdf p3 table (dagger)
+custom.R.240Hz.mean_neg_mdt,—,TMTF_English.pdf p3 table
+custom.R.240Hz.sd,—,TMTF_English.pdf p3 table
+custom.R.240Hz.flagged,no,TMTF_English.pdf p3 table (dagger)
+custom.R.245Hz.mean_neg_mdt,—,TMTF_English.pdf p3 table
+custom.R.245Hz.sd,—,TMTF_English.pdf p3 table
+custom.R.245Hz.flagged,no,TMTF_English.pdf p3 table (dagger)
+custom.R.300Hz.mean_neg_mdt,—,TMTF_English.pdf p3 table
+custom.R.300Hz.sd,—,TMTF_English.pdf p3 table
+custom.R.300Hz.flagged,no,TMTF_English.pdf p3 table (dagger)
+custom.R.95Hz.n,0,TMTF_English.pdf p3 table
+custom.R.95Hz.R,1,TMTF_English.pdf p3 table
+custom.R.100Hz.n,0,TMTF_English.pdf p3 table
+custom.R.100Hz.R,1,TMTF_English.pdf p3 table
+custom.R.180Hz.n,0,TMTF_English.pdf p3 table
+custom.R.180Hz.R,1,TMTF_English.pdf p3 table
+custom.R.185Hz.n,0,TMTF_English.pdf p3 table
+custom.R.185Hz.R,1,TMTF_English.pdf p3 table
+custom.R.190Hz.n,0,TMTF_English.pdf p3 table
+custom.R.190Hz.R,1,TMTF_English.pdf p3 table
+custom.R.195Hz.n,0,TMTF_English.pdf p3 table
+custom.R.195Hz.R,1,TMTF_English.pdf p3 table
+custom.R.200Hz.n,0,TMTF_English.pdf p3 table
+custom.R.200Hz.R,1,TMTF_English.pdf p3 table
+custom.R.240Hz.n,0,TMTF_English.pdf p3 table
+custom.R.240Hz.R,1,TMTF_English.pdf p3 table
+custom.R.245Hz.n,0,TMTF_English.pdf p3 table
+custom.R.245Hz.R,1,TMTF_English.pdf p3 table
+custom.R.300Hz.n,0,TMTF_English.pdf p3 table
+custom.R.300Hz.R,1,TMTF_English.pdf p3 table
+custom.R.95Hz.N,17,TMTF_English.pdf p3 table
+custom.R.100Hz.N,26,TMTF_English.pdf p3 table
+custom.R.180Hz.N,4,TMTF_English.pdf p3 table
+custom.R.185Hz.N,5,TMTF_English.pdf p3 table
+custom.R.190Hz.N,15,TMTF_English.pdf p3 table
+custom.R.195Hz.N,16,TMTF_English.pdf p3 table
+custom.R.200Hz.N,20,TMTF_English.pdf p3 table
+custom.R.240Hz.N,4,TMTF_English.pdf p3 table
+custom.R.245Hz.N,4,TMTF_English.pdf p3 table
+custom.R.300Hz.N,6,TMTF_English.pdf p3 table
+custom.total.n,76,TMTF_English.pdf p3 header
+custom.total.R,97,TMTF_English.pdf p3 header
+custom.total.N,3722,TMTF_English.pdf p3 header
+custom_55_70.R.55Hz.mean_neg_mdt,13.50,TMTF_English.pdf p4 table
+custom_55_70.R.55Hz.sd,1.28,TMTF_English.pdf p4 table
+custom_55_70.R.55Hz.flagged,no,TMTF_English.pdf p4 table (dagger)
+custom_55_70.R.60Hz.mean_neg_mdt,10.60,TMTF_English.pdf p4 table
+custom_55_70.R.60Hz.sd,0.99,TMTF_English.pdf p4 table
+custom_55_70.R.60Hz.flagged,no,TMTF_English.pdf p4 table (dagger)
+custom_55_70.R.61Hz.mean_neg_mdt,9.30,TMTF_English.pdf p4 table
+custom_55_70.R.61Hz.sd,0.42,TMTF_English.pdf p4 table
+custom_55_70.R.61Hz.flagged,no,TMTF_English.pdf p4 table (dagger)
+custom_55_70.R.62Hz.mean_neg_mdt,10.50,TMTF_English.pdf p4 table
+custom_55_70.R.62Hz.sd,0.99,TMTF_English.pdf p4 table
+custom_55_70.R.62Hz.flagged,no,TMTF_English.pdf p4 table (dagger)
+custom_55_70.R.63Hz.mean_neg_mdt,7.90,TMTF_English.pdf p4 table
+custom_55_70.R.63Hz.sd,0.42,TMTF_English.pdf p4 table
+custom_55_70.R.63Hz.flagged,no,TMTF_English.pdf p4 table (dagger)
+custom_55_70.R.64Hz.mean_neg_mdt,6.60,TMTF_English.pdf p4 table
+custom_55_70.R.64Hz.sd,0.71,TMTF_English.pdf p4 table
+custom_55_70.R.64Hz.flagged,no,TMTF_English.pdf p4 table (dagger)
+custom_55_70.R.65Hz.mean_neg_mdt,6.25,TMTF_English.pdf p4 table
+custom_55_70.R.65Hz.sd,1.58,TMTF_English.pdf p4 table
+custom_55_70.R.65Hz.flagged,yes,TMTF_English.pdf p4 table (dagger)
+custom_55_70.R.66Hz.mean_neg_mdt,4.80,TMTF_English.pdf p4 table
+custom_55_70.R.66Hz.sd,1.41,TMTF_English.pdf p4 table
+custom_55_70.R.66Hz.flagged,no,TMTF_English.pdf p4 table (dagger)
+custom_55_70.R.67Hz.mean_neg_mdt,3.90,TMTF_English.pdf p4 table
+custom_55_70.R.67Hz.sd,0.42,TMTF_English.pdf p4 table
+custom_55_70.R.67Hz.flagged,no,TMTF_English.pdf p4 table (dagger)
+custom_55_70.R.68Hz.mean_neg_mdt,2.40,TMTF_English.pdf p4 table
+custom_55_70.R.68Hz.sd,—,TMTF_English.pdf p4 table
+custom_55_70.R.68Hz.flagged,no,TMTF_English.pdf p4 table (dagger)
+custom_55_70.R.55Hz.n,4,TMTF_English.pdf p4 table
+custom_55_70.R.55Hz.R,4,TMTF_English.pdf p4 table
+custom_55_70.R.60Hz.n,4,TMTF_English.pdf p4 table
+custom_55_70.R.60Hz.R,4,TMTF_English.pdf p4 table
+custom_55_70.R.61Hz.n,2,TMTF_English.pdf p4 table
+custom_55_70.R.61Hz.R,2,TMTF_English.pdf p4 table
+custom_55_70.R.62Hz.n,2,TMTF_English.pdf p4 table
+custom_55_70.R.62Hz.R,2,TMTF_English.pdf p4 table
+custom_55_70.R.63Hz.n,2,TMTF_English.pdf p4 table
+custom_55_70.R.63Hz.R,2,TMTF_English.pdf p4 table
+custom_55_70.R.64Hz.n,4,TMTF_English.pdf p4 table
+custom_55_70.R.64Hz.R,4,TMTF_English.pdf p4 table
+custom_55_70.R.65Hz.n,4,TMTF_English.pdf p4 table
+custom_55_70.R.65Hz.R,4,TMTF_English.pdf p4 table
+custom_55_70.R.66Hz.n,2,TMTF_English.pdf p4 table
+custom_55_70.R.66Hz.R,2,TMTF_English.pdf p4 table
+custom_55_70.R.67Hz.n,2,TMTF_English.pdf p4 table
+custom_55_70.R.67Hz.R,2,TMTF_English.pdf p4 table
+custom_55_70.R.68Hz.n,1,TMTF_English.pdf p4 table
+custom_55_70.R.68Hz.R,2,TMTF_English.pdf p4 table
+custom_55_70.R.55Hz.N,195,TMTF_English.pdf p4 table
+custom_55_70.R.60Hz.N,184,TMTF_English.pdf p4 table
+custom_55_70.R.61Hz.N,88,TMTF_English.pdf p4 table
+custom_55_70.R.62Hz.N,85,TMTF_English.pdf p4 table
+custom_55_70.R.63Hz.N,82,TMTF_English.pdf p4 table
+custom_55_70.R.64Hz.N,151,TMTF_English.pdf p4 table
+custom_55_70.R.65Hz.N,164,TMTF_English.pdf p4 table
+custom_55_70.R.66Hz.N,85,TMTF_English.pdf p4 table
+custom_55_70.R.67Hz.N,77,TMTF_English.pdf p4 table
+custom_55_70.R.68Hz.N,57,TMTF_English.pdf p4 table
+custom_55_70.R.69Hz.mean_neg_mdt,1.80,TMTF_English.pdf p4 table
+custom_55_70.R.69Hz.sd,—,TMTF_English.pdf p4 table
+custom_55_70.R.69Hz.flagged,no,TMTF_English.pdf p4 table (dagger)
+custom_55_70.R.70Hz.mean_neg_mdt,—,TMTF_English.pdf p4 table
+custom_55_70.R.70Hz.sd,—,TMTF_English.pdf p4 table
+custom_55_70.R.70Hz.flagged,no,TMTF_English.pdf p4 table (dagger)
+custom_55_70.R.69Hz.n,1,TMTF_English.pdf p4 table
+custom_55_70.R.69Hz.R,2,TMTF_English.pdf p4 table
+custom_55_70.R.70Hz.n,0,TMTF_English.pdf p4 table
+custom_55_70.R.70Hz.R,2,TMTF_English.pdf p4 table
+custom_55_70.R.69Hz.N,51,TMTF_English.pdf p4 table
+custom_55_70.R.70Hz.N,15,TMTF_English.pdf p4 table
+custom_55_70.total.n,28,TMTF_English.pdf p4 header
+custom_55_70.total.R,32,TMTF_English.pdf p4 header
+custom_55_70.total.N,1234,TMTF_English.pdf p4 header
+composition.two_interval.L.n,14,TMTF_English.pdf p5
+composition.two_interval.L.R,14,TMTF_English.pdf p5
+composition.two_interval.L.N,711,TMTF_English.pdf p5
+composition.two_interval.L.U,0,TMTF_English.pdf p5
+composition.two_interval.L.U_pct,0.0,TMTF_English.pdf p5
+composition.two_interval.R.n,8,TMTF_English.pdf p5
+composition.two_interval.R.R,8,TMTF_English.pdf p5
+composition.two_interval.R.N,432,TMTF_English.pdf p5
+composition.two_interval.R.U,0,TMTF_English.pdf p5
+composition.two_interval.R.U_pct,0.0,TMTF_English.pdf p5
+composition.bandpass.L.n,11,TMTF_English.pdf p5
+composition.bandpass.L.R,13,TMTF_English.pdf p5
+composition.bandpass.L.N,339,TMTF_English.pdf p5
+composition.bandpass.L.U,2,TMTF_English.pdf p5
+composition.bandpass.L.U_pct,15.4,TMTF_English.pdf p5
+composition.bandpass.R.n,6,TMTF_English.pdf p5
+composition.bandpass.R.R,10,TMTF_English.pdf p5
+composition.bandpass.R.N,238,TMTF_English.pdf p5
+composition.bandpass.R.U,4,TMTF_English.pdf p5
+composition.bandpass.R.U_pct,40.0,TMTF_English.pdf p5
+composition.custom.R.n,76,TMTF_English.pdf p5
+composition.custom.R.R,97,TMTF_English.pdf p5
+composition.custom.R.N,3722,TMTF_English.pdf p5
+composition.custom.R.U,21,TMTF_English.pdf p5
+composition.custom.R.U_pct,21.6,TMTF_English.pdf p5
+all.n,115,TMTF_English.pdf p5 header
+all.R,142,TMTF_English.pdf p5 header
+all.N,5442,TMTF_English.pdf p5 header
+all.practice_trials_excluded,12,TMTF_English.pdf p1-4 footnote
+all.abandoned_run_trials_excluded,5,TMTF_English.pdf p1-4 footnote
+all.unsure_trials,665,TMTF_English.pdf p1-4 footnote
+all.runs_with_48kHz_record,121,TMTF_English.pdf p1-4 footnote
+all.runs_without_sample_rate,21,TMTF_English.pdf p1-4 footnote
+example.A.run_id,mv3uv3vjnkn4p,TMTF_English.pdf p6
+example.A.date,2026-10-11,TMTF_English.pdf p6
+example.A.trials,50,TMTF_English.pdf p6
+example.A.reversals,14,TMTF_English.pdf p6
+example.A.threshold,-27.20,TMTF_English.pdf p6
+example.B.run_id,mv3vw4pr1mzra,TMTF_English.pdf p6
+example.B.date,2026-10-11,TMTF_English.pdf p6
+example.B.trials,26,TMTF_English.pdf p6
+example.B.reversals,8,TMTF_English.pdf p6
+example.B.threshold,-19.67,TMTF_English.pdf p6
+example.C.run_id,mvyzutn23eq4g,TMTF_English.pdf p6
+example.C.date,2026-11-02,TMTF_English.pdf p6
+example.C.trials,60,TMTF_English.pdf p6
+example.C.reversals,14,TMTF_English.pdf p6
+example.C.threshold,-18.60,TMTF_English.pdf p6
+example.D.run_id,mvmeqh6aebe42,TMTF_English.pdf p6
+example.D.date,2026-10-24,TMTF_English.pdf p6
+example.D.trials,39,TMTF_English.pdf p6
+example.D.reversals,14,TMTF_English.pdf p6
+example.D.threshold,-5.20,TMTF_English.pdf p6
+example.E.run_id,mw0e2d9lxsgla,TMTF_English.pdf p6
+example.E.date,2026-11-03,TMTF_English.pdf p6
+example.E.trials,41,TMTF_English.pdf p6
+example.E.reversals,14,TMTF_English.pdf p6
+example.E.threshold,-2.40,TMTF_English.pdf p6
+example.F.run_id,mvmg94jnekh2v,TMTF_English.pdf p6
+example.F.date,2026-10-24,TMTF_English.pdf p6
+example.F.trials,8,TMTF_English.pdf p6
+example.F.reversals,2,TMTF_English.pdf p6
+example.F.threshold,not measurable,TMTF_English.pdf p6

@@ -1,0 +1,48 @@
+key,value
+L.n_runs,1
+L.n_trials,38
+L.threshold_D,1.2000000000000002
+L.threshold_RPO,0.24000000000000005
+R.mean_D,3.7749999999999995
+R.mean_RPO,0.7549999999999999
+R.n_runs,2
+R.n_trials,54
+R.sd_D,0.10606601717798206
+R.sd_RPO,0.021213203435596413
+all.date,2026-10-16
+all.lower_bound_D,1.1
+all.lower_bound_RPO,0.22000000000000003
+all.n_runs,3
+all.n_trials,92
+check.figure_pages,3
+check.threshold_recomputed_vs_app_mismatch,0
+run.L1.correct_by_density,19/33 1/3 0/2
+run.L1.lower_bound_pct,86.84210526315789
+run.L1.lower_bound_trials,33
+run.L1.n_correct,20
+run.L1.n_reversals,8
+run.L1.n_reversals_retained,4
+run.L1.n_trials,38
+run.L1.threshold_D,1.2000000000000002
+run.L1.threshold_RPO,0.24000000000000005
+run.L1.trials_by_density,33 3 2
+run.R1.correct_by_density,2/2 2/2 2/2 4/4 2/3 6/6 6/7 0/2 0/1
+run.R1.lower_bound_pct,6.896551724137931
+run.R1.lower_bound_trials,2
+run.R1.n_correct,24
+run.R1.n_reversals,8
+run.R1.n_reversals_retained,4
+run.R1.n_trials,29
+run.R1.threshold_D,3.8499999999999996
+run.R1.threshold_RPO,0.7699999999999999
+run.R1.trials_by_density,2 2 2 4 3 6 7 2 1
+run.R2.correct_by_density,2/2 2/2 2/2 2/2 2/2 10/10 1/3 0/2
+run.R2.lower_bound_pct,8.0
+run.R2.lower_bound_trials,2
+run.R2.n_correct,21
+run.R2.n_reversals,8
+run.R2.n_reversals_retained,4
+run.R2.n_trials,25
+run.R2.threshold_D,3.6999999999999997
+run.R2.threshold_RPO,0.74
+run.R2.trials_by_density,2 2 2 2 2 10 3 2

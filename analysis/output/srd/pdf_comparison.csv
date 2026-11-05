@@ -1,0 +1,134 @@
+test,key,pdf,computed,match,where
+srd,source.n_runs,18,18,1,SRD_scientific_EN.pdf p3
+srd,source.n_trials,687,687,1,SRD_scientific_EN.pdf p3
+srd,completed.n_runs,17,17,1,SRD_scientific_EN.pdf p2-3
+srd,completed.n_trials,675,675,1,SRD_scientific_EN.pdf p2-3
+srd,numeric.n_runs,15,15,1,SRD_scientific_EN.pdf p1-3
+srd,numeric.n_trials,599,599,1,SRD_scientific_EN.pdf p1-3
+srd,status_only.n_runs,2,2,1,SRD_scientific_EN.pdf p2-3
+srd,status_only.n_trials,76,76,1,SRD_scientific_EN.pdf p2-3
+srd,aborted.n_runs,1,1,1,SRD_scientific_EN.pdf p1-3
+srd,aborted.n_trials,12,12,1,SRD_scientific_EN.pdf p2-3
+srd,numeric.n_retained_reversals,120,120,1,SRD_scientific_EN.pdf p4
+srd,R.n,9,9,1,SRD_scientific_EN.pdf p1 C
+srd,R.T,338,338,1,SRD_scientific_EN.pdf p1 C
+srd,R.mean,0.413,0.413,1,SRD_scientific_EN.pdf p1 C
+srd,R.sd,0.172,0.172,1,SRD_scientific_EN.pdf p1 C
+srd,L.n,6,6,1,SRD_scientific_EN.pdf p1 D
+srd,L.T,261,261,1,SRD_scientific_EN.pdf p1 D
+srd,L.mean,0.631,0.631,1,SRD_scientific_EN.pdf p1 D
+srd,L.sd,0.206,0.206,1,SRD_scientific_EN.pdf p1 D
+srd,session_mean_6run.L.2026-10-22,0.631,0.631,1,SRD_scientific_EN.pdf p2
+srd,session_mean_6run.value,0.630667,0.630667,1,SRD_scientific_EN.pdf p3
+srd,session_mean_6run.n_qualifying,1,1,1,SRD_scientific_EN.pdf p3
+srd,completed.R.2026-10-22.n,6,6,1,SRD_scientific_EN.pdf p2
+srd,completed.R.2026-10-22.T,214,214,1,SRD_scientific_EN.pdf p2
+srd,example.threshold,0.7415,0.7415,1,SRD_scientific_EN.pdf p1 B
+srd,example.T,52,52,1,SRD_scientific_EN.pdf p1 B
+srd,R.2026-10-21.mean,0.273,0.273,1,SRD_scientific_EN.pdf p1 C-D
+srd,R.2026-10-21.sd,0.096,0.096,1,SRD_scientific_EN.pdf p1 C-D
+srd,R.2026-10-21.n,3,3,1,SRD_scientific_EN.pdf p1 C-D
+srd,R.2026-10-21.T,101,101,1,SRD_scientific_EN.pdf p1 C-D
+srd,R.2026-10-21.T_per_run,"32, 39, 30","32, 39, 30",1,SRD_scientific_EN.pdf p1 C-D
+srd,R.2026-10-22.mean,0.384,0.384,1,SRD_scientific_EN.pdf p1 C-D
+srd,R.2026-10-22.sd,0.052,0.052,1,SRD_scientific_EN.pdf p1 C-D
+srd,R.2026-10-22.n,4,4,1,SRD_scientific_EN.pdf p1 C-D
+srd,R.2026-10-22.T,138,138,1,SRD_scientific_EN.pdf p1 C-D
+srd,R.2026-10-22.T_per_run,"34, 40, 34, 30","34, 40, 34, 30",1,SRD_scientific_EN.pdf p1 C-D
+srd,R.2026-11-02.mean,0.678,0.678,1,SRD_scientific_EN.pdf p1 C-D
+srd,R.2026-11-02.sd,0.090,0.090,1,SRD_scientific_EN.pdf p1 C-D
+srd,R.2026-11-02.n,2,2,1,SRD_scientific_EN.pdf p1 C-D
+srd,R.2026-11-02.T,99,99,1,SRD_scientific_EN.pdf p1 C-D
+srd,R.2026-11-02.T_per_run,"52, 47","52, 47",1,SRD_scientific_EN.pdf p1 C-D
+srd,L.2026-10-22.mean,0.631,0.631,1,SRD_scientific_EN.pdf p1 C-D
+srd,L.2026-10-22.sd,0.206,0.206,1,SRD_scientific_EN.pdf p1 C-D
+srd,L.2026-10-22.n,6,6,1,SRD_scientific_EN.pdf p1 C-D
+srd,L.2026-10-22.T,261,261,1,SRD_scientific_EN.pdf p1 C-D
+srd,L.2026-10-22.T_per_run,"41, 48, 34, 40, 45, 53","41, 48, 34, 40, 45, 53",1,SRD_scientific_EN.pdf p1 C-D
+srd,run.R.2026-10-21.21:07:51.T,32,32,1,SRD_scientific_EN.pdf p2/p4/p7-11
+srd,run.R.2026-10-21.21:07:51.threshold,0.3020,0.3020,1,SRD_scientific_EN.pdf p2/p4/p7-11
+srd,run.R.2026-10-21.21:07:51.reversals_6_13,0.354 · 0.250 · 0.354 · 0.250 · 0.354 · 0.250 · 0.354 · 0.250,0.354 · 0.250 · 0.354 · 0.250 · 0.354 · 0.250 · 0.354 · 0.250,1,SRD_scientific_EN.pdf p7-11
+srd,run.R.2026-10-21.21:07:51.correct,24/32,24/32,1,SRD_scientific_EN.pdf p5
+srd,run.R.2026-10-21.21:07:51.pct_correct,75.0,75.0,1,SRD_scientific_EN.pdf p5
+srd,run.R.2026-10-21.21:17:20.T,39,39,1,SRD_scientific_EN.pdf p2/p4/p7-11
+srd,run.R.2026-10-21.21:17:20.threshold,0.3515,0.3515,1,SRD_scientific_EN.pdf p2/p4/p7-11
+srd,run.R.2026-10-21.21:17:20.reversals_6_13,0.354 · 0.500 · 0.250 · 0.354 · 0.250 · 0.500 · 0.250 · 0.354,0.354 · 0.500 · 0.250 · 0.354 · 0.250 · 0.500 · 0.250 · 0.354,1,SRD_scientific_EN.pdf p7-11
+srd,run.R.2026-10-21.21:17:20.correct,27/39,27/39,1,SRD_scientific_EN.pdf p5
+srd,run.R.2026-10-21.21:17:20.pct_correct,69.2,69.2,1,SRD_scientific_EN.pdf p5
+srd,run.R.2026-10-21.22:18:01.T,30,30,1,SRD_scientific_EN.pdf p2/p4/p7-11
+srd,run.R.2026-10-21.22:18:01.threshold,0.1661,0.1661,1,SRD_scientific_EN.pdf p2/p4/p7-11
+srd,run.R.2026-10-21.22:18:01.reversals_6_13,0.176 · 0.125 · 0.176 · 0.125 · 0.176 · 0.125 · 0.250 · 0.176,0.176 · 0.125 · 0.176 · 0.125 · 0.176 · 0.125 · 0.250 · 0.176,1,SRD_scientific_EN.pdf p7-11
+srd,run.R.2026-10-21.22:18:01.correct,19/30,19/30,1,SRD_scientific_EN.pdf p5
+srd,run.R.2026-10-21.22:18:01.pct_correct,63.3,63.3,1,SRD_scientific_EN.pdf p5
+srd,run.R.2026-10-22.20:27:24.T,34,34,1,SRD_scientific_EN.pdf p2/p4/p7-11
+srd,run.R.2026-10-22.20:27:24.threshold,0.3110,0.3110,1,SRD_scientific_EN.pdf p2/p4/p7-11
+srd,run.R.2026-10-22.20:27:24.reversals_6_13,0.250 · 0.354 · 0.250 · 0.354 · 0.176 · 0.354 · 0.250 · 0.500,0.250 · 0.354 · 0.250 · 0.354 · 0.176 · 0.354 · 0.250 · 0.500,1,SRD_scientific_EN.pdf p7-11
+srd,run.R.2026-10-22.20:27:24.correct,25/34,25/34,1,SRD_scientific_EN.pdf p5
+srd,run.R.2026-10-22.20:27:24.pct_correct,73.5,73.5,1,SRD_scientific_EN.pdf p5
+srd,run.R.2026-10-22.20:39:40.T,40,40,1,SRD_scientific_EN.pdf p2/p4/p7-11
+srd,run.R.2026-10-22.20:39:40.threshold,0.3854,0.3854,1,SRD_scientific_EN.pdf p2/p4/p7-11
+srd,run.R.2026-10-22.20:39:40.reversals_6_13,0.125 · 0.500 · 0.354 · 0.500 · 0.250 · 0.500 · 0.354 · 0.500,0.125 · 0.500 · 0.354 · 0.500 · 0.250 · 0.500 · 0.354 · 0.500,1,SRD_scientific_EN.pdf p7-11
+srd,run.R.2026-10-22.20:39:40.correct,28/40,28/40,1,SRD_scientific_EN.pdf p5
+srd,run.R.2026-10-22.20:39:40.pct_correct,70.0,70.0,1,SRD_scientific_EN.pdf p5
+srd,run.R.2026-10-22.20:43:52.T,34,34,1,SRD_scientific_EN.pdf p2/p4/p7-11
+srd,run.R.2026-10-22.20:43:52.threshold,0.4270,0.4270,1,SRD_scientific_EN.pdf p2/p4/p7-11
+srd,run.R.2026-10-22.20:43:52.reversals_6_13,0.500 · 0.354 · 0.500 · 0.354 · 0.500 · 0.354 · 0.500 · 0.354,0.500 · 0.354 · 0.500 · 0.354 · 0.500 · 0.354 · 0.500 · 0.354,1,SRD_scientific_EN.pdf p7-11
+srd,run.R.2026-10-22.20:43:52.correct,26/34,26/34,1,SRD_scientific_EN.pdf p5
+srd,run.R.2026-10-22.20:43:52.pct_correct,76.5,76.5,1,SRD_scientific_EN.pdf p5
+srd,run.R.2026-10-22.20:47:20.T,30,30,1,SRD_scientific_EN.pdf p2/p4/p7-11
+srd,run.R.2026-10-22.20:47:20.threshold,0.4140,0.4140,1,SRD_scientific_EN.pdf p2/p4/p7-11
+srd,run.R.2026-10-22.20:47:20.reversals_6_13,0.500 · 0.354 · 0.500 · 0.354 · 0.500 · 0.354 · 0.500 · 0.250,0.500 · 0.354 · 0.500 · 0.354 · 0.500 · 0.354 · 0.500 · 0.250,1,SRD_scientific_EN.pdf p7-11
+srd,run.R.2026-10-22.20:47:20.correct,21/30,21/30,1,SRD_scientific_EN.pdf p5
+srd,run.R.2026-10-22.20:47:20.pct_correct,70.0,70.0,1,SRD_scientific_EN.pdf p5
+srd,run.L.2026-10-22.21:06:13.T,41,41,1,SRD_scientific_EN.pdf p2/p4/p7-11
+srd,run.L.2026-10-22.21:06:13.threshold,0.5804,0.5804,1,SRD_scientific_EN.pdf p2/p4/p7-11
+srd,run.L.2026-10-22.21:06:13.reversals_6_13,0.250 · 0.125 · 0.500 · 0.354 · 1.000 · 0.707 · 1.000 · 0.707,0.250 · 0.125 · 0.500 · 0.354 · 1.000 · 0.707 · 1.000 · 0.707,1,SRD_scientific_EN.pdf p7-11
+srd,run.L.2026-10-22.21:06:13.correct,32/41,32/41,1,SRD_scientific_EN.pdf p5
+srd,run.L.2026-10-22.21:06:13.pct_correct,78.0,78.0,1,SRD_scientific_EN.pdf p5
+srd,run.L.2026-10-22.21:09:37.T,48,48,1,SRD_scientific_EN.pdf p2/p4/p7-11
+srd,run.L.2026-10-22.21:09:37.threshold,0.3495,0.3495,1,SRD_scientific_EN.pdf p2/p4/p7-11
+srd,run.L.2026-10-22.21:09:37.reversals_6_13,0.176 · 0.250 · 0.176 · 0.250 · 0.176 · 0.707 · 0.354 · 0.707,0.176 · 0.250 · 0.176 · 0.250 · 0.176 · 0.707 · 0.354 · 0.707,1,SRD_scientific_EN.pdf p7-11
+srd,run.L.2026-10-22.21:09:37.correct,36/48,36/48,1,SRD_scientific_EN.pdf p5
+srd,run.L.2026-10-22.21:09:37.pct_correct,75.0,75.0,1,SRD_scientific_EN.pdf p5
+srd,run.L.2026-10-22.21:16:28.T,34,34,1,SRD_scientific_EN.pdf p2/p4/p7-11
+srd,run.L.2026-10-22.21:16:28.threshold,0.5670,0.5670,1,SRD_scientific_EN.pdf p2/p4/p7-11
+srd,run.L.2026-10-22.21:16:28.reversals_6_13,0.500 · 0.707 · 0.354 · 0.707 · 0.500 · 0.707 · 0.354 · 0.707,0.500 · 0.707 · 0.354 · 0.707 · 0.500 · 0.707 · 0.354 · 0.707,1,SRD_scientific_EN.pdf p7-11
+srd,run.L.2026-10-22.21:16:28.correct,25/34,25/34,1,SRD_scientific_EN.pdf p5
+srd,run.L.2026-10-22.21:16:28.pct_correct,73.5,73.5,1,SRD_scientific_EN.pdf p5
+srd,run.L.2026-10-22.21:21:25.T,40,40,1,SRD_scientific_EN.pdf p2/p4/p7-11
+srd,run.L.2026-10-22.21:21:25.threshold,0.7545,0.7545,1,SRD_scientific_EN.pdf p2/p4/p7-11
+srd,run.L.2026-10-22.21:21:25.reversals_6_13,0.500 · 0.354 · 0.500 · 0.354 · 1.414 · 1.000 · 1.414 · 0.500,0.500 · 0.354 · 0.500 · 0.354 · 1.414 · 1.000 · 1.414 · 0.500,1,SRD_scientific_EN.pdf p7-11
+srd,run.L.2026-10-22.21:21:25.correct,30/40,30/40,1,SRD_scientific_EN.pdf p5
+srd,run.L.2026-10-22.21:21:25.pct_correct,75.0,75.0,1,SRD_scientific_EN.pdf p5
+srd,run.L.2026-10-22.21:29:02.T,45,45,1,SRD_scientific_EN.pdf p2/p4/p7-11
+srd,run.L.2026-10-22.21:29:02.threshold,0.5724,0.5724,1,SRD_scientific_EN.pdf p2/p4/p7-11
+srd,run.L.2026-10-22.21:29:02.reversals_6_13,0.500 · 0.707 · 0.250 · 1.000 · 0.354 · 0.707 · 0.354 · 0.707,0.500 · 0.707 · 0.250 · 1.000 · 0.354 · 0.707 · 0.354 · 0.707,1,SRD_scientific_EN.pdf p7-11
+srd,run.L.2026-10-22.21:29:02.correct,33/45,33/45,1,SRD_scientific_EN.pdf p5
+srd,run.L.2026-10-22.21:29:02.pct_correct,73.3,73.3,1,SRD_scientific_EN.pdf p5
+srd,run.L.2026-10-22.21:32:47.T,53,53,1,SRD_scientific_EN.pdf p2/p4/p7-11
+srd,run.L.2026-10-22.21:32:47.threshold,0.9603,0.9603,1,SRD_scientific_EN.pdf p2/p4/p7-11
+srd,run.L.2026-10-22.21:32:47.reversals_6_13,0.500 · 1.000 · 0.354 · 1.414 · 0.707 · 1.000 · 0.707 · 2.000,0.500 · 1.000 · 0.354 · 1.414 · 0.707 · 1.000 · 0.707 · 2.000,1,SRD_scientific_EN.pdf p7-11
+srd,run.L.2026-10-22.21:32:47.correct,41/53,41/53,1,SRD_scientific_EN.pdf p5
+srd,run.L.2026-10-22.21:32:47.pct_correct,77.4,77.4,1,SRD_scientific_EN.pdf p5
+srd,run.R.2026-11-02.22:13:30.T,52,52,1,SRD_scientific_EN.pdf p2/p4/p7-11
+srd,run.R.2026-11-02.22:13:30.threshold,0.7415,0.7415,1,SRD_scientific_EN.pdf p2/p4/p7-11
+srd,run.R.2026-11-02.22:13:30.reversals_6_13,0.250 · 0.500 · 0.354 · 1.414 · 0.707 · 1.000 · 0.707 · 1.000,0.250 · 0.500 · 0.354 · 1.414 · 0.707 · 1.000 · 0.707 · 1.000,1,SRD_scientific_EN.pdf p7-11
+srd,run.R.2026-11-02.22:13:30.correct,39/52,39/52,1,SRD_scientific_EN.pdf p5
+srd,run.R.2026-11-02.22:13:30.pct_correct,75.0,75.0,1,SRD_scientific_EN.pdf p5
+srd,run.R.2026-11-02.22:19:12.T,47,47,1,SRD_scientific_EN.pdf p2/p4/p7-11
+srd,run.R.2026-11-02.22:19:12.threshold,0.6144,0.6144,1,SRD_scientific_EN.pdf p2/p4/p7-11
+srd,run.R.2026-11-02.22:19:12.reversals_6_13,0.500 · 1.000 · 0.500 · 0.707 · 0.354 · 1.000 · 0.354 · 0.500,0.500 · 1.000 · 0.500 · 0.707 · 0.354 · 1.000 · 0.354 · 0.500,1,SRD_scientific_EN.pdf p7-11
+srd,run.R.2026-11-02.22:19:12.correct,34/47,34/47,1,SRD_scientific_EN.pdf p5
+srd,run.R.2026-11-02.22:19:12.pct_correct,72.3,72.3,1,SRD_scientific_EN.pdf p5
+srd,status_run.R.2026-10-22.20:24:17.T,36,36,1,SRD_scientific_EN.pdf p12
+srd,status_run.R.2026-10-22.20:24:17.correct,24/36,24/36,1,SRD_scientific_EN.pdf p12
+srd,status_run.R.2026-10-22.20:24:17.first_easy_block_in_window_trial,27,27,1,SRD_scientific_EN.pdf p12
+srd,status_run.R.2026-10-22.20:24:17.status,threshold_near_easy_end,threshold_near_easy_end,1,SRD_scientific_EN.pdf p12
+srd,status_run.R.2026-10-22.20:30:15.T,40,40,1,SRD_scientific_EN.pdf p12
+srd,status_run.R.2026-10-22.20:30:15.correct,27/40,27/40,1,SRD_scientific_EN.pdf p12
+srd,status_run.R.2026-10-22.20:30:15.first_easy_block_in_window_trial,25,25,1,SRD_scientific_EN.pdf p12
+srd,status_run.R.2026-10-22.20:30:15.status,threshold_near_easy_end,threshold_near_easy_end,1,SRD_scientific_EN.pdf p12
+srd,by_density.R.2026-10-21,18/23 14/22 24/26 12/23 2/6 0/1,18/23 14/22 24/26 12/23 2/6 0/1,1,SRD_scientific_EN.pdf p6
+srd,by_density.R.2026-10-22,12/14 13/19 23/25 44/51 8/28 0/1,12/14 13/19 23/25 44/51 8/28 0/1,1,SRD_scientific_EN.pdf p6
+srd,by_density.L.2026-10-22,10/10 23/28 21/26 51/54 53/71 24/43 13/22 2/6 0/1,10/10 23/28 21/26 51/54 53/71 24/43 13/22 2/6 0/1,1,SRD_scientific_EN.pdf p6
+srd,by_density.R.2026-11-02,4/4 14/14 21/26 16/25 13/19 4/9 1/2,4/4 14/14 21/26 16/25 13/19 4/9 1/2,1,SRD_scientific_EN.pdf p6

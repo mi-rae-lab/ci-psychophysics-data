@@ -1,0 +1,302 @@
+test,key,pdf,computed,match,where
+stm,all.n_runs,27,27,1,STM_Scientific_EN.pdf Fig 1
+stm,all.n_trials,1370,1370,1,STM_Scientific_EN.pdf Fig 1
+stm,all.n_intervals,2740,2740,1,STM_Scientific_EN.pdf Fig 1
+stm,all.n_correct,1037,1037,1,STM_Scientific_EN.pdf Fig 5
+stm,all.technical_failures,0,0,1,STM_Scientific_EN.pdf Fig 5
+stm,all.ceiling_blocked_in_analysis_window,0,0,1,STM_Scientific_EN.pdf Fig 5
+stm,all.ceiling_blocked_in_initial_segment,1,1,1,STM_Scientific_EN.pdf Fig 5
+stm,ear.R.n_runs,13,13,1,STM_Scientific_EN.pdf Fig 2
+stm,ear.R.n_trials,650,650,1,STM_Scientific_EN.pdf Fig 2
+stm,ear.L.n_runs,14,14,1,STM_Scientific_EN.pdf Fig 3
+stm,ear.L.n_trials,720,720,1,STM_Scientific_EN.pdf Fig 3
+stm,panel.R.5Hz.n,6,6,1,STM_Scientific_EN.pdf Fig 1 A-D
+stm,panel.R.5Hz.T,324,324,1,STM_Scientific_EN.pdf Fig 1 A-D
+stm,panel.R.5Hz.I,648,648,1,STM_Scientific_EN.pdf Fig 1 A-D
+stm,panel.L.5Hz.n,7,7,1,STM_Scientific_EN.pdf Fig 1 A-D
+stm,panel.L.5Hz.T,344,344,1,STM_Scientific_EN.pdf Fig 1 A-D
+stm,panel.L.5Hz.I,688,688,1,STM_Scientific_EN.pdf Fig 1 A-D
+stm,panel.R.10Hz.n,7,7,1,STM_Scientific_EN.pdf Fig 1 A-D
+stm,panel.R.10Hz.T,326,326,1,STM_Scientific_EN.pdf Fig 1 A-D
+stm,panel.R.10Hz.I,652,652,1,STM_Scientific_EN.pdf Fig 1 A-D
+stm,panel.L.10Hz.n,7,7,1,STM_Scientific_EN.pdf Fig 1 A-D
+stm,panel.L.10Hz.T,376,376,1,STM_Scientific_EN.pdf Fig 1 A-D
+stm,panel.L.10Hz.I,752,752,1,STM_Scientific_EN.pdf Fig 1 A-D
+stm,cell.R.0.5co.5Hz.mean,-19.30,-19.30,1,STM_Scientific_EN.pdf Fig 1 / Fig 4
+stm,cell.R.0.5co.5Hz.sd,1.27,1.27,1,STM_Scientific_EN.pdf Fig 1 / Fig 4
+stm,cell.R.0.5co.5Hz.n,2,2,1,STM_Scientific_EN.pdf Fig 1 / Fig 4
+stm,cell.R.0.5co.5Hz.T,100,100,1,STM_Scientific_EN.pdf Fig 1
+stm,cell.R.0.5co.5Hz.I,200,200,1,STM_Scientific_EN.pdf Fig 1
+stm,cell.R.0.5co.5Hz.T_per_run,"52, 48","52, 48",1,STM_Scientific_EN.pdf Fig 1
+stm,cell.R.1co.5Hz.mean,-12.20,-12.20,1,STM_Scientific_EN.pdf Fig 1 / Fig 4
+stm,cell.R.1co.5Hz.sd,1.41,1.41,1,STM_Scientific_EN.pdf Fig 1 / Fig 4
+stm,cell.R.1co.5Hz.n,2,2,1,STM_Scientific_EN.pdf Fig 1 / Fig 4
+stm,cell.R.1co.5Hz.T,112,112,1,STM_Scientific_EN.pdf Fig 1
+stm,cell.R.1co.5Hz.I,224,224,1,STM_Scientific_EN.pdf Fig 1
+stm,cell.R.1co.5Hz.T_per_run,"65, 47","65, 47",1,STM_Scientific_EN.pdf Fig 1
+stm,cell.R.2co.5Hz.mean,-9.40,-9.40,1,STM_Scientific_EN.pdf Fig 1 / Fig 4
+stm,cell.R.2co.5Hz.sd,1.13,1.13,1,STM_Scientific_EN.pdf Fig 1 / Fig 4
+stm,cell.R.2co.5Hz.n,2,2,1,STM_Scientific_EN.pdf Fig 1 / Fig 4
+stm,cell.R.2co.5Hz.T,112,112,1,STM_Scientific_EN.pdf Fig 1
+stm,cell.R.2co.5Hz.I,224,224,1,STM_Scientific_EN.pdf Fig 1
+stm,cell.R.2co.5Hz.T_per_run,"59, 53","59, 53",1,STM_Scientific_EN.pdf Fig 1
+stm,cell.L.0.5co.5Hz.mean,-10.70,-10.70,1,STM_Scientific_EN.pdf Fig 1 / Fig 4
+stm,cell.L.0.5co.5Hz.sd,0.71,0.71,1,STM_Scientific_EN.pdf Fig 1 / Fig 4
+stm,cell.L.0.5co.5Hz.n,2,2,1,STM_Scientific_EN.pdf Fig 1 / Fig 4
+stm,cell.L.0.5co.5Hz.T,96,96,1,STM_Scientific_EN.pdf Fig 1
+stm,cell.L.0.5co.5Hz.I,192,192,1,STM_Scientific_EN.pdf Fig 1
+stm,cell.L.0.5co.5Hz.T_per_run,"44, 52","44, 52",1,STM_Scientific_EN.pdf Fig 1
+stm,cell.L.1co.5Hz.mean,-8.10,-8.10,1,STM_Scientific_EN.pdf Fig 1 / Fig 4
+stm,cell.L.1co.5Hz.sd,1.56,1.56,1,STM_Scientific_EN.pdf Fig 1 / Fig 4
+stm,cell.L.1co.5Hz.n,2,2,1,STM_Scientific_EN.pdf Fig 1 / Fig 4
+stm,cell.L.1co.5Hz.T,113,113,1,STM_Scientific_EN.pdf Fig 1
+stm,cell.L.1co.5Hz.I,226,226,1,STM_Scientific_EN.pdf Fig 1
+stm,cell.L.1co.5Hz.T_per_run,"47, 66","47, 66",1,STM_Scientific_EN.pdf Fig 1
+stm,cell.L.2co.5Hz.mean,-7.73,-7.73,1,STM_Scientific_EN.pdf Fig 1 / Fig 4
+stm,cell.L.2co.5Hz.sd,2.16,2.16,1,STM_Scientific_EN.pdf Fig 1 / Fig 4
+stm,cell.L.2co.5Hz.n,3,3,1,STM_Scientific_EN.pdf Fig 1 / Fig 4
+stm,cell.L.2co.5Hz.T,135,135,1,STM_Scientific_EN.pdf Fig 1
+stm,cell.L.2co.5Hz.I,270,270,1,STM_Scientific_EN.pdf Fig 1
+stm,cell.L.2co.5Hz.T_per_run,"53, 36, 46","53, 36, 46",1,STM_Scientific_EN.pdf Fig 1
+stm,cell.R.0.5co.10Hz.mean,-14.20,-14.20,1,STM_Scientific_EN.pdf Fig 1 / Fig 4
+stm,cell.R.0.5co.10Hz.sd,0.57,0.57,1,STM_Scientific_EN.pdf Fig 1 / Fig 4
+stm,cell.R.0.5co.10Hz.n,2,2,1,STM_Scientific_EN.pdf Fig 1 / Fig 4
+stm,cell.R.0.5co.10Hz.T,92,92,1,STM_Scientific_EN.pdf Fig 1
+stm,cell.R.0.5co.10Hz.I,184,184,1,STM_Scientific_EN.pdf Fig 1
+stm,cell.R.0.5co.10Hz.T_per_run,"35, 57","35, 57",1,STM_Scientific_EN.pdf Fig 1
+stm,cell.R.1co.10Hz.mean,-11.47,-11.47,1,STM_Scientific_EN.pdf Fig 1 / Fig 4
+stm,cell.R.1co.10Hz.sd,2.14,2.14,1,STM_Scientific_EN.pdf Fig 1 / Fig 4
+stm,cell.R.1co.10Hz.n,3,3,1,STM_Scientific_EN.pdf Fig 1 / Fig 4
+stm,cell.R.1co.10Hz.T,141,141,1,STM_Scientific_EN.pdf Fig 1
+stm,cell.R.1co.10Hz.I,282,282,1,STM_Scientific_EN.pdf Fig 1
+stm,cell.R.1co.10Hz.T_per_run,"32, 54, 55","32, 54, 55",1,STM_Scientific_EN.pdf Fig 1
+stm,cell.R.2co.10Hz.mean,-4.60,-4.60,1,STM_Scientific_EN.pdf Fig 1 / Fig 4
+stm,cell.R.2co.10Hz.sd,0.85,0.85,1,STM_Scientific_EN.pdf Fig 1 / Fig 4
+stm,cell.R.2co.10Hz.n,2,2,1,STM_Scientific_EN.pdf Fig 1 / Fig 4
+stm,cell.R.2co.10Hz.T,93,93,1,STM_Scientific_EN.pdf Fig 1
+stm,cell.R.2co.10Hz.I,186,186,1,STM_Scientific_EN.pdf Fig 1
+stm,cell.R.2co.10Hz.T_per_run,"43, 50","43, 50",1,STM_Scientific_EN.pdf Fig 1
+stm,cell.L.0.5co.10Hz.mean,-11.67,-11.67,1,STM_Scientific_EN.pdf Fig 1 / Fig 4
+stm,cell.L.0.5co.10Hz.sd,3.44,3.44,1,STM_Scientific_EN.pdf Fig 1 / Fig 4
+stm,cell.L.0.5co.10Hz.n,3,3,1,STM_Scientific_EN.pdf Fig 1 / Fig 4
+stm,cell.L.0.5co.10Hz.T,156,156,1,STM_Scientific_EN.pdf Fig 1
+stm,cell.L.0.5co.10Hz.I,312,312,1,STM_Scientific_EN.pdf Fig 1
+stm,cell.L.0.5co.10Hz.T_per_run,"45, 54, 57","45, 54, 57",1,STM_Scientific_EN.pdf Fig 1
+stm,cell.L.1co.10Hz.mean,-5.70,-5.70,1,STM_Scientific_EN.pdf Fig 1 / Fig 4
+stm,cell.L.1co.10Hz.sd,1.84,1.84,1,STM_Scientific_EN.pdf Fig 1 / Fig 4
+stm,cell.L.1co.10Hz.n,2,2,1,STM_Scientific_EN.pdf Fig 1 / Fig 4
+stm,cell.L.1co.10Hz.T,110,110,1,STM_Scientific_EN.pdf Fig 1
+stm,cell.L.1co.10Hz.I,220,220,1,STM_Scientific_EN.pdf Fig 1
+stm,cell.L.1co.10Hz.T_per_run,"66, 44","66, 44",1,STM_Scientific_EN.pdf Fig 1
+stm,cell.L.2co.10Hz.mean,-5.60,-5.60,1,STM_Scientific_EN.pdf Fig 1 / Fig 4
+stm,cell.L.2co.10Hz.sd,1.13,1.13,1,STM_Scientific_EN.pdf Fig 1 / Fig 4
+stm,cell.L.2co.10Hz.n,2,2,1,STM_Scientific_EN.pdf Fig 1 / Fig 4
+stm,cell.L.2co.10Hz.T,110,110,1,STM_Scientific_EN.pdf Fig 1
+stm,cell.L.2co.10Hz.I,220,220,1,STM_Scientific_EN.pdf Fig 1
+stm,cell.L.2co.10Hz.T_per_run,"48, 62","48, 62",1,STM_Scientific_EN.pdf Fig 1
+stm,sixcond.R.mean,-11.9,-11.9,1,STM_Scientific_EN.pdf Fig 1 E
+stm,sixcond.L.mean,-8.3,-8.3,1,STM_Scientific_EN.pdf Fig 1 E
+stm,sixcond.n_conditions_R_lower,5,5,1,STM_Scientific_EN.pdf Fig 1 E
+stm,cond.0.5co.5Hz.R_mean_1dp,-19.3,-19.3,1,STM_Scientific_EN.pdf Fig 1 F
+stm,cond.0.5co.5Hz.L_mean_1dp,-10.7,-10.7,1,STM_Scientific_EN.pdf Fig 1 F
+stm,cond.0.5co.5Hz.R_minus_L,-8.6,-8.6,1,STM_Scientific_EN.pdf Fig 1 F
+stm,cond.0.5co.10Hz.R_mean_1dp,-14.2,-14.2,1,STM_Scientific_EN.pdf Fig 1 F
+stm,cond.0.5co.10Hz.L_mean_1dp,-11.7,-11.7,1,STM_Scientific_EN.pdf Fig 1 F
+stm,cond.0.5co.10Hz.R_minus_L,-2.5,-2.5,1,STM_Scientific_EN.pdf Fig 1 F
+stm,cond.1co.5Hz.R_mean_1dp,-12.2,-12.2,1,STM_Scientific_EN.pdf Fig 1 F
+stm,cond.1co.5Hz.L_mean_1dp,-8.1,-8.1,1,STM_Scientific_EN.pdf Fig 1 F
+stm,cond.1co.5Hz.R_minus_L,-4.1,-4.1,1,STM_Scientific_EN.pdf Fig 1 F
+stm,cond.1co.10Hz.R_mean_1dp,-11.5,-11.5,1,STM_Scientific_EN.pdf Fig 1 F
+stm,cond.1co.10Hz.L_mean_1dp,-5.7,-5.7,1,STM_Scientific_EN.pdf Fig 1 F
+stm,cond.1co.10Hz.R_minus_L,-5.8,-5.8,1,STM_Scientific_EN.pdf Fig 1 F
+stm,cond.2co.5Hz.R_mean_1dp,-9.4,-9.4,1,STM_Scientific_EN.pdf Fig 1 F
+stm,cond.2co.5Hz.L_mean_1dp,-7.7,-7.7,1,STM_Scientific_EN.pdf Fig 1 F
+stm,cond.2co.5Hz.R_minus_L,-1.7,-1.7,1,STM_Scientific_EN.pdf Fig 1 F
+stm,cond.2co.10Hz.R_mean_1dp,-4.6,-4.6,1,STM_Scientific_EN.pdf Fig 1 F
+stm,cond.2co.10Hz.L_mean_1dp,-5.6,-5.6,1,STM_Scientific_EN.pdf Fig 1 F
+stm,cond.2co.10Hz.R_minus_L,+1.0,+1.0,1,STM_Scientific_EN.pdf Fig 1 F
+stm,run.R01.condition,2 c/o · 10 Hz,2 c/o · 10 Hz,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.R01.threshold,-4.0,-4.0,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.R01.T,43,43,1,STM_Scientific_EN.pdf Fig 2-3 / Fig 5
+stm,run.R01.flags,NC,NC,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.R02.condition,0.5 c/o · 10 Hz,0.5 c/o · 10 Hz,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.R02.threshold,-13.8,-13.8,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.R02.T,35,35,1,STM_Scientific_EN.pdf Fig 2-3 / Fig 5
+stm,run.R02.flags,none,none,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.R03.condition,0.5 c/o · 5 Hz,0.5 c/o · 5 Hz,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.R03.threshold,-20.2,-20.2,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.R03.T,52,52,1,STM_Scientific_EN.pdf Fig 2-3 / Fig 5
+stm,run.R03.flags,none,none,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.R04.condition,1 c/o · 5 Hz,1 c/o · 5 Hz,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.R04.threshold,-13.2,-13.2,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.R04.T,65,65,1,STM_Scientific_EN.pdf Fig 2-3 / Fig 5
+stm,run.R04.flags,none,none,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.R05.condition,2 c/o · 5 Hz,2 c/o · 5 Hz,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.R05.threshold,-10.2,-10.2,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.R05.T,59,59,1,STM_Scientific_EN.pdf Fig 2-3 / Fig 5
+stm,run.R05.flags,none,none,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.R06.condition,1 c/o · 10 Hz,1 c/o · 10 Hz,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.R06.threshold,-9.6,-9.6,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.R06.T,32,32,1,STM_Scientific_EN.pdf Fig 2-3 / Fig 5
+stm,run.R06.flags,none,none,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.R07.condition,1 c/o · 5 Hz,1 c/o · 5 Hz,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.R07.threshold,-11.2,-11.2,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.R07.T,47,47,1,STM_Scientific_EN.pdf Fig 2-3 / Fig 5
+stm,run.R07.flags,none,none,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.R08.condition,2 c/o · 5 Hz,2 c/o · 5 Hz,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.R08.threshold,-8.6,-8.6,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.R08.T,53,53,1,STM_Scientific_EN.pdf Fig 2-3 / Fig 5
+stm,run.R08.flags,none,none,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.R09.condition,1 c/o · 10 Hz,1 c/o · 10 Hz,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.R09.threshold,-13.8,-13.8,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.R09.T,54,54,1,STM_Scientific_EN.pdf Fig 2-3 / Fig 5
+stm,run.R09.flags,IB,IB,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.R10.condition,2 c/o · 10 Hz,2 c/o · 10 Hz,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.R10.threshold,-5.2,-5.2,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.R10.T,50,50,1,STM_Scientific_EN.pdf Fig 2-3 / Fig 5
+stm,run.R10.flags,none,none,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.R11.condition,0.5 c/o · 5 Hz,0.5 c/o · 5 Hz,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.R11.threshold,-18.4,-18.4,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.R11.T,48,48,1,STM_Scientific_EN.pdf Fig 2-3 / Fig 5
+stm,run.R11.flags,none,none,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.R12.condition,0.5 c/o · 10 Hz,0.5 c/o · 10 Hz,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.R12.threshold,-14.6,-14.6,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.R12.T,57,57,1,STM_Scientific_EN.pdf Fig 2-3 / Fig 5
+stm,run.R12.flags,none,none,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.R13.condition,1 c/o · 10 Hz,1 c/o · 10 Hz,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.R13.threshold,-11.0,-11.0,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.R13.T,55,55,1,STM_Scientific_EN.pdf Fig 2-3 / Fig 5
+stm,run.R13.flags,none,none,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.L01.condition,2 c/o · 10 Hz,2 c/o · 10 Hz,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.L01.threshold,-6.4,-6.4,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.L01.T,48,48,1,STM_Scientific_EN.pdf Fig 2-3 / Fig 5
+stm,run.L01.flags,NC,NC,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.L02.condition,0.5 c/o · 10 Hz,0.5 c/o · 10 Hz,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.L02.threshold,-10.2,-10.2,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.L02.T,45,45,1,STM_Scientific_EN.pdf Fig 2-3 / Fig 5
+stm,run.L02.flags,IB,IB,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.L03.condition,1 c/o · 10 Hz,1 c/o · 10 Hz,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.L03.threshold,-7.0,-7.0,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.L03.T,66,66,1,STM_Scientific_EN.pdf Fig 2-3 / Fig 5
+stm,run.L03.flags,IB,IB,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.L04.condition,0.5 c/o · 5 Hz,0.5 c/o · 5 Hz,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.L04.threshold,-10.2,-10.2,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.L04.T,44,44,1,STM_Scientific_EN.pdf Fig 2-3 / Fig 5
+stm,run.L04.flags,none,none,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.L05.condition,1 c/o · 5 Hz,1 c/o · 5 Hz,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.L05.threshold,-7.0,-7.0,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.L05.T,47,47,1,STM_Scientific_EN.pdf Fig 2-3 / Fig 5
+stm,run.L05.flags,none,none,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.L06.condition,2 c/o · 5 Hz,2 c/o · 5 Hz,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.L06.threshold,-6.8,-6.8,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.L06.T,53,53,1,STM_Scientific_EN.pdf Fig 2-3 / Fig 5
+stm,run.L06.flags,NC,NC,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.L07.condition,2 c/o · 10 Hz,2 c/o · 10 Hz,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.L07.threshold,-4.8,-4.8,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.L07.T,62,62,1,STM_Scientific_EN.pdf Fig 2-3 / Fig 5
+stm,run.L07.flags,IB NC,IB NC,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.L08.condition,2 c/o · 5 Hz,2 c/o · 5 Hz,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.L08.threshold,-10.2,-10.2,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.L08.T,36,36,1,STM_Scientific_EN.pdf Fig 2-3 / Fig 5
+stm,run.L08.flags,none,none,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.L09.condition,0.5 c/o · 5 Hz,0.5 c/o · 5 Hz,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.L09.threshold,-11.2,-11.2,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.L09.T,52,52,1,STM_Scientific_EN.pdf Fig 2-3 / Fig 5
+stm,run.L09.flags,none,none,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.L10.condition,1 c/o · 10 Hz,1 c/o · 10 Hz,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.L10.threshold,-4.4,-4.4,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.L10.T,44,44,1,STM_Scientific_EN.pdf Fig 2-3 / Fig 5
+stm,run.L10.flags,none,none,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.L11.condition,1 c/o · 5 Hz,1 c/o · 5 Hz,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.L11.threshold,-9.2,-9.2,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.L11.T,66,66,1,STM_Scientific_EN.pdf Fig 2-3 / Fig 5
+stm,run.L11.flags,IB,IB,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.L12.condition,0.5 c/o · 10 Hz,0.5 c/o · 10 Hz,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.L12.threshold,-15.6,-15.6,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.L12.T,54,54,1,STM_Scientific_EN.pdf Fig 2-3 / Fig 5
+stm,run.L12.flags,IB,IB,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.L13.condition,2 c/o · 5 Hz,2 c/o · 5 Hz,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.L13.threshold,-6.2,-6.2,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.L13.T,46,46,1,STM_Scientific_EN.pdf Fig 2-3 / Fig 5
+stm,run.L13.flags,none,none,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.L14.condition,0.5 c/o · 10 Hz,0.5 c/o · 10 Hz,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.L14.threshold,-9.2,-9.2,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.L14.T,57,57,1,STM_Scientific_EN.pdf Fig 2-3 / Fig 5
+stm,run.L14.flags,none,none,1,STM_Scientific_EN.pdf Fig 2-3
+stm,run.R01.correct_by_target_interval,15/22 | 16/21,15/22 | 16/21,1,STM_Scientific_EN.pdf Fig 5
+stm,run.R02.correct_by_target_interval,13/17 | 15/18,13/17 | 15/18,1,STM_Scientific_EN.pdf Fig 5
+stm,run.R03.correct_by_target_interval,22/31 | 18/21,22/31 | 18/21,1,STM_Scientific_EN.pdf Fig 5
+stm,run.R04.correct_by_target_interval,21/28 | 29/37,21/28 | 29/37,1,STM_Scientific_EN.pdf Fig 5
+stm,run.R05.correct_by_target_interval,26/33 | 18/26,26/33 | 18/26,1,STM_Scientific_EN.pdf Fig 5
+stm,run.R06.correct_by_target_interval,14/18 | 10/14,14/18 | 10/14,1,STM_Scientific_EN.pdf Fig 5
+stm,run.R07.correct_by_target_interval,20/23 | 16/24,20/23 | 16/24,1,STM_Scientific_EN.pdf Fig 5
+stm,run.R08.correct_by_target_interval,14/18 | 27/35,14/18 | 27/35,1,STM_Scientific_EN.pdf Fig 5
+stm,run.R09.correct_by_target_interval,19/30 | 22/24,19/30 | 22/24,1,STM_Scientific_EN.pdf Fig 5
+stm,run.R10.correct_by_target_interval,20/26 | 17/24,20/26 | 17/24,1,STM_Scientific_EN.pdf Fig 5
+stm,run.R11.correct_by_target_interval,18/24 | 19/24,18/24 | 19/24,1,STM_Scientific_EN.pdf Fig 5
+stm,run.R12.correct_by_target_interval,20/28 | 22/29,20/28 | 22/29,1,STM_Scientific_EN.pdf Fig 5
+stm,run.R13.correct_by_target_interval,26/34 | 16/21,26/34 | 16/21,1,STM_Scientific_EN.pdf Fig 5
+stm,run.L01.correct_by_target_interval,15/21 | 20/27,15/21 | 20/27,1,STM_Scientific_EN.pdf Fig 5
+stm,run.L02.correct_by_target_interval,10/17 | 25/28,10/17 | 25/28,1,STM_Scientific_EN.pdf Fig 5
+stm,run.L03.correct_by_target_interval,20/33 | 30/33,20/33 | 30/33,1,STM_Scientific_EN.pdf Fig 5
+stm,run.L04.correct_by_target_interval,13/21 | 19/23,13/21 | 19/23,1,STM_Scientific_EN.pdf Fig 5
+stm,run.L05.correct_by_target_interval,12/20 | 23/27,12/20 | 23/27,1,STM_Scientific_EN.pdf Fig 5
+stm,run.L06.correct_by_target_interval,20/28 | 20/25,20/28 | 20/25,1,STM_Scientific_EN.pdf Fig 5
+stm,run.L07.correct_by_target_interval,17/28 | 29/34,17/28 | 29/34,1,STM_Scientific_EN.pdf Fig 5
+stm,run.L08.correct_by_target_interval,15/21 | 13/15,15/21 | 13/15,1,STM_Scientific_EN.pdf Fig 5
+stm,run.L09.correct_by_target_interval,19/26 | 21/26,19/26 | 21/26,1,STM_Scientific_EN.pdf Fig 5
+stm,run.L10.correct_by_target_interval,17/23 | 17/21,17/23 | 17/21,1,STM_Scientific_EN.pdf Fig 5
+stm,run.L11.correct_by_target_interval,18/32 | 32/34,18/32 | 32/34,1,STM_Scientific_EN.pdf Fig 5
+stm,run.L12.correct_by_target_interval,16/27 | 24/27,16/27 | 24/27,1,STM_Scientific_EN.pdf Fig 5
+stm,run.L13.correct_by_target_interval,19/25 | 16/21,19/25 | 16/21,1,STM_Scientific_EN.pdf Fig 5
+stm,run.L14.correct_by_target_interval,21/28 | 23/29,21/28 | 23/29,1,STM_Scientific_EN.pdf Fig 5
+stm,repeat.R.0.5co.5Hz.run1,-20.2,-20.2,1,STM_Scientific_EN.pdf Fig 4 B
+stm,repeat.R.0.5co.5Hz.run2,-18.4,-18.4,1,STM_Scientific_EN.pdf Fig 4 B
+stm,repeat.R.0.5co.5Hz.run3,—,—,1,STM_Scientific_EN.pdf Fig 4 B
+stm,repeat.R.0.5co.5Hz.run2_minus_run1,+1.8,+1.8,1,STM_Scientific_EN.pdf Fig 4 A-B
+stm,repeat.L.0.5co.5Hz.run1,-10.2,-10.2,1,STM_Scientific_EN.pdf Fig 4 B
+stm,repeat.L.0.5co.5Hz.run2,-11.2,-11.2,1,STM_Scientific_EN.pdf Fig 4 B
+stm,repeat.L.0.5co.5Hz.run3,—,—,1,STM_Scientific_EN.pdf Fig 4 B
+stm,repeat.L.0.5co.5Hz.run2_minus_run1,-1.0,-1.0,1,STM_Scientific_EN.pdf Fig 4 A-B
+stm,repeat.R.0.5co.10Hz.run1,-13.8,-13.8,1,STM_Scientific_EN.pdf Fig 4 B
+stm,repeat.R.0.5co.10Hz.run2,-14.6,-14.6,1,STM_Scientific_EN.pdf Fig 4 B
+stm,repeat.R.0.5co.10Hz.run3,—,—,1,STM_Scientific_EN.pdf Fig 4 B
+stm,repeat.R.0.5co.10Hz.run2_minus_run1,-0.8,-0.8,1,STM_Scientific_EN.pdf Fig 4 A-B
+stm,repeat.L.0.5co.10Hz.run1,-10.2,-10.2,1,STM_Scientific_EN.pdf Fig 4 B
+stm,repeat.L.0.5co.10Hz.run2,-15.6,-15.6,1,STM_Scientific_EN.pdf Fig 4 B
+stm,repeat.L.0.5co.10Hz.run3,-9.2,-9.2,1,STM_Scientific_EN.pdf Fig 4 B
+stm,repeat.L.0.5co.10Hz.run2_minus_run1,-5.4,-5.4,1,STM_Scientific_EN.pdf Fig 4 A-B
+stm,repeat.R.1co.5Hz.run1,-13.2,-13.2,1,STM_Scientific_EN.pdf Fig 4 B
+stm,repeat.R.1co.5Hz.run2,-11.2,-11.2,1,STM_Scientific_EN.pdf Fig 4 B
+stm,repeat.R.1co.5Hz.run3,—,—,1,STM_Scientific_EN.pdf Fig 4 B
+stm,repeat.R.1co.5Hz.run2_minus_run1,+2.0,+2.0,1,STM_Scientific_EN.pdf Fig 4 A-B
+stm,repeat.L.1co.5Hz.run1,-7.0,-7.0,1,STM_Scientific_EN.pdf Fig 4 B
+stm,repeat.L.1co.5Hz.run2,-9.2,-9.2,1,STM_Scientific_EN.pdf Fig 4 B
+stm,repeat.L.1co.5Hz.run3,—,—,1,STM_Scientific_EN.pdf Fig 4 B
+stm,repeat.L.1co.5Hz.run2_minus_run1,-2.2,-2.2,1,STM_Scientific_EN.pdf Fig 4 A-B
+stm,repeat.R.1co.10Hz.run1,-9.6,-9.6,1,STM_Scientific_EN.pdf Fig 4 B
+stm,repeat.R.1co.10Hz.run2,-13.8,-13.8,1,STM_Scientific_EN.pdf Fig 4 B
+stm,repeat.R.1co.10Hz.run3,-11.0,-11.0,1,STM_Scientific_EN.pdf Fig 4 B
+stm,repeat.R.1co.10Hz.run2_minus_run1,-4.2,-4.2,1,STM_Scientific_EN.pdf Fig 4 A-B
+stm,repeat.L.1co.10Hz.run1,-7.0,-7.0,1,STM_Scientific_EN.pdf Fig 4 B
+stm,repeat.L.1co.10Hz.run2,-4.4,-4.4,1,STM_Scientific_EN.pdf Fig 4 B
+stm,repeat.L.1co.10Hz.run3,—,—,1,STM_Scientific_EN.pdf Fig 4 B
+stm,repeat.L.1co.10Hz.run2_minus_run1,+2.6,+2.6,1,STM_Scientific_EN.pdf Fig 4 A-B
+stm,repeat.R.2co.5Hz.run1,-10.2,-10.2,1,STM_Scientific_EN.pdf Fig 4 B
+stm,repeat.R.2co.5Hz.run2,-8.6,-8.6,1,STM_Scientific_EN.pdf Fig 4 B
+stm,repeat.R.2co.5Hz.run3,—,—,1,STM_Scientific_EN.pdf Fig 4 B
+stm,repeat.R.2co.5Hz.run2_minus_run1,+1.6,+1.6,1,STM_Scientific_EN.pdf Fig 4 A-B
+stm,repeat.L.2co.5Hz.run1,-6.8,-6.8,1,STM_Scientific_EN.pdf Fig 4 B
+stm,repeat.L.2co.5Hz.run2,-10.2,-10.2,1,STM_Scientific_EN.pdf Fig 4 B
+stm,repeat.L.2co.5Hz.run3,-6.2,-6.2,1,STM_Scientific_EN.pdf Fig 4 B
+stm,repeat.L.2co.5Hz.run2_minus_run1,-3.4,-3.4,1,STM_Scientific_EN.pdf Fig 4 A-B
+stm,repeat.R.2co.10Hz.run1,-4.0,-4.0,1,STM_Scientific_EN.pdf Fig 4 B
+stm,repeat.R.2co.10Hz.run2,-5.2,-5.2,1,STM_Scientific_EN.pdf Fig 4 B
+stm,repeat.R.2co.10Hz.run3,—,—,1,STM_Scientific_EN.pdf Fig 4 B
+stm,repeat.R.2co.10Hz.run2_minus_run1,-1.2,-1.2,1,STM_Scientific_EN.pdf Fig 4 A-B
+stm,repeat.L.2co.10Hz.run1,-6.4,-6.4,1,STM_Scientific_EN.pdf Fig 4 B
+stm,repeat.L.2co.10Hz.run2,-4.8,-4.8,1,STM_Scientific_EN.pdf Fig 4 B
+stm,repeat.L.2co.10Hz.run3,—,—,1,STM_Scientific_EN.pdf Fig 4 B
+stm,repeat.L.2co.10Hz.run2_minus_run1,+1.6,+1.6,1,STM_Scientific_EN.pdf Fig 4 A-B
+stm,repeat.n_cells_absdiff_gt3,3,3,1,STM_Scientific_EN.pdf Fig 4
+stm,repeat.n_cells_absdiff_gt3_with_third_run,3,3,1,STM_Scientific_EN.pdf Fig 4

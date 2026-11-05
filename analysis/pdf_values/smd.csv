@@ -1,0 +1,155 @@
+key,expected,where
+all.n_runs,12,SMD_scientific_EN.pdf Fig 1
+all.n_trials,653,SMD_scientific_EN.pdf Fig 1
+numeric.n_runs,9,SMD_scientific_EN.pdf Fig 1
+numeric.n_trials,490,SMD_scientific_EN.pdf Fig 1
+none.n_runs,3,SMD_scientific_EN.pdf Fig 1
+none.n_trials,163,SMD_scientific_EN.pdf Fig 1
+all.n_reversals,168,SMD_scientific_EN.pdf Fig 7
+page.R01-R04.n_trials,217,SMD_scientific_EN.pdf Fig 2
+page.R05-R08.n_trials,225,SMD_scientific_EN.pdf Fig 3
+page.R09-R12.n_trials,211,SMD_scientific_EN.pdf Fig 4
+density.0.5co.n_runs,3,SMD_scientific_EN.pdf Fig 1 table
+density.0.5co.n_trials,166,SMD_scientific_EN.pdf Fig 1 table
+density.0.5co.numeric_runs,2,SMD_scientific_EN.pdf Fig 1 table
+density.0.5co.numeric_trials,111,SMD_scientific_EN.pdf Fig 1 table
+density.0.5co.none_runs,1,SMD_scientific_EN.pdf Fig 1 table
+density.0.5co.none_trials,55,SMD_scientific_EN.pdf Fig 1 table
+density.0.5co.mean,21.35,SMD_scientific_EN.pdf Fig 1 table
+density.0.5co.sd,2.83,SMD_scientific_EN.pdf Fig 1 table
+density.1co.n_runs,6,SMD_scientific_EN.pdf Fig 1 table
+density.1co.n_trials,329,SMD_scientific_EN.pdf Fig 1 table
+density.1co.numeric_runs,5,SMD_scientific_EN.pdf Fig 1 table
+density.1co.numeric_trials,285,SMD_scientific_EN.pdf Fig 1 table
+density.1co.none_runs,1,SMD_scientific_EN.pdf Fig 1 table
+density.1co.none_trials,44,SMD_scientific_EN.pdf Fig 1 table
+density.1co.mean,21.25,SMD_scientific_EN.pdf Fig 1 table
+density.1co.sd,1.99,SMD_scientific_EN.pdf Fig 1 table
+density.2co.n_runs,3,SMD_scientific_EN.pdf Fig 1 table
+density.2co.n_trials,158,SMD_scientific_EN.pdf Fig 1 table
+density.2co.numeric_runs,2,SMD_scientific_EN.pdf Fig 1 table
+density.2co.numeric_trials,94,SMD_scientific_EN.pdf Fig 1 table
+density.2co.none_runs,1,SMD_scientific_EN.pdf Fig 1 table
+density.2co.none_trials,64,SMD_scientific_EN.pdf Fig 1 table
+density.2co.mean,21.33,SMD_scientific_EN.pdf Fig 1 table
+density.2co.sd,6.19,SMD_scientific_EN.pdf Fig 1 table
+run.R01.run_id,rmvy023otzzslbf,SMD_scientific_EN.pdf Fig 7
+run.R01.start_kst,00:43:30,SMD_scientific_EN.pdf Fig 2-4 / Fig 7
+run.R01.density,1,SMD_scientific_EN.pdf Fig 2-4 / Fig 7
+run.R01.n_trials,49,SMD_scientific_EN.pdf Fig 1-4 / Fig 7
+run.R01.n_correct,30,SMD_scientific_EN.pdf Fig 7
+run.R01.threshold,23.40,SMD_scientific_EN.pdf Fig 1-4 / Fig 7
+run.R01.window_correct,24/39,SMD_scientific_EN.pdf Fig 5 A
+run.R01.target1_correct,3/12,SMD_scientific_EN.pdf Fig 5 B
+run.R01.target2_correct,15/22,SMD_scientific_EN.pdf Fig 5 B
+run.R01.target3_correct,12/15,SMD_scientific_EN.pdf Fig 5 B
+run.R02.run_id,rmvy076pe2q9yp3,SMD_scientific_EN.pdf Fig 7
+run.R02.start_kst,00:47:27,SMD_scientific_EN.pdf Fig 2-4 / Fig 7
+run.R02.density,1,SMD_scientific_EN.pdf Fig 2-4 / Fig 7
+run.R02.n_trials,44,SMD_scientific_EN.pdf Fig 1-4 / Fig 7
+run.R02.n_correct,25,SMD_scientific_EN.pdf Fig 7
+run.R02.threshold,NA,SMD_scientific_EN.pdf Fig 1-4 / Fig 7
+run.R02.window_correct,16/32,SMD_scientific_EN.pdf Fig 5 A
+run.R02.target1_correct,2/17,SMD_scientific_EN.pdf Fig 5 B
+run.R02.target2_correct,14/14,SMD_scientific_EN.pdf Fig 5 B
+run.R02.target3_correct,9/13,SMD_scientific_EN.pdf Fig 5 B
+run.R03.run_id,rmvy0du1frz0igj,SMD_scientific_EN.pdf Fig 7
+run.R03.start_kst,00:52:37,SMD_scientific_EN.pdf Fig 2-4 / Fig 7
+run.R03.density,1,SMD_scientific_EN.pdf Fig 2-4 / Fig 7
+run.R03.n_trials,60,SMD_scientific_EN.pdf Fig 1-4 / Fig 7
+run.R03.n_correct,44,SMD_scientific_EN.pdf Fig 7
+run.R03.threshold,20.25,SMD_scientific_EN.pdf Fig 1-4 / Fig 7
+run.R03.window_correct,32/42,SMD_scientific_EN.pdf Fig 5 A
+run.R03.target1_correct,14/21,SMD_scientific_EN.pdf Fig 5 B
+run.R03.target2_correct,13/21,SMD_scientific_EN.pdf Fig 5 B
+run.R03.target3_correct,17/18,SMD_scientific_EN.pdf Fig 5 B
+run.R04.run_id,rmvz4tr8mz87e8y,SMD_scientific_EN.pdf Fig 7
+run.R04.start_kst,19:44:45,SMD_scientific_EN.pdf Fig 2-4 / Fig 7
+run.R04.density,2,SMD_scientific_EN.pdf Fig 2-4 / Fig 7
+run.R04.n_trials,64,SMD_scientific_EN.pdf Fig 1-4 / Fig 7
+run.R04.n_correct,35,SMD_scientific_EN.pdf Fig 7
+run.R04.threshold,NA,SMD_scientific_EN.pdf Fig 1-4 / Fig 7
+run.R04.window_correct,26/51,SMD_scientific_EN.pdf Fig 5 A
+run.R04.target1_correct,7/20,SMD_scientific_EN.pdf Fig 5 B
+run.R04.target2_correct,18/27,SMD_scientific_EN.pdf Fig 5 B
+run.R04.target3_correct,10/17,SMD_scientific_EN.pdf Fig 5 B
+run.R05.run_id,rmvz55at1w19ueu,SMD_scientific_EN.pdf Fig 7
+run.R05.start_kst,19:53:44,SMD_scientific_EN.pdf Fig 2-4 / Fig 7
+run.R05.density,0.5,SMD_scientific_EN.pdf Fig 2-4 / Fig 7
+run.R05.n_trials,55,SMD_scientific_EN.pdf Fig 1-4 / Fig 7
+run.R05.n_correct,34,SMD_scientific_EN.pdf Fig 7
+run.R05.threshold,NA,SMD_scientific_EN.pdf Fig 1-4 / Fig 7
+run.R05.window_correct,19/36,SMD_scientific_EN.pdf Fig 5 A
+run.R05.target1_correct,9/20,SMD_scientific_EN.pdf Fig 5 B
+run.R05.target2_correct,11/21,SMD_scientific_EN.pdf Fig 5 B
+run.R05.target3_correct,14/14,SMD_scientific_EN.pdf Fig 5 B
+run.R06.run_id,rmvz5c6uf0yerb7,SMD_scientific_EN.pdf Fig 7
+run.R06.start_kst,19:59:05,SMD_scientific_EN.pdf Fig 2-4 / Fig 7
+run.R06.density,1,SMD_scientific_EN.pdf Fig 2-4 / Fig 7
+run.R06.n_trials,51,SMD_scientific_EN.pdf Fig 1-4 / Fig 7
+run.R06.n_correct,39,SMD_scientific_EN.pdf Fig 7
+run.R06.threshold,23.00,SMD_scientific_EN.pdf Fig 1-4 / Fig 7
+run.R06.window_correct,31/37,SMD_scientific_EN.pdf Fig 5 A
+run.R06.target1_correct,9/15,SMD_scientific_EN.pdf Fig 5 B
+run.R06.target2_correct,14/19,SMD_scientific_EN.pdf Fig 5 B
+run.R06.target3_correct,16/17,SMD_scientific_EN.pdf Fig 5 B
+run.R07.run_id,rmvz5ttkoomq1h0,SMD_scientific_EN.pdf Fig 7
+run.R07.start_kst,20:12:48,SMD_scientific_EN.pdf Fig 2-4 / Fig 7
+run.R07.density,2,SMD_scientific_EN.pdf Fig 2-4 / Fig 7
+run.R07.n_trials,50,SMD_scientific_EN.pdf Fig 1-4 / Fig 7
+run.R07.n_correct,29,SMD_scientific_EN.pdf Fig 7
+run.R07.threshold,25.70,SMD_scientific_EN.pdf Fig 1-4 / Fig 7
+run.R07.window_correct,17/30,SMD_scientific_EN.pdf Fig 5 A
+run.R07.target1_correct,8/17,SMD_scientific_EN.pdf Fig 5 B
+run.R07.target2_correct,6/16,SMD_scientific_EN.pdf Fig 5 B
+run.R07.target3_correct,15/17,SMD_scientific_EN.pdf Fig 5 B
+run.R08.run_id,rmvz617jpo2lxqf,SMD_scientific_EN.pdf Fig 7
+run.R08.start_kst,20:18:32,SMD_scientific_EN.pdf Fig 2-4 / Fig 7
+run.R08.density,0.5,SMD_scientific_EN.pdf Fig 2-4 / Fig 7
+run.R08.n_trials,69,SMD_scientific_EN.pdf Fig 1-4 / Fig 7
+run.R08.n_correct,51,SMD_scientific_EN.pdf Fig 7
+run.R08.threshold,23.35,SMD_scientific_EN.pdf Fig 1-4 / Fig 7
+run.R08.window_correct,44/57,SMD_scientific_EN.pdf Fig 5 A
+run.R08.target1_correct,12/23,SMD_scientific_EN.pdf Fig 5 B
+run.R08.target2_correct,15/20,SMD_scientific_EN.pdf Fig 5 B
+run.R08.target3_correct,24/26,SMD_scientific_EN.pdf Fig 5 B
+run.R09.run_id,rmvz6ad9pkbzlo3,SMD_scientific_EN.pdf Fig 7
+run.R09.start_kst,20:25:40,SMD_scientific_EN.pdf Fig 2-4 / Fig 7
+run.R09.density,1,SMD_scientific_EN.pdf Fig 2-4 / Fig 7
+run.R09.n_trials,49,SMD_scientific_EN.pdf Fig 1-4 / Fig 7
+run.R09.n_correct,34,SMD_scientific_EN.pdf Fig 7
+run.R09.threshold,18.60,SMD_scientific_EN.pdf Fig 1-4 / Fig 7
+run.R09.window_correct,26/38,SMD_scientific_EN.pdf Fig 5 A
+run.R09.target1_correct,5/11,SMD_scientific_EN.pdf Fig 5 B
+run.R09.target2_correct,14/21,SMD_scientific_EN.pdf Fig 5 B
+run.R09.target3_correct,15/17,SMD_scientific_EN.pdf Fig 5 B
+run.R10.run_id,rmvz6fcoe929uia,SMD_scientific_EN.pdf Fig 7
+run.R10.start_kst,20:29:32,SMD_scientific_EN.pdf Fig 2-4 / Fig 7
+run.R10.density,2,SMD_scientific_EN.pdf Fig 2-4 / Fig 7
+run.R10.n_trials,44,SMD_scientific_EN.pdf Fig 1-4 / Fig 7
+run.R10.n_correct,28,SMD_scientific_EN.pdf Fig 7
+run.R10.threshold,16.95,SMD_scientific_EN.pdf Fig 1-4 / Fig 7
+run.R10.window_correct,17/30,SMD_scientific_EN.pdf Fig 5 A
+run.R10.target1_correct,4/14,SMD_scientific_EN.pdf Fig 5 B
+run.R10.target2_correct,12/17,SMD_scientific_EN.pdf Fig 5 B
+run.R10.target3_correct,12/13,SMD_scientific_EN.pdf Fig 5 B
+run.R11.run_id,rmvz6jxt5k85o75,SMD_scientific_EN.pdf Fig 7
+run.R11.start_kst,20:33:06,SMD_scientific_EN.pdf Fig 2-4 / Fig 7
+run.R11.density,0.5,SMD_scientific_EN.pdf Fig 2-4 / Fig 7
+run.R11.n_trials,42,SMD_scientific_EN.pdf Fig 1-4 / Fig 7
+run.R11.n_correct,32,SMD_scientific_EN.pdf Fig 7
+run.R11.threshold,19.35,SMD_scientific_EN.pdf Fig 1-4 / Fig 7
+run.R11.window_correct,23/30,SMD_scientific_EN.pdf Fig 5 A
+run.R11.target1_correct,8/16,SMD_scientific_EN.pdf Fig 5 B
+run.R11.target2_correct,14/16,SMD_scientific_EN.pdf Fig 5 B
+run.R11.target3_correct,10/10,SMD_scientific_EN.pdf Fig 5 B
+run.R12.run_id,rmvz6q3lpntkqle,SMD_scientific_EN.pdf Fig 7
+run.R12.start_kst,20:37:54,SMD_scientific_EN.pdf Fig 2-4 / Fig 7
+run.R12.density,1,SMD_scientific_EN.pdf Fig 2-4 / Fig 7
+run.R12.n_trials,76,SMD_scientific_EN.pdf Fig 1-4 / Fig 7
+run.R12.n_correct,60,SMD_scientific_EN.pdf Fig 7
+run.R12.threshold,21.00,SMD_scientific_EN.pdf Fig 1-4 / Fig 7
+run.R12.window_correct,47/57,SMD_scientific_EN.pdf Fig 5 A
+run.R12.target1_correct,14/23,SMD_scientific_EN.pdf Fig 5 B
+run.R12.target2_correct,17/23,SMD_scientific_EN.pdf Fig 5 B
+run.R12.target3_correct,29/30,SMD_scientific_EN.pdf Fig 5 B

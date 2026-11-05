@@ -1,0 +1,90 @@
+key,value
+A_std_R.2026-10-15.I,513
+A_std_R.2026-10-15.T,171
+A_std_R.2026-10-15.T_per_run,"27, 20, 28, 36, 26, 34"
+A_std_R.2026-10-15.mean,2.8944166666666664
+A_std_R.2026-10-15.n,6
+A_std_R.2026-10-15.sd,0.9659541819706908
+A_std_R.2026-10-20.I,300
+A_std_R.2026-10-20.T,100
+A_std_R.2026-10-20.T_per_run,"31, 32, 37"
+A_std_R.2026-10-20.mean,3.0111000000000003
+A_std_R.2026-10-20.n,3
+A_std_R.2026-10-20.sd,0.7350847774236656
+A_std_R.2026-10-22.I,291
+A_std_R.2026-10-22.T,97
+A_std_R.2026-10-22.T_per_run,"30, 27, 40"
+A_std_R.2026-10-22.mean,3.466666666666667
+A_std_R.2026-10-22.n,3
+A_std_R.2026-10-22.sd,0.7964874282330724
+A_std_R.I,1104
+A_std_R.T,368
+A_std_R.mean,3.0666499999999997
+A_std_R.n,12
+A_std_R.sd,0.8356872212844838
+B_std_L.2026-10-15.I,267
+B_std_L.2026-10-15.T,89
+B_std_L.2026-10-15.T_per_run,"33, 27, 29"
+B_std_L.2026-10-15.mean,3.0777666666666668
+B_std_L.2026-10-15.n,3
+B_std_L.2026-10-15.sd,0.13473293336572673
+B_std_L.2026-10-20.I,303
+B_std_L.2026-10-20.T,101
+B_std_L.2026-10-20.T_per_run,"26, 44, 31"
+B_std_L.2026-10-20.mean,3.9
+B_std_L.2026-10-20.n,3
+B_std_L.2026-10-20.sd,0.5457003665016178
+B_std_L.2026-10-22.I,273
+B_std_L.2026-10-22.T,91
+B_std_L.2026-10-22.T_per_run,"27, 34, 30"
+B_std_L.2026-10-22.mean,3.7778000000000005
+B_std_L.2026-10-22.n,3
+B_std_L.2026-10-22.sd,0.45501607663905697
+B_std_L.I,843
+B_std_L.T,281
+B_std_L.mean,3.5851888888888888
+B_std_L.n,9
+B_std_L.sd,0.5276137470831395
+C_roveB_R.2026-11-02.I,177
+C_roveB_R.2026-11-02.T,59
+C_roveB_R.2026-11-02.T_per_run,"16, 22, 21"
+C_roveB_R.2026-11-02.mean,1.6555333333333333
+C_roveB_R.2026-11-02.n,3
+C_roveB_R.2026-11-02.sd,0.3716893371262261
+C_roveB_R.2026-11-03.I,204
+C_roveB_R.2026-11-03.T,68
+C_roveB_R.2026-11-03.T_per_run,"22, 28, 18"
+C_roveB_R.2026-11-03.mean,1.5555666666666665
+C_roveB_R.2026-11-03.n,3
+C_roveB_R.2026-11-03.sd,0.28353457167219187
+C_roveB_R.I,381
+C_roveB_R.T,127
+C_roveB_R.mean,1.60555
+C_roveB_R.n,6
+C_roveB_R.sd,0.3006924126079672
+D_roveC_R.2026-11-02.I,207
+D_roveC_R.2026-11-02.T,69
+D_roveC_R.2026-11-02.T_per_run,"17, 26, 26"
+D_roveC_R.2026-11-02.mean,1.2666666666666666
+D_roveC_R.2026-11-02.n,3
+D_roveC_R.2026-11-02.sd,0.6009344584339738
+D_roveC_R.2026-11-03.I,156
+D_roveC_R.2026-11-03.T,52
+D_roveC_R.2026-11-03.T_per_run,"13, 21, 18"
+D_roveC_R.2026-11-03.mean,0.8666666666666667
+D_roveC_R.2026-11-03.n,3
+D_roveC_R.2026-11-03.sd,0.2516611478423584
+D_roveC_R.I,363
+D_roveC_R.T,121
+D_roveC_R.mean,1.0666666666666667
+D_roveC_R.n,6
+D_roveC_R.sd,0.466671429023319
+all.n_flagged_unverified,1
+all.n_intervals,2691
+all.n_runs,33
+all.n_trials,897
+all.n_unsure,37
+check.figure_pages,1
+check.flagged_unverified_runs,mw0lk72u38hd9 (rove C R 2026-11-03)
+check.threshold_recomputed_vs_app_mismatch,0
+ref.std_R_mean,3.0666499999999997

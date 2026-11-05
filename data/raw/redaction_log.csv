@@ -1,0 +1,200 @@
+file,json_path,rule,what_was_removed,replaced_with,n_values
+gdt/db.json,$.participants[].code,participant_code,"participant code typed in the apps -> the neutral public label ""P01""",P01,1
+gdt/db.json,$.routeChecks[].win.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},1
+gdt/db.json,$.routeChecks[].win.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,1
+gdt/db.json,$.runs[].pres.win.endpoint,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},27
+gdt/db.json,$.runs[].presKey,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},27
+gdt/db.json,$.runs[].winEnd.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},27
+gdt/db.json,$.runs[].winEnd.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,27
+gdt/db.json,$.runs[].winStart.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},27
+gdt/db.json,$.runs[].winStart.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,27
+gdt/db.json,$.sessions[].participantSnap.code,participant_code,"participant code typed in the apps -> the neutral public label ""P01""",P01,11
+gdt/db.json,$.sessions[].presRef.win.endpoint,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},11
+gdt/db.json,$.sessions[].presRefKey,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},11
+gdt/db.json,$.sessions[].segments[].winStart.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},1
+gdt/db.json,$.sessions[].segments[].winStart.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,1
+gdt/db.json,$.sessions[].winEnd.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},9
+gdt/db.json,$.sessions[].winEnd.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,9
+gdt/db.json,$.sessions[].winStart.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},11
+gdt/db.json,$.sessions[].winStart.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,11
+gdt/deleted_runs_2026-11-03/journal/*.jsonl,$[].data.run.pres.win.endpoint,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},3
+gdt/deleted_runs_2026-11-03/journal/*.jsonl,$[].data.run.presKey,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},3
+gdt/deleted_runs_2026-11-03/journal/*.jsonl,$[].data.run.winStart.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},3
+gdt/deleted_runs_2026-11-03/journal/*.jsonl,$[].data.run.winStart.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,3
+gdt/deleted_runs_2026-11-03/journal/*.jsonl,$[].data.session.participantSnap.code,participant_code,"participant code typed in the apps -> the neutral public label ""P01""",P01,3
+gdt/deleted_runs_2026-11-03/journal/*.jsonl,$[].data.session.presRef.win.endpoint,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},3
+gdt/deleted_runs_2026-11-03/journal/*.jsonl,$[].data.session.presRefKey,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},3
+gdt/deleted_runs_2026-11-03/journal/*.jsonl,$[].data.winEnd.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},3
+gdt/deleted_runs_2026-11-03/journal/*.jsonl,$[].data.winEnd.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,3
+gdt/deleted_runs_2026-11-03/removed.json,$.runs[].pres.win.endpoint,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},3
+gdt/deleted_runs_2026-11-03/removed.json,$.runs[].presKey,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},3
+gdt/deleted_runs_2026-11-03/removed.json,$.runs[].winEnd.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},3
+gdt/deleted_runs_2026-11-03/removed.json,$.runs[].winEnd.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,3
+gdt/deleted_runs_2026-11-03/removed.json,$.runs[].winStart.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},3
+gdt/deleted_runs_2026-11-03/removed.json,$.runs[].winStart.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,3
+gdt/deleted_runs_2026-11-03/removed.json,$.session.participantSnap.code,participant_code,"participant code typed in the apps -> the neutral public label ""P01""",P01,1
+gdt/deleted_runs_2026-11-03/removed.json,$.session.presRef.win.endpoint,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},1
+gdt/deleted_runs_2026-11-03/removed.json,$.session.presRefKey,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},1
+gdt/deleted_runs_2026-11-03/removed.json,$.session.winEnd.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},1
+gdt/deleted_runs_2026-11-03/removed.json,$.session.winEnd.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,1
+gdt/deleted_runs_2026-11-03/removed.json,$.session.winStart.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},1
+gdt/deleted_runs_2026-11-03/removed.json,$.session.winStart.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,1
+gdt/journal/*.jsonl,$[].data.run.pres.win.endpoint,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},27
+gdt/journal/*.jsonl,$[].data.run.presKey,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},27
+gdt/journal/*.jsonl,$[].data.run.winStart.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},27
+gdt/journal/*.jsonl,$[].data.run.winStart.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,27
+gdt/journal/*.jsonl,$[].data.session.participantSnap.code,participant_code,"participant code typed in the apps -> the neutral public label ""P01""",P01,27
+gdt/journal/*.jsonl,$[].data.session.presRef.win.endpoint,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},27
+gdt/journal/*.jsonl,$[].data.session.presRefKey,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},27
+gdt/journal/*.jsonl,$[].data.session.segments[].winStart.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},1
+gdt/journal/*.jsonl,$[].data.session.segments[].winStart.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,1
+gdt/journal/*.jsonl,$[].data.winEnd.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},27
+gdt/journal/*.jsonl,$[].data.winEnd.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,27
+gdt/runs-log.jsonl,$[].data.participantSnap.code,participant_code,"participant code typed in the apps -> the neutral public label ""P01""",P01,22
+gdt/runs-log.jsonl,$[].data.pres.win.endpoint,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},60
+gdt/runs-log.jsonl,$[].data.presKey,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},60
+gdt/runs-log.jsonl,$[].data.presRef.win.endpoint,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},22
+gdt/runs-log.jsonl,$[].data.presRefKey,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},22
+gdt/runs-log.jsonl,$[].data.winEnd.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},30
+gdt/runs-log.jsonl,$[].data.winEnd.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,30
+gdt/runs-log.jsonl,$[].data.winStart.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},82
+gdt/runs-log.jsonl,$[].data.winStart.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,82
+smd/db.json,$.participants[].code,participant_code,"participant code typed in the apps -> the neutral public label ""P01""",P01,1
+smd/db.json,$.routeChecks[].win.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},1
+smd/db.json,$.routeChecks[].win.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,1
+smd/db.json,$.runs[].pres.win.endpoint,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},13
+smd/db.json,$.runs[].presKey,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},13
+smd/db.json,$.runs[].winEnd.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},13
+smd/db.json,$.runs[].winEnd.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,13
+smd/db.json,$.runs[].winStart.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},13
+smd/db.json,$.runs[].winStart.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,13
+smd/db.json,$.sessions[].participantSnap.code,participant_code,"participant code typed in the apps -> the neutral public label ""P01""",P01,3
+smd/db.json,$.sessions[].presRef.win.endpoint,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},3
+smd/db.json,$.sessions[].presRefKey,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},3
+smd/db.json,$.sessions[].routeCheckLast.win.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},1
+smd/db.json,$.sessions[].routeCheckLast.win.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,1
+smd/db.json,$.sessions[].winEnd.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},3
+smd/db.json,$.sessions[].winEnd.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,3
+smd/db.json,$.sessions[].winStart.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},3
+smd/db.json,$.sessions[].winStart.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,3
+smd/journal/*.jsonl,$[].data.run.pres.win.endpoint,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},13
+smd/journal/*.jsonl,$[].data.run.presKey,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},13
+smd/journal/*.jsonl,$[].data.run.winStart.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},13
+smd/journal/*.jsonl,$[].data.run.winStart.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,13
+smd/journal/*.jsonl,$[].data.session.participantSnap.code,participant_code,"participant code typed in the apps -> the neutral public label ""P01""",P01,13
+smd/journal/*.jsonl,$[].data.session.presRef.win.endpoint,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},13
+smd/journal/*.jsonl,$[].data.session.presRefKey,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},13
+smd/journal/*.jsonl,$[].data.winEnd.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},13
+smd/journal/*.jsonl,$[].data.winEnd.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,13
+smd/runs-log.jsonl,$[].data.participantSnap.code,participant_code,"participant code typed in the apps -> the neutral public label ""P01""",P01,6
+smd/runs-log.jsonl,$[].data.pres.win.endpoint,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},26
+smd/runs-log.jsonl,$[].data.presKey,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},26
+smd/runs-log.jsonl,$[].data.presRef.win.endpoint,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},6
+smd/runs-log.jsonl,$[].data.presRefKey,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},6
+smd/runs-log.jsonl,$[].data.routeCheckLast.win.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},2
+smd/runs-log.jsonl,$[].data.routeCheckLast.win.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,2
+smd/runs-log.jsonl,$[].data.winEnd.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},13
+smd/runs-log.jsonl,$[].data.winEnd.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,13
+smd/runs-log.jsonl,$[].data.winStart.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},32
+smd/runs-log.jsonl,$[].data.winStart.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,32
+smrt/db.json,$.participants[].code,participant_code,"participant code typed in the apps -> the neutral public label ""P01""",P01,1
+smrt/db.json,$.runs[].participantSnap.code,participant_code,"participant code typed in the apps -> the neutral public label ""P01""",P01,44
+smrt/db.json,$.runs[].winEnd.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},44
+smrt/db.json,$.runs[].winEnd.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,44
+smrt/db.json,$.runs[].winStart.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},44
+smrt/db.json,$.runs[].winStart.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,44
+smrt/db.json,$.sessions[].winEnd.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},12
+smrt/db.json,$.sessions[].winEnd.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,12
+smrt/db.json,$.sessions[].winStart.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},15
+smrt/db.json,$.sessions[].winStart.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,15
+smrt/runs-log.jsonl,$[].data.participantSnap.code,participant_code,"participant code typed in the apps -> the neutral public label ""P01""",P01,45
+smrt/runs-log.jsonl,$[].data.winStart.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},72
+smrt/runs-log.jsonl,$[].data.winStart.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,72
+srd/db.json,$.participants[].code,participant_code,"participant code typed in the apps -> the neutral public label ""P01""",P01,1
+srd/db.json,$.routeChecks[].win.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},3
+srd/db.json,$.routeChecks[].win.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,3
+srd/db.json,$.runs[].pres.win.endpoint,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},18
+srd/db.json,$.runs[].presKey,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},18
+srd/db.json,$.runs[].winEnd.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},18
+srd/db.json,$.runs[].winEnd.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,18
+srd/db.json,$.runs[].winStart.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},18
+srd/db.json,$.runs[].winStart.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,18
+srd/db.json,$.sessions[].participantSnap.code,participant_code,"participant code typed in the apps -> the neutral public label ""P01""",P01,6
+srd/db.json,$.sessions[].presRef.win.endpoint,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},6
+srd/db.json,$.sessions[].presRefKey,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},6
+srd/db.json,$.sessions[].routeCheckLast.win.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},6
+srd/db.json,$.sessions[].routeCheckLast.win.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,6
+srd/db.json,$.sessions[].winEnd.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},6
+srd/db.json,$.sessions[].winEnd.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,6
+srd/db.json,$.sessions[].winStart.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},6
+srd/db.json,$.sessions[].winStart.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,6
+srd/journal/*.jsonl,$[].data.run.pres.win.endpoint,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},18
+srd/journal/*.jsonl,$[].data.run.presKey,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},18
+srd/journal/*.jsonl,$[].data.run.winStart.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},18
+srd/journal/*.jsonl,$[].data.run.winStart.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,18
+srd/journal/*.jsonl,$[].data.session.participantSnap.code,participant_code,"participant code typed in the apps -> the neutral public label ""P01""",P01,18
+srd/journal/*.jsonl,$[].data.session.presRef.win.endpoint,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},18
+srd/journal/*.jsonl,$[].data.session.presRefKey,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},18
+srd/journal/*.jsonl,$[].data.winEnd.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},18
+srd/journal/*.jsonl,$[].data.winEnd.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,18
+srd/runs-log.jsonl,$[].data.participantSnap.code,participant_code,"participant code typed in the apps -> the neutral public label ""P01""",P01,12
+srd/runs-log.jsonl,$[].data.pres.win.endpoint,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},36
+srd/runs-log.jsonl,$[].data.presKey,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},36
+srd/runs-log.jsonl,$[].data.presRef.win.endpoint,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},12
+srd/runs-log.jsonl,$[].data.presRefKey,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},12
+srd/runs-log.jsonl,$[].data.routeCheckLast.win.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},12
+srd/runs-log.jsonl,$[].data.routeCheckLast.win.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,12
+srd/runs-log.jsonl,$[].data.winEnd.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},18
+srd/runs-log.jsonl,$[].data.winEnd.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,18
+srd/runs-log.jsonl,$[].data.winStart.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},48
+srd/runs-log.jsonl,$[].data.winStart.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,48
+stm/db.json,$.participants[].code,participant_code,"participant code typed in the apps -> the neutral public label ""P01""",P01,1
+stm/db.json,$.routeChecks[].win.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},2
+stm/db.json,$.routeChecks[].win.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,2
+stm/db.json,$.runs[].pres.win.endpoint,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},27
+stm/db.json,$.runs[].presKey,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},27
+stm/db.json,$.runs[].resultHistory[].reason,user_name_in_path,Windows user name inside a folder path,[redacted],27
+stm/db.json,$.runs[].winEnd.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},27
+stm/db.json,$.runs[].winEnd.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,27
+stm/db.json,$.runs[].winStart.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},27
+stm/db.json,$.runs[].winStart.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,27
+stm/db.json,$.sessions[].events[].reason,user_name_in_path,Windows user name inside a folder path,[redacted],2
+stm/db.json,$.sessions[].participantSnap.code,participant_code,"participant code typed in the apps -> the neutral public label ""P01""",P01,2
+stm/db.json,$.sessions[].presRef.win.endpoint,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},2
+stm/db.json,$.sessions[].presRefKey,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},2
+stm/db.json,$.sessions[].winEnd.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},2
+stm/db.json,$.sessions[].winEnd.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,2
+stm/db.json,$.sessions[].winStart.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},2
+stm/db.json,$.sessions[].winStart.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,2
+stm/journal/*.jsonl,$[].data.reason,user_name_in_path,Windows user name inside a folder path,[redacted],27
+stm/journal/*.jsonl,$[].data.run.pres.win.endpoint,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},27
+stm/journal/*.jsonl,$[].data.run.presKey,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},27
+stm/journal/*.jsonl,$[].data.run.winStart.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},27
+stm/journal/*.jsonl,$[].data.run.winStart.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,27
+stm/journal/*.jsonl,$[].data.session.participantSnap.code,participant_code,"participant code typed in the apps -> the neutral public label ""P01""",P01,27
+stm/journal/*.jsonl,$[].data.session.presRef.win.endpoint,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},27
+stm/journal/*.jsonl,$[].data.session.presRefKey,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},27
+stm/journal/*.jsonl,$[].data.winEnd.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},27
+stm/journal/*.jsonl,$[].data.winEnd.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,27
+stm/runs-log.jsonl,$[].data.participantSnap.code,participant_code,"participant code typed in the apps -> the neutral public label ""P01""",P01,4
+stm/runs-log.jsonl,$[].data.pres.win.endpoint,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},54
+stm/runs-log.jsonl,$[].data.presKey,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},54
+stm/runs-log.jsonl,$[].data.presRef.win.endpoint,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},4
+stm/runs-log.jsonl,$[].data.presRefKey,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},4
+stm/runs-log.jsonl,$[].data.winEnd.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},27
+stm/runs-log.jsonl,$[].data.winEnd.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,27
+stm/runs-log.jsonl,$[].data.winStart.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},58
+stm/runs-log.jsonl,$[].data.winStart.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,58
+stripes/db.json,$.participants[].code,participant_code,"participant code typed in the apps -> the neutral public label ""P01""",P01,1
+stripes/db.json,$.runs[].winEnd.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},12
+stripes/db.json,$.runs[].winEnd.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,12
+stripes/db.json,$.sessions[].participantSnap.code,participant_code,"participant code typed in the apps -> the neutral public label ""P01""",P01,7
+stripes/db.json,$.sessions[].winEnd.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},6
+stripes/db.json,$.sessions[].winEnd.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,6
+stripes/db.json,$.sessions[].winStart.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},7
+stripes/db.json,$.sessions[].winStart.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,7
+stripes/journal/*.jsonl,$[].data.session.participantSnap.code,participant_code,"participant code typed in the apps -> the neutral public label ""P01""",P01,12
+stripes/runs-log.jsonl,$[].data.participantSnap.code,participant_code,"participant code typed in the apps -> the neutral public label ""P01""",P01,13
+stripes/runs-log.jsonl,$[].data.winStart.endpointId,audio_endpoint_guid,Windows audio endpoint ID (unique to this computer's output device),{0.0.0.00000000}.{redacted-audio-endpoint-guid},13
+stripes/runs-log.jsonl,$[].data.winStart.hardwareId,usb_instance_id,USB device instance ID inside the Windows hardware ID (unique to this adapter/computer),redacted-usb-instance-id,13
+tmtf/db.json,$.participants[].code,participant_code,"participant code typed in the apps -> the neutral public label ""P01""",P01,1

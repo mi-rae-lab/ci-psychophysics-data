@@ -1,0 +1,87 @@
+test,key,pdf,computed,match,where
+smrt,all.n_runs,33,33,1,Figure1_SMRT_detailed_EN.pdf subtitle
+smrt,all.n_trials,897,897,1,Figure1_SMRT_detailed_EN.pdf subtitle
+smrt,all.n_intervals,2691,2691,1,Figure1_SMRT_detailed_EN.pdf subtitle
+smrt,all.n_unsure,37,37,1,Figure1_SMRT_detailed_EN.pdf footnote
+smrt,all.n_flagged_unverified,1,1,1,Figure1_SMRT_detailed_EN.pdf footnote (dagger)
+smrt,A_std_R.n,12,12,1,Figure1_SMRT_detailed_EN.pdf panel A
+smrt,A_std_R.T,368,368,1,Figure1_SMRT_detailed_EN.pdf panel A
+smrt,A_std_R.I,1104,1104,1,Figure1_SMRT_detailed_EN.pdf panel A
+smrt,A_std_R.mean,3.067,3.067,1,Figure1_SMRT_detailed_EN.pdf panel A
+smrt,A_std_R.sd,0.836,0.836,1,Figure1_SMRT_detailed_EN.pdf panel A
+smrt,A_std_R.2026-10-15.mean,2.894,2.894,1,Figure1_SMRT_detailed_EN.pdf panel A
+smrt,A_std_R.2026-10-15.sd,0.966,0.966,1,Figure1_SMRT_detailed_EN.pdf panel A
+smrt,A_std_R.2026-10-15.n,6,6,1,Figure1_SMRT_detailed_EN.pdf panel A
+smrt,A_std_R.2026-10-15.T,171,171,1,Figure1_SMRT_detailed_EN.pdf panel A
+smrt,A_std_R.2026-10-15.I,513,513,1,Figure1_SMRT_detailed_EN.pdf panel A
+smrt,A_std_R.2026-10-15.T_per_run,"27, 20, 28, 36, 26, 34","27, 20, 28, 36, 26, 34",1,Figure1_SMRT_detailed_EN.pdf panel A
+smrt,A_std_R.2026-10-20.mean,3.011,3.011,1,Figure1_SMRT_detailed_EN.pdf panel A
+smrt,A_std_R.2026-10-20.sd,0.735,0.735,1,Figure1_SMRT_detailed_EN.pdf panel A
+smrt,A_std_R.2026-10-20.n,3,3,1,Figure1_SMRT_detailed_EN.pdf panel A
+smrt,A_std_R.2026-10-20.T,100,100,1,Figure1_SMRT_detailed_EN.pdf panel A
+smrt,A_std_R.2026-10-20.I,300,300,1,Figure1_SMRT_detailed_EN.pdf panel A
+smrt,A_std_R.2026-10-20.T_per_run,"31, 32, 37","31, 32, 37",1,Figure1_SMRT_detailed_EN.pdf panel A
+smrt,A_std_R.2026-10-22.mean,3.467,3.467,1,Figure1_SMRT_detailed_EN.pdf panel A
+smrt,A_std_R.2026-10-22.sd,0.796,0.796,1,Figure1_SMRT_detailed_EN.pdf panel A
+smrt,A_std_R.2026-10-22.n,3,3,1,Figure1_SMRT_detailed_EN.pdf panel A
+smrt,A_std_R.2026-10-22.T,97,97,1,Figure1_SMRT_detailed_EN.pdf panel A
+smrt,A_std_R.2026-10-22.I,291,291,1,Figure1_SMRT_detailed_EN.pdf panel A
+smrt,A_std_R.2026-10-22.T_per_run,"30, 27, 40","30, 27, 40",1,Figure1_SMRT_detailed_EN.pdf panel A
+smrt,B_std_L.n,9,9,1,Figure1_SMRT_detailed_EN.pdf panel B
+smrt,B_std_L.T,281,281,1,Figure1_SMRT_detailed_EN.pdf panel B
+smrt,B_std_L.I,843,843,1,Figure1_SMRT_detailed_EN.pdf panel B
+smrt,B_std_L.mean,3.585,3.585,1,Figure1_SMRT_detailed_EN.pdf panel B
+smrt,B_std_L.sd,0.528,0.528,1,Figure1_SMRT_detailed_EN.pdf panel B
+smrt,B_std_L.2026-10-15.mean,3.078,3.078,1,Figure1_SMRT_detailed_EN.pdf panel B
+smrt,B_std_L.2026-10-15.sd,0.135,0.135,1,Figure1_SMRT_detailed_EN.pdf panel B
+smrt,B_std_L.2026-10-15.n,3,3,1,Figure1_SMRT_detailed_EN.pdf panel B
+smrt,B_std_L.2026-10-15.T,89,89,1,Figure1_SMRT_detailed_EN.pdf panel B
+smrt,B_std_L.2026-10-15.I,267,267,1,Figure1_SMRT_detailed_EN.pdf panel B
+smrt,B_std_L.2026-10-15.T_per_run,"33, 27, 29","33, 27, 29",1,Figure1_SMRT_detailed_EN.pdf panel B
+smrt,B_std_L.2026-10-20.mean,3.900,3.900,1,Figure1_SMRT_detailed_EN.pdf panel B
+smrt,B_std_L.2026-10-20.sd,0.546,0.546,1,Figure1_SMRT_detailed_EN.pdf panel B
+smrt,B_std_L.2026-10-20.n,3,3,1,Figure1_SMRT_detailed_EN.pdf panel B
+smrt,B_std_L.2026-10-20.T,101,101,1,Figure1_SMRT_detailed_EN.pdf panel B
+smrt,B_std_L.2026-10-20.I,303,303,1,Figure1_SMRT_detailed_EN.pdf panel B
+smrt,B_std_L.2026-10-20.T_per_run,"26, 44, 31","26, 44, 31",1,Figure1_SMRT_detailed_EN.pdf panel B
+smrt,B_std_L.2026-10-22.mean,3.778,3.778,1,Figure1_SMRT_detailed_EN.pdf panel B
+smrt,B_std_L.2026-10-22.sd,0.455,0.455,1,Figure1_SMRT_detailed_EN.pdf panel B
+smrt,B_std_L.2026-10-22.n,3,3,1,Figure1_SMRT_detailed_EN.pdf panel B
+smrt,B_std_L.2026-10-22.T,91,91,1,Figure1_SMRT_detailed_EN.pdf panel B
+smrt,B_std_L.2026-10-22.I,273,273,1,Figure1_SMRT_detailed_EN.pdf panel B
+smrt,B_std_L.2026-10-22.T_per_run,"27, 34, 30","27, 34, 30",1,Figure1_SMRT_detailed_EN.pdf panel B
+smrt,C_roveB_R.n,6,6,1,Figure1_SMRT_detailed_EN.pdf panel C
+smrt,C_roveB_R.T,127,127,1,Figure1_SMRT_detailed_EN.pdf panel C
+smrt,C_roveB_R.I,381,381,1,Figure1_SMRT_detailed_EN.pdf panel C
+smrt,C_roveB_R.mean,1.606,1.606,1,Figure1_SMRT_detailed_EN.pdf panel C
+smrt,C_roveB_R.sd,0.301,0.301,1,Figure1_SMRT_detailed_EN.pdf panel C
+smrt,C_roveB_R.2026-11-02.mean,1.656,1.656,1,Figure1_SMRT_detailed_EN.pdf panel C
+smrt,C_roveB_R.2026-11-02.sd,0.372,0.372,1,Figure1_SMRT_detailed_EN.pdf panel C
+smrt,C_roveB_R.2026-11-02.n,3,3,1,Figure1_SMRT_detailed_EN.pdf panel C
+smrt,C_roveB_R.2026-11-02.T,59,59,1,Figure1_SMRT_detailed_EN.pdf panel C
+smrt,C_roveB_R.2026-11-02.I,177,177,1,Figure1_SMRT_detailed_EN.pdf panel C
+smrt,C_roveB_R.2026-11-02.T_per_run,"16, 22, 21","16, 22, 21",1,Figure1_SMRT_detailed_EN.pdf panel C
+smrt,C_roveB_R.2026-11-03.mean,1.556,1.556,1,Figure1_SMRT_detailed_EN.pdf panel C
+smrt,C_roveB_R.2026-11-03.sd,0.284,0.284,1,Figure1_SMRT_detailed_EN.pdf panel C
+smrt,C_roveB_R.2026-11-03.n,3,3,1,Figure1_SMRT_detailed_EN.pdf panel C
+smrt,C_roveB_R.2026-11-03.T,68,68,1,Figure1_SMRT_detailed_EN.pdf panel C
+smrt,C_roveB_R.2026-11-03.I,204,204,1,Figure1_SMRT_detailed_EN.pdf panel C
+smrt,C_roveB_R.2026-11-03.T_per_run,"22, 28, 18","22, 28, 18",1,Figure1_SMRT_detailed_EN.pdf panel C
+smrt,D_roveC_R.n,6,6,1,Figure1_SMRT_detailed_EN.pdf panel D
+smrt,D_roveC_R.T,121,121,1,Figure1_SMRT_detailed_EN.pdf panel D
+smrt,D_roveC_R.I,363,363,1,Figure1_SMRT_detailed_EN.pdf panel D
+smrt,D_roveC_R.mean,1.067,1.067,1,Figure1_SMRT_detailed_EN.pdf panel D
+smrt,D_roveC_R.sd,0.467,0.467,1,Figure1_SMRT_detailed_EN.pdf panel D
+smrt,D_roveC_R.2026-11-02.mean,1.267,1.267,1,Figure1_SMRT_detailed_EN.pdf panel D
+smrt,D_roveC_R.2026-11-02.sd,0.601,0.601,1,Figure1_SMRT_detailed_EN.pdf panel D
+smrt,D_roveC_R.2026-11-02.n,3,3,1,Figure1_SMRT_detailed_EN.pdf panel D
+smrt,D_roveC_R.2026-11-02.T,69,69,1,Figure1_SMRT_detailed_EN.pdf panel D
+smrt,D_roveC_R.2026-11-02.I,207,207,1,Figure1_SMRT_detailed_EN.pdf panel D
+smrt,D_roveC_R.2026-11-02.T_per_run,"17, 26, 26","17, 26, 26",1,Figure1_SMRT_detailed_EN.pdf panel D
+smrt,D_roveC_R.2026-11-03.mean,0.867,0.867,1,Figure1_SMRT_detailed_EN.pdf panel D
+smrt,D_roveC_R.2026-11-03.sd,0.252,0.252,1,Figure1_SMRT_detailed_EN.pdf panel D
+smrt,D_roveC_R.2026-11-03.n,3,3,1,Figure1_SMRT_detailed_EN.pdf panel D
+smrt,D_roveC_R.2026-11-03.T,52,52,1,Figure1_SMRT_detailed_EN.pdf panel D
+smrt,D_roveC_R.2026-11-03.I,156,156,1,Figure1_SMRT_detailed_EN.pdf panel D
+smrt,D_roveC_R.2026-11-03.T_per_run,"13, 21, 18","13, 21, 18",1,Figure1_SMRT_detailed_EN.pdf panel D
+smrt,ref.std_R_mean,3.067,3.067,1,"Figure1_SMRT_detailed_EN.pdf dashed line, panels C-D"

@@ -1,0 +1,304 @@
+key,value
+all.ceiling_blocked_in_analysis_window,0
+all.ceiling_blocked_in_initial_segment,1
+all.n_correct,1037
+all.n_intervals,2740
+all.n_runs,27
+all.n_trials,1370
+all.technical_failures,0
+cell.L.0.5co.10Hz.I,312
+cell.L.0.5co.10Hz.T,156
+cell.L.0.5co.10Hz.T_per_run,"45, 54, 57"
+cell.L.0.5co.10Hz.mean,-11.666666666666666
+cell.L.0.5co.10Hz.n,3
+cell.L.0.5co.10Hz.sd,3.4428670223134286
+cell.L.0.5co.5Hz.I,192
+cell.L.0.5co.5Hz.T,96
+cell.L.0.5co.5Hz.T_per_run,"44, 52"
+cell.L.0.5co.5Hz.mean,-10.7
+cell.L.0.5co.5Hz.n,2
+cell.L.0.5co.5Hz.sd,0.7071067811865476
+cell.L.1co.10Hz.I,220
+cell.L.1co.10Hz.T,110
+cell.L.1co.10Hz.T_per_run,"66, 44"
+cell.L.1co.10Hz.mean,-5.7
+cell.L.1co.10Hz.n,2
+cell.L.1co.10Hz.sd,1.8384776310850233
+cell.L.1co.5Hz.I,226
+cell.L.1co.5Hz.T,113
+cell.L.1co.5Hz.T_per_run,"47, 66"
+cell.L.1co.5Hz.mean,-8.1
+cell.L.1co.5Hz.n,2
+cell.L.1co.5Hz.sd,1.5556349186104041
+cell.L.2co.10Hz.I,220
+cell.L.2co.10Hz.T,110
+cell.L.2co.10Hz.T_per_run,"48, 62"
+cell.L.2co.10Hz.mean,-5.6
+cell.L.2co.10Hz.n,2
+cell.L.2co.10Hz.sd,1.1313708498984762
+cell.L.2co.5Hz.I,270
+cell.L.2co.5Hz.T,135
+cell.L.2co.5Hz.T_per_run,"53, 36, 46"
+cell.L.2co.5Hz.mean,-7.733333333333333
+cell.L.2co.5Hz.n,3
+cell.L.2co.5Hz.sd,2.157158624981791
+cell.R.0.5co.10Hz.I,184
+cell.R.0.5co.10Hz.T,92
+cell.R.0.5co.10Hz.T_per_run,"35, 57"
+cell.R.0.5co.10Hz.mean,-14.2
+cell.R.0.5co.10Hz.n,2
+cell.R.0.5co.10Hz.sd,0.5656854249492372
+cell.R.0.5co.5Hz.I,200
+cell.R.0.5co.5Hz.T,100
+cell.R.0.5co.5Hz.T_per_run,"52, 48"
+cell.R.0.5co.5Hz.mean,-19.299999999999997
+cell.R.0.5co.5Hz.n,2
+cell.R.0.5co.5Hz.sd,1.272792206135786
+cell.R.1co.10Hz.I,282
+cell.R.1co.10Hz.T,141
+cell.R.1co.10Hz.T_per_run,"32, 54, 55"
+cell.R.1co.10Hz.mean,-11.466666666666667
+cell.R.1co.10Hz.n,3
+cell.R.1co.10Hz.sd,2.138535324312726
+cell.R.1co.5Hz.I,224
+cell.R.1co.5Hz.T,112
+cell.R.1co.5Hz.T_per_run,"65, 47"
+cell.R.1co.5Hz.mean,-12.2
+cell.R.1co.5Hz.n,2
+cell.R.1co.5Hz.sd,1.4142135623730951
+cell.R.2co.10Hz.I,186
+cell.R.2co.10Hz.T,93
+cell.R.2co.10Hz.T_per_run,"43, 50"
+cell.R.2co.10Hz.mean,-4.6
+cell.R.2co.10Hz.n,2
+cell.R.2co.10Hz.sd,0.8485281374238571
+cell.R.2co.5Hz.I,224
+cell.R.2co.5Hz.T,112
+cell.R.2co.5Hz.T_per_run,"59, 53"
+cell.R.2co.5Hz.mean,-9.399999999999999
+cell.R.2co.5Hz.n,2
+cell.R.2co.5Hz.sd,1.1313708498984758
+check.figure_pages,5
+check.threshold_recomputed_vs_app_mismatch,0
+cond.0.5co.10Hz.L_mean_1dp,-11.666666666666666
+cond.0.5co.10Hz.R_mean_1dp,-14.2
+cond.0.5co.10Hz.R_minus_L,-2.533333333333333
+cond.0.5co.5Hz.L_mean_1dp,-10.7
+cond.0.5co.5Hz.R_mean_1dp,-19.299999999999997
+cond.0.5co.5Hz.R_minus_L,-8.599999999999998
+cond.1co.10Hz.L_mean_1dp,-5.7
+cond.1co.10Hz.R_mean_1dp,-11.466666666666667
+cond.1co.10Hz.R_minus_L,-5.766666666666667
+cond.1co.5Hz.L_mean_1dp,-8.1
+cond.1co.5Hz.R_mean_1dp,-12.2
+cond.1co.5Hz.R_minus_L,-4.1
+cond.2co.10Hz.L_mean_1dp,-5.6
+cond.2co.10Hz.R_mean_1dp,-4.6
+cond.2co.10Hz.R_minus_L,1.0
+cond.2co.5Hz.L_mean_1dp,-7.733333333333333
+cond.2co.5Hz.R_mean_1dp,-9.399999999999999
+cond.2co.5Hz.R_minus_L,-1.6666666666666652
+ear.L.n_runs,14
+ear.L.n_trials,720
+ear.R.n_runs,13
+ear.R.n_trials,650
+panel.L.10Hz.I,752
+panel.L.10Hz.T,376
+panel.L.10Hz.n,7
+panel.L.5Hz.I,688
+panel.L.5Hz.T,344
+panel.L.5Hz.n,7
+panel.R.10Hz.I,652
+panel.R.10Hz.T,326
+panel.R.10Hz.n,7
+panel.R.5Hz.I,648
+panel.R.5Hz.T,324
+panel.R.5Hz.n,6
+repeat.L.0.5co.10Hz.run1,-10.2
+repeat.L.0.5co.10Hz.run2,-15.6
+repeat.L.0.5co.10Hz.run2_minus_run1,-5.4
+repeat.L.0.5co.10Hz.run3,-9.2
+repeat.L.0.5co.5Hz.run1,-10.2
+repeat.L.0.5co.5Hz.run2,-11.2
+repeat.L.0.5co.5Hz.run2_minus_run1,-1.0
+repeat.L.0.5co.5Hz.run3,
+repeat.L.1co.10Hz.run1,-7.0
+repeat.L.1co.10Hz.run2,-4.4
+repeat.L.1co.10Hz.run2_minus_run1,2.5999999999999996
+repeat.L.1co.10Hz.run3,
+repeat.L.1co.5Hz.run1,-7.0
+repeat.L.1co.5Hz.run2,-9.2
+repeat.L.1co.5Hz.run2_minus_run1,-2.1999999999999993
+repeat.L.1co.5Hz.run3,
+repeat.L.2co.10Hz.run1,-6.4
+repeat.L.2co.10Hz.run2,-4.8
+repeat.L.2co.10Hz.run2_minus_run1,1.6000000000000005
+repeat.L.2co.10Hz.run3,
+repeat.L.2co.5Hz.run1,-6.8
+repeat.L.2co.5Hz.run2,-10.2
+repeat.L.2co.5Hz.run2_minus_run1,-3.3999999999999995
+repeat.L.2co.5Hz.run3,-6.2
+repeat.R.0.5co.10Hz.run1,-13.8
+repeat.R.0.5co.10Hz.run2,-14.6
+repeat.R.0.5co.10Hz.run2_minus_run1,-0.7999999999999989
+repeat.R.0.5co.10Hz.run3,
+repeat.R.0.5co.5Hz.run1,-20.2
+repeat.R.0.5co.5Hz.run2,-18.4
+repeat.R.0.5co.5Hz.run2_minus_run1,1.8000000000000007
+repeat.R.0.5co.5Hz.run3,
+repeat.R.1co.10Hz.run1,-9.6
+repeat.R.1co.10Hz.run2,-13.8
+repeat.R.1co.10Hz.run2_minus_run1,-4.200000000000001
+repeat.R.1co.10Hz.run3,-11.0
+repeat.R.1co.5Hz.run1,-13.2
+repeat.R.1co.5Hz.run2,-11.2
+repeat.R.1co.5Hz.run2_minus_run1,2.0
+repeat.R.1co.5Hz.run3,
+repeat.R.2co.10Hz.run1,-4.0
+repeat.R.2co.10Hz.run2,-5.2
+repeat.R.2co.10Hz.run2_minus_run1,-1.2000000000000002
+repeat.R.2co.10Hz.run3,
+repeat.R.2co.5Hz.run1,-10.2
+repeat.R.2co.5Hz.run2,-8.6
+repeat.R.2co.5Hz.run2_minus_run1,1.5999999999999996
+repeat.R.2co.5Hz.run3,
+repeat.n_cells_absdiff_gt3,3
+repeat.n_cells_absdiff_gt3_with_third_run,3
+run.L01.T,48
+run.L01.condition,2 c/o · 10 Hz
+run.L01.correct_by_target_interval,15/21 | 20/27
+run.L01.flags,NC
+run.L01.threshold,-6.4
+run.L02.T,45
+run.L02.condition,0.5 c/o · 10 Hz
+run.L02.correct_by_target_interval,10/17 | 25/28
+run.L02.flags,IB
+run.L02.threshold,-10.2
+run.L03.T,66
+run.L03.condition,1 c/o · 10 Hz
+run.L03.correct_by_target_interval,20/33 | 30/33
+run.L03.flags,IB
+run.L03.threshold,-7.0
+run.L04.T,44
+run.L04.condition,0.5 c/o · 5 Hz
+run.L04.correct_by_target_interval,13/21 | 19/23
+run.L04.flags,none
+run.L04.threshold,-10.2
+run.L05.T,47
+run.L05.condition,1 c/o · 5 Hz
+run.L05.correct_by_target_interval,12/20 | 23/27
+run.L05.flags,none
+run.L05.threshold,-7.0
+run.L06.T,53
+run.L06.condition,2 c/o · 5 Hz
+run.L06.correct_by_target_interval,20/28 | 20/25
+run.L06.flags,NC
+run.L06.threshold,-6.8
+run.L07.T,62
+run.L07.condition,2 c/o · 10 Hz
+run.L07.correct_by_target_interval,17/28 | 29/34
+run.L07.flags,IB NC
+run.L07.threshold,-4.8
+run.L08.T,36
+run.L08.condition,2 c/o · 5 Hz
+run.L08.correct_by_target_interval,15/21 | 13/15
+run.L08.flags,none
+run.L08.threshold,-10.2
+run.L09.T,52
+run.L09.condition,0.5 c/o · 5 Hz
+run.L09.correct_by_target_interval,19/26 | 21/26
+run.L09.flags,none
+run.L09.threshold,-11.2
+run.L10.T,44
+run.L10.condition,1 c/o · 10 Hz
+run.L10.correct_by_target_interval,17/23 | 17/21
+run.L10.flags,none
+run.L10.threshold,-4.4
+run.L11.T,66
+run.L11.condition,1 c/o · 5 Hz
+run.L11.correct_by_target_interval,18/32 | 32/34
+run.L11.flags,IB
+run.L11.threshold,-9.2
+run.L12.T,54
+run.L12.condition,0.5 c/o · 10 Hz
+run.L12.correct_by_target_interval,16/27 | 24/27
+run.L12.flags,IB
+run.L12.threshold,-15.6
+run.L13.T,46
+run.L13.condition,2 c/o · 5 Hz
+run.L13.correct_by_target_interval,19/25 | 16/21
+run.L13.flags,none
+run.L13.threshold,-6.2
+run.L14.T,57
+run.L14.condition,0.5 c/o · 10 Hz
+run.L14.correct_by_target_interval,21/28 | 23/29
+run.L14.flags,none
+run.L14.threshold,-9.2
+run.R01.T,43
+run.R01.condition,2 c/o · 10 Hz
+run.R01.correct_by_target_interval,15/22 | 16/21
+run.R01.flags,NC
+run.R01.threshold,-4.0
+run.R02.T,35
+run.R02.condition,0.5 c/o · 10 Hz
+run.R02.correct_by_target_interval,13/17 | 15/18
+run.R02.flags,none
+run.R02.threshold,-13.8
+run.R03.T,52
+run.R03.condition,0.5 c/o · 5 Hz
+run.R03.correct_by_target_interval,22/31 | 18/21
+run.R03.flags,none
+run.R03.threshold,-20.2
+run.R04.T,65
+run.R04.condition,1 c/o · 5 Hz
+run.R04.correct_by_target_interval,21/28 | 29/37
+run.R04.flags,none
+run.R04.threshold,-13.2
+run.R05.T,59
+run.R05.condition,2 c/o · 5 Hz
+run.R05.correct_by_target_interval,26/33 | 18/26
+run.R05.flags,none
+run.R05.threshold,-10.2
+run.R06.T,32
+run.R06.condition,1 c/o · 10 Hz
+run.R06.correct_by_target_interval,14/18 | 10/14
+run.R06.flags,none
+run.R06.threshold,-9.6
+run.R07.T,47
+run.R07.condition,1 c/o · 5 Hz
+run.R07.correct_by_target_interval,20/23 | 16/24
+run.R07.flags,none
+run.R07.threshold,-11.2
+run.R08.T,53
+run.R08.condition,2 c/o · 5 Hz
+run.R08.correct_by_target_interval,14/18 | 27/35
+run.R08.flags,none
+run.R08.threshold,-8.6
+run.R09.T,54
+run.R09.condition,1 c/o · 10 Hz
+run.R09.correct_by_target_interval,19/30 | 22/24
+run.R09.flags,IB
+run.R09.threshold,-13.8
+run.R10.T,50
+run.R10.condition,2 c/o · 10 Hz
+run.R10.correct_by_target_interval,20/26 | 17/24
+run.R10.flags,none
+run.R10.threshold,-5.2
+run.R11.T,48
+run.R11.condition,0.5 c/o · 5 Hz
+run.R11.correct_by_target_interval,18/24 | 19/24
+run.R11.flags,none
+run.R11.threshold,-18.4
+run.R12.T,57
+run.R12.condition,0.5 c/o · 10 Hz
+run.R12.correct_by_target_interval,20/28 | 22/29
+run.R12.flags,none
+run.R12.threshold,-14.6
+run.R13.T,55
+run.R13.condition,1 c/o · 10 Hz
+run.R13.correct_by_target_interval,26/34 | 16/21
+run.R13.flags,none
+run.R13.threshold,-11.0
+sixcond.L.mean,-8.250000000000002
+sixcond.R.mean,-11.861111111111109
+sixcond.n_conditions_R_lower,5

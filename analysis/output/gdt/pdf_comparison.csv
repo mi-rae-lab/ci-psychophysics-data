@@ -1,0 +1,153 @@
+test,key,pdf,computed,match,where
+gdt,all.n_runs,25,25,1,GDT_scientific_EN.pdf p1-8
+gdt,all.n_trials,866,866,1,GDT_scientific_EN.pdf p1-8
+gdt,all.n_numeric,18,18,1,GDT_scientific_EN.pdf p5-8
+gdt,all.n_floor_limited,7,7,1,GDT_scientific_EN.pdf p2/p7
+gdt,all.n_reversals,238,238,1,GDT_scientific_EN.pdf p5-8
+gdt,all.n_reversals_used,130,130,1,GDT_scientific_EN.pdf p5-8
+gdt,deleted.n_runs,3,3,1,GDT_scientific_EN.pdf p8
+gdt,deleted.n_trials,101,101,1,GDT_scientific_EN.pdf p8
+gdt,aborted.n_runs,2,2,1,GDT_scientific_EN.pdf p8
+gdt,aborted.n_responses,2,2,1,GDT_scientific_EN.pdf p8
+gdt,practice.n_runs,0,0,1,GDT_scientific_EN.pdf p8
+gdt,examples.n,15,15,1,GDT_scientific_EN.pdf p8
+gdt,floor.B,0.3125,0.3125,1,GDT_scientific_EN.pdf p1 B
+gdt,floor.D,1,1,1,GDT_scientific_EN.pdf p1 D
+gdt,floor.E,2,2,1,GDT_scientific_EN.pdf p1 E
+gdt,panel.A.n_runs,9,9,1,GDT_scientific_EN.pdf p1-4
+gdt,panel.A.n_trials,328,328,1,GDT_scientific_EN.pdf p1-4
+gdt,run.A1.n_trials,40,40,1,GDT_scientific_EN.pdf p1-3/p5-7
+gdt,run.A1.value,6.77,6.77,1,GDT_scientific_EN.pdf p1/p5-7
+gdt,run.A1.correct,28/40,28/40,1,GDT_scientific_EN.pdf p3
+gdt,run.A1.n_reversals,12,12,1,GDT_scientific_EN.pdf p5-7
+gdt,run.A1.start_kst,2026-11-01 22:16,2026-11-01 22:16,1,GDT_scientific_EN.pdf p5-7
+gdt,run.A2.n_trials,32,32,1,GDT_scientific_EN.pdf p1-3/p5-7
+gdt,run.A2.value,10.91,10.91,1,GDT_scientific_EN.pdf p1/p5-7
+gdt,run.A2.correct,23/32,23/32,1,GDT_scientific_EN.pdf p3
+gdt,run.A2.n_reversals,12,12,1,GDT_scientific_EN.pdf p5-7
+gdt,run.A2.start_kst,2026-11-01 22:20,2026-11-01 22:20,1,GDT_scientific_EN.pdf p5-7
+gdt,run.A3.n_trials,37,37,1,GDT_scientific_EN.pdf p1-3/p5-7
+gdt,run.A3.value,8.05,8.05,1,GDT_scientific_EN.pdf p1/p5-7
+gdt,run.A3.correct,28/37,28/37,1,GDT_scientific_EN.pdf p3
+gdt,run.A3.n_reversals,12,12,1,GDT_scientific_EN.pdf p5-7
+gdt,run.A3.start_kst,2026-11-01 22:22,2026-11-01 22:22,1,GDT_scientific_EN.pdf p5-7
+gdt,run.A4.n_trials,43,43,1,GDT_scientific_EN.pdf p1-3/p5-7
+gdt,run.A4.value,7.71,7.71,1,GDT_scientific_EN.pdf p1/p5-7
+gdt,run.A4.correct,30/43,30/43,1,GDT_scientific_EN.pdf p3
+gdt,run.A4.n_reversals,12,12,1,GDT_scientific_EN.pdf p5-7
+gdt,run.A4.start_kst,2026-11-01 22:48,2026-11-01 22:48,1,GDT_scientific_EN.pdf p5-7
+gdt,run.A5.n_trials,34,34,1,GDT_scientific_EN.pdf p1-3/p5-7
+gdt,run.A5.value,10.00,10.00,1,GDT_scientific_EN.pdf p1/p5-7
+gdt,run.A5.correct,25/34,25/34,1,GDT_scientific_EN.pdf p3
+gdt,run.A5.n_reversals,12,12,1,GDT_scientific_EN.pdf p5-7
+gdt,run.A5.start_kst,2026-11-01 22:56,2026-11-01 22:56,1,GDT_scientific_EN.pdf p5-7
+gdt,run.A6.n_trials,33,33,1,GDT_scientific_EN.pdf p1-3/p5-7
+gdt,run.A6.value,8.41,8.41,1,GDT_scientific_EN.pdf p1/p5-7
+gdt,run.A6.correct,25/33,25/33,1,GDT_scientific_EN.pdf p3
+gdt,run.A6.n_reversals,12,12,1,GDT_scientific_EN.pdf p5-7
+gdt,run.A6.start_kst,2026-11-01 23:49,2026-11-01 23:49,1,GDT_scientific_EN.pdf p5-7
+gdt,run.A7.n_trials,36,36,1,GDT_scientific_EN.pdf p1-3/p5-7
+gdt,run.A7.value,11.39,11.39,1,GDT_scientific_EN.pdf p1/p5-7
+gdt,run.A7.correct,27/36,27/36,1,GDT_scientific_EN.pdf p3
+gdt,run.A7.n_reversals,12,12,1,GDT_scientific_EN.pdf p5-7
+gdt,run.A7.start_kst,2026-11-01 23:55,2026-11-01 23:55,1,GDT_scientific_EN.pdf p5-7
+gdt,run.A8.n_trials,40,40,1,GDT_scientific_EN.pdf p1-3/p5-7
+gdt,run.A8.value,4.39,4.39,1,GDT_scientific_EN.pdf p1/p5-7
+gdt,run.A8.correct,30/40,30/40,1,GDT_scientific_EN.pdf p3
+gdt,run.A8.n_reversals,12,12,1,GDT_scientific_EN.pdf p5-7
+gdt,run.A8.start_kst,2026-11-03 19:39,2026-11-03 19:39,1,GDT_scientific_EN.pdf p5-7
+gdt,run.A9.n_trials,33,33,1,GDT_scientific_EN.pdf p1-3/p5-7
+gdt,run.A9.value,5.45,5.45,1,GDT_scientific_EN.pdf p1/p5-7
+gdt,run.A9.correct,25/33,25/33,1,GDT_scientific_EN.pdf p3
+gdt,run.A9.n_reversals,12,12,1,GDT_scientific_EN.pdf p5-7
+gdt,run.A9.start_kst,2026-11-03 19:43,2026-11-03 19:43,1,GDT_scientific_EN.pdf p5-7
+gdt,panel.B.n_runs,4,4,1,GDT_scientific_EN.pdf p1-4
+gdt,panel.B.n_trials,154,154,1,GDT_scientific_EN.pdf p1-4
+gdt,run.B1.n_trials,26,26,1,GDT_scientific_EN.pdf p1-3/p5-7
+gdt,run.B1.value,floor,floor,1,GDT_scientific_EN.pdf p1/p5-7
+gdt,run.B1.correct,25/26,25/26,1,GDT_scientific_EN.pdf p3
+gdt,run.B1.n_reversals,2,2,1,GDT_scientific_EN.pdf p5-7
+gdt,run.B1.start_kst,2026-11-01 22:51,2026-11-01 22:51,1,GDT_scientific_EN.pdf p5-7
+gdt,run.B2.n_trials,36,36,1,GDT_scientific_EN.pdf p1-3/p5-7
+gdt,run.B2.value,floor,floor,1,GDT_scientific_EN.pdf p1/p5-7
+gdt,run.B2.correct,32/36,32/36,1,GDT_scientific_EN.pdf p3
+gdt,run.B2.n_reversals,8,8,1,GDT_scientific_EN.pdf p5-7
+gdt,run.B2.start_kst,2026-11-01 23:03,2026-11-01 23:03,1,GDT_scientific_EN.pdf p5-7
+gdt,run.B3.n_trials,50,50,1,GDT_scientific_EN.pdf p1-3/p5-7
+gdt,run.B3.value,floor,floor,1,GDT_scientific_EN.pdf p1/p5-7
+gdt,run.B3.correct,43/50,43/50,1,GDT_scientific_EN.pdf p3
+gdt,run.B3.n_reversals,10,10,1,GDT_scientific_EN.pdf p5-7
+gdt,run.B3.start_kst,2026-11-01 23:41,2026-11-01 23:41,1,GDT_scientific_EN.pdf p5-7
+gdt,run.B4.n_trials,42,42,1,GDT_scientific_EN.pdf p1-3/p5-7
+gdt,run.B4.value,floor,floor,1,GDT_scientific_EN.pdf p1/p5-7
+gdt,run.B4.correct,37/42,37/42,1,GDT_scientific_EN.pdf p3
+gdt,run.B4.n_reversals,8,8,1,GDT_scientific_EN.pdf p5-7
+gdt,run.B4.start_kst,2026-11-01 23:45,2026-11-01 23:45,1,GDT_scientific_EN.pdf p5-7
+gdt,panel.C.n_runs,5,5,1,GDT_scientific_EN.pdf p1-4
+gdt,panel.C.n_trials,177,177,1,GDT_scientific_EN.pdf p1-4
+gdt,run.C1.n_trials,33,33,1,GDT_scientific_EN.pdf p1-3/p5-7
+gdt,run.C1.value,45.55,45.55,1,GDT_scientific_EN.pdf p1/p5-7
+gdt,run.C1.correct,20/33,20/33,1,GDT_scientific_EN.pdf p3
+gdt,run.C1.n_reversals,12,12,1,GDT_scientific_EN.pdf p5-7
+gdt,run.C1.start_kst,2026-11-01 22:53,2026-11-01 22:53,1,GDT_scientific_EN.pdf p5-7
+gdt,run.C2.n_trials,40,40,1,GDT_scientific_EN.pdf p1-3/p5-7
+gdt,run.C2.value,27.09,27.09,1,GDT_scientific_EN.pdf p1/p5-7
+gdt,run.C2.correct,25/40,25/40,1,GDT_scientific_EN.pdf p3
+gdt,run.C2.n_reversals,12,12,1,GDT_scientific_EN.pdf p5-7
+gdt,run.C2.start_kst,2026-11-01 22:59,2026-11-01 22:59,1,GDT_scientific_EN.pdf p5-7
+gdt,run.C3.n_trials,40,40,1,GDT_scientific_EN.pdf p1-3/p5-7
+gdt,run.C3.value,32.21,32.21,1,GDT_scientific_EN.pdf p1/p5-7
+gdt,run.C3.correct,26/40,26/40,1,GDT_scientific_EN.pdf p3
+gdt,run.C3.n_reversals,12,12,1,GDT_scientific_EN.pdf p5-7
+gdt,run.C3.start_kst,2026-11-01 23:59,2026-11-01 23:59,1,GDT_scientific_EN.pdf p5-7
+gdt,run.C4.n_trials,24,24,1,GDT_scientific_EN.pdf p1-3/p5-7
+gdt,run.C4.value,29.54,29.54,1,GDT_scientific_EN.pdf p1/p5-7
+gdt,run.C4.correct,15/24,15/24,1,GDT_scientific_EN.pdf p3
+gdt,run.C4.n_reversals,12,12,1,GDT_scientific_EN.pdf p5-7
+gdt,run.C4.start_kst,2026-11-02 00:02,2026-11-02 00:02,1,GDT_scientific_EN.pdf p5-7
+gdt,run.C5.n_trials,40,40,1,GDT_scientific_EN.pdf p1-3/p5-7
+gdt,run.C5.value,29.54,29.54,1,GDT_scientific_EN.pdf p1/p5-7
+gdt,run.C5.correct,26/40,26/40,1,GDT_scientific_EN.pdf p3
+gdt,run.C5.n_reversals,12,12,1,GDT_scientific_EN.pdf p5-7
+gdt,run.C5.start_kst,2026-11-03 20:11,2026-11-03 20:11,1,GDT_scientific_EN.pdf p5-7
+gdt,panel.D.n_runs,3,3,1,GDT_scientific_EN.pdf p1-4
+gdt,panel.D.n_trials,154,154,1,GDT_scientific_EN.pdf p1-4
+gdt,run.D1.n_trials,49,49,1,GDT_scientific_EN.pdf p1-3/p5-7
+gdt,run.D1.value,2.33,2.33,1,GDT_scientific_EN.pdf p1/p5-7
+gdt,run.D1.correct,42/49,42/49,1,GDT_scientific_EN.pdf p3
+gdt,run.D1.n_reversals,10,10,1,GDT_scientific_EN.pdf p5-7
+gdt,run.D1.start_kst,2026-11-03 19:46,2026-11-03 19:46,1,GDT_scientific_EN.pdf p5-7
+gdt,run.D2.n_trials,49,49,1,GDT_scientific_EN.pdf p1-3/p5-7
+gdt,run.D2.value,2.50,2.50,1,GDT_scientific_EN.pdf p1/p5-7
+gdt,run.D2.correct,42/49,42/49,1,GDT_scientific_EN.pdf p3
+gdt,run.D2.n_reversals,10,10,1,GDT_scientific_EN.pdf p5-7
+gdt,run.D2.start_kst,2026-11-03 19:50,2026-11-03 19:50,1,GDT_scientific_EN.pdf p5-7
+gdt,run.D3.n_trials,56,56,1,GDT_scientific_EN.pdf p1-3/p5-7
+gdt,run.D3.value,floor,floor,1,GDT_scientific_EN.pdf p1/p5-7
+gdt,run.D3.correct,48/56,48/56,1,GDT_scientific_EN.pdf p3
+gdt,run.D3.n_reversals,10,10,1,GDT_scientific_EN.pdf p5-7
+gdt,run.D3.start_kst,2026-11-03 19:55,2026-11-03 19:55,1,GDT_scientific_EN.pdf p5-7
+gdt,panel.E.n_runs,2,2,1,GDT_scientific_EN.pdf p1-4
+gdt,panel.E.n_trials,30,30,1,GDT_scientific_EN.pdf p1-4
+gdt,run.E1.n_trials,14,14,1,GDT_scientific_EN.pdf p1-3/p5-7
+gdt,run.E1.value,floor,floor,1,GDT_scientific_EN.pdf p1/p5-7
+gdt,run.E1.correct,14/14,14/14,1,GDT_scientific_EN.pdf p3
+gdt,run.E1.n_reversals,0,0,1,GDT_scientific_EN.pdf p5-7
+gdt,run.E1.start_kst,2026-11-01 22:37,2026-11-01 22:37,1,GDT_scientific_EN.pdf p5-7
+gdt,run.E2.n_trials,16,16,1,GDT_scientific_EN.pdf p1-3/p5-7
+gdt,run.E2.value,floor,floor,1,GDT_scientific_EN.pdf p1/p5-7
+gdt,run.E2.correct,15/16,15/16,1,GDT_scientific_EN.pdf p3
+gdt,run.E2.n_reversals,2,2,1,GDT_scientific_EN.pdf p5-7
+gdt,run.E2.start_kst,2026-11-01 22:38,2026-11-01 22:38,1,GDT_scientific_EN.pdf p5-7
+gdt,panel.F.n_runs,2,2,1,GDT_scientific_EN.pdf p1-4
+gdt,panel.F.n_trials,23,23,1,GDT_scientific_EN.pdf p1-4
+gdt,run.F1.n_trials,11,11,1,GDT_scientific_EN.pdf p1-3/p5-7
+gdt,run.F1.value,17.33,17.33,1,GDT_scientific_EN.pdf p1/p5-7
+gdt,run.F1.correct,6/11,6/11,1,GDT_scientific_EN.pdf p3
+gdt,run.F1.n_reversals,5,5,1,GDT_scientific_EN.pdf p5-7
+gdt,run.F1.start_kst,2026-11-01 22:36,2026-11-01 22:36,1,GDT_scientific_EN.pdf p5-7
+gdt,run.F2.n_trials,12,12,1,GDT_scientific_EN.pdf p1-3/p5-7
+gdt,run.F2.value,11.33,11.33,1,GDT_scientific_EN.pdf p1/p5-7
+gdt,run.F2.correct,8/12,8/12,1,GDT_scientific_EN.pdf p3
+gdt,run.F2.n_reversals,5,5,1,GDT_scientific_EN.pdf p5-7
+gdt,run.F2.start_kst,2026-11-01 22:40,2026-11-01 22:40,1,GDT_scientific_EN.pdf p5-7

@@ -1,0 +1,442 @@
+﻿file,column,meaning_ko,meaning_en,unit,possible_values
+data/trials/tmtf_trials.csv,test,검사 이름,test name,,TMTF
+data/trials/tmtf_trials.csv,protocol,절차: 과제 · 계단 규칙 · 자극 요약 (앱 기록에서),"procedure: task, staircase rule, stimulus summary (from the app record)",,"Custom 3I-3AFC adaptive; 0.5 s; ISI 0.5 s; wideband; ramp 10 ms linear; carrier phase random; start 0 dB; step 4->2 dB after 4 rev; 14 rev, mean of last 10; 0 dB rule stop4 | DeRuiter2015 3I-3AFC adaptive; 0.5 s; ISI 0.5 s; bandpass 80-8500 Hz; ramp 30 ms linear; carrier phase zero; start -2 dB; step 4->2 dB after 2 rev; 8 rev, mean of last 6; 0 dB rule stop4 | Won2011/Park2015 2I-2AFC adaptive; 1 s; ISI 0 s; wideband; ramp 10 ms linear; carrier phase zero; start 0 dB; step 4->2 dB after 4 rev; 14 rev, mean of last 10; 0 dB rule none"
+data/trials/tmtf_trials.csv,condition,절차 안의 조건 (변조 주파수 · 밀도 · 소리 종류 · 크기 로빙 등). 없으면 빈칸,"condition within the procedure (modulation rate, density, sound type, level rove); blank if none",,"46 distinct values, e.g. fm=10 Hz | fm=100 Hz | fm=15 Hz"
+data/trials/tmtf_trials.csv,ear,검사한 귀,test ear,,L | R
+data/trials/tmtf_trials.csv,date_kst,"시행 날짜, 한국 시각(UTC+9)","trial date, Korea Standard Time (UTC+9)",YYYY-MM-DD,2026-10-11 | 2026-10-24 | 2026-10-25 | 2026-11-01 | 2026-11-02 | 2026-11-03 | 2026-11-04
+data/trials/tmtf_trials.csv,time_kst,"시행 시각, 한국 시각, 밀리초까지","trial time, KST, to the millisecond",HH:MM:SS.mmm,"5131 distinct values, e.g. 00:06:32.469"
+data/trials/tmtf_trials.csv,time_source,시각이 무엇을 뜻하는지: trial_start = 시행 시작(소리 예약) · trial_stopped = 답 전에 멈춘 시각 · run_end = 시행 시각 기록이 없어 측정이 끝난 시각 (TMTF 2026-10-11 저녁 첫 21개 측정),"what the time refers to: trial_start = trial start (sound scheduled); trial_stopped = moment a trial was stopped before a response; run_end = run end time, used where per-trial times were not recorded (first 21 TMTF runs, 2026-10-11 evening)",,run_end | trial_start
+data/trials/tmtf_trials.csv,session_id,회기(한 번 앉아서 한 묶음) ID. TMTF 첫 21개 측정은 빈칸,session ID (one sitting); blank for the first 21 TMTF runs,,"66 distinct values, e.g. mv3u0lokqdust; blank allowed"
+data/trials/tmtf_trials.csv,run_id,"측정(회차: 계단 하나 또는 고정 자극 묶음 하나) ID. TMTF 연습 묶음 = <session_id>-practice, 앱이 버린 측정 = <session_id>-discarded-<k>",run ID (one staircase track or one constant-stimuli block). TMTF practice blocks = <session_id>-practice; runs discarded by the app = <session_id>-discarded-<k>,,"156 distinct values, e.g. mv3pxlp33zii9"
+data/trials/tmtf_trials.csv,trial_kind,시행 종류: main 본 측정 · practice 연습 · example 예시(정답을 보여 줌) · screening 통과 검사,"kind of trial: main, practice, example (answer shown), screening (pass check)",,main | practice
+data/trials/tmtf_trials.csv,session_trial_no,"회기 안 시행 번호 (시각 순, 연습 · 예시 · 멈춘 시행 포함, 1부터)","trial number within the session (time order, all kinds, from 1)",count,1 to 319 (319 distinct); blank allowed
+data/trials/tmtf_trials.csv,run_trial_no,측정 안 시행 번호 (1부터),trial number within the run (from 1),count,1 to 66 (66 distinct)
+data/trials/tmtf_trials.csv,value,"표적 구간에 제시한 값 (단위는 unit 열) — TMTF: value = 표적 구간의 진폭 변조 깊이 20·log10(m) dB (0 dB = 100 % 변조 = 가장 쉬움, -40 dB 아래 끝). 표준 구간은 변조 없음.","value presented in the target interval (unit in the unit column) — TMTF: value = AM depth of the target interval, 20·log10(m) dB (0 dB = 100 % = easiest; lower limit -40 dB).",see unit,-36 to 0 (18 distinct)
+data/trials/tmtf_trials.csv,unit,value 의 단위,unit of value,,dB (20log10 m)
+data/trials/tmtf_trials.csv,n_intervals,한 시행의 구간(소리) 수,number of intervals (sounds) per trial,count,2 | 3
+data/trials/tmtf_trials.csv,target_interval,정답 구간 (1부터; STRIPES 는 A/B),correct interval (from 1; STRIPES: A or B),,1 | 2 | 3
+data/trials/tmtf_trials.csv,response_interval,참가자가 고른 구간. ‘모르겠음’ 이거나 답 전에 멈추면 빈칸,"interval chosen by the participant; blank for ""don't know"" or when stopped before a response",,1 | 2 | 3; blank allowed
+data/trials/tmtf_trials.csv,scored_interval,앱이 채점에 쓴 구간 (= 고른 구간; ‘모르겠음’ 이면 앱이 무작위로 고른 구간),"interval used for scoring (= chosen; for ""don't know"" the app picked one at random)",,1 | 2 | 3
+data/trials/tmtf_trials.csv,correct,정답 1 · 오답 0 (= scored_interval 이 target_interval 과 같음). 답이 없으면 빈칸,correct 1 / incorrect 0 (scored_interval == target_interval); blank without a response,0/1,0 | 1
+data/trials/tmtf_trials.csv,reversal,"계단 반전이 난 시행 1, 아니면 0. 빈칸 = 계단이 아닌 시행 (TMTF 연습 묶음 · 앱이 버린 TMTF 측정 · 예시 · 통과 검사 · 고정 자극 · 답 전에 멈춘 시행). SMRT · STRIPES 연습 측정은 계단이라 값이 있음","staircase reversal at this trial (1/0). Blank = not part of a staircase track (TMTF practice blocks, the TMTF run discarded by the app, examples, pass checks, constant stimuli, trials stopped before a response). SMRT and STRIPES practice runs are staircases and do have values",0/1,0 | 1; blank allowed
+data/trials/tmtf_trials.csv,reversal_no,그 측정 안 반전 번호 (1부터),index of the reversal within the run (from 1),count,1 to 14 (14 distinct); blank allowed
+data/trials/tmtf_trials.csv,unsure,"‘모르겠음’ 단추 1 (TMTF · SMRT 에만 있는 단추, 다른 검사는 빈칸)","""don't know"" button pressed (1/0); only TMTF and SMRT have it, blank elsewhere",0/1,0 | 1
+data/trials/tmtf_trials.csv,at_limit,제시 값이 계단 범위의 끝: easy 쉬운 끝 · hard 어려운 끝 (천장 · 하한 표시),presented value at an end of the staircase range: easy / hard (ceiling / floor marker),,easy; blank allowed
+data/trials/tmtf_trials.csv,blocked_at_limit,이 시행 뒤 계단이 범위 밖으로 가려다 막힘: easy / hard,after this trial the staircase asked to go beyond that end: easy / hard,,easy; blank allowed
+data/trials/tmtf_trials.csv,run_status,그 측정에 앱이 붙인 결과 상태 (측정의 모든 시행 줄에 같은 값),result status the app gave the run (same on every trial row of the run),,discarded | not_measurable_at_0dB | practice | threshold
+data/trials/tmtf_trials.csv,run_flags,"그 측정에 앱이 붙인 점검 표시 (편향 · 끝 근처 · 우연 등), ; 로 이음","check flags the app gave the run (bias, near a limit, chance), joined by ;",,at_chance; blank allowed
+data/trials/tmtf_trials.csv,excluded,1 = 본 분석에서 빼는 시행 (연습 · 예시 · 통과 검사 · 멈춘 측정 · 답 전 멈춤 · 지운 측정),"1 = excluded from the main analysis (practice, example, pass check, stopped run, stopped trial, deleted run)",0/1,0 | 1
+data/trials/tmtf_trials.csv,exclusion_reason,뺀 까닭 (여럿이면 ; 로 이음),"reason(s) for exclusion, joined by ;",,"practice trial (fixed 0 dB, not part of any track) | run stopped by participant (stop-button) after 5 trials; discarded by app; blank allowed"
+data/trials/smrt_trials.csv,test,검사 이름,test name,,SMRT
+data/trials/smrt_trials.csv,protocol,절차: 과제 · 계단 규칙 · 자극 요약 (앱 기록에서),"procedure: task, staircase rule, stimulus summary (from the app record)",,"SMRT 1.1.3 official WAVs, 3I-3AFC adaptive 1-down/1-up, step 0.2 RPO, 10 rev mean of last 6, ISI 500 ms"
+data/trials/smrt_trials.csv,condition,절차 안의 조건 (변조 주파수 · 밀도 · 소리 종류 · 크기 로빙 등). 없으면 빈칸,"condition within the procedure (modulation rate, density, sound type, level rove); blank if none",,"no level rove (official SMRT) | rove A (0 dB) | rove B (+/-4 dB, per interval) | rove C (+/-7.5 dB, per interval)"
+data/trials/smrt_trials.csv,ear,검사한 귀,test ear,,L | R
+data/trials/smrt_trials.csv,date_kst,"시행 날짜, 한국 시각(UTC+9)","trial date, Korea Standard Time (UTC+9)",YYYY-MM-DD,2026-10-15 | 2026-10-20 | 2026-10-22 | 2026-11-02 | 2026-11-03
+data/trials/smrt_trials.csv,time_kst,"시행 시각, 한국 시각, 밀리초까지","trial time, KST, to the millisecond",HH:MM:SS.mmm,"1171 distinct values, e.g. 00:27:05.355"
+data/trials/smrt_trials.csv,time_source,시각이 무엇을 뜻하는지: trial_start = 시행 시작(소리 예약) · trial_stopped = 답 전에 멈춘 시각 · run_end = 시행 시각 기록이 없어 측정이 끝난 시각 (TMTF 2026-10-11 저녁 첫 21개 측정),"what the time refers to: trial_start = trial start (sound scheduled); trial_stopped = moment a trial was stopped before a response; run_end = run end time, used where per-trial times were not recorded (first 21 TMTF runs, 2026-10-11 evening)",,trial_start
+data/trials/smrt_trials.csv,session_id,회기(한 번 앉아서 한 묶음) ID. TMTF 첫 21개 측정은 빈칸,session ID (one sitting); blank for the first 21 TMTF runs,,"13 distinct values, e.g. mv9g9mfjptozj"
+data/trials/smrt_trials.csv,run_id,"측정(회차: 계단 하나 또는 고정 자극 묶음 하나) ID. TMTF 연습 묶음 = <session_id>-practice, 앱이 버린 측정 = <session_id>-discarded-<k>",run ID (one staircase track or one constant-stimuli block). TMTF practice blocks = <session_id>-practice; runs discarded by the app = <session_id>-discarded-<k>,,"45 distinct values, e.g. mv9gb9as19128"
+data/trials/smrt_trials.csv,trial_kind,시행 종류: main 본 측정 · practice 연습 · example 예시(정답을 보여 줌) · screening 통과 검사,"kind of trial: main, practice, example (answer shown), screening (pass check)",,main | practice
+data/trials/smrt_trials.csv,session_trial_no,"회기 안 시행 번호 (시각 순, 연습 · 예시 · 멈춘 시행 포함, 1부터)","trial number within the session (time order, all kinds, from 1)",count,1 to 136 (136 distinct)
+data/trials/smrt_trials.csv,run_trial_no,측정 안 시행 번호 (1부터),trial number within the run (from 1),count,1 to 44 (44 distinct)
+data/trials/smrt_trials.csv,value,표적 구간에 제시한 값 (단위는 unit 열) — SMRT: value = 표적의 리플 밀도 RPO (기준 = 20 RPO 두 개; 높을수록 어려움). 공식 SMRT 1.1.3 WAV.,value presented in the target interval (unit in the unit column) — SMRT: value = ripple density of the target in RPO (two 20-RPO references; higher = harder). Official SMRT 1.1.3 WAVs.,see unit,0.3 to 5.3 (26 distinct)
+data/trials/smrt_trials.csv,unit,value 의 단위,unit of value,,RPO
+data/trials/smrt_trials.csv,n_intervals,한 시행의 구간(소리) 수,number of intervals (sounds) per trial,count,3
+data/trials/smrt_trials.csv,target_interval,정답 구간 (1부터; STRIPES 는 A/B),correct interval (from 1; STRIPES: A or B),,1 | 2 | 3
+data/trials/smrt_trials.csv,response_interval,참가자가 고른 구간. ‘모르겠음’ 이거나 답 전에 멈추면 빈칸,"interval chosen by the participant; blank for ""don't know"" or when stopped before a response",,1 | 2 | 3; blank allowed
+data/trials/smrt_trials.csv,scored_interval,앱이 채점에 쓴 구간 (= 고른 구간; ‘모르겠음’ 이면 앱이 무작위로 고른 구간),"interval used for scoring (= chosen; for ""don't know"" the app picked one at random)",,1 | 2 | 3
+data/trials/smrt_trials.csv,correct,정답 1 · 오답 0 (= scored_interval 이 target_interval 과 같음). 답이 없으면 빈칸,correct 1 / incorrect 0 (scored_interval == target_interval); blank without a response,0/1,0 | 1
+data/trials/smrt_trials.csv,reversal,"계단 반전이 난 시행 1, 아니면 0. 빈칸 = 계단이 아닌 시행 (TMTF 연습 묶음 · 앱이 버린 TMTF 측정 · 예시 · 통과 검사 · 고정 자극 · 답 전에 멈춘 시행). SMRT · STRIPES 연습 측정은 계단이라 값이 있음","staircase reversal at this trial (1/0). Blank = not part of a staircase track (TMTF practice blocks, the TMTF run discarded by the app, examples, pass checks, constant stimuli, trials stopped before a response). SMRT and STRIPES practice runs are staircases and do have values",0/1,0 | 1
+data/trials/smrt_trials.csv,reversal_no,그 측정 안 반전 번호 (1부터),index of the reversal within the run (from 1),count,1 | 10 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9; blank allowed
+data/trials/smrt_trials.csv,unsure,"‘모르겠음’ 단추 1 (TMTF · SMRT 에만 있는 단추, 다른 검사는 빈칸)","""don't know"" button pressed (1/0); only TMTF and SMRT have it, blank elsewhere",0/1,0 | 1
+data/trials/smrt_trials.csv,at_limit,제시 값이 계단 범위의 끝: easy 쉬운 끝 · hard 어려운 끝 (천장 · 하한 표시),presented value at an end of the staircase range: easy / hard (ceiling / floor marker),,always blank
+data/trials/smrt_trials.csv,blocked_at_limit,이 시행 뒤 계단이 범위 밖으로 가려다 막힘: easy / hard,after this trial the staircase asked to go beyond that end: easy / hard,,always blank
+data/trials/smrt_trials.csv,run_status,그 측정에 앱이 붙인 결과 상태 (측정의 모든 시행 줄에 같은 값),result status the app gave the run (same on every trial row of the run),,threshold
+data/trials/smrt_trials.csv,run_flags,"그 측정에 앱이 붙인 점검 표시 (편향 · 끝 근처 · 우연 등), ; 로 이음","check flags the app gave the run (bias, near a limit, chance), joined by ;",,unverified_vs_chance; blank allowed
+data/trials/smrt_trials.csv,excluded,1 = 본 분석에서 빼는 시행 (연습 · 예시 · 통과 검사 · 멈춘 측정 · 답 전 멈춤 · 지운 측정),"1 = excluded from the main analysis (practice, example, pass check, stopped run, stopped trial, deleted run)",0/1,0 | 1
+data/trials/smrt_trials.csv,exclusion_reason,뺀 까닭 (여럿이면 ; 로 이음),"reason(s) for exclusion, joined by ;",,practice run; blank allowed
+data/trials/stripes_trials.csv,test,검사 이름,test name,,STRIPES
+data/trials/stripes_trials.csv,protocol,절차: 과제 · 계단 규칙 · 자극 요약 (앱 기록에서),"procedure: task, staircase rule, stimulus summary (from the app record)",,"STRIPES 3I-2AFC (A-X-B, target = upward sweeps in A or B), C1 webstripes bank; adaptive 2-down/1-up, 8 reversals mean of last 4 | STRIPES examples + pass check (C1 webstripes bank)"
+data/trials/stripes_trials.csv,condition,절차 안의 조건 (변조 주파수 · 밀도 · 소리 종류 · 크기 로빙 등). 없으면 빈칸,"condition within the procedure (modulation rate, density, sound type, level rove); blank if none",,always blank
+data/trials/stripes_trials.csv,ear,검사한 귀,test ear,,L | R
+data/trials/stripes_trials.csv,date_kst,"시행 날짜, 한국 시각(UTC+9)","trial date, Korea Standard Time (UTC+9)",YYYY-MM-DD,2026-10-16 | 2026-10-20 | 2026-11-02
+data/trials/stripes_trials.csv,time_kst,"시행 시각, 한국 시각, 밀리초까지","trial time, KST, to the millisecond",HH:MM:SS.mmm,"238 distinct values, e.g. 00:55:01.300"
+data/trials/stripes_trials.csv,time_source,시각이 무엇을 뜻하는지: trial_start = 시행 시작(소리 예약) · trial_stopped = 답 전에 멈춘 시각 · run_end = 시행 시각 기록이 없어 측정이 끝난 시각 (TMTF 2026-10-11 저녁 첫 21개 측정),"what the time refers to: trial_start = trial start (sound scheduled); trial_stopped = moment a trial was stopped before a response; run_end = run end time, used where per-trial times were not recorded (first 21 TMTF runs, 2026-10-11 evening)",,trial_start | trial_stopped
+data/trials/stripes_trials.csv,session_id,회기(한 번 앉아서 한 묶음) ID. TMTF 첫 21개 측정은 빈칸,session ID (one sitting); blank for the first 21 TMTF runs,,"6 distinct values, e.g. mvayuna1fofjze"
+data/trials/stripes_trials.csv,run_id,"측정(회차: 계단 하나 또는 고정 자극 묶음 하나) ID. TMTF 연습 묶음 = <session_id>-practice, 앱이 버린 측정 = <session_id>-discarded-<k>",run ID (one staircase track or one constant-stimuli block). TMTF practice blocks = <session_id>-practice; runs discarded by the app = <session_id>-discarded-<k>,,"12 distinct values, e.g. rmvayv1rqo4rqqm"
+data/trials/stripes_trials.csv,trial_kind,시행 종류: main 본 측정 · practice 연습 · example 예시(정답을 보여 줌) · screening 통과 검사,"kind of trial: main, practice, example (answer shown), screening (pass check)",,example | main | practice | screening
+data/trials/stripes_trials.csv,session_trial_no,"회기 안 시행 번호 (시각 순, 연습 · 예시 · 멈춘 시행 포함, 1부터)","trial number within the session (time order, all kinds, from 1)",count,1 to 99 (99 distinct)
+data/trials/stripes_trials.csv,run_trial_no,측정 안 시행 번호 (1부터),trial number within the run (from 1),count,1 to 38 (38 distinct)
+data/trials/stripes_trials.csv,value,표적 구간에 제시한 값 (단위는 unit 열) — STRIPES: value = 밀도 D (RPO = D/5). 1.1 D = 쉬운 끝 · 20 D = 어려운 끝. target A/B (A-X-B).,"value presented in the target interval (unit in the unit column) — STRIPES: value = density D (RPO = D/5); 1.1 D easy end, 20 D hard end; target A or B (A-X-B).",see unit,1.1 to 4.6 (17 distinct)
+data/trials/stripes_trials.csv,unit,value 의 단위,unit of value,,D (STRIPES density; RPO = D/5)
+data/trials/stripes_trials.csv,n_intervals,한 시행의 구간(소리) 수,number of intervals (sounds) per trial,count,3
+data/trials/stripes_trials.csv,target_interval,정답 구간 (1부터; STRIPES 는 A/B),correct interval (from 1; STRIPES: A or B),,A | B
+data/trials/stripes_trials.csv,response_interval,참가자가 고른 구간. ‘모르겠음’ 이거나 답 전에 멈추면 빈칸,"interval chosen by the participant; blank for ""don't know"" or when stopped before a response",,A | B; blank allowed
+data/trials/stripes_trials.csv,scored_interval,앱이 채점에 쓴 구간 (= 고른 구간; ‘모르겠음’ 이면 앱이 무작위로 고른 구간),"interval used for scoring (= chosen; for ""don't know"" the app picked one at random)",,A | B; blank allowed
+data/trials/stripes_trials.csv,correct,정답 1 · 오답 0 (= scored_interval 이 target_interval 과 같음). 답이 없으면 빈칸,correct 1 / incorrect 0 (scored_interval == target_interval); blank without a response,0/1,0 | 1; blank allowed
+data/trials/stripes_trials.csv,reversal,"계단 반전이 난 시행 1, 아니면 0. 빈칸 = 계단이 아닌 시행 (TMTF 연습 묶음 · 앱이 버린 TMTF 측정 · 예시 · 통과 검사 · 고정 자극 · 답 전에 멈춘 시행). SMRT · STRIPES 연습 측정은 계단이라 값이 있음","staircase reversal at this trial (1/0). Blank = not part of a staircase track (TMTF practice blocks, the TMTF run discarded by the app, examples, pass checks, constant stimuli, trials stopped before a response). SMRT and STRIPES practice runs are staircases and do have values",0/1,0 | 1; blank allowed
+data/trials/stripes_trials.csv,reversal_no,그 측정 안 반전 번호 (1부터),index of the reversal within the run (from 1),count,1 | 2 | 3 | 4 | 5 | 6 | 7 | 8; blank allowed
+data/trials/stripes_trials.csv,unsure,"‘모르겠음’ 단추 1 (TMTF · SMRT 에만 있는 단추, 다른 검사는 빈칸)","""don't know"" button pressed (1/0); only TMTF and SMRT have it, blank elsewhere",0/1,always blank
+data/trials/stripes_trials.csv,at_limit,제시 값이 계단 범위의 끝: easy 쉬운 끝 · hard 어려운 끝 (천장 · 하한 표시),presented value at an end of the staircase range: easy / hard (ceiling / floor marker),,easy; blank allowed
+data/trials/stripes_trials.csv,blocked_at_limit,이 시행 뒤 계단이 범위 밖으로 가려다 막힘: easy / hard,after this trial the staircase asked to go beyond that end: easy / hard,,easy; blank allowed
+data/trials/stripes_trials.csv,run_status,그 측정에 앱이 붙인 결과 상태 (측정의 모든 시행 줄에 같은 값),result status the app gave the run (same on every trial row of the run),,analysis_window_boundary_affected | complete_in_range | participant_aborted | passed
+data/trials/stripes_trials.csv,run_flags,"그 측정에 앱이 붙인 점검 표시 (편향 · 끝 근처 · 우연 등), ; 로 이음","check flags the app gave the run (bias, near a limit, chance), joined by ;",,possible_floor;unverified_vs_chance; blank allowed
+data/trials/stripes_trials.csv,excluded,1 = 본 분석에서 빼는 시행 (연습 · 예시 · 통과 검사 · 멈춘 측정 · 답 전 멈춤 · 지운 측정),"1 = excluded from the main analysis (practice, example, pass check, stopped run, stopped trial, deleted run)",0/1,0 | 1
+data/trials/stripes_trials.csv,exclusion_reason,뺀 까닭 (여럿이면 ; 로 이음),"reason(s) for exclusion, joined by ;",,"example trial (correct answer shown) | example trial (correct answer shown); run stopped by participant before its end rule (no threshold) | practice run | run stopped by participant before its end rule (no threshold) | screening/training trial with feedback (pass check), not part of threshold track | screening/training trial with feedback (pass check), not part of threshold track; run stopped by participant before its end rule (no threshold) | screening/training trial with feedback (pass check), not part of threshold track; run stopped by participant before its end rule (no threshold); trial stopped before response (stopped); blank allowed"
+data/trials/stm_trials.csv,test,검사 이름,test name,,STM
+data/trials/stm_trials.csv,protocol,절차: 과제 · 계단 규칙 · 자극 요약 (앱 기록에서),"procedure: task, staircase rule, stimulus summary (from the app record)",,"Won2015 STM detection, 2I-2AFC adaptive 2-down/1-up (streamed; not a replication of the original free-field setup)"
+data/trials/stm_trials.csv,condition,절차 안의 조건 (변조 주파수 · 밀도 · 소리 종류 · 크기 로빙 등). 없으면 빈칸,"condition within the procedure (modulation rate, density, sound type, level rove); blank if none",,density=0.5 c/o; rate=10 Hz | density=0.5 c/o; rate=5 Hz | density=1 c/o; rate=10 Hz | density=1 c/o; rate=5 Hz | density=2 c/o; rate=10 Hz | density=2 c/o; rate=5 Hz
+data/trials/stm_trials.csv,ear,검사한 귀,test ear,,L | R
+data/trials/stm_trials.csv,date_kst,"시행 날짜, 한국 시각(UTC+9)","trial date, Korea Standard Time (UTC+9)",YYYY-MM-DD,2026-10-18 | 2026-10-19
+data/trials/stm_trials.csv,time_kst,"시행 시각, 한국 시각, 밀리초까지","trial time, KST, to the millisecond",HH:MM:SS.mmm,"1370 distinct values, e.g. 00:00:03.271"
+data/trials/stm_trials.csv,time_source,시각이 무엇을 뜻하는지: trial_start = 시행 시작(소리 예약) · trial_stopped = 답 전에 멈춘 시각 · run_end = 시행 시각 기록이 없어 측정이 끝난 시각 (TMTF 2026-10-11 저녁 첫 21개 측정),"what the time refers to: trial_start = trial start (sound scheduled); trial_stopped = moment a trial was stopped before a response; run_end = run end time, used where per-trial times were not recorded (first 21 TMTF runs, 2026-10-11 evening)",,trial_start
+data/trials/stm_trials.csv,session_id,회기(한 번 앉아서 한 묶음) ID. TMTF 첫 21개 측정은 빈칸,session ID (one sitting); blank for the first 21 TMTF runs,,"2 distinct values, e.g. mvdtohqxd2gqqq"
+data/trials/stm_trials.csv,run_id,"측정(회차: 계단 하나 또는 고정 자극 묶음 하나) ID. TMTF 연습 묶음 = <session_id>-practice, 앱이 버린 측정 = <session_id>-discarded-<k>",run ID (one staircase track or one constant-stimuli block). TMTF practice blocks = <session_id>-practice; runs discarded by the app = <session_id>-discarded-<k>,,"27 distinct values, e.g. rmvdtpn6np8aiwl"
+data/trials/stm_trials.csv,trial_kind,시행 종류: main 본 측정 · practice 연습 · example 예시(정답을 보여 줌) · screening 통과 검사,"kind of trial: main, practice, example (answer shown), screening (pass check)",,main
+data/trials/stm_trials.csv,session_trial_no,"회기 안 시행 번호 (시각 순, 연습 · 예시 · 멈춘 시행 포함, 1부터)","trial number within the session (time order, all kinds, from 1)",count,1 to 720 (720 distinct)
+data/trials/stm_trials.csv,run_trial_no,측정 안 시행 번호 (1부터),trial number within the run (from 1),count,1 to 66 (66 distinct)
+data/trials/stm_trials.csv,value,"표적 구간에 제시한 값 (단위는 unit 열) — STM: value = 스펙트럼-시간 변조 깊이 20·log10(A) dB (0 dB = 쉬운 끝, -50 dB = 어려운 끝).","value presented in the target interval (unit in the unit column) — STM: value = spectro-temporal modulation depth 20·log10(A) dB (0 dB easy end, -50 dB hard end).",see unit,-24 to 0 (13 distinct)
+data/trials/stm_trials.csv,unit,value 의 단위,unit of value,,dB (20log10 A)
+data/trials/stm_trials.csv,n_intervals,한 시행의 구간(소리) 수,number of intervals (sounds) per trial,count,2
+data/trials/stm_trials.csv,target_interval,정답 구간 (1부터; STRIPES 는 A/B),correct interval (from 1; STRIPES: A or B),,1 | 2
+data/trials/stm_trials.csv,response_interval,참가자가 고른 구간. ‘모르겠음’ 이거나 답 전에 멈추면 빈칸,"interval chosen by the participant; blank for ""don't know"" or when stopped before a response",,1 | 2
+data/trials/stm_trials.csv,scored_interval,앱이 채점에 쓴 구간 (= 고른 구간; ‘모르겠음’ 이면 앱이 무작위로 고른 구간),"interval used for scoring (= chosen; for ""don't know"" the app picked one at random)",,1 | 2
+data/trials/stm_trials.csv,correct,정답 1 · 오답 0 (= scored_interval 이 target_interval 과 같음). 답이 없으면 빈칸,correct 1 / incorrect 0 (scored_interval == target_interval); blank without a response,0/1,0 | 1
+data/trials/stm_trials.csv,reversal,"계단 반전이 난 시행 1, 아니면 0. 빈칸 = 계단이 아닌 시행 (TMTF 연습 묶음 · 앱이 버린 TMTF 측정 · 예시 · 통과 검사 · 고정 자극 · 답 전에 멈춘 시행). SMRT · STRIPES 연습 측정은 계단이라 값이 있음","staircase reversal at this trial (1/0). Blank = not part of a staircase track (TMTF practice blocks, the TMTF run discarded by the app, examples, pass checks, constant stimuli, trials stopped before a response). SMRT and STRIPES practice runs are staircases and do have values",0/1,0 | 1
+data/trials/stm_trials.csv,reversal_no,그 측정 안 반전 번호 (1부터),index of the reversal within the run (from 1),count,1 to 14 (14 distinct); blank allowed
+data/trials/stm_trials.csv,unsure,"‘모르겠음’ 단추 1 (TMTF · SMRT 에만 있는 단추, 다른 검사는 빈칸)","""don't know"" button pressed (1/0); only TMTF and SMRT have it, blank elsewhere",0/1,always blank
+data/trials/stm_trials.csv,at_limit,제시 값이 계단 범위의 끝: easy 쉬운 끝 · hard 어려운 끝 (천장 · 하한 표시),presented value at an end of the staircase range: easy / hard (ceiling / floor marker),,easy; blank allowed
+data/trials/stm_trials.csv,blocked_at_limit,이 시행 뒤 계단이 범위 밖으로 가려다 막힘: easy / hard,after this trial the staircase asked to go beyond that end: easy / hard,,easy; blank allowed
+data/trials/stm_trials.csv,run_status,그 측정에 앱이 붙인 결과 상태 (측정의 모든 시행 줄에 같은 값),result status the app gave the run (same on every trial row of the run),,complete_in_range
+data/trials/stm_trials.csv,run_flags,"그 측정에 앱이 붙인 점검 표시 (편향 · 끝 근처 · 우연 등), ; 로 이음","check flags the app gave the run (bias, near a limit, chance), joined by ;",,interval_bias | near_ceiling | near_ceiling;interval_bias; blank allowed
+data/trials/stm_trials.csv,excluded,1 = 본 분석에서 빼는 시행 (연습 · 예시 · 통과 검사 · 멈춘 측정 · 답 전 멈춤 · 지운 측정),"1 = excluded from the main analysis (practice, example, pass check, stopped run, stopped trial, deleted run)",0/1,0
+data/trials/stm_trials.csv,exclusion_reason,뺀 까닭 (여럿이면 ; 로 이음),"reason(s) for exclusion, joined by ;",,always blank
+data/trials/srd_trials.csv,test,검사 이름,test name,,SRD
+data/trials/srd_trials.csv,protocol,절차: 과제 · 계단 규칙 · 자극 요약 (앱 기록에서),"procedure: task, staircase rule, stimulus summary (from the app record)",,"Drennan2014 clinical SRD, 3I-3AFC constant stimuli (72 planned trials, inverted ripple) | Won2007 SRD, 3I-3AFC adaptive 2-down/1-up (2 correct -> denser), density index, 13 reversals mean of last 8"
+data/trials/srd_trials.csv,condition,절차 안의 조건 (변조 주파수 · 밀도 · 소리 종류 · 크기 로빙 등). 없으면 빈칸,"condition within the procedure (modulation rate, density, sound type, level rove); blank if none",,always blank
+data/trials/srd_trials.csv,ear,검사한 귀,test ear,,L | R
+data/trials/srd_trials.csv,date_kst,"시행 날짜, 한국 시각(UTC+9)","trial date, Korea Standard Time (UTC+9)",YYYY-MM-DD,2026-10-21 | 2026-10-22 | 2026-11-02
+data/trials/srd_trials.csv,time_kst,"시행 시각, 한국 시각, 밀리초까지","trial time, KST, to the millisecond",HH:MM:SS.mmm,"688 distinct values, e.g. 20:24:17.729"
+data/trials/srd_trials.csv,time_source,시각이 무엇을 뜻하는지: trial_start = 시행 시작(소리 예약) · trial_stopped = 답 전에 멈춘 시각 · run_end = 시행 시각 기록이 없어 측정이 끝난 시각 (TMTF 2026-10-11 저녁 첫 21개 측정),"what the time refers to: trial_start = trial start (sound scheduled); trial_stopped = moment a trial was stopped before a response; run_end = run end time, used where per-trial times were not recorded (first 21 TMTF runs, 2026-10-11 evening)",,trial_start | trial_stopped
+data/trials/srd_trials.csv,session_id,회기(한 번 앉아서 한 묶음) ID. TMTF 첫 21개 측정은 빈칸,session ID (one sitting); blank for the first 21 TMTF runs,,"6 distinct values, e.g. mvi2h3myachaz1"
+data/trials/srd_trials.csv,run_id,"측정(회차: 계단 하나 또는 고정 자극 묶음 하나) ID. TMTF 연습 묶음 = <session_id>-practice, 앱이 버린 측정 = <session_id>-discarded-<k>",run ID (one staircase track or one constant-stimuli block). TMTF practice blocks = <session_id>-practice; runs discarded by the app = <session_id>-discarded-<k>,,"18 distinct values, e.g. rmvi2ienmpzsuxy"
+data/trials/srd_trials.csv,trial_kind,시행 종류: main 본 측정 · practice 연습 · example 예시(정답을 보여 줌) · screening 통과 검사,"kind of trial: main, practice, example (answer shown), screening (pass check)",,main
+data/trials/srd_trials.csv,session_trial_no,"회기 안 시행 번호 (시각 순, 연습 · 예시 · 멈춘 시행 포함, 1부터)","trial number within the session (time order, all kinds, from 1)",count,1 to 261 (261 distinct)
+data/trials/srd_trials.csv,run_trial_no,측정 안 시행 번호 (1부터),trial number within the run (from 1),count,1 to 53 (53 distinct)
+data/trials/srd_trials.csv,value,"표적 구간에 제시한 값 (단위는 unit 열) — SRD: value = 리플 밀도 RPO (0.125 = 쉬운 끝, 높을수록 어려움). 임상(Drennan 2014) 고정 자극은 반전 · 끝 표시 없음.",value presented in the target interval (unit in the unit column) — SRD: value = ripple density in RPO (0.125 easy end; higher = harder). Clinical constant-stimuli block has no reversals or limit markers.,see unit,0.125 | 0.176 | 0.25 | 0.354 | 0.5 | 0.707 | 1 | 1.414 | 2 | 4 | 5.657
+data/trials/srd_trials.csv,unit,value 의 단위,unit of value,,RPO
+data/trials/srd_trials.csv,n_intervals,한 시행의 구간(소리) 수,number of intervals (sounds) per trial,count,3
+data/trials/srd_trials.csv,target_interval,정답 구간 (1부터; STRIPES 는 A/B),correct interval (from 1; STRIPES: A or B),,1 | 2 | 3
+data/trials/srd_trials.csv,response_interval,참가자가 고른 구간. ‘모르겠음’ 이거나 답 전에 멈추면 빈칸,"interval chosen by the participant; blank for ""don't know"" or when stopped before a response",,1 | 2 | 3; blank allowed
+data/trials/srd_trials.csv,scored_interval,앱이 채점에 쓴 구간 (= 고른 구간; ‘모르겠음’ 이면 앱이 무작위로 고른 구간),"interval used for scoring (= chosen; for ""don't know"" the app picked one at random)",,1 | 2 | 3; blank allowed
+data/trials/srd_trials.csv,correct,정답 1 · 오답 0 (= scored_interval 이 target_interval 과 같음). 답이 없으면 빈칸,correct 1 / incorrect 0 (scored_interval == target_interval); blank without a response,0/1,0 | 1; blank allowed
+data/trials/srd_trials.csv,reversal,"계단 반전이 난 시행 1, 아니면 0. 빈칸 = 계단이 아닌 시행 (TMTF 연습 묶음 · 앱이 버린 TMTF 측정 · 예시 · 통과 검사 · 고정 자극 · 답 전에 멈춘 시행). SMRT · STRIPES 연습 측정은 계단이라 값이 있음","staircase reversal at this trial (1/0). Blank = not part of a staircase track (TMTF practice blocks, the TMTF run discarded by the app, examples, pass checks, constant stimuli, trials stopped before a response). SMRT and STRIPES practice runs are staircases and do have values",0/1,0 | 1; blank allowed
+data/trials/srd_trials.csv,reversal_no,그 측정 안 반전 번호 (1부터),index of the reversal within the run (from 1),count,1 to 13 (13 distinct); blank allowed
+data/trials/srd_trials.csv,unsure,"‘모르겠음’ 단추 1 (TMTF · SMRT 에만 있는 단추, 다른 검사는 빈칸)","""don't know"" button pressed (1/0); only TMTF and SMRT have it, blank elsewhere",0/1,always blank
+data/trials/srd_trials.csv,at_limit,제시 값이 계단 범위의 끝: easy 쉬운 끝 · hard 어려운 끝 (천장 · 하한 표시),presented value at an end of the staircase range: easy / hard (ceiling / floor marker),,easy; blank allowed
+data/trials/srd_trials.csv,blocked_at_limit,이 시행 뒤 계단이 범위 밖으로 가려다 막힘: easy / hard,after this trial the staircase asked to go beyond that end: easy / hard,,easy; blank allowed
+data/trials/srd_trials.csv,run_status,그 측정에 앱이 붙인 결과 상태 (측정의 모든 시행 줄에 같은 값),result status the app gave the run (same on every trial row of the run),,complete_in_range | participant_aborted | threshold_near_easy_end
+data/trials/srd_trials.csv,run_flags,"그 측정에 앱이 붙인 점검 표시 (편향 · 끝 근처 · 우연 등), ; 로 이음","check flags the app gave the run (bias, near a limit, chance), joined by ;",,interval_bias | near_easy_end | near_easy_end;early_easy_errors | near_easy_end;interval_bias | response_bias | track_not_above_chance; blank allowed
+data/trials/srd_trials.csv,excluded,1 = 본 분석에서 빼는 시행 (연습 · 예시 · 통과 검사 · 멈춘 측정 · 답 전 멈춤 · 지운 측정),"1 = excluded from the main analysis (practice, example, pass check, stopped run, stopped trial, deleted run)",0/1,0 | 1
+data/trials/srd_trials.csv,exclusion_reason,뺀 까닭 (여럿이면 ; 로 이음),"reason(s) for exclusion, joined by ;",,run stopped by participant before its end rule (no threshold) | run stopped by participant before its end rule (no threshold); trial stopped before response (stopped); blank allowed
+data/trials/gdt_trials.csv,test,검사 이름,test name,,GDT
+data/trials/gdt_trials.csv,protocol,절차: 과제 · 계단 규칙 · 자극 요약 (앱 기록에서),"procedure: task, staircase rule, stimulus summary (from the app record)",,"Blankenship2022, 2I-2AFC adaptive 1-up/1-down (value = paper-method value, not a 70.7% threshold) | Wei2007 task / Zeng1999 stimuli, 3I-3AFC adaptive 2-down/1-up on half-octave ladder, 12 rev geometric mean of last 8 | Xie2022, 2I-2AFC adaptive 2-down/1-up, 10 rev mean of last 6"
+data/trials/gdt_trials.csv,condition,절차 안의 조건 (변조 주파수 · 밀도 · 소리 종류 · 크기 로빙 등). 없으면 빈칸,"condition within the procedure (modulation rate, density, sound type, level rove); blank if none",,"broadband noise 20-14000 Hz, 500 ms, gap centred | noise 800 ms (Xie 2022), target = gap, standard = 4 ms dip | tone 2 kHz -> 1 kHz (different-frequency markers) | tone 2 kHz -> 2 kHz (same-frequency markers)"
+data/trials/gdt_trials.csv,ear,검사한 귀,test ear,,R
+data/trials/gdt_trials.csv,date_kst,"시행 날짜, 한국 시각(UTC+9)","trial date, Korea Standard Time (UTC+9)",YYYY-MM-DD,2026-11-01 | 2026-11-02 | 2026-11-03
+data/trials/gdt_trials.csv,time_kst,"시행 시각, 한국 시각, 밀리초까지","trial time, KST, to the millisecond",HH:MM:SS.mmm,"971 distinct values, e.g. 00:00:01.849"
+data/trials/gdt_trials.csv,time_source,시각이 무엇을 뜻하는지: trial_start = 시행 시작(소리 예약) · trial_stopped = 답 전에 멈춘 시각 · run_end = 시행 시각 기록이 없어 측정이 끝난 시각 (TMTF 2026-10-11 저녁 첫 21개 측정),"what the time refers to: trial_start = trial start (sound scheduled); trial_stopped = moment a trial was stopped before a response; run_end = run end time, used where per-trial times were not recorded (first 21 TMTF runs, 2026-10-11 evening)",,trial_start | trial_stopped
+data/trials/gdt_trials.csv,session_id,회기(한 번 앉아서 한 묶음) ID. TMTF 첫 21개 측정은 빈칸,session ID (one sitting); blank for the first 21 TMTF runs,,"11 distinct values, e.g. mvxut8qecog9it"
+data/trials/gdt_trials.csv,run_id,"측정(회차: 계단 하나 또는 고정 자극 묶음 하나) ID. TMTF 연습 묶음 = <session_id>-practice, 앱이 버린 측정 = <session_id>-discarded-<k>",run ID (one staircase track or one constant-stimuli block). TMTF practice blocks = <session_id>-practice; runs discarded by the app = <session_id>-discarded-<k>,,"30 distinct values, e.g. rmvxuthsjc4iwpn"
+data/trials/gdt_trials.csv,trial_kind,시행 종류: main 본 측정 · practice 연습 · example 예시(정답을 보여 줌) · screening 통과 검사,"kind of trial: main, practice, example (answer shown), screening (pass check)",,main
+data/trials/gdt_trials.csv,session_trial_no,"회기 안 시행 번호 (시각 순, 연습 · 예시 · 멈춘 시행 포함, 1부터)","trial number within the session (time order, all kinds, from 1)",count,1 to 212 (212 distinct)
+data/trials/gdt_trials.csv,run_trial_no,측정 안 시행 번호 (1부터),trial number within the run (from 1),count,1 to 56 (56 distinct)
+data/trials/gdt_trials.csv,value,"표적 구간에 제시한 값 (단위는 unit 열) — GDT: value = 표적 간격 길이 ms (공칭 사다리 값, 길수록 쉬움). 긴 끝 = easy · 짧은 끝 = hard.","value presented in the target interval (unit in the unit column) — GDT: value = nominal gap duration in ms (ladder value; longer = easier). Long end = easy, short end = hard.",see unit,0.3125 to 160 (34 distinct)
+data/trials/gdt_trials.csv,unit,value 의 단위,unit of value,,ms (gap duration)
+data/trials/gdt_trials.csv,n_intervals,한 시행의 구간(소리) 수,number of intervals (sounds) per trial,count,2 | 3
+data/trials/gdt_trials.csv,target_interval,정답 구간 (1부터; STRIPES 는 A/B),correct interval (from 1; STRIPES: A or B),,1 | 2 | 3
+data/trials/gdt_trials.csv,response_interval,참가자가 고른 구간. ‘모르겠음’ 이거나 답 전에 멈추면 빈칸,"interval chosen by the participant; blank for ""don't know"" or when stopped before a response",,1 | 2 | 3; blank allowed
+data/trials/gdt_trials.csv,scored_interval,앱이 채점에 쓴 구간 (= 고른 구간; ‘모르겠음’ 이면 앱이 무작위로 고른 구간),"interval used for scoring (= chosen; for ""don't know"" the app picked one at random)",,1 | 2 | 3; blank allowed
+data/trials/gdt_trials.csv,correct,정답 1 · 오답 0 (= scored_interval 이 target_interval 과 같음). 답이 없으면 빈칸,correct 1 / incorrect 0 (scored_interval == target_interval); blank without a response,0/1,0 | 1; blank allowed
+data/trials/gdt_trials.csv,reversal,"계단 반전이 난 시행 1, 아니면 0. 빈칸 = 계단이 아닌 시행 (TMTF 연습 묶음 · 앱이 버린 TMTF 측정 · 예시 · 통과 검사 · 고정 자극 · 답 전에 멈춘 시행). SMRT · STRIPES 연습 측정은 계단이라 값이 있음","staircase reversal at this trial (1/0). Blank = not part of a staircase track (TMTF practice blocks, the TMTF run discarded by the app, examples, pass checks, constant stimuli, trials stopped before a response). SMRT and STRIPES practice runs are staircases and do have values",0/1,0 | 1; blank allowed
+data/trials/gdt_trials.csv,reversal_no,그 측정 안 반전 번호 (1부터),index of the reversal within the run (from 1),count,1 | 10 | 11 | 12 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9; blank allowed
+data/trials/gdt_trials.csv,unsure,"‘모르겠음’ 단추 1 (TMTF · SMRT 에만 있는 단추, 다른 검사는 빈칸)","""don't know"" button pressed (1/0); only TMTF and SMRT have it, blank elsewhere",0/1,always blank
+data/trials/gdt_trials.csv,at_limit,제시 값이 계단 범위의 끝: easy 쉬운 끝 · hard 어려운 끝 (천장 · 하한 표시),presented value at an end of the staircase range: easy / hard (ceiling / floor marker),,hard; blank allowed
+data/trials/gdt_trials.csv,blocked_at_limit,이 시행 뒤 계단이 범위 밖으로 가려다 막힘: easy / hard,after this trial the staircase asked to go beyond that end: easy / hard,,hard; blank allowed
+data/trials/gdt_trials.csv,run_status,그 측정에 앱이 붙인 결과 상태 (측정의 모든 시행 줄에 같은 값),result status the app gave the run (same on every trial row of the run),,complete_in_range | participant_aborted | threshold_near_floor
+data/trials/gdt_trials.csv,run_flags,"그 측정에 앱이 붙인 점검 표시 (편향 · 끝 근처 · 우연 등), ; 로 이음","check flags the app gave the run (bias, near a limit, chance), joined by ;",,interval_bias | near_floor | response_bias | rule_tracks_chance | rule_tracks_chance;track_not_above_chance | track_not_above_chance; blank allowed
+data/trials/gdt_trials.csv,excluded,1 = 본 분석에서 빼는 시행 (연습 · 예시 · 통과 검사 · 멈춘 측정 · 답 전 멈춤 · 지운 측정),"1 = excluded from the main analysis (practice, example, pass check, stopped run, stopped trial, deleted run)",0/1,0 | 1
+data/trials/gdt_trials.csv,exclusion_reason,뺀 까닭 (여럿이면 ; 로 이음),"reason(s) for exclusion, joined by ;",,"deleted from app database at participant request (2026-11-03: ""program error""); record check that day found no app fault; kept in the app deleted-records folder | run stopped by participant before its end rule (no threshold) | run stopped by participant before its end rule (no threshold); trial stopped before response (stopped); blank allowed"
+data/trials/smd_trials.csv,test,검사 이름,test name,,SMD
+data/trials/smd_trials.csv,protocol,절차: 과제 · 계단 규칙 · 자극 요약 (앱 기록에서),"procedure: task, staircase rule, stimulus summary (from the app record)",,"QSMD (EasyQSMD 1.0 official Electric WAVs), 3I-3AFC constant stimuli, 60 trials | Won2015 SMD, 3I-3AFC adaptive 2-down/1-up, 14 reversals mean of last 10, max depth 60 dB"
+data/trials/smd_trials.csv,condition,절차 안의 조건 (변조 주파수 · 밀도 · 소리 종류 · 크기 로빙 등). 없으면 빈칸,"condition within the procedure (modulation rate, density, sound type, level rove); blank if none",,"63 distinct values, e.g. density=0.5 c/o | density=0.5 c/o; file=QSMDv400_Electric_01_01-01.wav | density=0.5 c/o; file=QSMDv400_Electric_01_01-02.wav"
+data/trials/smd_trials.csv,ear,검사한 귀,test ear,,R
+data/trials/smd_trials.csv,date_kst,"시행 날짜, 한국 시각(UTC+9)","trial date, Korea Standard Time (UTC+9)",YYYY-MM-DD,2026-11-02
+data/trials/smd_trials.csv,time_kst,"시행 시각, 한국 시각, 밀리초까지","trial time, KST, to the millisecond",HH:MM:SS.mmm,"713 distinct values, e.g. 00:37:50.335"
+data/trials/smd_trials.csv,time_source,시각이 무엇을 뜻하는지: trial_start = 시행 시작(소리 예약) · trial_stopped = 답 전에 멈춘 시각 · run_end = 시행 시각 기록이 없어 측정이 끝난 시각 (TMTF 2026-10-11 저녁 첫 21개 측정),"what the time refers to: trial_start = trial start (sound scheduled); trial_stopped = moment a trial was stopped before a response; run_end = run end time, used where per-trial times were not recorded (first 21 TMTF runs, 2026-10-11 evening)",,trial_start
+data/trials/smd_trials.csv,session_id,회기(한 번 앉아서 한 묶음) ID. TMTF 첫 21개 측정은 빈칸,session ID (one sitting); blank for the first 21 TMTF runs,,"3 distinct values, e.g. mvxzuorf24jhj4"
+data/trials/smd_trials.csv,run_id,"측정(회차: 계단 하나 또는 고정 자극 묶음 하나) ID. TMTF 연습 묶음 = <session_id>-practice, 앱이 버린 측정 = <session_id>-discarded-<k>",run ID (one staircase track or one constant-stimuli block). TMTF practice blocks = <session_id>-practice; runs discarded by the app = <session_id>-discarded-<k>,,"13 distinct values, e.g. rmvxzut3elzhnbr"
+data/trials/smd_trials.csv,trial_kind,시행 종류: main 본 측정 · practice 연습 · example 예시(정답을 보여 줌) · screening 통과 검사,"kind of trial: main, practice, example (answer shown), screening (pass check)",,main
+data/trials/smd_trials.csv,session_trial_no,"회기 안 시행 번호 (시각 순, 연습 · 예시 · 멈춘 시행 포함, 1부터)","trial number within the session (time order, all kinds, from 1)",count,1 to 500 (500 distinct)
+data/trials/smd_trials.csv,run_trial_no,측정 안 시행 번호 (1부터),trial number within the run (from 1),count,1 to 76 (76 distinct)
+data/trials/smd_trials.csv,value,"표적 구간에 제시한 값 (단위는 unit 열) — SMD: value = 스펙트럼 변조 깊이 dB (봉우리-골, 깊을수록 쉬움; 60 dB = 쉬운 끝). QSMD 는 공식 파일의 깊이.",value presented in the target interval (unit in the unit column) — SMD: value = spectral modulation depth in dB (peak-to-valley; deeper = easier; 60 dB easy end). QSMD: depth of the official file.,see unit,10 to 32 (43 distinct)
+data/trials/smd_trials.csv,unit,value 의 단위,unit of value,,dB (peak-to-valley spectral modulation depth)
+data/trials/smd_trials.csv,n_intervals,한 시행의 구간(소리) 수,number of intervals (sounds) per trial,count,3
+data/trials/smd_trials.csv,target_interval,정답 구간 (1부터; STRIPES 는 A/B),correct interval (from 1; STRIPES: A or B),,1 | 2 | 3
+data/trials/smd_trials.csv,response_interval,참가자가 고른 구간. ‘모르겠음’ 이거나 답 전에 멈추면 빈칸,"interval chosen by the participant; blank for ""don't know"" or when stopped before a response",,1 | 2 | 3
+data/trials/smd_trials.csv,scored_interval,앱이 채점에 쓴 구간 (= 고른 구간; ‘모르겠음’ 이면 앱이 무작위로 고른 구간),"interval used for scoring (= chosen; for ""don't know"" the app picked one at random)",,1 | 2 | 3
+data/trials/smd_trials.csv,correct,정답 1 · 오답 0 (= scored_interval 이 target_interval 과 같음). 답이 없으면 빈칸,correct 1 / incorrect 0 (scored_interval == target_interval); blank without a response,0/1,0 | 1
+data/trials/smd_trials.csv,reversal,"계단 반전이 난 시행 1, 아니면 0. 빈칸 = 계단이 아닌 시행 (TMTF 연습 묶음 · 앱이 버린 TMTF 측정 · 예시 · 통과 검사 · 고정 자극 · 답 전에 멈춘 시행). SMRT · STRIPES 연습 측정은 계단이라 값이 있음","staircase reversal at this trial (1/0). Blank = not part of a staircase track (TMTF practice blocks, the TMTF run discarded by the app, examples, pass checks, constant stimuli, trials stopped before a response). SMRT and STRIPES practice runs are staircases and do have values",0/1,0 | 1; blank allowed
+data/trials/smd_trials.csv,reversal_no,그 측정 안 반전 번호 (1부터),index of the reversal within the run (from 1),count,1 to 14 (14 distinct); blank allowed
+data/trials/smd_trials.csv,unsure,"‘모르겠음’ 단추 1 (TMTF · SMRT 에만 있는 단추, 다른 검사는 빈칸)","""don't know"" button pressed (1/0); only TMTF and SMRT have it, blank elsewhere",0/1,always blank
+data/trials/smd_trials.csv,at_limit,제시 값이 계단 범위의 끝: easy 쉬운 끝 · hard 어려운 끝 (천장 · 하한 표시),presented value at an end of the staircase range: easy / hard (ceiling / floor marker),,always blank
+data/trials/smd_trials.csv,blocked_at_limit,이 시행 뒤 계단이 범위 밖으로 가려다 막힘: easy / hard,after this trial the staircase asked to go beyond that end: easy / hard,,always blank
+data/trials/smd_trials.csv,run_status,그 측정에 앱이 붙인 결과 상태 (측정의 모든 시행 줄에 같은 값),result status the app gave the run (same on every trial row of the run),,complete | complete_in_range | threshold_above_window
+data/trials/smd_trials.csv,run_flags,"그 측정에 앱이 붙인 점검 표시 (편향 · 끝 근처 · 우연 등), ; 로 이음","check flags the app gave the run (bias, near a limit, chance), joined by ;",,interval_bias | interval_bias;response_bias; blank allowed
+data/trials/smd_trials.csv,excluded,1 = 본 분석에서 빼는 시행 (연습 · 예시 · 통과 검사 · 멈춘 측정 · 답 전 멈춤 · 지운 측정),"1 = excluded from the main analysis (practice, example, pass check, stopped run, stopped trial, deleted run)",0/1,0
+data/trials/smd_trials.csv,exclusion_reason,뺀 까닭 (여럿이면 ; 로 이음),"reason(s) for exclusion, joined by ;",,always blank
+data/runs/tmtf_runs.csv,test,검사 이름,test name,,TMTF
+data/runs/tmtf_runs.csv,run_id,측정(회차) ID — 시행 CSV 의 run_id 와 같음,"run ID, the same as run_id in the trial CSV",,"157 distinct values, e.g. mv3pxlp33zii9"
+data/runs/tmtf_runs.csv,session_id,회기(한 번 앉아서 한 묶음) ID. TMTF 첫 21개 측정은 빈칸,session ID (one sitting); blank for the first 21 TMTF runs,,"67 distinct values, e.g. mv3u0lokqdust; blank allowed"
+data/runs/tmtf_runs.csv,protocol,절차: 과제 · 계단 규칙 · 자극 요약 (앱 기록에서),"procedure: task, staircase rule, stimulus summary (from the app record)",,"Custom 3I-3AFC adaptive; 0.5 s; ISI 0.5 s; wideband; ramp 10 ms linear; carrier phase random; start 0 dB; step 4->2 dB after 4 rev; 14 rev, mean of last 10; 0 dB rule stop4 | DeRuiter2015 3I-3AFC adaptive; 0.5 s; ISI 0.5 s; bandpass 80-8500 Hz; ramp 30 ms linear; carrier phase zero; start -2 dB; step 4->2 dB after 2 rev; 8 rev, mean of last 6; 0 dB rule stop4 | Won2011/Park2015 2I-2AFC adaptive; 1 s; ISI 0 s; wideband; ramp 10 ms linear; carrier phase zero; start 0 dB; step 4->2 dB after 4 rev; 14 rev, mean of last 10; 0 dB rule none"
+data/runs/tmtf_runs.csv,condition,절차 안의 조건 (변조 주파수 · 밀도 · 소리 종류 · 크기 로빙 등). 없으면 빈칸,"condition within the procedure (modulation rate, density, sound type, level rove); blank if none",,"46 distinct values, e.g. fm=10 Hz | fm=100 Hz | fm=15 Hz"
+data/runs/tmtf_runs.csv,ear,검사한 귀,test ear,,L | R
+data/runs/tmtf_runs.csv,run_kind,측정 종류: main · practice(연습) · screening(예시 + 통과 검사),"kind of run: main, practice, screening (examples + pass check)",,main | practice
+data/runs/tmtf_runs.csv,date_kst,"측정 날짜, 한국 시각","run date, KST",YYYY-MM-DD,2026-10-11 | 2026-10-24 | 2026-10-25 | 2026-11-01 | 2026-11-02 | 2026-11-03 | 2026-11-04
+data/runs/tmtf_runs.csv,start_time_kst,측정 시작 시각 (기록이 없으면 빈칸),run start time (blank if not recorded),HH:MM:SS,"135 distinct values, e.g. 00:06:32; blank allowed"
+data/runs/tmtf_runs.csv,end_time_kst,측정 끝 시각,run end time,HH:MM:SS,"151 distinct values, e.g. 00:10:01; blank allowed"
+data/runs/tmtf_runs.csv,n_trials,시행 CSV 에 있는 이 측정의 줄 수 (답 전에 멈춘 시행 포함),rows of this run in the trial CSV (including trials stopped before a response),count,0 to 66 (56 distinct)
+data/runs/tmtf_runs.csv,n_responses,답한 시행 수 (correct 가 0 또는 1),trials with a scored response,count,0 to 66 (56 distinct)
+data/runs/tmtf_runs.csv,n_correct,정답 수,correct responses,count,0 to 51 (45 distinct)
+data/runs/tmtf_runs.csv,n_unsure,‘모르겠음’ 수 (TMTF · SMRT),"""don't know"" responses (TMTF, SMRT)",count,0 to 36 (23 distinct); blank allowed
+data/runs/tmtf_runs.csv,n_examples_before,"측정 전에 들려준 예시 소리 수 (답을 받지 않음, 시행이 아님; 새 틀 앱만 기록)","example sounds played before the run (no response, not trials; recorded by the newer apps only)",count,always blank
+data/runs/tmtf_runs.csv,n_reversals,반전 수,number of reversals,count,0 | 1 | 14 | 2 | 3 | 4 | 6 | 7 | 8; blank allowed
+data/runs/tmtf_runs.csv,reversal_values,"반전 시행의 제시 값, 순서대로 ; 로 이음 — TMTF: value = 표적 구간의 진폭 변조 깊이 20·log10(m) dB (0 dB = 100 % 변조 = 가장 쉬움, -40 dB 아래 끝). 표준 구간은 변조 없음.","presented values at the reversal trials, in order, joined by ; — TMTF: value = AM depth of the target interval, 20·log10(m) dB (0 dB = 100 % = easiest; lower limit -40 dB).",same as threshold_unit,"137 distinct values, e.g. -10;0;-4;-2;-4;0;-2;0; blank allowed"
+data/runs/tmtf_runs.csv,reversal_trial_nos,"반전 시행의 측정 안 번호 (run_trial_no), ; 로 이음","run_trial_no of each reversal, joined by ;",count,"138 distinct values, e.g. 10;12;13;15;21;23;24;26;30;32;33;35;37;42; blank allowed"
+data/runs/tmtf_runs.csv,threshold_rule,역치를 내는 규칙 (몇 번째 반전부터 어떻게 평균),rule that turns reversals into the threshold,,"arithmetic mean of the last 10 of 14 reversals (app rounds to 0.01 dB); 0 dB rule none | arithmetic mean of the last 10 of 14 reversals (app rounds to 0.01 dB); 0 dB rule stop4 (4 cumulative errors at 0 dB -> not measurable, stored as 0 dB) | arithmetic mean of the last 6 of 8 reversals (app rounds to 0.01 dB); 0 dB rule stop4 (4 cumulative errors at 0 dB -> not measurable, stored as 0 dB); blank allowed"
+data/runs/tmtf_runs.csv,n_reversals_used,역치에 쓴 반전 수,number of reversals averaged,count,10 | 6; blank allowed
+data/runs/tmtf_runs.csv,threshold,"앱이 저장한 역치 (또는 Blankenship 논문 방식 값). 숫자가 아니면 빈칸 — TMTF: value = 표적 구간의 진폭 변조 깊이 20·log10(m) dB (0 dB = 100 % 변조 = 가장 쉬움, -40 dB 아래 끝). 표준 구간은 변조 없음.","threshold stored by the app (or the Blankenship paper-method value); blank when there is no numeric threshold — TMTF: value = AM depth of the target interval, 20·log10(m) dB (0 dB = 100 % = easiest; lower limit -40 dB).",see threshold_unit,-28.6 to -1 (82 distinct); blank allowed
+data/runs/tmtf_runs.csv,threshold_unit,threshold 의 단위,unit of threshold,,dB (20log10 m)
+data/runs/tmtf_runs.csv,value_kind,threshold = 70.7 % 등 목표 정답률 역치 · paper_method_value = Blankenship 방식 값(50 % = 우연을 따라감) · none = 숫자 없음,threshold; paper_method_value (Blankenship 1-up/1-down tracks 50 % = chance); none,,none | threshold
+data/runs/tmtf_runs.csv,no_threshold_reason,역치가 없는 이유,why there is no numeric threshold,,"not measurable: 4 cumulative errors at 0 dB (100 % modulation); the app stores 0 dB, which is not a threshold | practice block at fixed 0 dB (not a staircase) | run stopped by the participant after 35 trials; discarded by the app | run stopped by the participant after 5 trials; discarded by the app; blank allowed"
+data/runs/tmtf_runs.csv,app_status,앱이 붙인 결과 상태,result status stored by the app,,discarded | not_measurable_at_0dB | practice | threshold
+data/runs/tmtf_runs.csv,app_flags,"앱이 붙인 점검 표시, ; 로 이음","check flags stored by the app, joined by ;",,at_chance; blank allowed
+data/runs/tmtf_runs.csv,included,"1 = 분석에 포함 (본 측정, 끝 규칙까지 감) · 0 = 제외",1 = included in the analysis (main run that reached its end rule); 0 = excluded,0/1,0 | 1
+data/runs/tmtf_runs.csv,exclusion_reason,제외한 까닭,reason for exclusion,,"practice trial (fixed 0 dB, not part of any track) | run stopped by participant (stop) after 35 trials; discarded by app; its trials were not saved by this app version (no trial rows) | run stopped by participant (stop-button) after 5 trials; discarded by app; blank allowed"
+data/runs/tmtf_runs.csv,audio_sample_rate_hz,"브라우저 오디오 표본률 (앱 기록, 없으면 빈칸)",browser audio sample rate recorded by the app (blank if not recorded),Hz,48000; blank allowed
+data/runs/tmtf_runs.csv,app_version,측정한 앱 판,app version that ran the measurement,,"2.x (version before 3.0, 2026-10-11) | 3.0 (2026-10-11) | 3.3 (2026-10-24) | 3.3.1 (2026-11-03) | 3.3.2 (2026-11-03) | 3.3.3 (2026-11-04); blank allowed"
+data/runs/tmtf_runs.csv,source,이 줄을 만든 원본 기록 위치 (data/raw/<test>/ 안),where in data/raw/<test>/ the run record comes from,,db.json runs[] | db.json sessions[].events[type=track-abandoned] | db.json sessions[].practiceTrials
+data/runs/smrt_runs.csv,test,검사 이름,test name,,SMRT
+data/runs/smrt_runs.csv,run_id,측정(회차) ID — 시행 CSV 의 run_id 와 같음,"run ID, the same as run_id in the trial CSV",,"45 distinct values, e.g. mv9gb9as19128"
+data/runs/smrt_runs.csv,session_id,회기(한 번 앉아서 한 묶음) ID. TMTF 첫 21개 측정은 빈칸,session ID (one sitting); blank for the first 21 TMTF runs,,"13 distinct values, e.g. mv9g9mfjptozj"
+data/runs/smrt_runs.csv,protocol,절차: 과제 · 계단 규칙 · 자극 요약 (앱 기록에서),"procedure: task, staircase rule, stimulus summary (from the app record)",,"SMRT 1.1.3 official WAVs, 3I-3AFC adaptive 1-down/1-up, step 0.2 RPO, 10 rev mean of last 6, ISI 500 ms"
+data/runs/smrt_runs.csv,condition,절차 안의 조건 (변조 주파수 · 밀도 · 소리 종류 · 크기 로빙 등). 없으면 빈칸,"condition within the procedure (modulation rate, density, sound type, level rove); blank if none",,"no level rove (official SMRT) | rove A (0 dB) | rove B (+/-4 dB, per interval) | rove C (+/-7.5 dB, per interval)"
+data/runs/smrt_runs.csv,ear,검사한 귀,test ear,,L | R
+data/runs/smrt_runs.csv,run_kind,측정 종류: main · practice(연습) · screening(예시 + 통과 검사),"kind of run: main, practice, screening (examples + pass check)",,main | practice
+data/runs/smrt_runs.csv,date_kst,"측정 날짜, 한국 시각","run date, KST",YYYY-MM-DD,2026-10-15 | 2026-10-20 | 2026-10-22 | 2026-11-02 | 2026-11-03
+data/runs/smrt_runs.csv,start_time_kst,측정 시작 시각 (기록이 없으면 빈칸),run start time (blank if not recorded),HH:MM:SS,"45 distinct values, e.g. 00:27:05"
+data/runs/smrt_runs.csv,end_time_kst,측정 끝 시각,run end time,HH:MM:SS,"45 distinct values, e.g. 00:28:35"
+data/runs/smrt_runs.csv,n_trials,시행 CSV 에 있는 이 측정의 줄 수 (답 전에 멈춘 시행 포함),rows of this run in the trial CSV (including trials stopped before a response),count,13 to 44 (22 distinct)
+data/runs/smrt_runs.csv,n_responses,답한 시행 수 (correct 가 0 또는 1),trials with a scored response,count,13 to 44 (22 distinct)
+data/runs/smrt_runs.csv,n_correct,정답 수,correct responses,count,7 to 31 (19 distinct)
+data/runs/smrt_runs.csv,n_unsure,‘모르겠음’ 수 (TMTF · SMRT),"""don't know"" responses (TMTF, SMRT)",count,0 | 1 | 2 | 3 | 4 | 6 | 7 | 8
+data/runs/smrt_runs.csv,n_examples_before,"측정 전에 들려준 예시 소리 수 (답을 받지 않음, 시행이 아님; 새 틀 앱만 기록)","example sounds played before the run (no response, not trials; recorded by the newer apps only)",count,always blank
+data/runs/smrt_runs.csv,n_reversals,반전 수,number of reversals,count,10
+data/runs/smrt_runs.csv,reversal_values,"반전 시행의 제시 값, 순서대로 ; 로 이음 — SMRT: value = 표적의 리플 밀도 RPO (기준 = 20 RPO 두 개; 높을수록 어려움). 공식 SMRT 1.1.3 WAV.","presented values at the reversal trials, in order, joined by ; — SMRT: value = ripple density of the target in RPO (two 20-RPO references; higher = harder). Official SMRT 1.1.3 WAVs.",same as threshold_unit,"45 distinct values, e.g. 0.3;0.5;0.3;1.1;0.9;2.1;1.5;1.7;1.5;1.7"
+data/runs/smrt_runs.csv,reversal_trial_nos,"반전 시행의 측정 안 번호 (run_trial_no), ; 로 이음","run_trial_no of each reversal, joined by ;",count,"45 distinct values, e.g. 10;11;16;17;18;19;22;26;31;33"
+data/runs/smrt_runs.csv,threshold_rule,역치를 내는 규칙 (몇 번째 반전부터 어떻게 평균),rule that turns reversals into the threshold,,arithmetic mean of the last 6 of 10 reversals (app rounds to 0.0001 RPO)
+data/runs/smrt_runs.csv,n_reversals_used,역치에 쓴 반전 수,number of reversals averaged,count,6
+data/runs/smrt_runs.csv,threshold,앱이 저장한 역치 (또는 Blankenship 논문 방식 값). 숫자가 아니면 빈칸 — SMRT: value = 표적의 리플 밀도 RPO (기준 = 20 RPO 두 개; 높을수록 어려움). 공식 SMRT 1.1.3 WAV.,threshold stored by the app (or the Blankenship paper-method value); blank when there is no numeric threshold — SMRT: value = ripple density of the target in RPO (two 20-RPO references; higher = harder). Official SMRT 1.1.3 WAVs.,see threshold_unit,0.4667 to 4.3667 (36 distinct)
+data/runs/smrt_runs.csv,threshold_unit,threshold 의 단위,unit of threshold,,RPO
+data/runs/smrt_runs.csv,value_kind,threshold = 70.7 % 등 목표 정답률 역치 · paper_method_value = Blankenship 방식 값(50 % = 우연을 따라감) · none = 숫자 없음,threshold; paper_method_value (Blankenship 1-up/1-down tracks 50 % = chance); none,,threshold
+data/runs/smrt_runs.csv,no_threshold_reason,역치가 없는 이유,why there is no numeric threshold,,always blank
+data/runs/smrt_runs.csv,app_status,앱이 붙인 결과 상태,result status stored by the app,,threshold
+data/runs/smrt_runs.csv,app_flags,"앱이 붙인 점검 표시, ; 로 이음","check flags stored by the app, joined by ;",,unverified_vs_chance; blank allowed
+data/runs/smrt_runs.csv,included,"1 = 분석에 포함 (본 측정, 끝 규칙까지 감) · 0 = 제외",1 = included in the analysis (main run that reached its end rule); 0 = excluded,0/1,0 | 1
+data/runs/smrt_runs.csv,exclusion_reason,제외한 까닭,reason for exclusion,,practice run; blank allowed
+data/runs/smrt_runs.csv,audio_sample_rate_hz,"브라우저 오디오 표본률 (앱 기록, 없으면 빈칸)",browser audio sample rate recorded by the app (blank if not recorded),Hz,44100
+data/runs/smrt_runs.csv,app_version,측정한 앱 판,app version that ran the measurement,,1.0 (2026-10-15) | 1.1 (2026-10-22) | 1.2.1 (2026-11-02) | 1.3 (2026-11-02)
+data/runs/smrt_runs.csv,source,이 줄을 만든 원본 기록 위치 (data/raw/<test>/ 안),where in data/raw/<test>/ the run record comes from,,db.json runs[] | runs-log.jsonl (run line; not in the db.json run list)
+data/runs/stripes_runs.csv,test,검사 이름,test name,,STRIPES
+data/runs/stripes_runs.csv,run_id,측정(회차) ID — 시행 CSV 의 run_id 와 같음,"run ID, the same as run_id in the trial CSV",,"12 distinct values, e.g. rmvayv1rqo4rqqm"
+data/runs/stripes_runs.csv,session_id,회기(한 번 앉아서 한 묶음) ID. TMTF 첫 21개 측정은 빈칸,session ID (one sitting); blank for the first 21 TMTF runs,,"6 distinct values, e.g. mvayuna1fofjze"
+data/runs/stripes_runs.csv,protocol,절차: 과제 · 계단 규칙 · 자극 요약 (앱 기록에서),"procedure: task, staircase rule, stimulus summary (from the app record)",,"STRIPES 3I-2AFC (A-X-B, target = upward sweeps in A or B), C1 webstripes bank; adaptive 2-down/1-up, 8 reversals mean of last 4 | STRIPES examples + pass check (C1 webstripes bank)"
+data/runs/stripes_runs.csv,condition,절차 안의 조건 (변조 주파수 · 밀도 · 소리 종류 · 크기 로빙 등). 없으면 빈칸,"condition within the procedure (modulation rate, density, sound type, level rove); blank if none",,always blank
+data/runs/stripes_runs.csv,ear,검사한 귀,test ear,,L | R
+data/runs/stripes_runs.csv,run_kind,측정 종류: main · practice(연습) · screening(예시 + 통과 검사),"kind of run: main, practice, screening (examples + pass check)",,main | practice | screening
+data/runs/stripes_runs.csv,date_kst,"측정 날짜, 한국 시각","run date, KST",YYYY-MM-DD,2026-10-16 | 2026-10-20 | 2026-11-02
+data/runs/stripes_runs.csv,start_time_kst,측정 시작 시각 (기록이 없으면 빈칸),run start time (blank if not recorded),HH:MM:SS,"12 distinct values, e.g. 00:54:54"
+data/runs/stripes_runs.csv,end_time_kst,측정 끝 시각,run end time,HH:MM:SS,"12 distinct values, e.g. 00:55:01"
+data/runs/stripes_runs.csv,n_trials,시행 CSV 에 있는 이 측정의 줄 수 (답 전에 멈춘 시행 포함),rows of this run in the trial CSV (including trials stopped before a response),count,1 | 11 | 23 | 25 | 26 | 28 | 29 | 34 | 38
+data/runs/stripes_runs.csv,n_responses,답한 시행 수 (correct 가 0 또는 1),trials with a scored response,count,0 | 11 | 23 | 25 | 26 | 28 | 29 | 34 | 38
+data/runs/stripes_runs.csv,n_correct,정답 수,correct responses,count,0 | 10 | 11 | 16 | 20 | 21 | 24 | 28 | 7
+data/runs/stripes_runs.csv,n_unsure,‘모르겠음’ 수 (TMTF · SMRT),"""don't know"" responses (TMTF, SMRT)",count,always blank
+data/runs/stripes_runs.csv,n_examples_before,"측정 전에 들려준 예시 소리 수 (답을 받지 않음, 시행이 아님; 새 틀 앱만 기록)","example sounds played before the run (no response, not trials; recorded by the newer apps only)",count,always blank
+data/runs/stripes_runs.csv,n_reversals,반전 수,number of reversals,count,2 | 8; blank allowed
+data/runs/stripes_runs.csv,reversal_values,"반전 시행의 제시 값, 순서대로 ; 로 이음 — STRIPES: value = 밀도 D (RPO = D/5). 1.1 D = 쉬운 끝 · 20 D = 어려운 끝. target A/B (A-X-B).","presented values at the reversal trials, in order, joined by ; — STRIPES: value = density D (RPO = D/5); 1.1 D easy end, 20 D hard end; target A or B (A-X-B).",same as threshold_unit,"6 distinct values, e.g. 1.6;1.1;1.6;1.1;1.3;1.1;1.3;1.1; blank allowed"
+data/runs/stripes_runs.csv,reversal_trial_nos,"반전 시행의 측정 안 번호 (run_trial_no), ; 로 이음","run_trial_no of each reversal, joined by ;",count,"6 distinct values, e.g. 12;15; blank allowed"
+data/runs/stripes_runs.csv,threshold_rule,역치를 내는 규칙 (몇 번째 반전부터 어떻게 평균),rule that turns reversals into the threshold,,arithmetic mean of the last 4 of 8 reversals (D); moves blocked at a limit are not moves or reversals; blank allowed
+data/runs/stripes_runs.csv,n_reversals_used,역치에 쓴 반전 수,number of reversals averaged,count,4; blank allowed
+data/runs/stripes_runs.csv,threshold,앱이 저장한 역치 (또는 Blankenship 논문 방식 값). 숫자가 아니면 빈칸 — STRIPES: value = 밀도 D (RPO = D/5). 1.1 D = 쉬운 끝 · 20 D = 어려운 끝. target A/B (A-X-B).,"threshold stored by the app (or the Blankenship paper-method value); blank when there is no numeric threshold — STRIPES: value = density D (RPO = D/5); 1.1 D easy end, 20 D hard end; target A or B (A-X-B).",see threshold_unit,1.2 | 2.7 | 3.7 | 3.85; blank allowed
+data/runs/stripes_runs.csv,threshold_unit,threshold 의 단위,unit of threshold,,D (STRIPES density; RPO = D/5)
+data/runs/stripes_runs.csv,value_kind,threshold = 70.7 % 등 목표 정답률 역치 · paper_method_value = Blankenship 방식 값(50 % = 우연을 따라감) · none = 숫자 없음,threshold; paper_method_value (Blankenship 1-up/1-down tracks 50 % = chance); none,,none | threshold
+data/runs/stripes_runs.csv,no_threshold_reason,역치가 없는 이유,why there is no numeric threshold,,examples and pass check (not a threshold track) | run stopped by the participant before its end rule; blank allowed
+data/runs/stripes_runs.csv,app_status,앱이 붙인 결과 상태,result status stored by the app,,analysis_window_boundary_affected | complete_in_range | participant_aborted | passed
+data/runs/stripes_runs.csv,app_flags,"앱이 붙인 점검 표시, ; 로 이음","check flags stored by the app, joined by ;",,possible_floor;unverified_vs_chance; blank allowed
+data/runs/stripes_runs.csv,included,"1 = 분석에 포함 (본 측정, 끝 규칙까지 감) · 0 = 제외",1 = included in the analysis (main run that reached its end rule); 0 = excluded,0/1,0 | 1
+data/runs/stripes_runs.csv,exclusion_reason,제외한 까닭,reason for exclusion,,"example trial (correct answer shown); run stopped by participant before its end rule (no threshold); screening/training trial with feedback (pass check), not part of threshold track | example trial (correct answer shown); screening/training trial with feedback (pass check), not part of threshold track | practice run | run stopped by participant before its end rule (no threshold) | run stopped by participant before its end rule (no threshold); screening/training trial with feedback (pass check), not part of threshold track; trial stopped before response (stopped); blank allowed"
+data/runs/stripes_runs.csv,audio_sample_rate_hz,"브라우저 오디오 표본률 (앱 기록, 없으면 빈칸)",browser audio sample rate recorded by the app (blank if not recorded),Hz,44100
+data/runs/stripes_runs.csv,app_version,측정한 앱 판,app version that ran the measurement,,1.0.0 (2026-10-16) | 1.1.0 (2026-10-21)
+data/runs/stripes_runs.csv,source,이 줄을 만든 원본 기록 위치 (data/raw/<test>/ 안),where in data/raw/<test>/ the run record comes from,,db.json runs[]
+data/runs/stm_runs.csv,test,검사 이름,test name,,STM
+data/runs/stm_runs.csv,run_id,측정(회차) ID — 시행 CSV 의 run_id 와 같음,"run ID, the same as run_id in the trial CSV",,"27 distinct values, e.g. rmvdtpn6np8aiwl"
+data/runs/stm_runs.csv,session_id,회기(한 번 앉아서 한 묶음) ID. TMTF 첫 21개 측정은 빈칸,session ID (one sitting); blank for the first 21 TMTF runs,,"2 distinct values, e.g. mvdtohqxd2gqqq"
+data/runs/stm_runs.csv,protocol,절차: 과제 · 계단 규칙 · 자극 요약 (앱 기록에서),"procedure: task, staircase rule, stimulus summary (from the app record)",,"Won2015 STM detection, 2I-2AFC adaptive 2-down/1-up (streamed; not a replication of the original free-field setup)"
+data/runs/stm_runs.csv,condition,절차 안의 조건 (변조 주파수 · 밀도 · 소리 종류 · 크기 로빙 등). 없으면 빈칸,"condition within the procedure (modulation rate, density, sound type, level rove); blank if none",,density=0.5 c/o; rate=10 Hz | density=0.5 c/o; rate=5 Hz | density=1 c/o; rate=10 Hz | density=1 c/o; rate=5 Hz | density=2 c/o; rate=10 Hz | density=2 c/o; rate=5 Hz
+data/runs/stm_runs.csv,ear,검사한 귀,test ear,,L | R
+data/runs/stm_runs.csv,run_kind,측정 종류: main · practice(연습) · screening(예시 + 통과 검사),"kind of run: main, practice, screening (examples + pass check)",,main
+data/runs/stm_runs.csv,date_kst,"측정 날짜, 한국 시각","run date, KST",YYYY-MM-DD,2026-10-18 | 2026-10-19
+data/runs/stm_runs.csv,start_time_kst,측정 시작 시각 (기록이 없으면 빈칸),run start time (blank if not recorded),HH:MM:SS,"27 distinct values, e.g. 00:01:13"
+data/runs/stm_runs.csv,end_time_kst,측정 끝 시각,run end time,HH:MM:SS,"27 distinct values, e.g. 00:01:00"
+data/runs/stm_runs.csv,n_trials,시행 CSV 에 있는 이 측정의 줄 수 (답 전에 멈춘 시행 포함),rows of this run in the trial CSV (including trials stopped before a response),count,32 to 66 (19 distinct)
+data/runs/stm_runs.csv,n_responses,답한 시행 수 (correct 가 0 또는 1),trials with a scored response,count,32 to 66 (19 distinct)
+data/runs/stm_runs.csv,n_correct,정답 수,correct responses,count,24 to 50 (14 distinct)
+data/runs/stm_runs.csv,n_unsure,‘모르겠음’ 수 (TMTF · SMRT),"""don't know"" responses (TMTF, SMRT)",count,always blank
+data/runs/stm_runs.csv,n_examples_before,"측정 전에 들려준 예시 소리 수 (답을 받지 않음, 시행이 아님; 새 틀 앱만 기록)","example sounds played before the run (no response, not trials; recorded by the newer apps only)",count,0 | 1 | 2 | 3 | 4
+data/runs/stm_runs.csv,n_reversals,반전 수,number of reversals,count,14
+data/runs/stm_runs.csv,reversal_values,"반전 시행의 제시 값, 순서대로 ; 로 이음 — STM: value = 스펙트럼-시간 변조 깊이 20·log10(A) dB (0 dB = 쉬운 끝, -50 dB = 어려운 끝).","presented values at the reversal trials, in order, joined by ; — STM: value = spectro-temporal modulation depth 20·log10(A) dB (0 dB easy end, -50 dB hard end).",same as threshold_unit,"27 distinct values, e.g. -12;-8;-12;-4;-12;-8;-12;-8;-10;-8;-10;-8;-14;-12"
+data/runs/stm_runs.csv,reversal_trial_nos,"반전 시행의 측정 안 번호 (run_trial_no), ; 로 이음","run_trial_no of each reversal, joined by ;",count,"27 distinct values, e.g. 11;14;15;17;18;20;21;27;29;31;35;39;42;44"
+data/runs/stm_runs.csv,threshold_rule,역치를 내는 규칙 (몇 번째 반전부터 어떻게 평균),rule that turns reversals into the threshold,,arithmetic mean of the last 10 of 14 reversals (dB); moves blocked at a limit are not moves or reversals
+data/runs/stm_runs.csv,n_reversals_used,역치에 쓴 반전 수,number of reversals averaged,count,10
+data/runs/stm_runs.csv,threshold,"앱이 저장한 역치 (또는 Blankenship 논문 방식 값). 숫자가 아니면 빈칸 — STM: value = 스펙트럼-시간 변조 깊이 20·log10(A) dB (0 dB = 쉬운 끝, -50 dB = 어려운 끝).","threshold stored by the app (or the Blankenship paper-method value); blank when there is no numeric threshold — STM: value = spectro-temporal modulation depth 20·log10(A) dB (0 dB easy end, -50 dB hard end).",see threshold_unit,-20.2 to -4 (20 distinct)
+data/runs/stm_runs.csv,threshold_unit,threshold 의 단위,unit of threshold,,dB (20log10 A)
+data/runs/stm_runs.csv,value_kind,threshold = 70.7 % 등 목표 정답률 역치 · paper_method_value = Blankenship 방식 값(50 % = 우연을 따라감) · none = 숫자 없음,threshold; paper_method_value (Blankenship 1-up/1-down tracks 50 % = chance); none,,threshold
+data/runs/stm_runs.csv,no_threshold_reason,역치가 없는 이유,why there is no numeric threshold,,always blank
+data/runs/stm_runs.csv,app_status,앱이 붙인 결과 상태,result status stored by the app,,complete_in_range
+data/runs/stm_runs.csv,app_flags,"앱이 붙인 점검 표시, ; 로 이음","check flags stored by the app, joined by ;",,interval_bias | near_ceiling | near_ceiling;interval_bias; blank allowed
+data/runs/stm_runs.csv,included,"1 = 분석에 포함 (본 측정, 끝 규칙까지 감) · 0 = 제외",1 = included in the analysis (main run that reached its end rule); 0 = excluded,0/1,1
+data/runs/stm_runs.csv,exclusion_reason,제외한 까닭,reason for exclusion,,always blank
+data/runs/stm_runs.csv,audio_sample_rate_hz,"브라우저 오디오 표본률 (앱 기록, 없으면 빈칸)",browser audio sample rate recorded by the app (blank if not recorded),Hz,44100
+data/runs/stm_runs.csv,app_version,측정한 앱 판,app version that ran the measurement,,1.0.0 (2026-10-17)
+data/runs/stm_runs.csv,source,이 줄을 만든 원본 기록 위치 (data/raw/<test>/ 안),where in data/raw/<test>/ the run record comes from,,db.json runs[]
+data/runs/srd_runs.csv,test,검사 이름,test name,,SRD
+data/runs/srd_runs.csv,run_id,측정(회차) ID — 시행 CSV 의 run_id 와 같음,"run ID, the same as run_id in the trial CSV",,"18 distinct values, e.g. rmvi2ienmpzsuxy"
+data/runs/srd_runs.csv,session_id,회기(한 번 앉아서 한 묶음) ID. TMTF 첫 21개 측정은 빈칸,session ID (one sitting); blank for the first 21 TMTF runs,,"6 distinct values, e.g. mvi2h3myachaz1"
+data/runs/srd_runs.csv,protocol,절차: 과제 · 계단 규칙 · 자극 요약 (앱 기록에서),"procedure: task, staircase rule, stimulus summary (from the app record)",,"Drennan2014 clinical SRD, 3I-3AFC constant stimuli (72 planned trials, inverted ripple) | Won2007 SRD, 3I-3AFC adaptive 2-down/1-up (2 correct -> denser), density index, 13 reversals mean of last 8"
+data/runs/srd_runs.csv,condition,절차 안의 조건 (변조 주파수 · 밀도 · 소리 종류 · 크기 로빙 등). 없으면 빈칸,"condition within the procedure (modulation rate, density, sound type, level rove); blank if none",,always blank
+data/runs/srd_runs.csv,ear,검사한 귀,test ear,,L | R
+data/runs/srd_runs.csv,run_kind,측정 종류: main · practice(연습) · screening(예시 + 통과 검사),"kind of run: main, practice, screening (examples + pass check)",,main
+data/runs/srd_runs.csv,date_kst,"측정 날짜, 한국 시각","run date, KST",YYYY-MM-DD,2026-10-21 | 2026-10-22 | 2026-11-02
+data/runs/srd_runs.csv,start_time_kst,측정 시작 시각 (기록이 없으면 빈칸),run start time (blank if not recorded),HH:MM:SS,"18 distinct values, e.g. 20:24:17"
+data/runs/srd_runs.csv,end_time_kst,측정 끝 시각,run end time,HH:MM:SS,"18 distinct values, e.g. 20:27:09"
+data/runs/srd_runs.csv,n_trials,시행 CSV 에 있는 이 측정의 줄 수 (답 전에 멈춘 시행 포함),rows of this run in the trial CSV (including trials stopped before a response),count,13 to 53 (13 distinct)
+data/runs/srd_runs.csv,n_responses,답한 시행 수 (correct 가 0 또는 1),trials with a scored response,count,12 to 53 (13 distinct)
+data/runs/srd_runs.csv,n_correct,정답 수,correct responses,count,7 to 41 (15 distinct)
+data/runs/srd_runs.csv,n_unsure,‘모르겠음’ 수 (TMTF · SMRT),"""don't know"" responses (TMTF, SMRT)",count,always blank
+data/runs/srd_runs.csv,n_examples_before,"측정 전에 들려준 예시 소리 수 (답을 받지 않음, 시행이 아님; 새 틀 앱만 기록)","example sounds played before the run (no response, not trials; recorded by the newer apps only)",count,0 | 2
+data/runs/srd_runs.csv,n_reversals,반전 수,number of reversals,count,13; blank allowed
+data/runs/srd_runs.csv,reversal_values,"반전 시행의 제시 값, 순서대로 ; 로 이음 — SRD: value = 리플 밀도 RPO (0.125 = 쉬운 끝, 높을수록 어려움). 임상(Drennan 2014) 고정 자극은 반전 · 끝 표시 없음.","presented values at the reversal trials, in order, joined by ; — SRD: value = ripple density in RPO (0.125 easy end; higher = harder). Clinical constant-stimuli block has no reversals or limit markers.",same as threshold_unit,"17 distinct values, e.g. 0.125;0.176;0.125;0.176;0.125;0.176;0.125;0.176;0.125;0.176;0.125;0.25;0.176; blank allowed"
+data/runs/srd_runs.csv,reversal_trial_nos,"반전 시행의 측정 안 번호 (run_trial_no), ; 로 이음","run_trial_no of each reversal, joined by ;",count,"17 distinct values, e.g. 3;10;12;15;19;21;23;24;26;33;35;36;40; blank allowed"
+data/runs/srd_runs.csv,threshold_rule,역치를 내는 규칙 (몇 번째 반전부터 어떻게 평균),rule that turns reversals into the threshold,,arithmetic mean of the last 8 of 13 reversals (RPO); moves blocked at a limit are not moves or reversals | constant stimuli: proportion correct over 72 planned trials
+data/runs/srd_runs.csv,n_reversals_used,역치에 쓴 반전 수,number of reversals averaged,count,8; blank allowed
+data/runs/srd_runs.csv,threshold,"앱이 저장한 역치 (또는 Blankenship 논문 방식 값). 숫자가 아니면 빈칸 — SRD: value = 리플 밀도 RPO (0.125 = 쉬운 끝, 높을수록 어려움). 임상(Drennan 2014) 고정 자극은 반전 · 끝 표시 없음.",threshold stored by the app (or the Blankenship paper-method value); blank when there is no numeric threshold — SRD: value = ripple density in RPO (0.125 easy end; higher = harder). Clinical constant-stimuli block has no reversals or limit markers.,see threshold_unit,0.166125 to 0.96025 (15 distinct); blank allowed
+data/runs/srd_runs.csv,threshold_unit,threshold 의 단위,unit of threshold,,RPO; blank allowed
+data/runs/srd_runs.csv,value_kind,threshold = 70.7 % 등 목표 정답률 역치 · paper_method_value = Blankenship 방식 값(50 % = 우연을 따라감) · none = 숫자 없음,threshold; paper_method_value (Blankenship 1-up/1-down tracks 50 % = chance); none,,none | threshold
+data/runs/srd_runs.csv,no_threshold_reason,역치가 없는 이유,why there is no numeric threshold,,"run stopped by the participant before its end rule | threshold_near_easy_end: the staircase was blocked at the easy end (0.125 RPO) inside the analysis window, so the reversal mean is not a threshold; blank allowed"
+data/runs/srd_runs.csv,app_status,앱이 붙인 결과 상태,result status stored by the app,,complete_in_range | participant_aborted | threshold_near_easy_end
+data/runs/srd_runs.csv,app_flags,"앱이 붙인 점검 표시, ; 로 이음","check flags stored by the app, joined by ;",,interval_bias | near_easy_end | near_easy_end;early_easy_errors | near_easy_end;interval_bias | response_bias | track_not_above_chance; blank allowed
+data/runs/srd_runs.csv,included,"1 = 분석에 포함 (본 측정, 끝 규칙까지 감) · 0 = 제외",1 = included in the analysis (main run that reached its end rule); 0 = excluded,0/1,0 | 1
+data/runs/srd_runs.csv,exclusion_reason,제외한 까닭,reason for exclusion,,run stopped by participant before its end rule (no threshold); trial stopped before response (stopped); blank allowed
+data/runs/srd_runs.csv,audio_sample_rate_hz,"브라우저 오디오 표본률 (앱 기록, 없으면 빈칸)",browser audio sample rate recorded by the app (blank if not recorded),Hz,44100
+data/runs/srd_runs.csv,app_version,측정한 앱 판,app version that ran the measurement,,1.0.0 (2026-10-21) | 1.0.3 (2026-10-21) | 1.0.6 (2026-10-22) | 1.0.7 (2026-11-02)
+data/runs/srd_runs.csv,source,이 줄을 만든 원본 기록 위치 (data/raw/<test>/ 안),where in data/raw/<test>/ the run record comes from,,db.json runs[]
+data/runs/gdt_runs.csv,test,검사 이름,test name,,GDT
+data/runs/gdt_runs.csv,run_id,측정(회차) ID — 시행 CSV 의 run_id 와 같음,"run ID, the same as run_id in the trial CSV",,"30 distinct values, e.g. rmvxuthsjc4iwpn"
+data/runs/gdt_runs.csv,session_id,회기(한 번 앉아서 한 묶음) ID. TMTF 첫 21개 측정은 빈칸,session ID (one sitting); blank for the first 21 TMTF runs,,"11 distinct values, e.g. mvxut8qecog9it"
+data/runs/gdt_runs.csv,protocol,절차: 과제 · 계단 규칙 · 자극 요약 (앱 기록에서),"procedure: task, staircase rule, stimulus summary (from the app record)",,"Blankenship2022, 2I-2AFC adaptive 1-up/1-down (value = paper-method value, not a 70.7% threshold) | Wei2007 task / Zeng1999 stimuli, 3I-3AFC adaptive 2-down/1-up on half-octave ladder, 12 rev geometric mean of last 8 | Xie2022, 2I-2AFC adaptive 2-down/1-up, 10 rev mean of last 6"
+data/runs/gdt_runs.csv,condition,절차 안의 조건 (변조 주파수 · 밀도 · 소리 종류 · 크기 로빙 등). 없으면 빈칸,"condition within the procedure (modulation rate, density, sound type, level rove); blank if none",,"broadband noise 20-14000 Hz, 500 ms, gap centred | noise 800 ms (Xie 2022), target = gap, standard = 4 ms dip | tone 2 kHz -> 1 kHz (different-frequency markers) | tone 2 kHz -> 2 kHz (same-frequency markers)"
+data/runs/gdt_runs.csv,ear,검사한 귀,test ear,,R
+data/runs/gdt_runs.csv,run_kind,측정 종류: main · practice(연습) · screening(예시 + 통과 검사),"kind of run: main, practice, screening (examples + pass check)",,main
+data/runs/gdt_runs.csv,date_kst,"측정 날짜, 한국 시각","run date, KST",YYYY-MM-DD,2026-11-01 | 2026-11-02 | 2026-11-03
+data/runs/gdt_runs.csv,start_time_kst,측정 시작 시각 (기록이 없으면 빈칸),run start time (blank if not recorded),HH:MM:SS,"30 distinct values, e.g. 00:02:23"
+data/runs/gdt_runs.csv,end_time_kst,측정 끝 시각,run end time,HH:MM:SS,"30 distinct values, e.g. 00:02:17"
+data/runs/gdt_runs.csv,n_trials,시행 CSV 에 있는 이 측정의 줄 수 (답 전에 멈춘 시행 포함),rows of this run in the trial CSV (including trials stopped before a response),count,1 to 56 (21 distinct)
+data/runs/gdt_runs.csv,n_responses,답한 시행 수 (correct 가 0 또는 1),trials with a scored response,count,0 to 56 (21 distinct)
+data/runs/gdt_runs.csv,n_correct,정답 수,correct responses,count,0 to 48 (20 distinct)
+data/runs/gdt_runs.csv,n_unsure,‘모르겠음’ 수 (TMTF · SMRT),"""don't know"" responses (TMTF, SMRT)",count,always blank
+data/runs/gdt_runs.csv,n_examples_before,"측정 전에 들려준 예시 소리 수 (답을 받지 않음, 시행이 아님; 새 틀 앱만 기록)","example sounds played before the run (no response, not trials; recorded by the newer apps only)",count,0 | 1 | 10 | 2
+data/runs/gdt_runs.csv,n_reversals,반전 수,number of reversals,count,0 | 10 | 12 | 2 | 5 | 8; blank allowed
+data/runs/gdt_runs.csv,reversal_values,"반전 시행의 제시 값, 순서대로 ; 로 이음 — GDT: value = 표적 간격 길이 ms (공칭 사다리 값, 길수록 쉬움). 긴 끝 = easy · 짧은 끝 = hard.","presented values at the reversal trials, in order, joined by ; — GDT: value = nominal gap duration in ms (ladder value; longer = easier). Long end = easy, short end = hard.",same as threshold_unit,"27 distinct values, e.g. 0.3125;0.625; blank allowed"
+data/runs/gdt_runs.csv,reversal_trial_nos,"반전 시행의 측정 안 번호 (run_trial_no), ; 로 이음","run_trial_no of each reversal, joined by ;",count,"27 distinct values, e.g. 13;15;20;23;28;30;34;36;40;44; blank allowed"
+data/runs/gdt_runs.csv,threshold_rule,역치를 내는 규칙 (몇 번째 반전부터 어떻게 평균),rule that turns reversals into the threshold,,"arithmetic mean of the last 3 of 5 reversals (ms); 1-up/1-down tracks 50 % = 2AFC chance: a paper-method value, not a 70.7 % threshold | arithmetic mean of the last 6 of 10 reversals (ms) | geometric mean of the last 8 of 12 reversals (ms)"
+data/runs/gdt_runs.csv,n_reversals_used,역치에 쓴 반전 수,number of reversals averaged,count,3 | 6 | 8; blank allowed
+data/runs/gdt_runs.csv,threshold,"앱이 저장한 역치 (또는 Blankenship 논문 방식 값). 숫자가 아니면 빈칸 — GDT: value = 표적 간격 길이 ms (공칭 사다리 값, 길수록 쉬움). 긴 끝 = easy · 짧은 끝 = hard.","threshold stored by the app (or the Blankenship paper-method value); blank when there is no numeric threshold — GDT: value = nominal gap duration in ms (ladder value; longer = easier). Long end = easy, short end = hard.",see threshold_unit,2.33333 to 45.5515 (20 distinct); blank allowed
+data/runs/gdt_runs.csv,threshold_unit,threshold 의 단위,unit of threshold,,ms (gap duration)
+data/runs/gdt_runs.csv,value_kind,threshold = 70.7 % 등 목표 정답률 역치 · paper_method_value = Blankenship 방식 값(50 % = 우연을 따라감) · none = 숫자 없음,threshold; paper_method_value (Blankenship 1-up/1-down tracks 50 % = chance); none,,none | paper_method_value | threshold
+data/runs/gdt_runs.csv,no_threshold_reason,역치가 없는 이유,why there is no numeric threshold,,"run stopped by the participant before its end rule | threshold_near_floor: the staircase was held at the shortest gap of the ladder (test floor), so no numeric threshold; blank allowed"
+data/runs/gdt_runs.csv,app_status,앱이 붙인 결과 상태,result status stored by the app,,complete_in_range | participant_aborted | threshold_near_floor
+data/runs/gdt_runs.csv,app_flags,"앱이 붙인 점검 표시, ; 로 이음","check flags stored by the app, joined by ;",,interval_bias | near_floor | response_bias | rule_tracks_chance | rule_tracks_chance;track_not_above_chance | track_not_above_chance; blank allowed
+data/runs/gdt_runs.csv,included,"1 = 분석에 포함 (본 측정, 끝 규칙까지 감) · 0 = 제외",1 = included in the analysis (main run that reached its end rule); 0 = excluded,0/1,0 | 1
+data/runs/gdt_runs.csv,exclusion_reason,제외한 까닭,reason for exclusion,,"deleted from app database at participant request (2026-11-03: ""program error""); record check that day found no app fault; kept in the app deleted-records folder | run stopped by participant before its end rule (no threshold); trial stopped before response (stopped); blank allowed"
+data/runs/gdt_runs.csv,audio_sample_rate_hz,"브라우저 오디오 표본률 (앱 기록, 없으면 빈칸)",browser audio sample rate recorded by the app (blank if not recorded),Hz,48000
+data/runs/gdt_runs.csv,app_version,측정한 앱 판,app version that ran the measurement,,1.0.2 (2026-11-01) | 1.0.4 (2026-11-01) | 1.0.5 (2026-11-02)
+data/runs/gdt_runs.csv,source,이 줄을 만든 원본 기록 위치 (data/raw/<test>/ 안),where in data/raw/<test>/ the run record comes from,,db.json runs[] | deleted_runs_2026-11-03/removed.json runs[]
+data/runs/smd_runs.csv,test,검사 이름,test name,,SMD
+data/runs/smd_runs.csv,run_id,측정(회차) ID — 시행 CSV 의 run_id 와 같음,"run ID, the same as run_id in the trial CSV",,"13 distinct values, e.g. rmvxzut3elzhnbr"
+data/runs/smd_runs.csv,session_id,회기(한 번 앉아서 한 묶음) ID. TMTF 첫 21개 측정은 빈칸,session ID (one sitting); blank for the first 21 TMTF runs,,"3 distinct values, e.g. mvxzuorf24jhj4"
+data/runs/smd_runs.csv,protocol,절차: 과제 · 계단 규칙 · 자극 요약 (앱 기록에서),"procedure: task, staircase rule, stimulus summary (from the app record)",,"QSMD (EasyQSMD 1.0 official Electric WAVs), 3I-3AFC constant stimuli, 60 trials | Won2015 SMD, 3I-3AFC adaptive 2-down/1-up, 14 reversals mean of last 10, max depth 60 dB"
+data/runs/smd_runs.csv,condition,절차 안의 조건 (변조 주파수 · 밀도 · 소리 종류 · 크기 로빙 등). 없으면 빈칸,"condition within the procedure (modulation rate, density, sound type, level rove); blank if none",,QSMD 60 official files (densities 0.5/1/2 c/o) | density=0.5 c/o | density=1 c/o | density=2 c/o
+data/runs/smd_runs.csv,ear,검사한 귀,test ear,,R
+data/runs/smd_runs.csv,run_kind,측정 종류: main · practice(연습) · screening(예시 + 통과 검사),"kind of run: main, practice, screening (examples + pass check)",,main
+data/runs/smd_runs.csv,date_kst,"측정 날짜, 한국 시각","run date, KST",YYYY-MM-DD,2026-11-02
+data/runs/smd_runs.csv,start_time_kst,측정 시작 시각 (기록이 없으면 빈칸),run start time (blank if not recorded),HH:MM:SS,"13 distinct values, e.g. 00:37:50"
+data/runs/smd_runs.csv,end_time_kst,측정 끝 시각,run end time,HH:MM:SS,"13 distinct values, e.g. 00:41:46"
+data/runs/smd_runs.csv,n_trials,시행 CSV 에 있는 이 측정의 줄 수 (답 전에 멈춘 시행 포함),rows of this run in the trial CSV (including trials stopped before a response),count,42 | 44 | 49 | 50 | 51 | 55 | 60 | 64 | 69 | 76
+data/runs/smd_runs.csv,n_responses,답한 시행 수 (correct 가 0 또는 1),trials with a scored response,count,42 | 44 | 49 | 50 | 51 | 55 | 60 | 64 | 69 | 76
+data/runs/smd_runs.csv,n_correct,정답 수,correct responses,count,25 | 28 | 29 | 30 | 32 | 34 | 35 | 39 | 44 | 51 | 57 | 60
+data/runs/smd_runs.csv,n_unsure,‘모르겠음’ 수 (TMTF · SMRT),"""don't know"" responses (TMTF, SMRT)",count,always blank
+data/runs/smd_runs.csv,n_examples_before,"측정 전에 들려준 예시 소리 수 (답을 받지 않음, 시행이 아님; 새 틀 앱만 기록)","example sounds played before the run (no response, not trials; recorded by the newer apps only)",count,0 | 1
+data/runs/smd_runs.csv,n_reversals,반전 수,number of reversals,count,14; blank allowed
+data/runs/smd_runs.csv,reversal_values,"반전 시행의 제시 값, 순서대로 ; 로 이음 — SMD: value = 스펙트럼 변조 깊이 dB (봉우리-골, 깊을수록 쉬움; 60 dB = 쉬운 끝). QSMD 는 공식 파일의 깊이.","presented values at the reversal trials, in order, joined by ; — SMD: value = spectral modulation depth in dB (peak-to-valley; deeper = easier; 60 dB easy end). QSMD: depth of the official file.",same as threshold_unit,"12 distinct values, e.g. 16;18;14;24;23;23.5;23;24.5;20;21.5;19;20;17.5;18; blank allowed"
+data/runs/smd_runs.csv,reversal_trial_nos,"반전 시행의 측정 안 번호 (run_trial_no), ; 로 이음","run_trial_no of each reversal, joined by ;",count,"12 distinct values, e.g. 10;13;15;20;25;29;31;32;36;38;41;42;49;50; blank allowed"
+data/runs/smd_runs.csv,threshold_rule,역치를 내는 규칙 (몇 번째 반전부터 어떻게 평균),rule that turns reversals into the threshold,,arithmetic mean of the last 10 of 14 reversals (dB); moves blocked at a limit are not moves or reversals | constant stimuli (QSMD): proportion correct over 60 official files
+data/runs/smd_runs.csv,n_reversals_used,역치에 쓴 반전 수,number of reversals averaged,count,10; blank allowed
+data/runs/smd_runs.csv,threshold,"앱이 저장한 역치 (또는 Blankenship 논문 방식 값). 숫자가 아니면 빈칸 — SMD: value = 스펙트럼 변조 깊이 dB (봉우리-골, 깊을수록 쉬움; 60 dB = 쉬운 끝). QSMD 는 공식 파일의 깊이.",threshold stored by the app (or the Blankenship paper-method value); blank when there is no numeric threshold — SMD: value = spectral modulation depth in dB (peak-to-valley; deeper = easier; 60 dB easy end). QSMD: depth of the official file.,see threshold_unit,16.95 | 18.6 | 19.35 | 20.25 | 21 | 23 | 23.35 | 23.4 | 25.7; blank allowed
+data/runs/smd_runs.csv,threshold_unit,threshold 의 단위,unit of threshold,,dB (peak-to-valley spectral modulation depth); blank allowed
+data/runs/smd_runs.csv,value_kind,threshold = 70.7 % 등 목표 정답률 역치 · paper_method_value = Blankenship 방식 값(50 % = 우연을 따라감) · none = 숫자 없음,threshold; paper_method_value (Blankenship 1-up/1-down tracks 50 % = chance); none,,none | threshold
+data/runs/smd_runs.csv,no_threshold_reason,역치가 없는 이유,why there is no numeric threshold,,"constant-stimuli test: no threshold; score = n_correct / n_responses | threshold_above_window: accuracy in the analysis window was confirmed below the 70.7 % target, so the track had not converged; blank allowed"
+data/runs/smd_runs.csv,app_status,앱이 붙인 결과 상태,result status stored by the app,,complete | complete_in_range | threshold_above_window
+data/runs/smd_runs.csv,app_flags,"앱이 붙인 점검 표시, ; 로 이음","check flags stored by the app, joined by ;",,interval_bias | interval_bias;response_bias; blank allowed
+data/runs/smd_runs.csv,included,"1 = 분석에 포함 (본 측정, 끝 규칙까지 감) · 0 = 제외",1 = included in the analysis (main run that reached its end rule); 0 = excluded,0/1,1
+data/runs/smd_runs.csv,exclusion_reason,제외한 까닭,reason for exclusion,,always blank
+data/runs/smd_runs.csv,audio_sample_rate_hz,"브라우저 오디오 표본률 (앱 기록, 없으면 빈칸)",browser audio sample rate recorded by the app (blank if not recorded),Hz,44100
+data/runs/smd_runs.csv,app_version,측정한 앱 판,app version that ran the measurement,,1.1.0 (2026-10-31) | 1.1.1 (2026-11-02)
+data/runs/smd_runs.csv,source,이 줄을 만든 원본 기록 위치 (data/raw/<test>/ 안),where in data/raw/<test>/ the run record comes from,,db.json runs[]
+analysis/pdf_values/<test>.csv,key,PDF 에 찍힌 값의 이름 (분석 코드가 같은 이름으로 다시 계산),name of a value printed in the PDF (the analysis recomputes the same key),,"1365 distinct values, e.g. A_std_R.2026-10-15.I"
+analysis/pdf_values/<test>.csv,expected,PDF 에 찍힌 그대로의 값 (— = PDF 에서 빈칸/없음),the value exactly as printed in the PDF (— = shown as a dash),as printed,"677 distinct values, e.g. +1.0 | +1.6 | +1.8"
+analysis/pdf_values/<test>.csv,where,PDF 파일 · 쪽 · 그림 위치,"PDF file, page and panel",,"82 distinct values, e.g. Figure1_SMRT_detailed_EN.pdf dashed line, panels C-D | Figure1_SMRT_detailed_EN.pdf footnote | Figure1_SMRT_detailed_EN.pdf footnote (dagger)"
+analysis/output/<test>/numbers.csv,key,분석 코드가 계산한 값의 이름 (check.* = 내부 점검),name of a computed value (check.* = internal checks),,"1372 distinct values, e.g. A_std_R.2026-10-15.I"
+analysis/output/<test>/numbers.csv,value,계산한 값 (반올림 안 함),"computed value, full precision",,"676 distinct values, e.g. -0.7999999999999989 | -1.0 | -1.2000000000000002; blank allowed"
+analysis/output/<test>/pdf_comparison.csv,test,검사,test,,gdt | smd | smrt | srd | stm | stripes | tmtf
+analysis/output/<test>/pdf_comparison.csv,key,pdf_values 의 key,key from pdf_values,,"1365 distinct values, e.g. A_std_R.2026-10-15.I"
+analysis/output/<test>/pdf_comparison.csv,pdf,PDF 값,value printed in the PDF,,"677 distinct values, e.g. +1.0 | +1.6 | +1.8"
+analysis/output/<test>/pdf_comparison.csv,computed,CSV 에서 다시 계산한 값을 PDF 와 같은 자릿수로 쓴 것,recomputed value formatted like the PDF value,,"677 distinct values, e.g. +1.0 | +1.6 | +1.8"
+analysis/output/<test>/pdf_comparison.csv,match,1 = 글자까지 같음 · 0 = 다름,"1 = identical text, 0 = different",0/1,1
+analysis/output/<test>/pdf_comparison.csv,where,PDF 위치,location in the PDF,,"82 distinct values, e.g. Figure1_SMRT_detailed_EN.pdf dashed line, panels C-D | Figure1_SMRT_detailed_EN.pdf footnote | Figure1_SMRT_detailed_EN.pdf footnote (dagger)"
+analysis/output/verification_summary.csv,test,검사,test,,GDT | SMD | SMRT | SRD | STM | STRIPES | TMTF
+analysis/output/verification_summary.csv,pdf,대조한 PDF,PDF compared,,Figure1_SMRT_detailed_EN.pdf / _KO.pdf | GDT_scientific_EN.pdf / _KO.pdf | SMD_scientific_EN.pdf / _KO.pdf | SRD_scientific_EN.pdf / _KO.pdf | STM_Scientific_EN.pdf / _KO.pdf | STRIPES_scientific_figures_EN.pdf / _KO.pdf | TMTF_English.pdf / TMTF_Korean.pdf
+analysis/output/verification_summary.csv,pdf_values,대조한 값 수,number of PDF values compared,count,133 | 152 | 154 | 301 | 45 | 519 | 86
+analysis/output/verification_summary.csv,identical,같은 값 수,identical values,count,133 | 152 | 154 | 301 | 45 | 519 | 86
+analysis/output/verification_summary.csv,different,다른 값 수,different values,count,0
+analysis/output/verification_summary.csv,figure_pages,다시 그린 그림 쪽 수,figure pages redrawn,count,1 | 3 | 5 | 6 | 7 | 8
+analysis/output/verification_summary.csv,internal_checks,내부 점검 결과 (예: 다시 낸 역치와 앱 역치가 다른 측정 수),internal checks (e.g. runs whose recomputed threshold differs from the app value),,threshold_recomputed_vs_app_mismatch=0 | threshold_recomputed_vs_app_mismatch=0; flagged_unverified_runs=mw0lk72u38hd9 (rove C R 2026-11-03) | threshold_recomputed_vs_app_mismatch=0; runs_after_pdf_date_not_used=8
+analysis/output/verification_summary.csv,seconds,걸린 시간 (실행할 때마다 조금씩 다름),run time (differs a little on every run),s,positive number of seconds (differs between runs)
+data/raw/redaction_log.csv,file,고친 원본 파일 (data/raw 안),raw file changed (inside data/raw),,"20 distinct values, e.g. gdt/db.json | gdt/deleted_runs_2026-11-03/journal/*.jsonl | gdt/deleted_runs_2026-11-03/removed.json"
+data/raw/redaction_log.csv,json_path,바꾼 값의 JSON 위치 ([] = 배열의 모든 원소),JSON path of the replaced value ([] = every array element),,"51 distinct values, e.g. $.participants[].code"
+data/raw/redaction_log.csv,rule,적용한 규칙,rule applied,,audio_endpoint_guid | participant_code | usb_instance_id | user_name_in_path
+data/raw/redaction_log.csv,what_was_removed,지운 것,what was removed,,"USB device instance ID inside the Windows hardware ID (unique to this adapter/computer) | Windows audio endpoint ID (unique to this computer's output device) | Windows user name inside a folder path | participant code typed in the apps -> the neutral public label ""P01"""
+data/raw/redaction_log.csv,replaced_with,대신 넣은 글자,replacement text,,P01 | [redacted] | redacted-usb-instance-id | {0.0.0.00000000}.{redacted-audio-endpoint-guid}
+data/raw/redaction_log.csv,n_values,바꾼 값 수,number of values replaced,count,1 to 82 (26 distinct)
+data/raw/stimulus_file_hashes/<list>.csv,file_name,공식 소리 파일 이름 (배포본 안의 이름 그대로),"name of the official sound file, as in the distribution",,"4666 distinct values, e.g. QSMDv400_Electric_01_01-01.wav | QSMDv400_Electric_01_01-02.wav | QSMDv400_Electric_01_01-03.wav"
+data/raw/stimulus_file_hashes/<list>.csv,sha256,그 파일의 SHA-256 (소문자 16진수 64자),SHA-256 of the file (64 lowercase hex digits),,"4666 distinct values, e.g. 000b2b2a6674790768ef50a6c02240196bf36e8da348dfd2f0283419066c5f35 | 000d720c89ba3e900cf1acf6c9a2b4c13c71929c4665f3d7c5b94d9edade7596 | 00207a5e9ba1ffde6d03d4be63b1870984858e7d110cd5f6beb503ec3897361a"
+data/raw/stimulus_file_hashes/<list>.csv,source,"받은 곳 · 판 (배포처, 판 번호, commit 또는 zip 해시)","where the file comes from (distribution, version, commit or zip hash)",,"EasyQSMD 1.0 (www.ear-lab.org/EasyQSMD, EasyQSMD1.0.zip sha256 b469560d16ac71eb5d01badad4cd4b6cdf1de3149c81a9fc224508d47608bd9a), Stimuli/ | SMRT 1.1.3 (ear-lab.org/smrt.html), Wave folder | webSTRIPES gitlab.developers.cam.ac.uk/chg/bob/webstripes commit 2743c07f2056a2bb0d137f99a52c4b0c674d39e7, audio/"

@@ -1,0 +1,8 @@
+test,pdf,pdf_values,identical,different,figure_pages,internal_checks,seconds
+TMTF,TMTF_English.pdf / TMTF_Korean.pdf,519,519,0,6,threshold_recomputed_vs_app_mismatch=0; runs_after_pdf_date_not_used=8,3.0
+SMRT,Figure1_SMRT_detailed_EN.pdf / _KO.pdf,86,86,0,1,threshold_recomputed_vs_app_mismatch=0; flagged_unverified_runs=mw0lk72u38hd9 (rove C R 2026-11-03),0.7
+STRIPES,STRIPES_scientific_figures_EN.pdf / _KO.pdf,45,45,0,3,threshold_recomputed_vs_app_mismatch=0,2.4
+STM,STM_Scientific_EN.pdf / _KO.pdf,301,301,0,5,threshold_recomputed_vs_app_mismatch=0,6.3
+SRD,SRD_scientific_EN.pdf / _KO.pdf,133,133,0,7,threshold_recomputed_vs_app_mismatch=0,6.0
+GDT,GDT_scientific_EN.pdf / _KO.pdf,152,152,0,8,threshold_recomputed_vs_app_mismatch=0,11.2
+SMD,SMD_scientific_EN.pdf / _KO.pdf,154,154,0,6,threshold_recomputed_vs_app_mismatch=0,3.2
